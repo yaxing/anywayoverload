@@ -50,5 +50,15 @@ namespace BsCtrl
 
             return ret;
         }
+
+        /*功能：获取一本书籍的信息
+         参数：bookId   书籍的索引号
+        返回值：标记书籍的所有信息。形式即为表的结构*/
+        public DataSet GetBookInfo(int iBookId)
+        {
+            DataSet ret = null;
+
+            return ret;
+        }
     }
 }
