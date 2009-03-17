@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 
 namespace BsCtrl
 {
@@ -30,7 +31,7 @@ namespace BsCtrl
 
         /*功能：删除用户信息
           参数：strDelID[]	存放待删除用户的ID号*/
-        public bool DeleteUser(String strDelID[])
+        public bool DeleteUser(String[] strDelID)
         {
             bool ret = true;
 
