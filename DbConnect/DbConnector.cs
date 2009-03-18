@@ -12,6 +12,7 @@ namespace DbConnect
         SqlCommand commend;
         DataSet ds;
 
+        //数据库链接函数，server为地址
         public void connDB(string server, string userName, string passWord)
         {
             sqlConnection = new SqlConnection();
@@ -21,13 +22,13 @@ namespace DbConnect
             sqlConnection.Open();
         }
 
+        //查询函数，传入查询语句，返回结果集
         public DataSet executeQuery(String sql)
         {
             try
             {
                 commend = new SqlCommand(sql, sqlConnection);
                 SqlDataAdapter MyDataAdapter = new SqlDataAdapter(commend);
-                //SqlDataAdapter MyDataAdapter = new SqlDataAdapter(sql, sqlConnection);
                 ds = new DataSet();
                 MyDataAdapter.Fill(ds);
             }
@@ -38,6 +39,7 @@ namespace DbConnect
             return ds;
         }
 
+        //更新函数，传入更新、插入、删除语句，返回影响行数
         public int executeUpdate(String sql)
         {
             int result;
@@ -53,6 +55,7 @@ namespace DbConnect
             return result;
         }
 
+        //插入函数，返回本条插入的ID
         public int executeUpdate_id(String sql)
         {
             int result;
@@ -77,6 +80,7 @@ namespace DbConnect
             return result;
         }
 
+        //关闭连接
         public void close()
         {
             sqlConnection.Close();
