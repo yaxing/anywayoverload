@@ -6,17 +6,17 @@ using System.Data.SqlClient;
 
 namespace DbConnect
 {
-    public class DbConnect
+    public class DbConnector
     {
         SqlConnection sqlConnection;
         SqlCommand commend;
-        DataSet rs;
+        DataSet ds;
 
         public void connDB(string server, string userName, string passWord)
         {
             sqlConnection = new SqlConnection();
             sqlConnection.ConnectionString =
-            "Server=" + server + ";Database=olBookShop;User ID=" + userName + ";Password=" + passWord
+            "Server=" + server + ";Database=shanzhai;User ID=" + userName + ";Password=" + passWord
             + ";Trusted_Connection=False";
             sqlConnection.Open();
         }
@@ -26,14 +26,16 @@ namespace DbConnect
             try
             {
                 commend = new SqlCommand(sql, sqlConnection);
-                SqlDataAdapter MyDataAdapter = new SqlDataAdapter(commend.CommandText, commend.Connection);
-                MyDataAdapter.Fill(rs);
+                SqlDataAdapter MyDataAdapter = new SqlDataAdapter(commend);
+                //SqlDataAdapter MyDataAdapter = new SqlDataAdapter(sql, sqlConnection);
+                ds = new DataSet();
+                MyDataAdapter.Fill(ds);
             }
             catch (Exception ee)
             {
-                rs = null;
+                ds = null;
             }
-            return rs;
+            return ds;
         }
 
         public int executeUpdate(String sql)
@@ -60,10 +62,11 @@ namespace DbConnect
                 result = commend.ExecuteNonQuery();
                 String ID = "select @@IDENTITY as id";
                 SqlDataAdapter MyDataAdapter = new SqlDataAdapter(ID, commend.Connection);
-                MyDataAdapter.Fill(rs);
-                if (rs != null && rs.Tables.Count != 0)
+                ds = new DataSet();
+                MyDataAdapter.Fill(ds);
+                if (ds != null && ds.Tables.Count != 0)
                 {
-                    int autoID = Convert.ToInt32(rs.Tables[0].Rows[0]["ID"]);
+                    int autoID = Convert.ToInt32(ds.Tables[0].Rows[0]["ID"]);
                     result = autoID;
                 }
             }
