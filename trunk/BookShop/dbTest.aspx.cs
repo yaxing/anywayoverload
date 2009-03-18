@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using DbConnect;
+using System.Configuration; 
 
 public partial class dbTest : System.Web.UI.Page
 {
@@ -18,9 +19,15 @@ public partial class dbTest : System.Web.UI.Page
         DataSet ds = null;
         int result;
 
-//        Response.Write("testtest...");
 
-        conn.connDB("localhost", "sa", "");
+        //运用全局变量dbServer、dbUserName、dbPassWord，要链接数据库就按照这个来-------------
+        //如果要修改全局变量值的话就在Web.Config里面的<appSettings>改
+        string server = ConfigurationSettings.AppSettings["dbServer"];
+        string userName = ConfigurationSettings.AppSettings["dbUserName"];
+        string passWord = ConfigurationSettings.AppSettings["dbPassWord"]; 
+        conn.connDB(server, userName, passWord);
+        //-----------------------------------------------------------------------------------
+
         result = conn.executeUpdate("insert into admin values( 'linsi', '43201', 'linsiran@163', 2)");
         ds = conn.executeQuery("select * from admin"); 
         result = conn.executeUpdate_id("insert into admin values( 'linsi', '43201', 'linsiran@163', 2)");
