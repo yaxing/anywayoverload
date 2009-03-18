@@ -1,0 +1,147 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="mode_admin.master.cs" Inherits="mode_admin" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<%--<head runat="server">
+    <title>无标题页</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+        </asp:contentplaceholder>
+    </div>
+    </form>
+</body>--%>
+<head>
+<title>mode_admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<link href="CSS/style.css" rel="stylesheet"/>
+<%--<script src="JS/check.jsp"></script>--%>
+</head>
+
+<body>
+<table width="100%"  border="0" cellspacing="0" cellpadding="0" background="Images/bg.gif">
+  <tr>
+    <td>
+<table width="777" height="609"  border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+  <tr>
+    <td valign="top">
+	
+<!-- ------------------------------------------------head stats here--------------------------------------------------------- -->
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="6" colspan="2" bgcolor="#81CF00"></td>
+      </tr>
+      <tr>
+        <td width="28%" height="70"><img src="Images/index_ht.gif" width="221" height="58"></td>
+        <td width="72%" valign="top"><table width="100%" height="35"  border="0" cellpadding="0" cellspacing="0">
+          <tr align="center">
+            <td rowspan="2" valign="bottom">&nbsp;</td>
+            <td height="22" valign="bottom"><a href="#">图书管理</a></td>
+            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36"></td>
+            <td valign="bottom"><a href="#">用户管理</a></td>
+            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36"></td>
+            <td valign="bottom"><a href="#">订单管理</a></td>
+            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36"></td>
+            <td valign="bottom"><a href="#">公告管理</a></td>
+            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36"></td>
+            <td valign="bottom"><a href="#">投票管理</a></td>
+            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36"></td>
+            <td valign="bottom">&nbsp;<a href="#">退出</a>&nbsp;</td>
+          </tr>
+          <tr align="center">
+            <td height="13"><a href="#">Books Manage</a></td>
+            <td><a href="#">Member Manage</a></td>
+            <td><a href="#">Order Manage</a></td>
+            <td><a href="#">BBS Manage </a></td>
+            <td><a href="#">Poll manage </a></td>
+            <td>&nbsp;<a href="#">Quit</a>&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+<!-- ----------------------------------------------添加XX starts here--------------------------------------------------------- -->
+	<table width="100%"  border="0" cellspacing="0" cellpadding="0" class="tableBorder_LTR">
+      <tr>
+        <td height="30" align="center" bgcolor="#eeeeee">≡≡≡ <span class="word_grey"><a href="#">添加XX</a></span> ≡≡≡</td>
+      </tr>
+    </table>
+<!-- ---------------------------------------------body starts here------------------------------------------------------------ -->
+	<table width="100%" height="396"  border="0" cellpadding="0" cellspacing="0" class="tableBorder_LBR">
+        <tr>
+		<!-- 左板块starts -->
+          <td width="26%" height="395" valign="top"><table width="100%"  border="0" cellspacing="-2" cellpadding="-2">
+            <tr>
+              <td width="55%" height="82" align="center" class="word_grey">&nbsp;<img src="Images/reg.gif" width="84" height="54"></td>
+              <td width="45%" align="left" class="word_grey">XX管理</td>
+            </tr>
+            <tr>
+              <td height="112" colspan="2" valign="top" class="word_grey"><ul>
+                <li> 第一条信息</li>
+                <li>第二条信息</li>
+                <li>第三条信息</li>
+                <li>第四条信息</li>
+                <li>...........</li>
+              </ul></td>
+            </tr>
+            <tr align="center">
+              <td colspan="2" valign="middle" class="word_grey"></td>
+            </tr>
+          </table></td><!-- 左板块ends -->
+		  
+          <td width="5" valign="top" background="Images/Cen_separate.gif"></td><!-- 分割线 -->
+		  
+		  <!-- 右板块starts -->
+          <td width="73%" valign="top">
+		  	<div>
+           <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+           </asp:contentplaceholder>
+         </div>
+		  </td>
+        </tr>
+      </table>
+<!-- ----------------------------bottom starts here------------------------------------------------------------ -->  
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td height="5" bgcolor="#83CC10"></td>
+        </tr>
+        <tr>
+          <td align="center"><table width="100%" height="78"  border="0" align="center" cellpadding="-2" cellspacing="-2">
+            <tr>
+              <td width="124" height="13">&nbsp;</td>
+              <td height="13" colspan="3"><div align="center">制作：AnywayOverload小组</div></td>
+              <td width="141">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="124" height="13">&nbsp;</td>
+              <td height="13" colspan="3" align="center"><a href="#">图书吧</a>客户服务热线：010-6891xxx&nbsp;&nbsp;&nbsp;&nbsp;联系人:AnywayOverload小组</td>
+              <td width="141">&nbsp;</td>
+            </tr>
+            <tr>
+              <td height="15" colspan="2">&nbsp;</td>
+              <td width="464" valign="bottom"><div align="center"> CopyRight &copy; 2008.3.17 AnywayOverload小组</div></td>
+              <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+              <td colspan="2">&nbsp;</td>
+              <td align="center">本站请使用IE6.0或以上版本 1024*768为最佳显示效果</td>
+              <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+              <td height="15" colspan="2">&nbsp;</td>
+              <td align="center">&nbsp;</td>
+              <td colspan="2">&nbsp;</td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+<!-- -------------------------------------------------------------------------------------------------------------------------- -->
+</td></tr></table>
+</td></tr></table>
+</body>
+</html>
