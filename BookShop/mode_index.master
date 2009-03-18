@@ -1,0 +1,312 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="mode_index.master.cs" Inherits="mode_index" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<script  type="text/javascript" language="javascript">
+function tick() {
+    var hours, minutes, seconds, xfile;
+    var intHours, intMinutes, intSeconds;
+    var today, theday;
+    today = new Date();
+    function initArray(){
+        this.length=initArray.arguments.length
+        for(var i=0;i<this.length;i++)
+        this[i+1]=initArray.arguments[i] }
+        var d=new initArray(
+        " 星期日 ",
+        " 星期一 ",
+        " 星期二 ",
+        " 星期三 ",
+        " 星期四 ",
+        " 星期五 ",
+        " 星期六 ");
+        theday = today.getYear()+"年" + [today.getMonth()+1]+"月" +today.getDate() +"日"+ d[today.getDay()+1];
+        intHours = today.getHours();
+        intMinutes = today.getMinutes();
+        intSeconds = today.getSeconds();
+        if (intHours == 0) {
+        hours = "12:";
+        xfile = " 午夜 ";
+        } else if (intHours < 12) {
+        hours = intHours+":";
+        xfile = " 上午 ";
+        } else if (intHours == 12) {
+        hours = "12:";
+        xfile = " 正午 ";
+        } else {
+        intHours = intHours - 12
+        hours = intHours + ":";
+        xfile = " 下午 ";
+        }
+        if (intMinutes < 10) {
+        minutes = "0"+intMinutes+":";
+        } else {
+        minutes = intMinutes+":";
+        }
+        if (intSeconds < 10) {
+        seconds = "0"+intSeconds+" ";
+        } else {
+        seconds = intSeconds+" ";
+    }
+    timeString = theday+xfile+hours+minutes+seconds;
+    Clock.innerHTML = timeString;
+    window.setTimeout("tick();", 100);
+}
+ window.onload = tick;
+</script>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<title>网上图书超市</title>
+<link href="CSS/style.css" rel="stylesheet"/>
+</head>
+<body>
+<table width="100%"  border="0" cellspacing="0" cellpadding="0" style="background-image:url(Images/bg.gif)">
+  <tr>
+    <td>
+<table width="777" style="height:768" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+  <tr>
+    <td valign="top">
+	 
+
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="6" colspan="2" bgcolor="#81CF00"></td>
+      </tr>
+      <tr>
+        <td width="27%" height="70" align="center"><img src="Images/index_03.gif" width="185" height="56" alt=""/></td>
+        <td width="73%" valign="top"><table width="100%" style="height:35" border="0" cellpadding="0" cellspacing="0">
+          <tr align="center">
+            <td height="22" valign="bottom"><a href="">首页</a></td>
+            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36" alt=""/></td>
+            <td valign="bottom"><a href="">新书上架</a></td>
+            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36" alt=""/></td>
+            <td valign="bottom"><a href="">图书分类</a></td>
+            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36" alt=""/></td>
+            <td valign="bottom"><a href="">购物车</a></td>
+            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36" alt=""/></td>
+            <td valign="bottom"><a href="">订单查询</a></td>
+            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36" alt=""/></td>
+            <td valign="bottom"><a href="">销售排行</a></td>
+            <td width="1" rowspan="2">&nbsp;</td>
+          </tr>
+          <tr align="center">
+            <td height="13"><a href="">Index</a></td>
+            <td><a href="">New Books</a></td>
+            <td><a href="">Book Sort</a></td>
+            <td><a href="">Shopping Bag</a></td>
+            <td><a href="">Order Search</a></td>
+            <td><a href="">Sell Sort</a></td>
+          </tr>
+		 <tr style="text-align:right;">
+		    <td height="35" colspan="12">		
+			   <div id="Clock" align="right" style="font-size: 15px; color:#000000; font-style:黑体">
+			    <script type="text/javascript">tick()function TABLE1_onclick() {}
+                </script>
+               </div>
+			</td>
+		  </tr>
+        </table></td>
+      </tr>
+      <tr align="left">
+        <td height="70" colspan="2"><img src="Images/index_06.jpg" width="1024" height="244" alt=""/> </td>
+  </tr>
+      <tr align="right">
+        <td height="17" colspan="2">&nbsp;</td>
+      </tr>
+    </table>
+
+	<table width="100%" style="height:330"  border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="26%" valign="top">
+		  
+
+
+
+
+<script type="text/javascript" language="javascript">
+function checkU(myform){
+	if(myform.username.value==""){
+		alert("请输入用户名!");myform.username.focus();return;
+	}
+	if(myform.PWD.value==""){
+		alert("请输入密码!");myform.PWD.focus();return;
+	}
+	myform.submit();
+}
+</script>
+
+		  <form name="form1" method="post" action="">
+		  <table width="100%" style="height:99"  border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="8%">&nbsp;</td>
+              <td width="92%" height="112" valign="top" style="background-image:url(Images/index_09.gif)"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td width="8%" height="20">&nbsp;</td>
+                  <td width="81%">&nbsp;</td>
+                  <td width="11%">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td height="24" align="center">用户名                    
+                    <input name="username" type="text" class="txt_grey" id="username" size="16"/></td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td height="24" align="center">密&nbsp;&nbsp;码                    
+                    <input name="PWD" type="password" class="txt_grey" id="PWD" size="16" onkeydown="if(event.keyCode==13) form1.submit();"/></td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td height="31" align="center">
+                    <input name="Button" type="button" class="btn_grey" value="注册" onclick="window.location.href='register.jsp'"/>
+                    &nbsp;
+                    <input name="Submit2" type="button" class="btn_grey" value="登录" onclick="checkU(form1)"/><input name="Submit3" type="reset" class="btn_grey" value="重置"/></td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td align="center">&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table></td>
+            </tr>
+          </table>
+		  </form>
+		  
+		  <table width="100%" style="height:55"  border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td colspan="2" align="right"><img src="Images/index_14.gif" width="185" height="49" alt=""/></td>
+            </tr>
+            <tr>
+              <td width="14%">&nbsp;</td>
+              <td width="86%" height="100" valign="top" class="tableBorder_B">
+			  <marquee direction="up" scrollamount="1" scrolldelay="1" height="100" onmousemove="this.stop()" onmouseout="this.start()">
+			  
+			  <table width="100%" style="height:21" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>??????????????????±??é?ê???????????ó??????????°ì???????±??????</td>
+                </tr>
+              </table>
+			  
+			  <table width="100%" style="height:21"  border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>???????±???ì?ì????°???</td>
+                </tr>
+              </table>
+			  
+			  </marquee>
+			  </td>
+            </tr>
+          </table>
+
+		  <table width="100%"  border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td height="50" colspan="2" align="right"><img src="Images/index_18.gif" width="185" height="50" alt=""/></td>
+            </tr>
+            <tr>
+              <td width="14%">&nbsp;</td>
+              <td width="86%" height="27">您需要哪方面的书籍？</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td height="100" valign="top"><form name="form3" method="post" action="">
+                <table width="90%" style="height:151"  border="0" align="center" cellpadding="0" cellspacing="0">
+				
+                  <tr>
+                    <td><input name="Submit7" type="submit" class="btn_grey" value="投票"/> <input name="Submit8" type="button" class="btn_grey" value="查看结果" onclick="window.location.href='poll_result.jsp';"/></td>
+                  </tr>
+                </table>
+              </form></td>
+            </tr>
+          </table>
+<%--<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/> --%>
+		</td>
+          <td width="5" valign="top" style="background-image:url(Images/Cen_separate.gif)"></td>
+          <td width="73%" valign="top"><table width="100%" style="height:272"  border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td height="52" colspan="3" style="background-image:url(Images/index_10.gif)">
+			  
+               <form name="form2" method="post" action="">
+					<table width="100%" style="height:23"  border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td width="15%">&nbsp;</td>
+                  <td width="67%">请输入书名：
+                      <input name="bookkey" type="text" class="txt_grey" size="48"/>
+                   </td>
+                  <td width="18%"><input name="search" type="submit" class="btn_grey" value="搜索"/></td>
+                </tr>
+              </table>
+			   </form>	
+
+              </td>
+            </tr>
+            <tr>
+              <td width="73%" height="220" valign="top">
+			   <table width="100%" style="height:126"  border="0" cellpadding="0" cellspacing="0">
+			      <div>
+        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+        </asp:contentplaceholder>
+    </div>
+			   
+              </table>
+					  </td>
+              
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+      
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td height="5" style="background-color:#83CC10"></td>
+        </tr>
+        <tr>
+          <td align="center"><table width="100%" style="height:78"  border="0" align="center" cellpadding="-2" cellspacing="-2">
+            <tr>
+              <td width="124" height="13">&nbsp;</td>
+              <td height="13" colspan="3"><div align="center">制作：AnywayOverload小组</div></td>
+              <td width="141">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="124" height="13">&nbsp;</td>
+              <td height="13" colspan="3" align="center"><a href="">图书吧</a>客户服务热线：13811828174&nbsp;&nbsp;&nbsp;&nbsp;联系人：AnywayOverload小组</td>
+              <td width="141">&nbsp;</td>
+            </tr>
+            <tr>
+              <td height="15" colspan="2">&nbsp;</td>
+              <td width="464" valign="bottom"><div align="center"> CopyRight &copy; 2008.3.17 AnywayOverload小组</div></td>
+              <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+              <td colspan="2">&nbsp;</td>
+              <td align="center">本站请使用IE6.0或以上版本 1024*768为最佳显示效果</td>
+              <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+              <td height="15" colspan="2">&nbsp;</td>
+              <td align="center">&nbsp;</td>
+              <td colspan="2">&nbsp;</td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+</body>
+</html>
+
+
