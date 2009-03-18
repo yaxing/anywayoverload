@@ -3,3 +3,5 @@ bin\Debug\BsCtrl.dll
 bin\Debug\BsCtrl.pdb
 obj\Debug\BsCtrl.dll
 obj\Debug\BsCtrl.pdb
+bin\Debug\DbConnect.dll
+bin\Debug\DbConnect.pdb
