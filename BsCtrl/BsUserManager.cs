@@ -7,6 +7,17 @@ namespace BsCtrl
 {
     public class BsUserManager
     {
+        private String strDbServer;
+        private String strDbUserName;
+        private String strDbPassWord;
+
+        public BsUserManager(String strDbServer, String strDbUserName, String strDbPassWord)
+        {
+            this.strDbServer = strDbServer;
+            this.strDbUserName = strDbUserName;
+            this.strDbPassWord = strDbPassWord;
+        }
+
         /*功能：匹配登录用户信息，获取验证结果
           参数：strUserName 用户登录名
                 strPassWord 用户登录密码*/

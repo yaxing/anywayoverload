@@ -1,0 +1,5 @@
+bin\Debug\DbConnect.dll
+bin\Debug\DbConnect.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\DbConnect.dll
+obj\Debug\DbConnect.pdb
