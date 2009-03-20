@@ -5,7 +5,7 @@ using DbConnect;
 
 namespace BsCtrl
 {
-    class modeIndex
+    public class modeIndex
     {
         public bool VerifyUserInfo(String strUserName, String strPassWord)
         {
