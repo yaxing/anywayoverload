@@ -8,11 +8,40 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using BsCtrl;
 
 public partial class mode_index : System.Web.UI.MasterPage
 {
+    String name;
+    String pass;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session.Contents.Count > 0)
+        {
+            logName.Text = name;
+            grade.Text = pass;
+            Panel1.Visible = false;
+            Panel2.Visible = true;
+        }
+        else 
+        {
+            Panel1.Visible = true;
+            Panel2.Visible = false; 
+        }
     }
+
+    protected void LogIn_Click(object sender, EventArgs e)
+    {
+        
+        bool LogInOrNot;
+        name = uName.Text;
+        pass = pWord.Text;
+        Session.Add("userName",name);
+        Session.Add("p", pass);
+        logName.Text = name;
+        grade.Text = pass;
+        Panel1.Visible = false;
+        Panel2.Visible = true;
+    }
+
 }
