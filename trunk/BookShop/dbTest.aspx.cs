@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using DbConnect;
+using BsCtrl;
 using System.Configuration; 
 
 public partial class dbTest : System.Web.UI.Page
@@ -19,6 +20,7 @@ public partial class dbTest : System.Web.UI.Page
         DataSet ds = null;
         int result;
 
+        
 
         //运用全局变量dbServer、dbUserName、dbPassWord，要链接数据库就按照这个来-------------
         //如果要修改全局变量值的话就在Web.Config里面的<appSettings>改

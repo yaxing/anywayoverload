@@ -2,17 +2,39 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
+using DbConnect;
 
 namespace BsCtrl
 {
     public class BsBookInfo
     {
+        private String strDbServer;
+        private String strDbUserName;
+        private String strDbPassWord;
+        private DbConnector conn;
+
+        public BsBookInfo(String strDbServer, String strDbUserName, String strDbPassWord)
+        {
+            this.strDbServer = strDbServer;
+            this.strDbUserName = strDbUserName;
+            this.strDbPassWord = strDbPassWord;
+            conn = new DbConnector();
+            conn.connDB(strDbServer, strDbUserName, strDbPassWord);
+        }
+
         /*功能：获取书籍分类列表
           返回值：返回书籍的分类列表集。*/
         public DataSet GetBookClassify()
         {
             DataSet ret = null;
-
+            try 
+            {
+                ret = conn.executeQuery("select * from bookClass");
+            }
+            catch(Exception e)
+            {
+                ret = null;
+            }
             return ret;
         }
 
