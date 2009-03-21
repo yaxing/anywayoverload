@@ -43,4 +43,9 @@ public partial class mode_index : System.Web.UI.MasterPage
         Panel2.Visible = true;
     }
 
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("indexTest.aspx");
+    }
 }
