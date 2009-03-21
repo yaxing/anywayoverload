@@ -15,7 +15,7 @@ public partial class mode_index : System.Web.UI.MasterPage
     String pass;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session.Contents.Count > 0)
+        if (Session.Contents.Count > 0)//每次进入页面时根据session判断登录框显示内容
         {
             logName.Text = Session["userName"].ToString();
             grade.Text = Session["Grade"].ToString();
@@ -42,7 +42,7 @@ public partial class mode_index : System.Web.UI.MasterPage
         name = uName.Text;//从页面取出登录信息
         pass = pWord.Text;
         loginInfo = indexCtrl.VerifyUserInfo(name,pass);//数据库匹配登录信息
-        if (loginInfo.Tables[0].Rows.Count > 0)//如果信息匹配，登录成功并设置session
+        if (loginInfo.Tables[0].Rows.Count > 0)//如果信息匹配，登录成功设置session，并修改登录框显示内容
         {
             Session.Add("userName", name);//用户名session
             Session.Add("Grade", loginInfo.Tables[0].Rows[0][8].ToString());//用户权限session
