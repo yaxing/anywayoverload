@@ -19,7 +19,7 @@ public partial class mode_index : System.Web.UI.MasterPage
         if (Session.Contents.Count > 0)
         {
             logName.Text = Session["userName"].ToString();
-            grade.Text = Session["p"].ToString();
+            grade.Text = Session["pass"].ToString();
             Panel1.Visible = false;
             Panel2.Visible = true;
         }
