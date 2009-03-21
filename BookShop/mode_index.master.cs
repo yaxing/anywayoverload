@@ -31,8 +31,8 @@ public partial class mode_index : System.Web.UI.MasterPage
 
     protected void LogIn_Click(object sender, EventArgs e)
     {
-        
-        bool LogInOrNot;
+
+        DataSet loginInfo;
         string server = ConfigurationSettings.AppSettings["dbServer"];
         string userName = ConfigurationSettings.AppSettings["dbUserName"];
         string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
@@ -40,13 +40,13 @@ public partial class mode_index : System.Web.UI.MasterPage
         indexCtrl.initial(server, userName, passWord);
         name = uName.Text;
         pass = pWord.Text;
-        LogInOrNot = indexCtrl.VerifyUserInfo(name,pass);
-        if (LogInOrNot == true)
+        loginInfo = indexCtrl.VerifyUserInfo(name,pass);
+        if (loginInfo.Tables[0].Rows.Count > 0)
         {
             Session.Add("userName", name);
-            Session.Add("pass", pass);
+            Session.Add("pass", loginInfo.Tables[0].Rows[0][8].ToString());
             logName.Text = name;
-            grade.Text = pass;
+            grade.Text = loginInfo.Tables[0].Rows[0][8].ToString();
             Panel1.Visible = false;
             Panel2.Visible = true;
         }
