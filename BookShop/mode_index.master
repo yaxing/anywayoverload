@@ -326,7 +326,7 @@ function checkU(myform){
               <td width="141">&nbsp;</td>
             </tr>
             <tr>
-              <td height="15" colspan="2">&nbsp;</td>
+              <td colspan="2">&nbsp;</td>
               <td width="464" valign="bottom"><div align="center"> CopyRight &copy; 2008.3.17 AnywayOverload小组</div></td>
               <td colspan="2">&nbsp;</td>
             </tr>

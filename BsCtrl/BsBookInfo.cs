@@ -51,6 +51,16 @@ namespace BsCtrl
         public DataSet GetNewBooks(int iTopN)
         {
             DataSet ret = null;
+            string sql = "select top " + iTopN.ToString() + "* from bookInfo order by indatetime desc";
+
+            try
+            {
+                ret = conn.executeQuery(sql);
+            }
+            catch (System.Exception e)
+            {
+                ret = null;
+            }
 
             return ret;
         }
