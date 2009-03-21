@@ -3,34 +3,39 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using DbConnect;
+using System.Data.SqlClient;
 
 namespace BsCtrl
 {
     public class modeIndex
     {
-    /*    public bool VerifyUserInfo(String strUserName, String strPassWord)
+        String Server;
+        String uName;
+        String pWord;
+        public void initial(String s, String u, String p)
+        {
+            this.Server = s;
+            this.uName = u;
+            this.pWord = p;
+        }
+        public bool VerifyUserInfo(String strUserName, String strPassWord)
         {
             DbConnector conn = new DbConnector();
             DataSet ds = null;
-            int result;
-
-
-            //运用全局变量dbServer、dbUserName、dbPassWord，要链接数据库就按照这个来-------------
-            //如果要修改全局变量值的话就在Web.Config里面的<appSettings>改
-            string server = ConfigurationSettings.AppSettings["dbServer"];
-            string userName = ConfigurationSettings.AppSettings["dbUserName"];
-            string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
-            conn.connDB(server, userName, passWord);
-            //-----------------------------------------------------------------------------------
+            conn.connDB(Server, uName, pWord);
             ds = conn.executeQuery("select * from users where username = '"+strUserName+"' and password = '"+strPassWord+"'");
-            if(ds==null)
+            //SqlConnection conn = new SqlConnection("Data Source = localhost;" + "Integrated Security = SSPI;" + "Initial Catalog = shanzhai");
+            //SqlDataAdapter myAdp = new SqlDataAdapter("select * from users where username = '" + strUserName + "' and password = '" + strPassWord + "'", conn);
+            //DataSet ds = new DataSet();
+            //myAdp.Fill(ds);
+            if(ds.Tables[0].Rows.Count==0)
             {
                 return false;
             }
-            else if (ds != null) 
+            else
             {
                 return true;
             }
-        }*/
+        }
     }
 }
