@@ -13,8 +13,18 @@ public partial class mode_index : System.Web.UI.MasterPage
 {
     String name;
     String pass;
+    String server;
+    String userName;
+    String passWord;
+    modeIndex indexCtrl;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        server = ConfigurationSettings.AppSettings["dbServer"];
+        userName = ConfigurationSettings.AppSettings["dbUserName"];
+        passWord = ConfigurationSettings.AppSettings["dbPassWord"];   //初始化数据库连接信息
+        indexCtrl = new modeIndex();  //建立控制类对象
+        indexCtrl.initial(server, userName, passWord);  //数据库连接初始化
         if (Session.Contents.Count > 0)//每次进入页面时根据session判断登录框显示内容
         {
             logName.Text = Session["userName"].ToString();
@@ -33,12 +43,6 @@ public partial class mode_index : System.Web.UI.MasterPage
     {
 
         DataSet loginInfo;//获取数据库匹配信息数据集
-
-        string server = ConfigurationSettings.AppSettings["dbServer"];
-        string userName = ConfigurationSettings.AppSettings["dbUserName"];
-        string passWord = ConfigurationSettings.AppSettings["dbPassWord"];   //初始化数据库连接信息
-        modeIndex indexCtrl = new modeIndex();  //建立控制类对象
-        indexCtrl.initial(server, userName, passWord);  //数据库连接初始化
         name = uName.Text;//从页面取出登录信息
         pass = pWord.Text;
         loginInfo = indexCtrl.VerifyUserInfo(name,pass);//数据库匹配登录信息
