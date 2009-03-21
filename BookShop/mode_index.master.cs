@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-
+using BsCtrl;
 public partial class mode_index : System.Web.UI.MasterPage
 {
     String name;
@@ -33,6 +33,11 @@ public partial class mode_index : System.Web.UI.MasterPage
     {
         
         bool LogInOrNot;
+        string server = ConfigurationSettings.AppSettings["dbServer"];
+        string userName = ConfigurationSettings.AppSettings["dbUserName"];
+        string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
+        modeIndex indexCtrl = new modeIndex();
+        indexCtrl.initial(server, userName, passWord);
         name = uName.Text;
         pass = pWord.Text;
         Session.Add("userName",name);
@@ -41,6 +46,8 @@ public partial class mode_index : System.Web.UI.MasterPage
         grade.Text = pass;
         Panel1.Visible = false;
         Panel2.Visible = true;
+        //LogInOrNot = indexCtrl.VerifyUserInfo(name,pass);
+
     }
 
     protected void Button2_Click(object sender, EventArgs e)
