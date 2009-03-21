@@ -18,8 +18,8 @@ public partial class mode_index : System.Web.UI.MasterPage
     {
         if (Session.Contents.Count > 0)
         {
-            logName.Text = name;
-            grade.Text = pass;
+            logName.Text = Session["userName"].ToString();
+            grade.Text = Session["p"].ToString();
             Panel1.Visible = false;
             Panel2.Visible = true;
         }
@@ -37,7 +37,7 @@ public partial class mode_index : System.Web.UI.MasterPage
         name = uName.Text;
         pass = pWord.Text;
         Session.Add("userName",name);
-        Session.Add("p", pass);
+        Session.Add("pass", pass);
         logName.Text = name;
         grade.Text = pass;
         Panel1.Visible = false;
