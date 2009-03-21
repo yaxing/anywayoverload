@@ -14,8 +14,7 @@ namespace BsCtrl
         String uName;
         String pWord;
         DataSet ds;
-        SqlDataAdapter myAdp;
-        SqlConnection conn;
+        DbConnector conn;
 
         public void initial(String s, String u, String p)
         {
