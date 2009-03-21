@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 using DbConnect;
 
 namespace BsCtrl
 {
     public class modeIndex
     {
-        public bool VerifyUserInfo(String strUserName, String strPassWord)
+    /*    public bool VerifyUserInfo(String strUserName, String strPassWord)
         {
             DbConnector conn = new DbConnector();
             DataSet ds = null;
@@ -30,6 +31,6 @@ namespace BsCtrl
             {
                 return true;
             }
-        }
+        }*/
     }
 }
