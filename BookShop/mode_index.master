@@ -209,7 +209,7 @@ function checkU(myform){
                   <td>&nbsp;</td>
                   <td height="31" align="center">
                       &nbsp;<asp:Button ID="Button2" runat="server" Style="left: 15px; position: relative; top: -1px"
-                          Text="退出登录" />
+                          Text="退出登录" OnClick="Button2_Click" />
                       &nbsp; &nbsp;
                       &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
                    </td>
