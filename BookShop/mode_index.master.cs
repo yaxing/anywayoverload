@@ -18,7 +18,7 @@ public partial class mode_index : System.Web.UI.MasterPage
         if (Session.Contents.Count > 0)
         {
             logName.Text = Session["userName"].ToString();
-            grade.Text = Session["pass"].ToString();
+            grade.Text = Session["Grade"].ToString();
             Panel1.Visible = false;
             Panel2.Visible = true;
         }
@@ -32,19 +32,20 @@ public partial class mode_index : System.Web.UI.MasterPage
     protected void LogIn_Click(object sender, EventArgs e)
     {
 
-        DataSet loginInfo;
+        DataSet loginInfo;//获取数据库匹配信息数据集
+
         string server = ConfigurationSettings.AppSettings["dbServer"];
         string userName = ConfigurationSettings.AppSettings["dbUserName"];
-        string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
-        modeIndex indexCtrl = new modeIndex();
-        indexCtrl.initial(server, userName, passWord);
-        name = uName.Text;
+        string passWord = ConfigurationSettings.AppSettings["dbPassWord"];   //初始化数据库连接信息
+        modeIndex indexCtrl = new modeIndex();  //建立控制类对象
+        indexCtrl.initial(server, userName, passWord);  //数据库连接初始化
+        name = uName.Text;//从页面取出登录信息
         pass = pWord.Text;
-        loginInfo = indexCtrl.VerifyUserInfo(name,pass);
-        if (loginInfo.Tables[0].Rows.Count > 0)
+        loginInfo = indexCtrl.VerifyUserInfo(name,pass);//数据库匹配登录信息
+        if (loginInfo.Tables[0].Rows.Count > 0)//如果信息匹配，登录成功并设置session
         {
-            Session.Add("userName", name);
-            Session.Add("pass", loginInfo.Tables[0].Rows[0][8].ToString());
+            Session.Add("userName", name);//用户名session
+            Session.Add("Grade", loginInfo.Tables[0].Rows[0][8].ToString());//用户权限session
             logName.Text = name;
             grade.Text = loginInfo.Tables[0].Rows[0][8].ToString();
             Panel1.Visible = false;
@@ -56,7 +57,7 @@ public partial class mode_index : System.Web.UI.MasterPage
         }
     }
 
-    protected void Button2_Click(object sender, EventArgs e)
+    protected void Button2_Click(object sender, EventArgs e)//退出登录时撤销session
     {
         Session.Abandon();
         Response.Redirect("indexTest.aspx");
