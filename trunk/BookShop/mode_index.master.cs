@@ -40,14 +40,20 @@ public partial class mode_index : System.Web.UI.MasterPage
         indexCtrl.initial(server, userName, passWord);
         name = uName.Text;
         pass = pWord.Text;
-        Session.Add("userName",name);
-        Session.Add("pass", pass);
-        logName.Text = name;
-        grade.Text = pass;
-        Panel1.Visible = false;
-        Panel2.Visible = true;
-        //LogInOrNot = indexCtrl.VerifyUserInfo(name,pass);
-
+        LogInOrNot = indexCtrl.VerifyUserInfo(name,pass);
+        if (LogInOrNot == true)
+        {
+            Session.Add("userName", name);
+            Session.Add("pass", pass);
+            logName.Text = name;
+            grade.Text = pass;
+            Panel1.Visible = false;
+            Panel2.Visible = true;
+        }
+        else 
+        {
+            Response.Write("<script>alert('用户名或密码错误！');</script>");
+        }
     }
 
     protected void Button2_Click(object sender, EventArgs e)
