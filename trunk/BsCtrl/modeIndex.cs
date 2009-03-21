@@ -13,23 +13,30 @@ namespace BsCtrl
         String Server;
         String uName;
         String pWord;
+        DataSet ds;
+        SqlDataAdapter myAdp;
+        SqlConnection conn;
+
         public void initial(String s, String u, String p)
         {
             //初始化数据库连接信息
+
             this.Server = s;
             this.uName = u;
             this.pWord = p;
+            conn = new DbConnector();
+            ds = null;
+            conn.connDB(Server, uName, pWord);
+            //conn = new SqlConnection("Data Source = localhost;" + "Integrated Security = SSPI;" + "Initial Catalog = shanzhai");
+            
         }
         public DataSet VerifyUserInfo(String strUserName, String strPassWord)
         {
             //连接数据库并查询是否有与登录用户信息匹配项，返回dataset
-            DbConnector conn = new DbConnector();
-            DataSet ds = null;
-            conn.connDB(Server, uName, pWord);
+            
             ds = conn.executeQuery("select * from users where username = '" + strUserName + "' and password = '" + strPassWord + "'");
-            //SqlConnection conn = new SqlConnection("Data Source = localhost;" + "Integrated Security = SSPI;" + "Initial Catalog = shanzhai");
-            //SqlDataAdapter myAdp = new SqlDataAdapter("select * from users where username = '" + strUserName + "' and password = '" + strPassWord + "'", conn);
-            //DataSet ds = new DataSet();
+            //myAdp = new SqlDataAdapter("select * from users where username = '" + strUserName + "' and password = '" + strPassWord + "'", conn);
+            //ds = new DataSet();
             //myAdp.Fill(ds);
             return ds;
         }
