@@ -1,0 +1,21 @@
+﻿html, body {
+    text-align:center;
+	color: #fff;
+	font-size: 11px;
+	font-family: 'Tahoma';
+	margin:0;
+	padding:0;
+}
+.adminLoginbox
+{
+	background-image: url(images/login_M.jpg);
+	height:230px;
+	width:350px;
+	margin-top: 15%;
+	text-align:left;
+}
+.loginTxt
+{
+	position:relative;
+	margin-top:100px;
+}
