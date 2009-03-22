@@ -33,6 +33,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminControl.cs" />
     <Compile Include="BsBook.cs" />
     <Compile Include="BsBookInfo.cs" />
     <Compile Include="BsCart.cs" />
