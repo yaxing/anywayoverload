@@ -15,6 +15,8 @@ namespace BsCtrl
         String pWord;
         DataSet ds;
         DbConnector conn;
+        //SqlConnection conn1;
+        //SqlDataAdapter myAdp;
 
         public void initial(String s, String u, String p)
         {
@@ -26,7 +28,7 @@ namespace BsCtrl
             conn = new DbConnector();
             ds = null;
             conn.connDB(Server, uName, pWord);
-            //conn = new SqlConnection("Data Source = localhost;" + "Integrated Security = SSPI;" + "Initial Catalog = shanzhai");
+            //conn1 = new SqlConnection("Data Source = localhost;" + "Integrated Security = SSPI;" + "Initial Catalog = shanzhai");
             
         }
         public DataSet VerifyUserInfo(String strUserName, String strPassWord)
@@ -34,10 +36,18 @@ namespace BsCtrl
             //连接数据库并查询是否有与登录用户信息匹配项，返回dataset
             
             ds = conn.executeQuery("select * from users where username = '" + strUserName + "' and password = '" + strPassWord + "'");
-            //myAdp = new SqlDataAdapter("select * from users where username = '" + strUserName + "' and password = '" + strPassWord + "'", conn);
+            //myAdp = new SqlDataAdapter("select * from users where username = '" + strUserName + "' and password = '" + strPassWord + "'", conn1);
             //ds = new DataSet();
             //myAdp.Fill(ds);
             return ds;
+        }
+        public DataSet GetBbs() 
+        {
+            //myAdp = new SqlDataAdapter("select * from bbs", conn1);
+            //ds = new DataSet();
+            //myAdp.Fill(ds);
+            ds = conn.executeQuery("select * from bbs", conn);
+            return ds; 
         }
     }
 }
