@@ -28,7 +28,7 @@
     </div>
     <div style="float:right;width:220px">
         <div>
-            <asp:Repeater ID="rpNewBook" runat="server">
+            <asp:Repeater ID="rpTopClass" runat="server">
                 <HeaderTemplate>
                     <table width="100%" height="55"  border="0" cellpadding="0" cellspacing="0">
                         <tr>
@@ -41,7 +41,7 @@
                     <table width="100%" height="21"  border="0" cellpadding="0" cellspacing="0">
                         <tr>
                             <td width="9%"><img src="Images/greendot.gif" width="11" height="13"></td>
-                            <td width="91%" style="padding:5px;"><a href="#">射雕英雄传</a></td>
+                            <td width="91%" style="padding:5px;"><a href='bookSort.aspx?classID=Eval("ID")'><%#Eval("className") %></a></td>
                         </tr>
                     </table>
                 </ItemTemplate>
@@ -66,7 +66,7 @@
                 			  <table width="100%" height="21"  border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td width="9%"><img src="Images/greendot.gif" width="11" height="13"></td>
-                  <td width="91%" style="padding:5px;"><a href="#">白雪公主和七个小矮人</a></td>
+                  <td width="91%" style="padding:5px;"><a href='#'><%#Eval("bookName") %></a></td>
                 </tr>
               </table>
                 </ItemTemplate>

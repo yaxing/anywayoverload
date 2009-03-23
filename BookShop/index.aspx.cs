@@ -19,9 +19,18 @@ public partial class index : System.Web.UI.Page
         string userName = ConfigurationManager.AppSettings["dbUserName"];
         string passWord = ConfigurationManager.AppSettings["dbPassWord"]; 
 
-        //新书列表
         bsBookInfo = new BsBookInfo(server, userName, passWord);
+
+        //新书列表
         rpBookInfo.DataSource = bsBookInfo.GetNewBooks(8);
         rpBookInfo.DataBind();
+
+        //最热门分类
+        rpTopClass.DataSource = bsBookInfo.GetHotClasses(10);
+        rpTopClass.DataBind();
+
+        //最热图书
+        rpRank.DataSource = bsBookInfo.GetHotBooks(10);
+        rpRank.DataBind();
     }
 }

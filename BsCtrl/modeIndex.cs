@@ -46,7 +46,7 @@ namespace BsCtrl
             //myAdp = new SqlDataAdapter("select * from bbs", conn1);
             //ds = new DataSet();
             //myAdp.Fill(ds);
-            ds = conn.executeQuery("select * from bbs", conn);
+            ds = conn.executeQuery("select * from bbs");
             return ds; 
         }
     }
