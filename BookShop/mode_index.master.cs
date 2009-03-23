@@ -37,6 +37,8 @@ public partial class mode_index : System.Web.UI.MasterPage
             Panel1.Visible = true;
             Panel2.Visible = false; 
         }
+        Bbs.DataSource = indexCtrl.GetBbs();
+        Bbs.DataBind() ;
     }
 
     protected void LogIn_Click(object sender, EventArgs e)
