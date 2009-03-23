@@ -22,6 +22,11 @@ namespace DbConnect
             sqlConnection.Open();
         }
 
+        public void connDB(String strConn)
+        {
+            sqlConnection = new SqlConnection(strConn);
+            sqlConnection.Open();
+        }
         //查询函数，传入查询语句，返回结果集
         public DataSet executeQuery(String sql)
         {
