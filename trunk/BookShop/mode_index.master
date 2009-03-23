@@ -226,23 +226,38 @@ function checkU(myform){
               </td>
             </tr>
           </table>
-		  </form>
+		  
 		  
 		  <table width="100%" style="height:55"  border="0" cellpadding="0" cellspacing="0">
             <tr>
-              <td colspan="2" align="right"><img src="Images/index_14.gif" width="185" height="49" alt=""/></td>
+              <td colspan="2" align="right"><img src="Images/index_14.gif" width="185" height="49" alt="" style="left: -13px; position: relative; top: 0px"/></td>
             </tr>
             <tr>
-              <td width="14%">&nbsp;</td>
-              <td width="86%" height="100" valign="top" class="tableBorder_B">
-			  <marquee direction="up" scrollamount="1" scrolldelay="1" height="100" onmousemove="this.stop()" onmouseout="this.start()"><TABLE cellSpacing=0 
+              <td width="14%" style="height: 113px">&nbsp;</td>
+              <td width="86%" valign="top" class="tableBorder_B" style="height: 113px">
+                  <asp:FormView ID="Bbs" runat="server" style="left: 0px; position: relative; top: 6px; text-align:center" Height="85px" Width="220px">
+                   <ItemTemplate>
+                   <marquee direction="up" scrollamount="1" scrolldelay="1" height="100" onmousemove="this.stop()" onmouseout="this.start()">
+                    <table style="text-align:center">
+                     <tr align="center">
+                     <td style="width:20%"></td>
+                      <td style="width:70%; text-align:center"><%#Eval("content") %></td>
+                      <td style="width:10%"></td>
+                     </tr>
+                    </table>
+                    </marquee>
+                   </ItemTemplate>
+                  </asp:FormView>
+              
+			  <%--<marquee direction="up" scrollamount="1" scrolldelay="1" height="100" onmousemove="this.stop()" onmouseout="this.start()"><TABLE cellSpacing=0 
                         cellPadding=0 width="100%" border=0><TBODY><TR><TD 
-                            style="HEIGHT: 14px">公告还未添加</TD></TR></TBODY></TABLE><TABLE 
+                            style="HEIGHT: 13px">公告还未添加</TD></TR></TBODY></TABLE><TABLE 
                         cellSpacing=0 cellPadding=0 width="100%" 
-                          border=0><TBODY><TR><TD>公告还未添加</TD></TR></TBODY></TABLE></marquee>
+                          border=0><TBODY><TR><TD>公告还未添加</TD></TR></TBODY></TABLE></marquee>--%>
 			  </td>
             </tr>
           </table>
+          </form>
 
 		  <table width="100%"  border="0" cellpadding="0" cellspacing="0">
             <tr>
