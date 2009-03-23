@@ -71,7 +71,32 @@ namespace BsCtrl
         public DataSet GetHotBooks(int iTopN)
         {
             DataSet ret = null;
+            string sql = "select top " + iTopN.ToString() + " ID, bookName, sale from bookInfo order by sale desc";
+            try
+            {
+                ret = conn.executeQuery(sql);
+            }
+            catch (System.Exception e)
+            {
+                ret = null;
+            }
+            return ret;
+        }
 
+        /*功能：返回最热门iTopN分类
+          返回值：分类详细信息*/
+        public DataSet GetHotClasses(int iTopN)
+        {
+            DataSet ret = null;
+            string sql = "select top " + iTopN.ToString() + " * from bookClass order by bookCount desc";
+            try
+            {
+                ret = conn.executeQuery(sql);
+            }
+            catch (System.Exception e)
+            {
+                ret = null;
+            }
             return ret;
         }
 

@@ -100,8 +100,8 @@ function tick() {
 		 <tr style="text-align:right;">
 		    <td height="35" colspan="12">		
 			   <div id="Clock" align="right" style="font-size: 15px; color:#000000; font-style:黑体">
-			    <script type="text/javascript">tick()function TABLE1_onclick() {}
-                </script>
+			   <%-- <script type="text/javascript">tick()function TABLE1_onclick() {}
+                </script>--%>
                </div>
 			</td>
 		  </tr>
