@@ -8,13 +8,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using BsCtrl;
 
 public partial class LoginCheck : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string userName = Request["userName"].ToString();
-        string userPwd = Request["userPwd"].ToString();
+        String userName = Request["userName"].ToString();
+        String userPwd = Request["userPwd"].ToString();
+        AdminControl AdminC = new AdminControl();
         if(userName.Length == 0 || userPwd.Length == 0)
         {
             Response.Write("<script type='text/javascript'>alert('请输入用户名或密码。');</script>");
@@ -22,7 +24,18 @@ public partial class LoginCheck : System.Web.UI.Page
         }
         else
         {
-            
+            if(AdminC.AdminLogin(userName,userPwd))
+            {
+                Session.Add("AdminN",userName);
+                String lv = AdminC.AdminLv();
+                Session.Add("AdminLv",lv);
+                Response.Redirect("bookManage.aspx");
+            }
+            else
+            {
+                Response.Write("<script type='text/javascript'>alert('用户名或密码错误！');</script>");
+                Response.Write("<script type='text/javascript'>location.href('adminLogin.html');</script>");
+            }
         }
     }
 }
