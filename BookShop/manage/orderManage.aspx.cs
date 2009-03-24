@@ -12,58 +12,41 @@ using BsCtrl;
 
 public partial class manage_orderManage : System.Web.UI.Page
 {
-    orderManage orderManObj = new orderManage();
+    private orderManage orderManObj = null;
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        orderManObj = new orderManage();
+        orderManObj.setSql("select * from v_orderManage");
+        orderManObj.getDsRecord();
+        orderManObj.initPages();
+        lblPageAll.Text = orderManObj.getPageAmount() + "";
         if (!IsPostBack)
         {
-            orderManObj.setSql("select * from v_orderManage");
-            orderManObj.getDsRecord();
-            orderManObj.initPage();
-
-            lblContent.Text = orderManObj.recordToShow();
-
-            showPage();
-        }
-    }
-
-    private void showPage()
-    {
-        if (orderManObj.getPageAmount() > 0)
-        {
-            lblPage.Text = "<font color='red'>" + orderManObj.getCurrentPage() + "</font>" + "/" + orderManObj.getPageAmount();
-            lBtnNextPage.Visible = true;
-            lBtnNextPage.Visible = true;
+            lblPageNow.Text = orderManObj.getCurrentPage() + "";
         }
         else
         {
-            lblPage.Text = "";
-            lBtnNextPage.Visible = false;
-            lBtnNextPage.Visible = false;
+            orderManObj.setCurrentPage(Convert.ToInt32(lblPageNow.Text));
         }
+        lblContent.Text = orderManObj.recordToShow();
     }
+
 
 
     protected void lBtnPriPage_Click(object sender, EventArgs e)
     {
-        if (orderManObj.getCurrentPage() > 1)
+        if (Convert.ToInt32(lblPageNow.Text) > 1)
         {
-            orderManObj.setPageToShow(orderManObj.getCurrentPage() - 1);
-            lblContent.Text = orderManObj.recordToShow();
-            orderManObj.setCurrentPage(orderManObj.getCurrentPage() - 1);
-            showPage();
+            lblPageNow.Text = (Convert.ToInt32(lblPageNow.Text) - 1) + "";
         }
     }
 
     protected void lBtnNextPage_Click(object sender, EventArgs e)
     {
-        if (orderManObj.getCurrentPage() < orderManObj.getPageAmount())
+        if (Convert.ToInt32(lblPageNow.Text) < Convert.ToInt32(lblPageAll.Text))
         {
-            orderManObj.setPageToShow(orderManObj.getCurrentPage() + 1);
-            lblContent.Text = orderManObj.recordToShow();
-            orderManObj.setCurrentPage(orderManObj.getCurrentPage() + 1);
-            showPage();
+            lblPageNow.Text = (Convert.ToInt32(lblPageNow.Text) + 1) + "";
         }
     }
 }
