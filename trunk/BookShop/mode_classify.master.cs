@@ -12,14 +12,17 @@ using BsCtrl;
 
 public partial class mode_classify : System.Web.UI.MasterPage
 {
+    private BsBookInfo bookInfo = null;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        string server = ConfigurationManager.AppSettings["dbServer"];
-        string userName = ConfigurationManager.AppSettings["dbUserName"];
-        string passWord = ConfigurationManager.AppSettings["dbPassWord"]; 
-        BsBookInfo bookInfo = new BsBookInfo(server, userName, passWord);
+        if(!Page.IsPostBack)
+        {
+            string strDbConn = ConfigurationManager.AppSettings["dbConnString"];
+            bookInfo = new BsBookInfo(strDbConn);
 
-        gvClassList.DataSource = bookInfo.GetBookClassify();
-        gvClassList.DataBind();
+            rpClass.DataSource = bookInfo.GetBookClassify();
+            rpClass.DataBind();
+        }
     }
 }

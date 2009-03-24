@@ -39,6 +39,7 @@
     <Compile Include="BsCart.cs" />
     <Compile Include="BsUserManager.cs" />
     <Compile Include="modeIndex.cs" />
+    <Compile Include="orderManage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
