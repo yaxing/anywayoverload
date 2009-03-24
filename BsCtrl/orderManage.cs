@@ -26,7 +26,7 @@ namespace BsCtrl
         //取出查询结果
         public void getDsRecord()
         {
-            DbconnObj.connDB("server=PCOFWAP\\SQLEXPRESS;Initial Catalog=shanzhai;Integrated Security=SSPI");
+            //DbconnObj.connDB("server=PCOFWAP\\SQLEXPRESS;Initial Catalog=shanzhai;Integrated Security=SSPI");
             dsRecord = null;
             dsRecord = DbconnObj.executeQuery(strSql);
             DbconnObj.close();

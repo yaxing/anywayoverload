@@ -11,6 +11,7 @@ namespace BsCtrl
         private String strDbServer;
         private String strDbUserName;
         private String strDbPassWord;
+        private String strDbConn;
         private DbConnector conn;
 
         public BsBookInfo(String strDbServer, String strDbUserName, String strDbPassWord)
@@ -20,6 +21,13 @@ namespace BsCtrl
             this.strDbPassWord = strDbPassWord;
             conn = new DbConnector();
             conn.connDB(strDbServer, strDbUserName, strDbPassWord);
+        }
+
+        public BsBookInfo(String strDbConn)
+        {
+            this.strDbConn = strDbConn;
+            conn = new DbConnector();
+            conn.connDB(strDbConn);
         }
 
         /*功能：获取书籍分类列表
@@ -91,6 +99,24 @@ namespace BsCtrl
             string sql = "select top " + iTopN.ToString() + " * from bookClass order by bookCount desc";
             try
             {
+                ret = conn.executeQuery(sql);
+            }
+            catch (System.Exception e)
+            {
+                ret = null;
+            }
+            return ret;
+        }
+
+        /*功能：获得iClassId对应的所有书籍信息
+         * 返回值：书籍信息
+         */
+        public DataSet GetClassBooks(int iClassId)
+        {
+            DataSet ret = null;
+            try
+            {
+                string sql = "select ID, bookName, author, publisher, price, available from bookInfo where classID=" + iClassId.ToString();
                 ret = conn.executeQuery(sql);
             }
             catch (System.Exception e)
