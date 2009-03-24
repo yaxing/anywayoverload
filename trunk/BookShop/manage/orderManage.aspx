@@ -5,16 +5,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <br/>
     <asp:Label ID="lblContent" runat="server" Text=""></asp:Label>
-    <form action=""  runat="server">
+    <p>&nbsp;</p>
     <table style="text-align:center; width:100%;">
         <tr align="center">
             <td align="center">
-                <asp:Label ID="lblPage" runat="server" Text=""></asp:Label>
-                <asp:LinkButton ID="lBtnPriPage" runat="server" OnClick="lBtnPriPage_Click">上一页</asp:LinkButton>
-                <asp:LinkButton ID="lBtnNextPage" runat="server" OnClick="lBtnNextPage_Click">下一页</asp:LinkButton>
+                <font color='red'><asp:Label ID="lblPageNow" runat="server" Text=""></asp:Label></font>/<asp:Label ID="lblPageAll" runat="server" Text=""></asp:Label>页
+                &nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lBtnPriPage" runat="server" OnClick="lBtnPriPage_Click">上一页</asp:LinkButton>
+                &nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lBtnNextPage" runat="server" OnClick="lBtnNextPage_Click">下一页</asp:LinkButton>
             </td>
         </tr>
     </table>
-    </form>
 </asp:Content>
-
