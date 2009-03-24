@@ -8,11 +8,36 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using BsCtrl;
 
 public partial class manage_orderDetail : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        orderManage orderManObj = new orderManage();
+        test();
+        String orderID = Request.QueryString["id"].ToString();
+        lblContent.Text = orderManObj.orderDetail(Convert.ToInt32(orderID));
+    }
 
+    //验证参数的安全性
+    private void test()
+    {
+        if (Request.QueryString.Count != 1)
+        {//参数个数不对
+            Response.Redirect("orderManage.aspx");
+        }
+        else
+        {
+            try
+            {
+                Convert.ToInt32(Request.QueryString["id"].ToString());
+                return;
+            }
+            catch
+            {//参数不是数字
+                Response.Redirect("orderManage.aspx");
+            }
+        }
     }
 }
