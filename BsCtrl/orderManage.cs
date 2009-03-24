@@ -31,7 +31,8 @@ namespace BsCtrl
             dsRecord = DbconnObj.executeQuery(strSql);
             DbconnObj.close();
         }
-
+        
+        //初始化页数
         public void initPages()
         {
             this.recordAmount = dsRecord.Tables[0].Rows.Count;
@@ -78,12 +79,12 @@ namespace BsCtrl
             return pageAmount;
         }
 
-        //显示记录
+        //返回订单记录
         public String recordToShow()
         {
             string strContent = "";
             strContent += "<table cellspacing=2  cellpadding=2   bordercolordark='#ffffff'  bordercolorlight='#000000' width='100%'> ";
-            strContent += "<tr><th width='25%'>用户名</th><th width='25%'>下单时间</th><th width='15%'>交易金额</th><th></th><th></th><th></th></tr>";
+            strContent += "<tr><th width='25%'>用户名</th><th width='25%'>下单时间</th><th width='15%'>交易金额</th><th>交易状态</th><th></th><th></th></tr>";
             if (pageAmount == 0)
             {
                 strContent += "<tr><td colspan='6'>没有任何记录!!</td></tr>";
@@ -102,8 +103,21 @@ namespace BsCtrl
                     strContent += "<td align='center'>" +"<a href='customerInfo.aspx?id="+dsRecord.Tables[0].Rows[i]["ID"]+"'>"+ dsRecord.Tables[0].Rows[i]["userName"] +"</a>"+ "</td>";
                     strContent += "<td align='center'>" + dsRecord.Tables[0].Rows[i]["orderdatetime"] + "</td>";
                     strContent += "<td align='center'>" + dsRecord.Tables[0].Rows[i]["amount"] + "</td>";
-                    strContent += "<td align='center'>" +"<a href='orderDeal.aspx?id="+dsRecord.Tables[0].Rows[i]["ID"]+"'>"+ "完成" +"</a>"+ "</td>";
-                    strContent += "<td align='center'>" +"<a href='orderDeal.aspx?id="+dsRecord.Tables[0].Rows[i]["ID"]+"'>"+ "取消" +"</a>"+ "</td>";
+                    if (dsRecord.Tables[0].Rows[i]["pay"].ToString().Equals("1"))
+                    {
+                        strContent += "<td align='center'>" + "交易完成" + "</td>";
+                        strContent += "<td align='center'>&nbsp;</td>";
+                    }
+                    else if (dsRecord.Tables[0].Rows[i]["pay"].ToString().Equals("0"))
+                    {
+                        strContent += "<td align='center'>" + "买家未付款" + "</td>";
+                        strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "'>" + "已付款" + "</a>" + "</td>";
+                    }
+                    else
+                    {
+                        strContent += "<td align='center'>" + "交易取消" + "</td>";
+                        strContent += "<td align='center'>&nbsp;</td>";
+                    }
                     strContent += "<td align='center'>" +"<a href='orderDetail.aspx?id="+dsRecord.Tables[0].Rows[i]["ID"]+"'>"+ "详情" +"</a>"+ "</td>";
                     strContent += "</tr>";
                 }
@@ -113,7 +127,7 @@ namespace BsCtrl
             return strContent;
         }
 
-        //显示用户信息
+        //返回用户信息
         public String customerInfo(int orderID)
         {
             setSql("select * from v_orderManage where ID=" + orderID);
@@ -130,5 +144,37 @@ namespace BsCtrl
 
             return strInfo;
         }
+
+
+        /*返回订单详细信息
+         * 参数： orderID(主订单的ID)
+         * 返回值：显示订单详细信息的html脚本
+         */
+        public String orderDetail(int orderID)
+        {
+            setSql("select * from v_orderDetailManage where orderID="+orderID);
+            getDsRecord();
+            String strContent = "";
+            strContent += "<table cellspacing=2  cellpadding=2   bordercolordark='#ffffff'  bordercolorlight='#000000' width='100%'> ";
+            strContent += "<tr><th width='20%'>书名</th><th width='20%'>出版社</th><th width='15%'>索书号</th><th>单价</th><th>数量</th><th>折扣</th><th></th><th></th></tr>";
+            for (int i = 0; i < dsRecord.Tables[0].Rows.Count; i++)
+            {
+                strContent += "<tr>";
+                strContent += "<td>" + dsRecord.Tables[0].Rows[i]["bookName"] + "</td>";
+                strContent += "<td>" + dsRecord.Tables[0].Rows[i]["publisher"] + "</td>";
+                strContent += "<td>" + dsRecord.Tables[0].Rows[i]["ISBN"] + "</td>";
+                strContent += "<td>" + dsRecord.Tables[0].Rows[i]["price"] + "</td>";
+                strContent += "<td>" + dsRecord.Tables[0].Rows[i]["number"] + "</td>";
+                strContent += "<td>" + dsRecord.Tables[0].Rows[i]["discount"] + "</td>";
+                strContent += "<td>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "'>" + "删除</a>" +"</td>";
+                strContent += "<td>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "'>" + "修改</a>" + "</td>";
+                strContent += "</tr>";
+            }
+            strContent += "</table>";
+
+            return strContent;
+        }
+        //end orderDeatail()
+
     }
 }
