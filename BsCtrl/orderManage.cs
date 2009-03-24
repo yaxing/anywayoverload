@@ -10,7 +10,6 @@ namespace BsCtrl
     {
         private int pageCurrent;        //当前的页数
         private int pageAmount;         //所有的页数
-        private int pageToShow;         //即将显示的页数（点击翻页按钮）
         private int recordAmount;       //记录的总条数
         private const int pageSize=10;  //一页显示的条数
 
@@ -33,22 +32,27 @@ namespace BsCtrl
             DbconnObj.close();
         }
 
-        //页数相关字段初始化
-        public void initPage()
+        public void initPages()
         {
-            recordAmount = dsRecord.Tables[0].Rows.Count;
-            if (recordAmount % pageSize == 0)
+            this.recordAmount = dsRecord.Tables[0].Rows.Count;
+            if (recordAmount == 0)
             {
-                pageAmount = recordAmount / pageSize;
+                pageCurrent = 0;
+                pageAmount = 0;
             }
             else
             {
-                pageAmount = recordAmount / pageSize + 1;
+                pageCurrent = 1;
+                if (recordAmount % pageSize == 0)
+                {
+                    pageAmount = recordAmount / 10;
+                }
+                else
+                {
+                    pageAmount = recordAmount / 10 + 1;
+                }
             }
-            pageCurrent = 1;
-            pageToShow = 1;
         }
-
 
         //获取当前页数
         public int getCurrentPage()
@@ -62,10 +66,10 @@ namespace BsCtrl
             this.pageCurrent = pageCurrent;
         }
 
-        //设定即将显示的页数
-        public void setPageToShow(int pageToShow)
+        //设定所有页数
+        public void setPageAmount(int pageAmount)
         {
-            this.pageToShow = pageToShow;
+            this.pageAmount = pageAmount;
         }
 
         //获取所有的页数
@@ -86,7 +90,7 @@ namespace BsCtrl
             }
             else
             {
-                int fRecordID = (pageToShow - 1) * pageSize;
+                int fRecordID = (pageCurrent - 1) * pageSize;
                 int lRecordID = fRecordID + pageSize - 1;
                 if (lRecordID > (this.recordAmount - 1) )
                 {
@@ -95,7 +99,7 @@ namespace BsCtrl
                 for (int i = fRecordID; i <= lRecordID; i++)
                 {
                     strContent += "<tr>";
-                    strContent += "<td align='center'>" +"<a href='orderUserInfo.aspx?id="+dsRecord.Tables[0].Rows[i]["ID"]+"'>"+ dsRecord.Tables[0].Rows[i]["userName"] +"</a>"+ "</td>";
+                    strContent += "<td align='center'>" +"<a href='customerInfo.aspx?id="+dsRecord.Tables[0].Rows[i]["ID"]+"'>"+ dsRecord.Tables[0].Rows[i]["userName"] +"</a>"+ "</td>";
                     strContent += "<td align='center'>" + dsRecord.Tables[0].Rows[i]["orderdatetime"] + "</td>";
                     strContent += "<td align='center'>" + dsRecord.Tables[0].Rows[i]["amount"] + "</td>";
                     strContent += "<td align='center'>" +"<a href='orderDeal.aspx?id="+dsRecord.Tables[0].Rows[i]["ID"]+"'>"+ "完成" +"</a>"+ "</td>";
