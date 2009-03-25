@@ -59,7 +59,8 @@ namespace BsCtrl
         public DataSet GetNewBooks(int iTopN)
         {
             DataSet ret = null;
-            string sql = "select top " + iTopN.ToString() + "* from bookInfo order by indatetime desc";
+            string sql = "select top " + iTopN.ToString() + " bookInfo.ID, bookName, publisher, author, price, indatetime, available, bookClass.className " + 
+                         "from bookInfo left join bookClass on bookClass.ID = classID order by indatetime desc";
 
             try
             {

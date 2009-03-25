@@ -1,8 +1,10 @@
 <%@ Page Language="C#" MasterPageFile="~/mode_index.master" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="index" Title="Untitled Page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div style="width:520px; min-height:300px; float:left; border-color:#FFFFFF">
-        <asp:Repeater ID="rpBookInfo" runat="server">
-            <ItemTemplate>
+    <table>
+        <tr>
+            <td>
+                <asp:Repeater ID="rpBookInfo" runat="server">
+                    <ItemTemplate>
 				  	<%-- Í¼ÊéÐÅÏ¢ --%>
 				  	<div style="width:250px;float:left;">
 				  	<table width="100%" height="123"  border="0" cellpadding="0" cellspacing="0">
@@ -23,12 +25,12 @@
                     </tr>
                   </table>
                   </div>
-            </ItemTemplate>
-        </asp:Repeater>
-    </div>
-    <div style="float:right;width:220px">
-        <div>
-            <asp:Repeater ID="rpTopClass" runat="server">
+                 </ItemTemplate>
+                  </asp:Repeater>
+            </td>
+            <td>
+                <table>
+                    <tr><td>            <asp:Repeater ID="rpTopClass" runat="server">
                 <HeaderTemplate>
                     <table width="100%" height="55"  border="0" cellpadding="0" cellspacing="0">
                         <tr>
@@ -50,10 +52,8 @@
                     </tr>
                      </table>
                 </FooterTemplate>
-            </asp:Repeater>
-        </div>
-        <div>
-            <asp:Repeater ID="rpRank" runat="server">
+            </asp:Repeater></td></tr>
+                    <tr><td>            <asp:Repeater ID="rpRank" runat="server">
                 <HeaderTemplate>
                                 <table width="100%" height="55"  border="0" cellpadding="0" cellspacing="0">
                   <tr>
@@ -75,8 +75,10 @@
                   </tr>
                 </table>
                 </FooterTemplate>
-            </asp:Repeater>
-        </div>
-    </div>
+            </asp:Repeater></td></tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </asp:Content>
 
