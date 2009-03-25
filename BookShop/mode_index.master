@@ -1,4 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="mode_index.master.cs" Inherits="mode_index" %>
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+    Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -90,7 +92,7 @@ function tick() {
             <td width="1" rowspan="2">&nbsp;</td>
           </tr>
           <tr align="center">
-            <td height="13"><a href="indexTest.aspx">Index</a></td>
+            <td height="13"><a href="index.aspx">Index</a></td>
             <td><a href="">New Books</a></td>
             <td><a href="">Book Sort</a></td>
             <td><a href="">Shopping Bag</a></td>
@@ -269,14 +271,14 @@ function checkU(myform){
             </tr>
             <tr>
               <td>&nbsp;</td>
-              <td height="100" valign="top"><form name="form3" method="post" action="">
-                <table width="90%" style="height:151"  border="0" align="center" cellpadding="0" cellspacing="0">
-				
-                  <tr>
-                    <td><input name="Submit7" type="submit" class="btn_grey" value="投票"/> <input name="Submit8" type="button" class="btn_grey" value="查看结果" onclick="window.location.href='poll_result.jsp';"/></td>
-                  </tr>
-                </table>
-              </form></td>
+              <td valign="top">
+                  <asp:Panel ID="survey" runat="server" Style="left: 0px; position: relative;
+                      top: 0px" Width="229px">
+                  </asp:Panel>
+                  <asp:Panel ID="surveyResult" runat="server" Style="left: 0px; position: relative;
+                      top: 0px" Width="229px">
+                  </asp:Panel>
+              </td>
             </tr>
           </table>
 <%--<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/> --%>
