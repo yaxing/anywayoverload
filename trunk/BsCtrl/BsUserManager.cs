@@ -25,9 +25,61 @@ namespace BsCtrl
             this.strDbPassWord = strDbPassWord;
         }
 
-        /*功能：匹配登录用户信息，获取验证结果
-          参数：strUserName 用户登录名
-                strPassWord 用户登录密码*/
+
+
+        /* 功能：查询已注册用户信息。
+           参数：strUserID	表示用户的ID号	
+                strUserName	表示用户的姓名	
+                strTEL	表示用户的联系电话	
+                str Email	表示用户的Email*/
+        public DataSet searchUser(String str)
+        {
+            DataSet ret = null;
+
+            DbConnector connSch = new  DbConnector();
+            connSch.connDB("localhost","sa",".");
+            ret = connSch.executeQuery(str);
+            connSch.close();
+
+            return ret;
+        }
+
+        /*功能：删除用户信息
+          参数：strDelID[]	存放待删除用户的ID号*/
+        public bool deleteUser(int id)
+        {
+            bool ret = true;
+
+            String sql = "Delete from users where 1=1 and id =" + id;
+
+            DbConnector connDel = new DbConnector();
+            connDel.connDB("localhost","sa",".");
+            connDel.executeUpdate(sql); //执行更新操作
+            connDel.close();    //关闭数据库链接
+
+            return ret;
+        }
+
+        /*功能：更新（修改）用户信息
+         参数：id,userName,password,tel,email,grade*/
+        public bool updateUser(int id, string useName, string password, string tel, string email, int grade) {
+            bool ret = true;
+
+            String sql = "Update users set userName=" + "'" + useName + "'" + ",password=" +"'" + password + "'" + ",tel="
+                + "'" + tel + "'" + ",email=" + "'" + email + "'" + ",grade=" + grade + "Where id=" + id;
+            DbConnector connUp = new DbConnector();
+            connUp.connDB("localhost","sa",".");
+            connUp.executeUpdate(sql);
+            connUp.close(); //关闭数据库链接
+
+            return ret;
+        }
+
+
+
+        /*功能：匹配登录用户信息，获取验证结果DbConnect
+        参数：strUserName 用户登录名
+        strPassWord 用户登录密码*/
         public bool VerifyUserInfo(String strUserName, String strPassWord)
         {
             bool ret = true;
@@ -35,26 +87,6 @@ namespace BsCtrl
             return ret;
         }
 
-        /* 功能：查询已注册用户信息。
-           参数：strUserID	表示用户的ID号	
-                strUserName	表示用户的姓名	
-                strTEL	表示用户的联系电话	
-                str Email	表示用户的Email*/
-        public DataSet FindUser(String strUserID, String strUserName, String strTEL, String strEmail)
-        {
-            DataSet ret = null;
-
-            return ret;
-        }
-
-        /*功能：删除用户信息
-          参数：strDelID[]	存放待删除用户的ID号*/
-        public bool DeleteUser(String[] strDelID)
-        {
-            bool ret = true;
-
-            return ret;
-        }
         /*功能：添加用户信息
           参数：存放待用户的信息
         */
@@ -109,4 +141,5 @@ namespace BsCtrl
             return ret;
         }
     }
+
 }
