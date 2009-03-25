@@ -116,28 +116,12 @@ function tick() {
         <td height="17" colspan="2">&nbsp;</td>
       </tr>
     </table>
-
+<form id="Form1" name="form1" method="post" action="" runat="server">
 	<table width="100%" style="height:330"  border="0" cellpadding="0" cellspacing="0">
         <tr>
           <td width="26%" valign="top">
+
 		  
-
-
-
-
-<script type="text/javascript" language="javascript">
-function checkU(myform){
-	if(myform.username.value==""){
-		alert("请输入用户名!");myform.username.focus();return;
-	}
-	if(myform.PWD.value==""){
-		alert("请输入密码!");myform.PWD.focus();return;
-	}
-	myform.submit();
-}
-</script>
-
-		  <form id="Form1" name="form1" method="post" action="" runat="server">
 		  <table width="100%" style="height:99"  border="0" cellpadding="0" cellspacing="0">
             <tr>
               <td width="8%">&nbsp;</td>
@@ -259,7 +243,7 @@ function checkU(myform){
 			  </td>
             </tr>
           </table>
-          </form>
+          
 
 		  <table width="100%"  border="0" cellpadding="0" cellspacing="0">
             <tr>
@@ -322,7 +306,7 @@ function checkU(myform){
           </table></td>
         </tr>
       </table>
-      
+      </form>
 <table width="100%"  border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td>&nbsp;</td>
