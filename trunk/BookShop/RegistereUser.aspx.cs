@@ -27,7 +27,7 @@ public partial class RegistereUser : System.Web.UI.Page
         }
         else args.IsValid = true;
     }
-    protected void Button2_Click(object sender, EventArgs e)
+    protected void Rgbt_Click(object sender, EventArgs e)
     {
         if (this.IsValid)
         {
