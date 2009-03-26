@@ -13,22 +13,39 @@ public partial class mode_index : System.Web.UI.MasterPage
 {
     String name;
     String pass;
-    String server;
-    String userName;
-    String passWord;
+    //String server;
+    //String userName;
+    //String passWord;
     modeIndex indexCtrl;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        server = ConfigurationSettings.AppSettings["dbServer"];
-        userName = ConfigurationSettings.AppSettings["dbUserName"];
-        passWord = ConfigurationSettings.AppSettings["dbPassWord"];   //初始化数据库连接信息
+        DataSet ds = new DataSet();
+        string dbConnStr = ConfigurationManager.AppSettings["dbConnString"];   //初始化数据库连接信息
         indexCtrl = new modeIndex();  //建立控制类对象
-        indexCtrl.initial(server, userName, passWord);  //数据库连接初始化
-        if (Session.Contents.Count > 0)//每次进入页面时根据session判断登录框显示内容
+        indexCtrl.initial(dbConnStr);  //数据库连接初始化
+        if (Session["selected"] != null)//判断是否能投票
         {
-            logName.Text = Session["userName"].ToString();
-            grade.Text = Session["Grade"].ToString();
+            panelPoll.Visible = false;
+            bPoll.Visible = false;
+            panelPollResult.Visible = true;
+        }
+        else 
+        {
+            panelPoll.Visible = true;
+            bPoll.Visible = true;
+            panelPollResult.Visible = false;
+        }
+        if (Session["Grade"]!=null)//每次进入页面时根据session判断登录框显示内容
+        {
+            String uN = Session["userName"].ToString();
+            String aT = Session["Grade"].ToString();
+            if (aT.Equals("0")) 
+            {
+                aT = "会员";
+            }
+            logName.Text = uN;
+            grade.Text = "会员";
             Panel1.Visible = false;
             Panel2.Visible = true;
         }
@@ -39,6 +56,17 @@ public partial class mode_index : System.Web.UI.MasterPage
         }
         Bbs.DataSource = indexCtrl.GetBbs();
         Bbs.DataBind() ;
+        ds = indexCtrl.GetAvailablePoll();
+        rblPoll.DataSource = ds;
+        pollTheme.DataSource = ds;
+        pollTheme.DataBind();
+        rblPoll.DataValueField = ds.Tables[0].Columns[4].ToString();
+        rblPoll.DataTextField = ds.Tables[0].Columns[6].ToString();
+        if (!IsPostBack)
+        {
+            rblPoll.DataBind();
+        }
+
     }
 
     protected void LogIn_Click(object sender, EventArgs e)
@@ -56,6 +84,7 @@ public partial class mode_index : System.Web.UI.MasterPage
             grade.Text = loginInfo.Tables[0].Rows[0][8].ToString();
             Panel1.Visible = false;
             Panel2.Visible = true;
+        
         }
         else 
         {
@@ -67,5 +96,28 @@ public partial class mode_index : System.Web.UI.MasterPage
     {
         Session.Abandon();
         Response.Redirect("indexTest.aspx");
+    }
+
+    protected void Regisiter_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("RegistereUser.aspx");
+    }
+    protected void Reput_Click(object sender, EventArgs e)
+    {
+        pWord.Text = "";
+        uName.Text = "";
+    }
+    protected void bPoll_Click(object sender, EventArgs e)
+    {
+        Session.Add("selected","true");
+        int pID = 0;
+        String selected = rblPoll.SelectedValue;
+        //Response.Write("ri"+selected);
+        pID = int.Parse(selected);
+        indexCtrl.ModifyPoll(pID);
+        panelPoll.Visible = false;
+        bPoll.Visible = false;
+        panelPollResult.Visible = true;
+        return;
     }
 }

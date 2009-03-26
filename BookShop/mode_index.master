@@ -1,10 +1,9 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="mode_index.master.cs" Inherits="mode_index" %>
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
     Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<script  type="text/javascript" language="javascript">
+<script type="text/javascript" language="javascript">
 function tick() {
     var hours, minutes, seconds, xfile;
     var intHours, intMinutes, intSeconds;
@@ -22,7 +21,7 @@ function tick() {
         " 星期四 ",
         " 星期五 ",
         " 星期六 ");
-        theday = today.getYear()+"年" + [today.getMonth()+1]+"月" +today.getDate() +"日"+ d[today.getDay()+1];
+        theday = today.getYear()+"年"+ [today.getMonth()+1]+"月" +today.getDate() +"日"+ d[today.getDay()+1];
         intHours = today.getHours();
         intMinutes = today.getMinutes();
         intSeconds = today.getSeconds();
@@ -38,7 +37,7 @@ function tick() {
         } else {
         intHours = intHours - 12
         hours = intHours + ":";
-        xfile = " 下午 ";
+        xfile = "  下午 ";
         }
         if (intMinutes < 10) {
         minutes = "0"+intMinutes+":";
@@ -56,301 +55,398 @@ function tick() {
 }
  window.onload = tick;
 </script>
-<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>网上图书超市</title>
-<link href="CSS/style.css" rel="stylesheet"/>
+    <title>网上图书超市</title>
+    <link href="CSS/style.css" rel="stylesheet" />
 </head>
 <body>
-<table width="100%"  border="0" cellspacing="0" cellpadding="0" style="background-image:url(Images/bg.gif)">
-  <tr>
-    <td>
-<table width="777" style="height:768" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-  <tr>
-    <td valign="top">
-	 
-
-<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td height="6" colspan="2" bgcolor="#81CF00"></td>
-      </tr>
-      <tr>
-        <td width="27%" height="70" align="center"><img src="Images/index_03.gif" width="185" height="56" alt=""/></td>
-        <td width="73%" valign="top"><table width="100%" style="height:35" border="0" cellpadding="0" cellspacing="0">
-          <tr align="center">
-            <td height="22" valign="bottom"><a href="indexTest.aspx">首页</a></td>
-            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36" alt=""/></td>
-            <td valign="bottom"><a href="">新书上架</a></td>
-            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36" alt=""/></td>
-            <td valign="bottom"><a href="">图书分类</a></td>
-            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36" alt=""/></td>
-            <td valign="bottom"><a href="">购物车</a></td>
-            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36" alt=""/></td>
-            <td valign="bottom"><a href="">订单查询</a></td>
-            <td width="1" rowspan="2" valign="top"><img src="Images/Nav_separate.gif" width="1" height="36" alt=""/></td>
-            <td valign="bottom"><a href="">销售排行</a></td>
-            <td width="1" rowspan="2">&nbsp;</td>
-          </tr>
-          <tr align="center">
-            <td height="13"><a href="index.aspx">Index</a></td>
-            <td><a href="">New Books</a></td>
-            <td><a href="">Book Sort</a></td>
-            <td><a href="">Shopping Bag</a></td>
-            <td><a href="">Order Search</a></td>
-            <td><a href="">Sell Sort</a></td>
-          </tr>
-		 <tr style="text-align:right;">
-		    <td height="35" colspan="12">		
-			   <div id="Clock" align="right" style="font-size: 15px; color:#000000; font-style:黑体">
-			   <%-- <script type="text/javascript">tick()function TABLE1_onclick() {}
-                </script>--%>
-               </div>
-			</td>
-		  </tr>
-        </table></td>
-      </tr>
-      <tr align="left">
-        <td height="70" colspan="2"><img src="Images/index_06.jpg" width="1024" height="244" alt=""/> </td>
-  </tr>
-      <tr align="right">
-        <td height="17" colspan="2">&nbsp;</td>
-      </tr>
-    </table>
-<form id="Form1" name="form1" method="post" action="" runat="server">
-	<table width="100%" style="height:330"  border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td width="26%" valign="top">
-
-		  
-		  <table width="100%" style="height:99"  border="0" cellpadding="0" cellspacing="0">
-            <tr>
-              <td width="8%">&nbsp;</td>
-              <td width="92%" height="112" valign="top" style="background-image:url(Images/index_09.gif)">
-              
-              
-                  <asp:Panel ID="Panel1" runat="server" Height="60px" Style="position: relative; left: 0px; top: 0px;" Width="246px" Visible="true">
-                  <table width="100%"  border="0" cellpadding="0" cellspacing="0">
+    <form id="form1" runat="server">
+        <div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(Images/bg.gif)">
                 <tr>
-                  <td width="8%" height="20">&nbsp;</td>
-                  <td width="81%">&nbsp;</td>
-                  <td width="11%">&nbsp;</td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td height="24" align="center">用户名                    
-                      <asp:TextBox ID="uName" class="txt_grey" size="16" style="width:100px" runat="server"></asp:TextBox>
-                      </td>
-                  <td>&nbsp;</td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td height="24" align="center">密&nbsp;&nbsp;&nbsp;&nbsp;码
-                  <asp:TextBox ID="pWord" TextMode="Password" class="txt_grey" size="16" style="width:100px" runat="server"></asp:TextBox>                    
+                    <td>
+                        <table width="777" style="height: 768" border="0" align="center" cellpadding="0"
+                            cellspacing="0" bgcolor="#FFFFFF">
+                            <tr>
+                                <td valign="top">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td height="6" colspan="2" bgcolor="#81CF00">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="27%" height="70" align="center">
+                                                <img src="Images/index_03.gif" width="185" height="56" alt="" /></td>
+                                            <td width="73%" valign="top">
+                                                <table width="100%" style="height: 35" border="0" cellpadding="0" cellspacing="0">
+                                                    <tr align="center">
+                                                        <td height="22" valign="bottom">
+                                                            <a href="index.aspx">首页</a></td>
+                                                        <td width="1" rowspan="2" valign="top">
+                                                            <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
+                                                        <td valign="bottom">
+                                                            <a href="">新书上架</a></td>
+                                                        <td width="1" rowspan="2" valign="top">
+                                                            <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
+                                                        <td valign="bottom">
+                                                            <a href="">图书分类</a></td>
+                                                        <td width="1" rowspan="2" valign="top">
+                                                            <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
+                                                        <td valign="bottom">
+                                                            <a href="">购物车</a></td>
+                                                        <td width="1" rowspan="2" valign="top">
+                                                            <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
+                                                        <td valign="bottom">
+                                                            <a href="">订单查询</a></td>
+                                                        <td width="1" rowspan="2" valign="top">
+                                                            <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
+                                                        <td valign="bottom">
+                                                            <a href="">销售排行</a></td>
+                                                        <td width="1" rowspan="2">
+                                                            &nbsp;</td>
+                                                    </tr>
+                                                    <tr align="center">
+                                                        <td height="13">
+                                                            <a href="index.aspx">Index</a></td>
+                                                        <td>
+                                                            <a href="">New Books</a></td>
+                                                        <td>
+                                                            <a href="">Book Sort</a></td>
+                                                        <td>
+                                                            <a href="">Shopping Bag</a></td>
+                                                        <td>
+                                                            <a href="">Order Search</a></td>
+                                                        <td>
+                                                            <a href="">Sell Sort</a></td>
+                                                    </tr>
+                                                    <tr style="text-align: right;">
+                                                        <td colspan="12" style="height: 34px">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr align="left">
+                                            <td height="70" colspan="2">
+                                                <img src="Images/index_06.jpg" width="1024" height="244" alt="" />
+                                            </td>
+                                        </tr>
+                                        <tr align="right">
+                                            <td height="17" colspan="2">
+                                                <div id="Clock" align="right" style="font-family: 幼圆; font-size: 15px; color: #000000;
+                                                    position: relative; margin-top: -50px;">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table width="100%" style="height: 330" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td width="26%" valign="top" style="height: 608px">
+                                                <table width="100%" style="height: 99" border="0" cellpadding="0" cellspacing="0">
+                                                    <tr>
+                                                        <td width="8%">
+                                                            &nbsp;</td>
+                                                        <td width="92%" height="112" valign="top" style="background-image: url(Images/index_09.gif)">
+                                                            <asp:Panel ID="Panel1" runat="server" Height="60px" Style="position: relative; left: 0px;
+                                                                top: 0px;" Width="246px" Visible="true">
+                                                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                                    <tr>
+                                                                        <td width="8%" height="20">
+                                                                            &nbsp;</td>
+                                                                        <td width="81%">
+                                                                            &nbsp;</td>
+                                                                        <td width="11%">
+                                                                            &nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                        <td height="24" align="center">
+                                                                            <font face="幼圆">用户名</font>
+                                                                            <asp:TextBox ID="uName" MaxLength="16" Style="width: 100px" runat="server"></asp:TextBox>
+                                                                        </td>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                        <td height="24" align="center">
+                                                                            <font face="幼圆">密</font>&nbsp;&nbsp;&nbsp;&nbsp;<font face="幼圆">码</font>
+                                                                            <asp:TextBox ID="pWord" TextMode="Password" MaxLength="16" Style="width: 100px" runat="server"></asp:TextBox>
+                                                                        </td>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                        <td height="31" align="center">
+                                                                            <asp:Button ID="LogIn" runat="server" Style="position: relative" Text="登录" OnClick="LogIn_Click" />
+                                                                            <asp:Button ID="Regisiter" runat="server" Style="left: 36px; position: relative;
+                                                                                top: 0px" Text="注册" OnClick="Regisiter_Click" />
+                                                                            <asp:Button ID="Reput" runat="server" Style="left: 40px; position: relative; top: 0px"
+                                                                                Text="重置" OnClick="Reput_Click" />
+                                                                            &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+                                                                        </td>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                        <td align="center">
+                                                                            &nbsp;</td>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </asp:Panel>
+                                                            <asp:Panel ID="Panel2" runat="server" Height="60px" Style="position: relative; left: 0px;
+                                                                top: 0px;" Width="246px" Visible="false">
+                                                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                                    <tr>
+                                                                        <td width="8%" height="20">
+                                                                            &nbsp;</td>
+                                                                        <td width="81%">
+                                                                            &nbsp;</td>
+                                                                        <td width="11%">
+                                                                            &nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                        <td height="24" align="center">
+                                                                            <asp:Label ID="Label1" runat="server" Font-Names="幼圆" Text="" Style="left: -12px;
+                                                                                position: relative; top: 1px">用户名：</asp:Label>
+                                                                            <asp:Label ID="logName" runat="server" Font-Names="幼圆" Text=""></asp:Label>
+                                                                        </td>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                        <td height="24" align="center">
+                                                                            <asp:Label ID="Label2" runat="server" Font-Names="幼圆" Text="" Style="left: -16px;
+                                                                                position: relative; top: 1px">权　限：</asp:Label>
+                                                                            <asp:Label ID="grade" runat="server" Font-Names="幼圆" Text=""></asp:Label>
+                                                                        </td>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                        <td height="31" align="center">
+                                                                            &nbsp;<asp:Button ID="Button2" runat="server" Style="left: 15px; position: relative;
+                                                                                top: -1px" Text="退出登录" OnClick="Button2_Click" />
+                                                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+                                                                        </td>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="height: 15px">
+                                                                            &nbsp;</td>
+                                                                        <td align="center" style="height: 15px">
+                                                                            &nbsp;</td>
+                                                                        <td style="height: 15px">
+                                                                            &nbsp;</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </asp:Panel>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table width="100%" style="height: 55" border="0" cellpadding="0" cellspacing="0">
+                                                    <tr>
+                                                        <td colspan="2" align="right">
+                                                            <img src="Images/index_14.gif" width="185" height="49" alt="" style="left: -13px;
+                                                                position: relative; top: 0px" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="14%" style="height: 113px">
+                                                            &nbsp;</td>
+                                                        <td width="86%" valign="top" class="tableBorder_B" style="height: 113px">
+                                                            <asp:FormView ID="Bbs" runat="server" Style="left: 0px; position: relative; top: 6px;
+                                                                text-align: center" Height="85px" Width="220px">
+                                                                <ItemTemplate>
+                                                                    <marquee direction="up" scrollamount="1" scrolldelay="1" height="100" onmousemove="this.stop()"
+                                                                        onmouseout="this.start()">
+                                                                        <table style="text-align: center">
+                                                                            <tr align="center">
+                                                                                <td style="width: 20%">
+                                                                                </td>
+                                                                                <td style="width: 70%; text-align: center">
+                                                                                    <%#Eval("content") %>
+                                                                                </td>
+                                                                                <td style="width: 10%">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </marquee>
+                                                                </ItemTemplate>
+                                                            </asp:FormView>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                    <tr>
+                                                        <td height="50" colspan="2" align="right">
+                                                            <img src="Images/index_18.gif" width="185" height="50" alt="" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 14%; height: 27px">
+                                                            &nbsp;</td>
+                                                        <td style="width: 86%; height: 27px">
+                                                            <asp:FormView ID="pollTheme" runat="server" Style="left: 4px; position: relative;
+                                                                top: 6px" Width="224px">
+                                                                <ItemTemplate>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td style="width: 50%">
+                                                                            </td>
+                                                                            <td style="width: 50%; text-align: center">
+                                                                                <%#Eval("theme") %>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </ItemTemplate>
+                                                            </asp:FormView>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="height: 80px">
+                                                            &nbsp;
+                                                        </td>
+                                                        <td style="min-height: 100px; height: 80px;" valign="top" align="left">
+                                                            &nbsp;&nbsp;
+                                                            <asp:Panel ID="panelPoll" runat="server" Height="50px" Width="125px">
+                                                                <asp:RadioButtonList ID="rblPoll" runat="server">
+                                                                </asp:RadioButtonList>
+                                                            </asp:Panel>
+                                                            <asp:Panel ID="panelPollResult" runat="server" Height="50px" Width="125px">
+                                                                &nbsp;</asp:Panel>
+                                                            &nbsp;&nbsp;
+                                                            </td>
+                                                    </tr>
+                                                </table>
+                                                <asp:Button ID="bPoll" runat="server" Style="left: 121px; position: relative; top: 0px"
+                                                    Text="投票" OnClick="bPoll_Click" />
+                                            </td>
+                                            <td valign="top" style="background-image: url(Images/Cen_separate.gif); width: 5px;
+                                                height: 608px;">
+                                            </td>
+                                            <td width="73%" valign="top" style="height: 608px">
+                                                <table width="100%" style="height: 272" border="0" cellpadding="0" cellspacing="0">
+                                                    <tr>
+                                                        <td height="52" colspan="3" style="background-image: url(Images/index_10.gif)">
+                                                            <table width="100%" style="height: 23" border="0" cellpadding="0" cellspacing="0">
+                                                                <tr>
+                                                                    <td>
+                                                                        &nbsp;</td>
+                                                                    <td>
+                                                                        &nbsp;</td>
+                                                                    <td>
+                                                                        &nbsp;</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td width="15%">
+                                                                        &nbsp;</td>
+                                                                    <td width="67%">
+                                                                        请输入书名：
+                                                                        <input name="bookkey" type="text" class="txt_grey" size="48" />
+                                                                    </td>
+                                                                    <td width="18%">
+                                                                        <input name="search" type="submit" class="btn_grey" value="搜索" /></td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="73%" height="220" valign="top">
+                                                            <table width="100%" style="height: 126" border="0" cellpadding="0" cellspacing="0">
+                                                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                                </asp:ContentPlaceHolder>
+                                                            </table>
+                                                            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td>
+                                                &nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td height="5" style="background-color: #83CC10">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">
+                                                <table width="100%" style="height: 78" border="0" align="center" cellpadding="-2"
+                                                    cellspacing="-2">
+                                                    <tr>
+                                                        <td width="124" height="13">
+                                                            &nbsp;</td>
+                                                        <td height="13" colspan="3">
+                                                            <div align="center">
+                                                                制作：AnywayOverload小组</div>
+                                                        </td>
+                                                        <td width="141">
+                                                            &nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="124" height="13">
+                                                            &nbsp;</td>
+                                                        <td height="13" colspan="3" align="center">
+                                                            <a href="manage/adminLogin.html">图书山寨</a>客户服务热线：13811828174&nbsp;&nbsp;&nbsp;&nbsp;联系人：AnywayOverload小组</td>
+                                                        <td width="141">
+                                                            &nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            &nbsp;</td>
+                                                        <td width="464" valign="bottom">
+                                                            <div align="center">
+                                                                CopyRight &copy; 2008.3.17 AnywayOverload小组</div>
+                                                        </td>
+                                                        <td colspan="2">
+                                                            &nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            &nbsp;</td>
+                                                        <td align="center">
+                                                            本站请使用IE6.0或以上版本 1024*768为最佳显示效果</td>
+                                                        <td colspan="2">
+                                                            &nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="15" colspan="2">
+                                                            &nbsp;</td>
+                                                        <td align="center">
+                                                            &nbsp;</td>
+                                                        <td colspan="2">
+                                                            &nbsp;</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
-                  <td>&nbsp;</td>
                 </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td height="31" align="center">
-                    
-                      <asp:Button ID="LogIn" runat="server" Style="position: relative" Text="登录" OnClick="LogIn_Click"/>
-                      <asp:Button ID="Regisiter" runat="server" Style="left: 36px; position: relative; top: 0px"
-                          Text="注册" />
-                      <asp:Button ID="Reput" runat="server" Style="left: 40px; position: relative; top: 0px"
-                          Text="重置" />
-                      &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-                   </td>
-                  <td>&nbsp;</td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td align="center">&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-              </table>
-                  </asp:Panel>
-                  
-                  <asp:Panel ID="Panel2" runat="server" Height="60px" Style="position: relative; left: 0px; top: 0px;" Width="246px" Visible="false">
-                  <table width="100%"  border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td width="8%" height="20">&nbsp;</td>
-                  <td width="81%">&nbsp;</td>
-                  <td width="11%">&nbsp;</td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td height="24" align="center">用户名：                    
-                      <asp:Label ID="logName" runat="server" Text=""></asp:Label>
-                      </td>
-                  <td>&nbsp;</td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td height="24" align="center">权限：
-                  <asp:Label ID="grade" runat="server" Text=""></asp:Label>                    
-                    </td>
-                  <td>&nbsp;</td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td height="31" align="center">
-                      &nbsp;<asp:Button ID="Button2" runat="server" Style="left: 15px; position: relative; top: -1px"
-                          Text="退出登录" OnClick="Button2_Click" />
-                      &nbsp; &nbsp;
-                      &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-                   </td>
-                  <td>&nbsp;</td>
-                </tr>
-                <tr>
-                  <td style="height: 15px">&nbsp;</td>
-                  <td align="center" style="height: 15px">&nbsp;</td>
-                  <td style="height: 15px">&nbsp;</td>
-                </tr>
-              </table>
-                  </asp:Panel>
-                 
-              </td>
-            </tr>
-          </table>
-		  
-		  
-		  <table width="100%" style="height:55"  border="0" cellpadding="0" cellspacing="0">
-            <tr>
-              <td colspan="2" align="right"><img src="Images/index_14.gif" width="185" height="49" alt="" style="left: -13px; position: relative; top: 0px"/></td>
-            </tr>
-            <tr>
-              <td width="14%" style="height: 113px">&nbsp;</td>
-              <td width="86%" valign="top" class="tableBorder_B" style="height: 113px">
-                  <asp:FormView ID="Bbs" runat="server" style="left: 0px; position: relative; top: 6px; text-align:center" Height="85px" Width="220px">
-                   <ItemTemplate>
-                   <marquee direction="up" scrollamount="1" scrolldelay="1" height="100" onmousemove="this.stop()" onmouseout="this.start()">
-                    <table style="text-align:center">
-                     <tr align="center">
-                     <td style="width:20%"></td>
-                      <td style="width:70%; text-align:center"><%#Eval("content") %></td>
-                      <td style="width:10%"></td>
-                     </tr>
-                    </table>
-                    </marquee>
-                   </ItemTemplate>
-                  </asp:FormView>
-              
-			  <%--<marquee direction="up" scrollamount="1" scrolldelay="1" height="100" onmousemove="this.stop()" onmouseout="this.start()"><TABLE cellSpacing=0 
-                        cellPadding=0 width="100%" border=0><TBODY><TR><TD 
-                            style="HEIGHT: 13px">公告还未添加</TD></TR></TBODY></TABLE><TABLE 
-                        cellSpacing=0 cellPadding=0 width="100%" 
-                          border=0><TBODY><TR><TD>公告还未添加</TD></TR></TBODY></TABLE></marquee>--%>
-			  </td>
-            </tr>
-          </table>
-          
-
-		  <table width="100%"  border="0" cellpadding="0" cellspacing="0">
-            <tr>
-              <td height="50" colspan="2" align="right"><img src="Images/index_18.gif" width="185" height="50" alt=""/></td>
-            </tr>
-            <tr>
-              <td width="14%">&nbsp;</td>
-              <td width="86%" height="27">您需要哪方面的书籍？</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td valign="top">
-                  <asp:Panel ID="survey" runat="server" Style="left: 0px; position: relative;
-                      top: 0px" Width="229px">
-                  </asp:Panel>
-                  <asp:Panel ID="surveyResult" runat="server" Style="left: 0px; position: relative;
-                      top: 0px" Width="229px">
-                  </asp:Panel>
-              </td>
-            </tr>
-          </table>
-<%--<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/> --%>
-		</td>
-          <td width="5" valign="top" style="background-image:url(Images/Cen_separate.gif)"></td>
-          <td width="73%" valign="top"><table width="100%" style="height:272"  border="0" cellpadding="0" cellspacing="0">
-            <tr>
-              <td height="52" colspan="3" style="background-image:url(Images/index_10.gif)">
-			  
-               <form name="form2" method="post" action="">
-					<table width="100%" style="height:23"  border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-                <tr>
-                  <td width="15%">&nbsp;</td>
-                  <td width="67%">请输入书名：
-                      <input name="bookkey" type="text" class="txt_grey" size="48"/>
-                   </td>
-                  <td width="18%"><input name="search" type="submit" class="btn_grey" value="搜索"/></td>
-                </tr>
-              </table>
-			   </form>	
-
-              </td>
-            </tr>
-            <tr>
-              <td width="73%" height="220" valign="top">
-			   <table width="100%" style="height:126"  border="0" cellpadding="0" cellspacing="0">
-			      <div>
-        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
-        </asp:contentplaceholder>
-    </div>
-			   
-              </table>
-					  </td>
-              
-            </tr>
-          </table></td>
-        </tr>
-      </table>
-      </form>
-<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td height="5" style="background-color:#83CC10"></td>
-        </tr>
-        <tr>
-          <td align="center"><table width="100%" style="height:78"  border="0" align="center" cellpadding="-2" cellspacing="-2">
-            <tr>
-              <td width="124" height="13">&nbsp;</td>
-              <td height="13" colspan="3"><div align="center">制作：AnywayOverload小组</div></td>
-              <td width="141">&nbsp;</td>
-            </tr>
-            <tr>
-              <td width="124" height="13">&nbsp;</td>
-              <td height="13" colspan="3" align="center"><a href="">图书吧</a>客户服务热线：13811828174&nbsp;&nbsp;&nbsp;&nbsp;联系人：AnywayOverload小组</td>
-              <td width="141">&nbsp;</td>
-            </tr>
-            <tr>
-              <td colspan="2">&nbsp;</td>
-              <td width="464" valign="bottom"><div align="center"> CopyRight &copy; 2008.3.17 AnywayOverload小组</div></td>
-              <td colspan="2">&nbsp;</td>
-            </tr>
-            <tr>
-              <td colspan="2">&nbsp;</td>
-              <td align="center">本站请使用IE6.0或以上版本 1024*768为最佳显示效果</td>
-              <td colspan="2">&nbsp;</td>
-            </tr>
-            <tr>
-              <td height="15" colspan="2">&nbsp;</td>
-              <td align="center">&nbsp;</td>
-              <td colspan="2">&nbsp;</td>
-            </tr>
-          </table></td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
-</td>
-  </tr>
-</table>
+            </table>
+        </div>
+    </form>
 </body>
 </html>
-
-
