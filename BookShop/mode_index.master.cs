@@ -45,7 +45,7 @@ public partial class mode_index : System.Web.UI.MasterPage
                 aT = "会员";
             }
             logName.Text = uN;
-            grade.Text = "会员";
+            grade.Text = aT;
             Panel1.Visible = false;
             Panel2.Visible = true;
         }
@@ -75,13 +75,18 @@ public partial class mode_index : System.Web.UI.MasterPage
         DataSet loginInfo;//获取数据库匹配信息数据集
         name = uName.Text;//从页面取出登录信息
         pass = pWord.Text;
+        String g = "";
         loginInfo = indexCtrl.VerifyUserInfo(name,pass);//数据库匹配登录信息
         if (loginInfo.Tables[0].Rows.Count > 0)//如果信息匹配，登录成功设置session，并修改登录框显示内容
         {
             Session.Add("userName", name);//用户名session
             Session.Add("Grade", loginInfo.Tables[0].Rows[0][8].ToString());//用户权限session
             logName.Text = name;
-            grade.Text = loginInfo.Tables[0].Rows[0][8].ToString();
+            if(loginInfo.Tables[0].Rows[0][8].ToString().Equals("0"))
+            {
+                g = "会员";
+            }
+            grade.Text = g;
             Panel1.Visible = false;
             Panel2.Visible = true;
         
@@ -95,7 +100,7 @@ public partial class mode_index : System.Web.UI.MasterPage
     protected void Button2_Click(object sender, EventArgs e)//退出登录时撤销session
     {
         Session.Abandon();
-        Response.Redirect("indexTest.aspx");
+        Response.Redirect("index.aspx");
     }
 
     protected void Regisiter_Click(object sender, EventArgs e)
@@ -119,5 +124,9 @@ public partial class mode_index : System.Web.UI.MasterPage
         bPoll.Visible = false;
         panelPollResult.Visible = true;
         return;
+    }
+    protected void showPREsult_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("pollResult.aspx");
     }
 }
