@@ -4,13 +4,13 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection ConnectionStringObject="Data Source=VIP~!PC;Initial Catalog=shanzhai;User ID=sa;Password=." IsAppSettingsProperty="False" Modifier="Assembly" Name="vip~!pc.shanzhai.dbo2" ParameterPrefix="@" Provider="System.Data.SqlClient">
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="shanzhaiConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="shanzhaiConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.shanzhaiConnectionString.ConnectionString" Provider="System.Data.SqlClient">
           </Connection>
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="pollDetailTableAdapter" GeneratorDataComponentClassName="pollDetailTableAdapter" Name="pollDetail" UserDataComponentName="pollDetailTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="vip~!pc.shanzhai.dbo2" DbObjectName="shanzhai.dbo.pollDetail" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="shanzhaiConnectionString (Web.config)" DbObjectName="shanzhai.dbo.pollDetail" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
                     <CommandText>SELECT pollDetail.pollID, pollDetail.optionName, pollDetail.counts, pollDetail.ID FROM pollDetail INNER JOIN poll ON pollDetail.pollID = poll.ID WHERE (poll.available = 1)</CommandText>
@@ -38,19 +38,19 @@
   <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSet1" msprop:Generator_DataSetName="DataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="pollDetail" msprop:Generator_UserTableName="pollDetail" msprop:Generator_RowDeletedName="pollDetailRowDeleted" msprop:Generator_TableClassName="pollDetailDataTable" msprop:Generator_RowChangedName="pollDetailRowChanged" msprop:Generator_RowClassName="pollDetailRow" msprop:Generator_RowChangingName="pollDetailRowChanging" msprop:Generator_RowEvArgName="pollDetailRowChangeEvent" msprop:Generator_RowEvHandlerName="pollDetailRowChangeEventHandler" msprop:Generator_TablePropName="pollDetail" msprop:Generator_TableVarName="tablepollDetail" msprop:Generator_RowDeletingName="pollDetailRowDeleting">
+        <xs:element name="pollDetail" msprop:Generator_UserTableName="pollDetail" msprop:Generator_RowDeletedName="pollDetailRowDeleted" msprop:Generator_RowChangedName="pollDetailRowChanged" msprop:Generator_RowClassName="pollDetailRow" msprop:Generator_RowChangingName="pollDetailRowChanging" msprop:Generator_RowEvArgName="pollDetailRowChangeEvent" msprop:Generator_RowEvHandlerName="pollDetailRowChangeEventHandler" msprop:Generator_TableClassName="pollDetailDataTable" msprop:Generator_TableVarName="tablepollDetail" msprop:Generator_RowDeletingName="pollDetailRowDeleting" msprop:Generator_TablePropName="pollDetail">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
-              <xs:element name="pollID" msprop:Generator_UserColumnName="pollID" msprop:Generator_ColumnPropNameInRow="pollID" msprop:Generator_ColumnVarNameInTable="columnpollID" msprop:Generator_ColumnPropNameInTable="pollIDColumn" type="xs:int" />
-              <xs:element name="optionName" msprop:Generator_UserColumnName="optionName" msprop:Generator_ColumnPropNameInRow="optionName" msprop:Generator_ColumnVarNameInTable="columnoptionName" msprop:Generator_ColumnPropNameInTable="optionNameColumn">
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="pollID" msprop:Generator_UserColumnName="pollID" msprop:Generator_ColumnVarNameInTable="columnpollID" msprop:Generator_ColumnPropNameInRow="pollID" msprop:Generator_ColumnPropNameInTable="pollIDColumn" type="xs:int" />
+              <xs:element name="optionName" msprop:Generator_UserColumnName="optionName" msprop:Generator_ColumnVarNameInTable="columnoptionName" msprop:Generator_ColumnPropNameInRow="optionName" msprop:Generator_ColumnPropNameInTable="optionNameColumn">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="128" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="counts" msprop:Generator_UserColumnName="counts" msprop:Generator_ColumnPropNameInRow="counts" msprop:Generator_ColumnVarNameInTable="columncounts" msprop:Generator_ColumnPropNameInTable="countsColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="counts" msprop:Generator_UserColumnName="counts" msprop:Generator_ColumnVarNameInTable="columncounts" msprop:Generator_ColumnPropNameInRow="counts" msprop:Generator_ColumnPropNameInTable="countsColumn" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
