@@ -80,7 +80,9 @@ namespace BsCtrl
         public DataSet GetHotBooks(int iTopN)
         {
             DataSet ret = null;
-            string sql = "select top " + iTopN.ToString() + " ID, bookName, sale from bookInfo order by sale desc";
+            string sql = "select top " + iTopN.ToString() + 
+                        " bookInfo.ID, bookName, sale, price, author, publisher," + 
+                        " bookClass.className from bookInfo left join bookClass on bookClass.ID = classID order by sale desc";
             try
             {
                 ret = conn.executeQuery(sql);
