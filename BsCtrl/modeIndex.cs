@@ -10,13 +10,12 @@ namespace BsCtrl
     public class modeIndex
     {
         //mode_index.master母版页使用功能类
-        String Server;
-        String uName;
-        String pWord;
-        DataSet ds;
-        DbConnector conn;
-        //SqlConnection conn1;
-        //SqlDataAdapter myAdp;
+        private String Server;
+        private String uName;
+        private String pWord;
+        private DataSet ds;
+        private DbConnector conn;
+        private String strDbConn;
 
         public void initial(String s, String u, String p)
         {
@@ -28,26 +27,45 @@ namespace BsCtrl
             conn = new DbConnector();
             ds = null;
             conn.connDB(Server, uName, pWord);
-            //conn1 = new SqlConnection("Data Source = localhost;" + "Integrated Security = SSPI;" + "Initial Catalog = shanzhai");
             
         }
+
+        public void initial(String s)
+        {
+            //初始化数据库连接信息
+
+            this.strDbConn = s;
+            conn = new DbConnector();
+            conn.connDB(strDbConn);
+
+        }
+
         public DataSet VerifyUserInfo(String strUserName, String strPassWord)
         {
             //连接数据库并查询是否有与登录用户信息匹配项，返回dataset
             
             ds = conn.executeQuery("select * from users where username = '" + strUserName + "' and password = '" + strPassWord + "'");
-            //myAdp = new SqlDataAdapter("select * from users where username = '" + strUserName + "' and password = '" + strPassWord + "'", conn1);
-            //ds = new DataSet();
-            //myAdp.Fill(ds);
             return ds;
         }
+
         public DataSet GetBbs() 
         {
-            //myAdp = new SqlDataAdapter("select * from bbs", conn1);
-            //ds = new DataSet();
-            //myAdp.Fill(ds);
+            //获取公告内容
             ds = conn.executeQuery("select * from bbs");
             return ds; 
         }
+
+        public DataSet GetAvailablePoll() 
+        {
+            ds = conn.executeQuery("select * from poll, pollDetail where poll.available = '1' and pollDetail.pollID = poll.ID");
+            return ds; 
+        }
+
+        public void ModifyPoll(int id) 
+        {
+            ds = conn.executeQuery("select counts from pollDetail where ID = '"+id+"'");
+            conn.executeUpdate("update pollDetail set counts = "+ds.Tables[0].Columns[0]+"+1 where ID = '"+id+"'");
+            return;
+        } 
     }
 }
