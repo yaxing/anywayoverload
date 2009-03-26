@@ -2,7 +2,6 @@
     CodeFile="RegistereUser.aspx.cs" Inherits="RegistereUser" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="RegisterForm" action="" runat="server">
         <table style="width: 584px; font-size: 12px; font-family: 宋体; height: 284px;">
             <tr>
                 <td style="height: 40px;" align="left" colspan="2">
@@ -64,9 +63,9 @@
                 </td>
             </tr>
             <tr>
-                <td style="width: 118px; text-align: right;" align="left">
+                <td style="width: 118px; text-align: right; height: 20px;" align="left">
                     真实姓名：</td>
-                <td align="left">
+                <td align="left" style="height: 20px">
                     <asp:TextBox ID="txtName" runat="server" Width="150px" MaxLength="10" CssClass="textarea"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtName"
                         Display="Dynamic" ErrorMessage="真实姓名不能为空"></asp:RequiredFieldValidator></td>
@@ -95,9 +94,8 @@
             <tr>
                 <td style="height: 26px; text-align: center;" align="left" colspan="2">
                     <input id="Reset1" style="width: 35px; height: 20px" type="reset" value="清空" />&nbsp;
-                    <asp:Button ID="Button2" runat="server" Text="注册" OnClick="Button2_Click" />
-                </td>
+                    <asp:Button ID="Rgbt" runat="server" Text="注册" OnClick="Rgbt_Click" />&nbsp;
+                    </td>
             </tr>
         </table>
-    </form>
 </asp:Content>
