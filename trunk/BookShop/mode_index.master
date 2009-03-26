@@ -301,7 +301,7 @@ function tick() {
                                                     <tr>
                                                         <td style="width: 14%; height: 27px">
                                                             &nbsp;</td>
-                                                        <td style="width: 86%; height: 27px">
+                                                        <td style="width: 237px; height: 27px">
                                                             <asp:FormView ID="pollTheme" runat="server" Style="left: 4px; position: relative;
                                                                 top: 6px" Width="224px">
                                                                 <ItemTemplate>
@@ -322,14 +322,19 @@ function tick() {
                                                         <td style="height: 80px">
                                                             &nbsp;
                                                         </td>
-                                                        <td style="min-height: 100px; height: 80px;" valign="top" align="left">
+                                                        <td style="min-height: 100px; height: 80px; width: 237px;" valign="top" align="left">
                                                             &nbsp;&nbsp;
                                                             <asp:Panel ID="panelPoll" runat="server" Height="50px" Width="125px">
                                                                 <asp:RadioButtonList ID="rblPoll" runat="server">
                                                                 </asp:RadioButtonList>
                                                             </asp:Panel>
                                                             <asp:Panel ID="panelPollResult" runat="server" Height="50px" Width="125px">
-                                                                &nbsp;</asp:Panel>
+                                                                &nbsp;<asp:Label ID="lableshowPollR" runat="server" Text="感谢您的参与！" Width="223px"></asp:Label>
+                                                                <br />
+                                                                <asp:Label ID="lableshowPollR2" runat="server" Text="您已经完成本次投票，接下来可以：" Width="223px"></asp:Label><br />
+                                                                <br />
+                                                                <asp:Button ID="showPREsult" runat="server" Style="left: 53px; position: relative;
+                                                                    top: -1px" Text="查看投票结果" OnClick="showPREsult_Click" /></asp:Panel>
                                                             &nbsp;&nbsp;
                                                             </td>
                                                     </tr>
