@@ -36,7 +36,6 @@
     <Compile Include="AdminControl.cs" />
     <Compile Include="BsBook.cs" />
     <Compile Include="BsBookInfo.cs" />
-    <Compile Include="BsCart.cs" />
     <Compile Include="BsUserManager.cs" />
     <Compile Include="modeIndex.cs" />
     <Compile Include="orderManage.cs" />
