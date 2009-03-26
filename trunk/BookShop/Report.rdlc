@@ -8,6 +8,13 @@
         <ConnectString>Data Source=VIP~!PC;Initial Catalog=shanzhai;User ID=sa;Password=.</ConnectString>
       </ConnectionProperties>
     </DataSource>
+    <DataSource Name="shanzhaiConnectionString">
+      <rd:DataSourceID>318f82c8-5091-4947-9652-51eaf8db3dfc</rd:DataSourceID>
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+    </DataSource>
   </DataSources>
   <InteractiveHeight>29.7cm</InteractiveHeight>
   <rd:DrawGrid>true</rd:DrawGrid>
@@ -40,8 +47,8 @@
         </Field>
       </Fields>
       <Query>
-        <DataSourceName>vip__pc_shanzhai_dbo2</DataSourceName>
-        <CommandText>select * from pollDetail</CommandText>
+        <DataSourceName>shanzhaiConnectionString</DataSourceName>
+        <CommandText>SELECT pollDetail.pollID, pollDetail.optionName, pollDetail.counts, pollDetail.ID FROM pollDetail INNER JOIN poll ON pollDetail.pollID = poll.ID WHERE (poll.available = 1)</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <rd:DataSetInfo>
@@ -57,6 +64,155 @@
   <Body>
     <ColumnSpacing>1cm</ColumnSpacing>
     <ReportItems>
+      <Table Name="table1">
+        <ZIndex>1</ZIndex>
+        <DataSetName>DataSet1_pollDetail</DataSetName>
+        <Top>7cm</Top>
+        <Width>4.25cm</Width>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="optionName">
+                      <rd:DefaultName>optionName</rd:DefaultName>
+                      <Style>
+                        <FontFamily>宋体</FontFamily>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!optionName.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="counts">
+                      <rd:DefaultName>counts</rd:DefaultName>
+                      <Style>
+                        <FontFamily>宋体</FontFamily>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!counts.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.75cm</Height>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+        </Style>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox1">
+                      <rd:DefaultName>textbox1</rd:DefaultName>
+                      <Style>
+                        <FontFamily>宋体</FontFamily>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <Style>
+                        <FontFamily>宋体</FontFamily>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.75cm</Height>
+            </TableRow>
+          </TableRows>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>2.125cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.125cm</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>2.25cm</Height>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox7">
+                      <rd:DefaultName>textbox7</rd:DefaultName>
+                      <Style>
+                        <FontFamily>宋体</FontFamily>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox8">
+                      <rd:DefaultName>textbox8</rd:DefaultName>
+                      <Style>
+                        <FontFamily>宋体</FontFamily>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.75cm</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+        <Left>6cm</Left>
+      </Table>
       <Chart Name="chart1">
         <Legend>
           <Style>
@@ -102,7 +258,7 @@
         <ThreeDProperties>
           <Enabled>true</Enabled>
           <Rotation>30</Rotation>
-          <Inclination>-30</Inclination>
+          <Inclination>-20</Inclination>
           <Shading>Simple</Shading>
           <DrawingStyle>Cylinder</DrawingStyle>
         </ThreeDProperties>
@@ -116,7 +272,7 @@
             </StaticSeries>
           </SeriesGrouping>
         </SeriesGroupings>
-        <Top>1.75cm</Top>
+        <Top>0.75cm</Top>
         <Subtype>Plain</Subtype>
         <ValueAxis>
           <Axis>
@@ -182,7 +338,7 @@
         <Left>2.25cm</Left>
       </Chart>
     </ReportItems>
-    <Height>10.11905cm</Height>
+    <Height>10.90476cm</Height>
   </Body>
   <Language>zh-CN</Language>
   <TopMargin>2.5cm</TopMargin>
