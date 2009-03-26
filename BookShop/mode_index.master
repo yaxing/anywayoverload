@@ -334,13 +334,13 @@ function tick() {
                                                                 <asp:Label ID="lableshowPollR2" runat="server" Text="您已经完成本次投票，接下来可以：" Width="223px"></asp:Label><br />
                                                                 <br />
                                                                 <asp:Button ID="showPREsult" runat="server" Style="left: 53px; position: relative;
-                                                                    top: -1px" Text="查看投票结果" OnClick="showPREsult_Click" /></asp:Panel>
+                                                                    top: -1px" Text="查看投票结果" OnClick="showPREsult_Click" CausesValidation="False" /></asp:Panel>
                                                             &nbsp;&nbsp;
                                                             </td>
                                                     </tr>
                                                 </table>
                                                 <asp:Button ID="bPoll" runat="server" Style="left: 121px; position: relative; top: 0px"
-                                                    Text="投票" OnClick="bPoll_Click" />
+                                                    Text="投票" OnClick="bPoll_Click" CausesValidation="False" />
                                             </td>
                                             <td valign="top" style="background-image: url(Images/Cen_separate.gif); width: 5px;
                                                 height: 608px;">
