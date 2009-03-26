@@ -83,6 +83,26 @@ namespace BsCtrl
             if (Cart_Orders[ItemID] != null)
                 Cart_Orders.Remove(ItemID);
         }
+
+        public void ItemAddOne(String ItemID)
+        {//为该物件数目加1
+            Stat_Class order = (Stat_Class)Cart_Orders[ItemID];
+            
+            order.Quantity++;
+        }
+
+        public void ItemDelOne(String ItemID)
+        {//为该物件数目减1
+            Stat_Class order = (Stat_Class)Cart_Orders[ItemID];
+            if(order.Quantity==1)
+            {
+                Cart_Orders.Remove(ItemID);
+            }
+            else
+            {
+                order.Quantity--;
+            }
+        }
     }
 
 }
