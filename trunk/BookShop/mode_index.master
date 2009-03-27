@@ -73,7 +73,7 @@ function tick() {
                                 <td valign="top">
                                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                         <tr>
-                                            <td height="6" colspan="2" bgcolor="#81CF00">
+                                            <td colspan="2" bgcolor="#81CF00" style="height: 6px">
                                             </td>
                                         </tr>
                                         <tr>
@@ -365,7 +365,7 @@ function tick() {
                                                                         请输入书名：&nbsp;
                                                                         <asp:TextBox ID="searchContent" runat="server" Width="319px"></asp:TextBox></td>
                                                                     <td width="18%" style="height: 27px">
-                                                                        <asp:ImageButton ID="searchButton" runat="server" Style="position: relative; left: -84px; top: -5px;" OnClick="searchButton_Click" Height="29px" ImageUrl="~/Images/search.gif" Width="85px" /></td>
+                                                                        <asp:ImageButton ID="searchButton" runat="server" Style="position: relative; left: -84px; top: -5px;" OnClick="searchButton_Click" Height="25px" ImageUrl="~/Images/search.gif" Width="80px" /></td>
                                                                 </tr>
                                                             </table>
                                                         </td>
