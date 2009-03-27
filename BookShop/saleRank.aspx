@@ -4,8 +4,8 @@
         <tr><td>销售排行</td></tr>
         <tr><td>
             <asp:GridView ID="gvSaleRank" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                CellPadding="4" ForeColor="#333333" GridLines="None">
-                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                CellPadding="4" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" Width="90%">
+                <FooterStyle BackColor="#CCCC99" />
                 <Columns>
                     <asp:BoundField DataField="bookName" HeaderText="书籍名称" />
                     <asp:BoundField DataField="publisher" HeaderText="出版社" />
@@ -14,11 +14,10 @@
                     <asp:BoundField DataField="className" HeaderText="分类" />
                     <asp:BoundField DataField="price" HeaderText="价格" SortExpression="price" />
                 </Columns>
-                <RowStyle BackColor="#EFF3FB" />
-                <EditRowStyle BackColor="#2461BF" />
-                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <RowStyle BackColor="#F7F7DE" />
+                <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
+                <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
                 <AlternatingRowStyle BackColor="White" />
             </asp:GridView>
         </td></tr>

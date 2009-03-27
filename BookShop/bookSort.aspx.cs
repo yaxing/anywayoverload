@@ -23,18 +23,30 @@ public partial class bookSort : System.Web.UI.Page
             //分类列表
             string classId = Request.QueryString["classID"];
             int id = -1;
-            try
+            if(classId != null)
             {
-                id = Convert.ToInt32(classId);
+                try
+                {
+                    id = Convert.ToInt32(classId);
+                }
+                catch (System.Exception ee)
+                {
+                    id = -1;
+                }
             }
-            catch (System.Exception ee)
+
+            DataSet ds = bookInfo.GetClassBooks(id);
+            if(id != -1 && ds.Tables[0].Rows.Count != 0)
             {
-            	id = -1;
-            }
-            if(id != -1)
-            {
-                gvBookList.DataSource = bookInfo.GetClassBooks(id);
+                gvBookList.DataSource = ds;
                 gvBookList.DataBind();
+                lblClassName.Text = bookInfo.GetClassName(id);
+            }
+            else
+            {
+                gvBookList.DataSource = bookInfo.GetNewBooks(100);
+                gvBookList.DataBind();
+                lblClassName.Text = "所有分类";
             }
         }
     }
