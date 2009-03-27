@@ -154,14 +154,110 @@ namespace BsCtrl
             return ret;
         }
 
-        /*功能：获取一本书籍的信息
+         /*功能：获取一本书籍的信息
          参数：bookId   书籍的索引号
         返回值：标记书籍的所有信息。形式即为表的结构*/
         public DataSet GetBookInfo(int iBookId)
         {
-            DataSet ret = null;
+            DataSet ret = conn.executeQuery("select * from bookClass,bookInfo where bookClass.ID = bookInfo.classID and bookInfo.ID = '"+iBookId+"'");
 
             return ret;
         }
-    }
+
+        /*获取所有书籍的信息*/
+        public DataSet GetAllBooks()
+        {
+
+            DataSet ds = conn.executeQuery("select bookClass.className,bookClass.bookCount,bookInfo.* from bookClass,bookInfo where bookClass.ID = bookInfo.classID");
+            
+            return ds;
+        }
+
+        /*添加书籍*/
+        public Boolean InsertNewBook(String BookName,String BookType,String Author,String Pub,String PubTime,String ISBN,String Price,String Quantity,String ImageUrl,String BookScript)
+        {
+            String indate = DateTime.Now.ToShortDateString();
+            String sqlcmd = "Insert into bookInfo(ISBN,classID,bookName,publisher,author,introduce,price,available,pubdatetime,indatetime,coverPath) values('"+ISBN+"','"+BookType+"','"+BookName+"','"+Pub+"','"+Author+"','"+BookScript+"',"+Price+",'"+Quantity+"','"+PubTime+"','"+indate+"','"+ImageUrl+"')";
+            if (conn.executeUpdate(sqlcmd) > 0)
+            {
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
+        }
+
+        /*添加书籍分类*/
+        public Boolean InsertNewBookType(String TypeName)
+        {
+            String sqlcmd = "Insert into bookClass(className) values('"+TypeName+"')";
+            if (conn.executeUpdate(sqlcmd) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /*更新书籍分类*/
+        public Boolean UpdateBookType(String TypeID)
+        {
+            String sqlcmd = "Update bookClass set bookCount = bookCount+1 where ID = '"+TypeID+"'";
+            if (conn.executeUpdate(sqlcmd) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /*删除书籍分类*/
+        public Boolean DeleteBookType(String TypeName)
+        {
+            String sqlcmd = "select bookCount from bookClass where className ='"+TypeName+"'";
+            DataSet ds = new DataSet();
+            try
+            {
+                ds = conn.executeQuery(sqlcmd);
+            }
+            catch (System.Exception e)
+            {
+                return false;
+            }
+            long num = Convert.ToInt64(ds.Tables[0].Rows[0][0]);
+            if (num > 0)
+            {
+                return false;
+            }
+            sqlcmd = "Delete from bookClass where className = '"+TypeName+"'";
+            if (conn.executeUpdate(sqlcmd) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /*删除单个书籍*/
+        public Boolean DeleteOneBook(String BookID)
+        {
+            return true;
+        }
+
+        /*指定书籍*/
+        public DataSet GetFamiliarBooks(String bookName)
+        {
+
+            DataSet ds = conn.executeQuery("select bookClass.className,bookClass.bookCount,bookInfo.* from bookClass,bookInfo where bookClass.ID = bookInfo.classID and bookInfo.bookName like '%"+bookName+"%'");
+
+            return ds;
+        }
+    }       
 }
