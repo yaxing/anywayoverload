@@ -107,11 +107,13 @@ public partial class mode_index : System.Web.UI.MasterPage
     {
         Response.Redirect("RegistereUser.aspx");
     }
+
     protected void Reput_Click(object sender, EventArgs e)
     {
         pWord.Text = "";
         uName.Text = "";
     }
+
     protected void bPoll_Click(object sender, EventArgs e)
     {
         String selected = rblPoll.SelectedValue;
@@ -130,8 +132,15 @@ public partial class mode_index : System.Web.UI.MasterPage
         panelPollResult.Visible = true;
         return;
     }
-    protected void showPREsult_Click(object sender, EventArgs e)
+   
+    protected void showPR_Click(object sender, ImageClickEventArgs e)
     {
         Response.Redirect("pollResult.aspx");
+    }
+    protected void searchButton_Click(object sender, ImageClickEventArgs e)
+    {
+        String searchC = searchContent.Text.Trim();
+        String[] sC = searchC.Split(' ');
+        Response.Redirect("searchDeal.aspx?"+sC);
     }
 }

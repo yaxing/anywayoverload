@@ -332,9 +332,9 @@ function tick() {
                                                                 &nbsp;<asp:Label ID="lableshowPollR" runat="server" Text="感谢您的参与！" Width="223px"></asp:Label>
                                                                 <br />
                                                                 <asp:Label ID="lableshowPollR2" runat="server" Text="您已经完成本次投票，接下来可以：" Width="223px"></asp:Label><br />
-                                                                <br />
-                                                                <asp:Button ID="showPREsult" runat="server" Style="left: 53px; position: relative;
-                                                                    top: -1px" Text="查看投票结果" OnClick="showPREsult_Click" CausesValidation="False" /></asp:Panel>
+                                                                <asp:ImageButton ID="showPR" runat="server" Style="left: 89px; position: relative;
+                                                                    top: 0px" OnClick="showPR_Click" /><br />
+                                                                </asp:Panel>
                                                             &nbsp;&nbsp;
                                                         </td>
                                                     </tr>
@@ -362,11 +362,10 @@ function tick() {
                                                                     <td width="15%">
                                                                         &nbsp;</td>
                                                                     <td width="67%">
-                                                                        请输入书名：
-                                                                        <input name="bookkey" type="text" class="txt_grey" size="48" />
-                                                                    </td>
+                                                                        请输入书名：&nbsp;
+                                                                        <asp:TextBox ID="searchContent" runat="server" Width="319px"></asp:TextBox></td>
                                                                     <td width="18%">
-                                                                        <input name="search" type="submit" class="btn_grey" value="搜索" /></td>
+                                                                        <asp:ImageButton ID="searchButton" runat="server" Style="position: relative; left: 0px; top: -6px;" OnClick="searchButton_Click" /></td>
                                                                 </tr>
                                                             </table>
                                                         </td>
