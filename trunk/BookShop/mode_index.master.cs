@@ -141,6 +141,7 @@ public partial class mode_index : System.Web.UI.MasterPage
     {
         String searchC = searchContent.Text.Trim();
         String[] sC = searchC.Split(' ');
-        Response.Redirect("searchDeal.aspx?"+sC);
+        Session.Add("sContent",sC);
+        Response.Redirect("searchDeal.aspx");
     }
 }
