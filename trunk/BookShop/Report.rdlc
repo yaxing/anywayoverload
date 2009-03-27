@@ -67,8 +67,8 @@
       <Table Name="table1">
         <ZIndex>1</ZIndex>
         <DataSetName>DataSet1_pollDetail</DataSetName>
-        <Top>7cm</Top>
-        <Width>4.25cm</Width>
+        <Top>2.75cm</Top>
+        <Width>4.75cm</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -77,12 +77,16 @@
                   <ReportItems>
                     <Textbox Name="optionName">
                       <rd:DefaultName>optionName</rd:DefaultName>
+                      <CanShrink>true</CanShrink>
                       <Style>
-                        <FontFamily>宋体</FontFamily>
+                        <FontFamily>幼圆</FontFamily>
+                        <FontWeight>500</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <Direction>RTL</Direction>
                       </Style>
                       <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
@@ -94,13 +98,16 @@
                   <ReportItems>
                     <Textbox Name="counts">
                       <rd:DefaultName>counts</rd:DefaultName>
+                      <CanShrink>true</CanShrink>
                       <Style>
-                        <FontFamily>宋体</FontFamily>
-                        <TextAlign>Right</TextAlign>
+                        <FontFamily>幼圆</FontFamily>
+                        <FontWeight>500</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <Direction>RTL</Direction>
                       </Style>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!counts.Value</Value>
@@ -161,10 +168,10 @@
         </Header>
         <TableColumns>
           <TableColumn>
-            <Width>2.125cm</Width>
+            <Width>2.375cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>2.125cm</Width>
+            <Width>2.375cm</Width>
           </TableColumn>
         </TableColumns>
         <Height>2.25cm</Height>
@@ -176,12 +183,14 @@
                   <ReportItems>
                     <Textbox Name="textbox7">
                       <rd:DefaultName>textbox7</rd:DefaultName>
+                      <CanShrink>true</CanShrink>
                       <Style>
-                        <FontFamily>宋体</FontFamily>
+                        <FontFamily>幼圆</FontFamily>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <WritingMode>tb-rl</WritingMode>
                       </Style>
                       <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
@@ -211,7 +220,7 @@
             </TableRow>
           </TableRows>
         </Footer>
-        <Left>6cm</Left>
+        <Left>11.75cm</Left>
       </Table>
       <Chart Name="chart1">
         <Legend>
@@ -258,7 +267,6 @@
         <ThreeDProperties>
           <Enabled>true</Enabled>
           <Rotation>30</Rotation>
-          <Inclination>-20</Inclination>
           <Shading>Simple</Shading>
           <DrawingStyle>Cylinder</DrawingStyle>
         </ThreeDProperties>
@@ -272,7 +280,7 @@
             </StaticSeries>
           </SeriesGrouping>
         </SeriesGroupings>
-        <Top>0.75cm</Top>
+        <Top>2.75cm</Top>
         <Subtype>Plain</Subtype>
         <ValueAxis>
           <Axis>
@@ -335,7 +343,7 @@
         </Style>
         <Title />
         <Height>6cm</Height>
-        <Left>2.25cm</Left>
+        <Left>0.25cm</Left>
       </Chart>
     </ReportItems>
     <Height>10.90476cm</Height>
