@@ -332,8 +332,8 @@ function tick() {
                                                                 &nbsp;<asp:Label ID="lableshowPollR" runat="server" Text="感谢您的参与！" Width="223px"></asp:Label>
                                                                 <br />
                                                                 <asp:Label ID="lableshowPollR2" runat="server" Text="您已经完成本次投票，接下来可以：" Width="223px"></asp:Label><br />
-                                                                <asp:ImageButton ID="showPR" runat="server" Style="left: 81px; position: relative;
-                                                                    top: 23px" OnClick="showPR_Click" Height="42px" ImageUrl="~/Images/showPResult.png" Width="45px" /><br />
+                                                                <asp:ImageButton ID="showPR" runat="server" Style="left: 59px; position: relative;
+                                                                    top: 22px" OnClick="showPR_Click" Height="29px" ImageUrl="~/Images/showPResult.gif" Width="85px" /><br />
                                                                 </asp:Panel>
                                                             &nbsp;&nbsp;
                                                         </td>
