@@ -2,12 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <table>
         <tr>
-            <td>
+            <td style="width:80%;text-align:left;">
                 <asp:Repeater ID="rpBookInfo" runat="server">
                     <ItemTemplate>
 				  	<%-- Í¼ÊéÐÅÏ¢ --%>
 				  	<div style="width:250px;float:left;">
-				  	<table width="100%" height="123"  border="0" cellpadding="0" cellspacing="0">
+				  	<table style="height:123px;width:100%;"  border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td width="43%" align="center"><img src='<%#Eval("coverPath") %>' width="76" height="110"></td>
                       <td width="57%" align="center"><table width="100%" height="119"  border="0" cellpadding="0" cellspacing="0">

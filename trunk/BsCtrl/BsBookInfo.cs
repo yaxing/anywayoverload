@@ -129,6 +129,22 @@ namespace BsCtrl
             return ret;
         }
 
+        public string GetClassName(int iClassId)
+        {
+            string ret = null;
+            try
+            {
+                string sql = "select * from bookClass where ID=" + iClassId.ToString();
+                DataSet ds = conn.executeQuery(sql);
+                ret = ds.Tables[0].Rows[0]["className"].ToString();
+            }
+            catch (System.Exception e)
+            {
+                ret = null;
+            }
+            return ret;
+        }
+
         /*功能： 根据strKeyWords数组查询图书
           返回值：查询到的图书详细信息*/
         public DataSet SearchBooks(string[] strKeyWords)
