@@ -13,11 +13,14 @@ using BsCtrl;
 
 public partial class manage_bookManage : System.Web.UI.Page
 {
+    String server = ConfigurationSettings.AppSettings["dbServer"];
+    String userName = ConfigurationSettings.AppSettings["dbUserName"];
+    String passWord = ConfigurationSettings.AppSettings["dbPassWord"];
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            BsBookInfo bookInfo = new BsBookInfo("localhost", "sa", "2019608");
+            BsBookInfo bookInfo = new BsBookInfo(server, userName, passWord);
             DataSet ds = bookInfo.GetBookClassify();
             DataSet ds1 = new DataSet();
             ds1 = bookInfo.GetAllBooks();
@@ -92,16 +95,13 @@ public partial class manage_bookManage : System.Web.UI.Page
     }
     protected void BtnSub_Click(object sender, EventArgs e)
     {
+        String fileName = null;
+        String typeName = null;
         String CoverPath = null;
-        if (Session["ImageUrl"]!=null)
+        if (this.CoverUpload.HasFile)
         {
-            CoverPath = Session["ImageUrl"].ToString();
-            Session.Remove("ImageUrl");
-        }
-        else
-        {
-            String fileName = this.CoverUpload.PostedFile.FileName.Substring(this.CoverUpload.PostedFile.FileName.LastIndexOf("\\") + 1);
-            String typeName = this.CoverUpload.PostedFile.FileName.Substring(this.CoverUpload.PostedFile.FileName.LastIndexOf(".") + 1);
+            fileName = this.CoverUpload.PostedFile.FileName.Substring(this.CoverUpload.PostedFile.FileName.LastIndexOf("\\") + 1);
+            typeName = this.CoverUpload.PostedFile.FileName.Substring(this.CoverUpload.PostedFile.FileName.LastIndexOf(".") + 1);   
             if (typeName != "JPG" && typeName != "BMP" && typeName != "GIF" && typeName != "PNG" && typeName != "jpg" && typeName != "bmp" && typeName != "gif" && typeName != "png")
             {
                 Response.Write("<script language='javascript'>alert('请上传图片文件。');</script>");
@@ -109,11 +109,10 @@ public partial class manage_bookManage : System.Web.UI.Page
             else
             {
                 this.CoverUpload.PostedFile.SaveAs(Server.MapPath("..\\cover") + "\\" + fileName);
-                this.CoverImg.ImageUrl = "..\\cover\\"+fileName;
                 CoverPath = "cover\\" + fileName;
             }
         }
-        if (CoverPath == null) CoverPath = "";
+        if (CoverPath == null||CoverPath == "cover\\") CoverPath = "";
         String ISBN = this.TxtISBN.Text;
         String bookName = this.TxtBookName.Text;
         String author = this.TxtAuthor.Text;
@@ -123,8 +122,8 @@ public partial class manage_bookManage : System.Web.UI.Page
         String quan = this.TxtQuantity.Text;
         String script = this.TxtScript.Text;
         String bookType = this.DDDLType.SelectedValue;
-        BsBookInfo bookIn = new BsBookInfo("localhost","sa","2019608");
-        if(bookIn.InsertNewBook(bookName,bookType,author,pub,pubTime,ISBN,price,quan,CoverPath,script)&&bookIn.UpdateBookType(bookType))
+        BsBookInfo bookIn = new BsBookInfo(server, userName, passWord);
+        if (bookIn.InsertNewBook(bookName, bookType, author, pub, pubTime, ISBN, price, quan, CoverPath, script) && bookIn.UpdateBookType(bookType))
         {
             Response.Write("<script language='javascript'>alert('添加成功。');location.href('bookManage.aspx');</script>");
         }
@@ -134,21 +133,6 @@ public partial class manage_bookManage : System.Web.UI.Page
         }
     }
 
-    protected void BtnUp_Click(object sender, EventArgs e)
-    {
-        String fileName = this.CoverUpload.PostedFile.FileName.Substring(this.CoverUpload.PostedFile.FileName.LastIndexOf("\\") + 1);
-        String typeName = this.CoverUpload.PostedFile.FileName.Substring(this.CoverUpload.PostedFile.FileName.LastIndexOf(".") + 1);
-        if (typeName != "JPG" && typeName != "BMP" && typeName != "GIF" && typeName != "PNG" && typeName != "jpg" && typeName != "bmp" && typeName != "gif" && typeName != "png")
-        {
-            Response.Write("<script language='javascript'>alert('请上传图片文件。');</script>");
-        }
-        else
-        {
-            this.CoverUpload.PostedFile.SaveAs(Server.MapPath("..\\cover") + "\\" + fileName);
-            Session.Add("ImageUrl","cover\\"+fileName);
-            this.CoverImg.ImageUrl = "..\\"+Session["ImageUrl"].ToString();
-        }
-    }
     protected void BtnAdd_Click(object sender, EventArgs e)
     {
         
@@ -156,7 +140,7 @@ public partial class manage_bookManage : System.Web.UI.Page
     protected void BtnAddP_Click(object sender, EventArgs e)
     {
         String TypeName = this.TxtTypeP.Text;
-        BsBookInfo bookType = new BsBookInfo("localhost", "sa", "2019608");
+        BsBookInfo bookType = new BsBookInfo(server, userName, passWord);
         if(bookType.InsertNewBookType(TypeName))
         {
             this.lblStat.Text = "新分类添加成功";
@@ -172,7 +156,7 @@ public partial class manage_bookManage : System.Web.UI.Page
     protected void BtnDelP_Click(object sender, EventArgs e)
     {
         String TypeName = this.TxtTypeP.Text;
-        BsBookInfo bookType = new BsBookInfo("localhost", "sa", "2019608");
+        BsBookInfo bookType = new BsBookInfo(server, userName, passWord);
         if(bookType.DeleteBookType(TypeName))
         {
             this.lblStat.Text = "分类删除成功";
@@ -192,7 +176,7 @@ public partial class manage_bookManage : System.Web.UI.Page
     protected void BtnSearch_Click(object sender, EventArgs e)
     {
         String bookSearch = this.TxtBookSearch.Text;
-        BsBookInfo bookInfo = new BsBookInfo("localhost","sa","2019608");
+        BsBookInfo bookInfo = new BsBookInfo(server,userName,passWord);
         DataSet ds = new DataSet();
         ds = bookInfo.GetFamiliarBooks(bookSearch);
         BookGridView_Load(ds);
@@ -207,12 +191,24 @@ public partial class manage_bookManage : System.Web.UI.Page
     {
         DataKey key = this.BookGridView.DataKeys[e.NewEditIndex];
         int bookID = Convert.ToInt32(key[0]);
-        BsBookInfo bookInfo = new BsBookInfo("localhost", "sa", "2019608");
+        BsBookInfo bookInfo = new BsBookInfo(server, userName, passWord);
         DataSet ds = new DataSet();
         ds = bookInfo.GetBookInfo(bookID);
         this.TxtBookNameU.Text = ds.Tables[0].Rows[0][6].ToString();
         DDLTypeU_Load(bookInfo);
         this.DDLTypeU.SelectedValue = ds.Tables[0].Rows[0][0].ToString();
+        this.TxtAuthorU.Text = ds.Tables[0].Rows[0][8].ToString();
+        this.TxtISBNU.Text = ds.Tables[0].Rows[0][4].ToString();
+        this.TxtPubU.Text = ds.Tables[0].Rows[0][7].ToString();
+        String pubDate = ds.Tables[0].Rows[0][11].ToString();
+        int dateIndex = pubDate.LastIndexOf(" ");
+        this.TxtPubDateU.Text = pubDate.Substring(0,dateIndex);
+        this.TxtPriceU.Text = ds.Tables[0].Rows[0][10].ToString();
+        this.TxtAvailableU.Text = ds.Tables[0].Rows[0][14].ToString();
+        this.TxtScriptU.Text = ds.Tables[0].Rows[0][9].ToString();
+        this.ImgEx.ImageUrl = "..\\"+ds.Tables[0].Rows[0][13].ToString();
+        this.HFBookID.Value = ds.Tables[0].Rows[0][3].ToString();
+        this.HFOldType.Value = ds.Tables[0].Rows[0][0].ToString();
 
         NewBookPanel.Visible = false;
         BookListPanel.Visible = false;
@@ -228,5 +224,51 @@ public partial class manage_bookManage : System.Web.UI.Page
         this.DDLTypeU.DataValueField = ds.Tables[0].Columns[0].ToString();
         this.DDLTypeU.DataTextField = ds.Tables[0].Columns[1].ToString();
         this.DDLTypeU.DataBind();
+    }
+
+    protected void BtnUpdate_Click (object sender, EventArgs e)
+    {
+        String fileName = null;
+        String typeName = null;
+        String CoverPath = null;
+        String ISBN = this.TxtISBNU.Text;
+        String bookName = this.TxtBookNameU.Text;
+        String author = this.TxtAuthorU.Text;
+        String pub = this.TxtPubU.Text;
+        String pubTime = this.TxtPubDateU.Text;
+        String price = this.TxtPriceU.Text;
+        String quan = this.TxtAvailableU.Text;
+        String script = this.TxtScriptU.Text;
+        String bookType = this.DDLTypeU.SelectedValue;
+        String bookID = this.HFBookID.Value;
+        String OldType = this.HFOldType.Value;
+        Response.Write(OldType);
+        if (this.CoverUploadU.HasFile)
+        {
+            fileName = this.CoverUpload.PostedFile.FileName.Substring(this.CoverUpload.PostedFile.FileName.LastIndexOf("\\") + 1);
+            typeName = this.CoverUpload.PostedFile.FileName.Substring(this.CoverUpload.PostedFile.FileName.LastIndexOf(".") + 1);
+            if (typeName != "JPG" && typeName != "BMP" && typeName != "GIF" && typeName != "PNG" && typeName != "jpg" && typeName != "bmp" && typeName != "gif" && typeName != "png")
+            {
+                Response.Write("<script language='javascript'>alert('请上传图片文件。');</script>");
+            }
+            else
+            {
+                this.CoverUpload.PostedFile.SaveAs(Server.MapPath("..\\cover") + "\\" + fileName);
+                CoverPath = "cover\\" + fileName;
+            }
+        }
+        else
+        {
+            CoverPath = this.ImgEx.ImageUrl.Substring(3);
+        }
+        BsBookInfo bookIn = new BsBookInfo(server, userName, passWord);
+        if (bookIn.UpdateOneBook(bookID, bookName, bookType, author, pub, pubTime, ISBN, price, quan, CoverPath, script) && bookIn.UpdateBookType(bookType, OldType))
+        {
+            Response.Write("<script language='javascript'>alert('更新成功。');location.href('bookManage.aspx');</script>");
+        }
+        else
+        {
+            Response.Write("<script language='javascript'>alert('更新失败。请重新添加。');</script>");
+        }
     }
 }
