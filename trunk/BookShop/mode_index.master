@@ -295,7 +295,7 @@ function tick() {
                                                 </table>
                                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                                     <tr>
-                                                        <td height="50" colspan="2" align="right">
+                                                        <td style="height:50px" colspan="2" align="right">
                                                             <img src="Images/index_18.gif" width="185" height="50" alt="" /></td>
                                                     </tr>
                                                     <tr>
@@ -305,11 +305,11 @@ function tick() {
                                                             <asp:FormView ID="pollTheme" runat="server" Style="left: 4px; position: relative;
                                                                 top: 6px" Width="224px">
                                                                 <ItemTemplate>
-                                                                    <table>
+                                                                    <table style="text-align:center">
                                                                         <tr>
-                                                                            <td style="width: 50%">
+                                                                            <td style="width: 60%">
                                                                             </td>
-                                                                            <td style="width: 50%; text-align: center">
+                                                                            <td style="widows:40%; text-align:center; font-family:幼圆">
                                                                                 <%#Eval("theme") %>
                                                                             </td>
                                                                         </tr>
@@ -336,7 +336,7 @@ function tick() {
                                                                 <asp:Button ID="showPREsult" runat="server" Style="left: 53px; position: relative;
                                                                     top: -1px" Text="查看投票结果" OnClick="showPREsult_Click" CausesValidation="False" /></asp:Panel>
                                                             &nbsp;&nbsp;
-                                                            </td>
+                                                        </td>
                                                     </tr>
                                                 </table>
                                                 <asp:Button ID="bPoll" runat="server" Style="left: 121px; position: relative; top: 0px"
@@ -375,8 +375,8 @@ function tick() {
                                                         <td width="73%" height="220" valign="top">
                                                             <table width="100%" style="height: 126" border="0" cellpadding="0" cellspacing="0">
                                                                 <div>
-                                                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                                                                </asp:ContentPlaceHolder>
+                                                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                                    </asp:ContentPlaceHolder>
                                                                 </div>
                                                             </table>
                                                             &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -422,7 +422,7 @@ function tick() {
                                                             &nbsp;</td>
                                                         <td width="464" valign="bottom">
                                                             <div align="center">
-                                                                CopyRight &copy; 2008.3.17 AnywayOverload小组</div>
+                                                                CopyRight &copy; 2009.3.17 AnywayOverload小组</div>
                                                         </td>
                                                         <td colspan="2">
                                                             &nbsp;</td>
