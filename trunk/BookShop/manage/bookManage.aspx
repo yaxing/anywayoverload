@@ -7,6 +7,23 @@
     <title>书籍管理</title>
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
     <link href="../CSS/style.css" rel="stylesheet"/>
+    <style type="text/css">
+    #newPreview {
+         FILTER: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)
+    }
+    </style> 
+    <script language="javascript" type="text/javascript">
+     function Preview(imgFile)
+     {
+        if(imgFile != "")
+        {
+        var newPreview = document.getElementById("newPreview");
+        newPreview.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgFile;
+        newPreview.style.width = "128px";
+        newPreview.style.height = "165px";
+        }
+     } 
+    </script>
 </head>
 <body>
 <table width="100%"  border="0" cellspacing="0" cellpadding="0" background="../Images/bg.gif">
@@ -94,8 +111,7 @@
                               <asp:TextBox ID="TxtBookName" runat="server"></asp:TextBox>
                               <asp:RequiredFieldValidator ID="RvalBookName" runat="server" ControlToValidate="TxtBookName"
                                   Display="Dynamic" ErrorMessage="*书名不能为空" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator></td>
-                          <td colspan="4" style="width: 166px" align="center" rowspan="9">
-                              <asp:Image ID="CoverImg" runat="server" Height="165px" Width="128px" ImageUrl="~/cover/ASPgcyyysj.gif" /></td>
+                          <td colspan="4" style="width: 166px" align="center" rowspan="9"><div id="newPreview"></div></td>
                       </tr>
                       <tr>
                           <td align="left" style="width: 83px">
@@ -156,10 +172,8 @@
                           <td align="left" style="width: 83px">
                               封面图片：</td>
                           <td colspan="1" style="width: 260px">
-                              <asp:FileUpload ID="CoverUpload" runat="server" />
-                              <asp:Button ID="BtnUp" runat="server" OnClick="BtnUp_Click" Text="预览" ValidationGroup="RvalImage" />
-                              <asp:RequiredFieldValidator ID="RvalImage" runat="server" ControlToValidate="CoverUpload"
-                                  Display="Dynamic" ErrorMessage="*请选择图片" ValidationGroup="RvalImage"></asp:RequiredFieldValidator></td>
+                              <asp:FileUpload ID="CoverUpload" runat="server" onpropertychange="Preview(this.value);" />&nbsp;
+                          </td>
                       </tr>
                       <tr>
                           <td align="left" style="width: 83px">
@@ -238,7 +252,9 @@
                       <td colspan="1" style="width: 260px">
                           <asp:TextBox ID="TxtBookNameU" runat="server"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtBookNameU"
-                              Display="Dynamic" ErrorMessage="*书名不能为空" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
+                              Display="Dynamic" ErrorMessage="*书名不能为空" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator>
+                          <asp:HiddenField ID="HFBookID" runat="server" />
+                      </td>
                       <td colspan="4" style="width: 166px; color: #000000;" align="center" rowspan="9">
                           <asp:Image ID="ImgEx" runat="server" Height="165px" Width="128px" /></td>
                   </tr>
@@ -247,7 +263,9 @@
                           图书分类：</td>
                       <td colspan="1" style="width: 260px">
                           <asp:DropDownList ID="DDLTypeU" runat="server">
-                          </asp:DropDownList></td>
+                          </asp:DropDownList>
+                          <asp:HiddenField ID="HFOldType" runat="server" />
+                      </td>
                   </tr>
                   <tr>
                       <td align="left" style="width: 83px">
@@ -302,8 +320,7 @@
                           封面图片：</td>
                       <td colspan="1" style="width: 260px">
                           <asp:FileUpload ID="CoverUploadU" runat="server" />&nbsp;
-                          <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="CoverUploadU"
-                              Display="Dynamic" ErrorMessage="*请选择图片" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
+                          </td>
                   </tr>
                   <tr>
                       <td align="left" style="width: 83px">
@@ -321,7 +338,7 @@
                   </tr>
                   <tr>
                       <td align="center" colspan="6" rowspan="1">
-                          <asp:Button ID="BtnUpdate" runat="server" Text="提交" OnClick="BtnSub_Click" ValidationGroup="UpdateBook" />
+                          <asp:Button ID="BtnUpdate" runat="server" Text="提交" OnClick="BtnUpdate_Click" ValidationGroup="UpdateBook" />
                           &nbsp; &nbsp; &nbsp;<input id="BtnResetU" type="reset" value="重置" /></td>
                   </tr>
               </table>
