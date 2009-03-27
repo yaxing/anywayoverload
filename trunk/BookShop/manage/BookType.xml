@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<BookTypes>
+  <BookType>
+    <TypeID>学习</TypeID>
+    <TypeName>学习</TypeName>
+  </BookType>
+  <BookType>
+    <TypeID>学习</TypeID>
+    <TypeName>计算机</TypeName>
+  </BookType>
+</BookTypes>
