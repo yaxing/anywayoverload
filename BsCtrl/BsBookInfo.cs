@@ -216,6 +216,20 @@ namespace BsCtrl
             }
         }
 
+        public Boolean UpdateBookType(String TypeID,String OldType)
+        {
+            String sqlcmd = "Update bookClass set bookCount = bookCount+1 where ID = '" + TypeID + "'";
+            String sqlcmd1 = "Update bookClass set bookCount = bookCount-1 where ID = '" + OldType + "'";
+            if (conn.executeUpdate(sqlcmd) > 0 && conn.executeUpdate(sqlcmd1) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /*删除书籍分类*/
         public Boolean DeleteBookType(String TypeName)
         {
@@ -235,6 +249,21 @@ namespace BsCtrl
                 return false;
             }
             sqlcmd = "Delete from bookClass where className = '"+TypeName+"'";
+            if (conn.executeUpdate(sqlcmd) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /*更新书籍信息*/
+        public Boolean UpdateOneBook(String BookID, String BookName, String BookType, String Author, String Pub, String PubTime, String ISBN, String Price, String Quantity, String ImageUrl, String BookScript)
+        {
+            String indate = DateTime.Now.ToShortDateString();
+            String sqlcmd = "Update bookInfo set ISBN = '" + ISBN + "',classID = '" + BookType + "',bookName = '" + BookName + "',publisher = '" + Pub + "',author = '" + Author + "',introduce = '" + BookScript + "',price = " + Price + ",available = '" + Quantity + "',pubdatetime = '" + PubTime + "',coverPath = '" + ImageUrl + "' where ID = '"+BookID+"'";
             if (conn.executeUpdate(sqlcmd) > 0)
             {
                 return true;
