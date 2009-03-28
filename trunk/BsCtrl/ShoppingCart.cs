@@ -5,39 +5,50 @@ using System.Collections;
 
 namespace BsCtrl
 {
+    //定义图书类,保存图书的各种属性
     [Serializable]
     public class Stat_Class
-    { //定义商品类,保存商品的各种属性
-        String Book_ID; //商品ID
-        String Book_Name; //商品名称
-        decimal Book_Price; //商品价格
-        int Quan; //商品数量
+    { 
+        String Book_ID; //图书ID
+        String Book_Name; //图书名称
+        decimal Book_Price; //图书价格
+        int Quan; //图书数量
+
+        /*图书ID字段*/
         public String ID
         {
             get { return Book_ID; }
             set { Book_ID = value; }
         }
 
+        /*图书名字字段*/
         public String BookName
         {
             get { return Book_Name; }
             set { Book_Name = value; }
         }
 
+        /*图书价格字段*/
         public decimal Price
         {
             get { return Book_Price; }
             set { Book_Price = value; }
         }
 
+        /*图书数量字段*/
         public int Quantity
         {
             get { return Quan; }
             set { Quan = value; }
         }
 
+        /*构造方法，初始化图书的各个属性
+         * 参数： 图书的各个属性值
+         * 返回值：无
+         */
+
         public Stat_Class(String ItemID, String bName, decimal bPrice, int Quantity)
-        { //构造方法，初始化商品的各个属性
+        { 
 
             Book_ID = ItemID;
             Book_Name = bName;
@@ -46,17 +57,28 @@ namespace BsCtrl
         }
     }
 
+    //定义ShoppingCart类
     [Serializable]
     public class ShoppingCart
     {
+        //定义一个Hashtable
         Hashtable Cart_Orders = new Hashtable();
+
+        /*返回整个Hashtable的值，包含所有的图书类
+         * 参数： 无
+         * 返回值：Hashtable的值
+         */
         public ICollection Orders
         {
             get { return Cart_Orders.Values; }
         }
 
+        /*返回整个购物车的图书价格
+         * 参数： 无
+         * 返回值：整个购物车的图书价格
+         */
         public decimal TotalCost
-        { //计算总价格
+        { 
             get
             {
                 decimal total = 0;
@@ -69,8 +91,12 @@ namespace BsCtrl
             }
         }
 
+        /*给购物车添加一个图书类
+         * 参数：要添加的图书类
+         * 返回值：无
+         */
         public void AddItem(Stat_Class Order)
-        { //添加物件方法
+        {
             Stat_Class order = (Stat_Class)Cart_Orders[Order.ID];
             if (order != null)
                 order.Quantity += Order.Quantity;
@@ -78,21 +104,33 @@ namespace BsCtrl
                 Cart_Orders.Add(Order.ID, Order);
         }
 
+        /*给购物车删除一个图书类
+         * 参数：要删除的图书类ID
+         * 返回值：无
+         */
         public void DeleteItem(String ItemID)
-        { //删除物件
+        { 
             if (Cart_Orders[ItemID] != null)
                 Cart_Orders.Remove(ItemID);
         }
 
+        /*给购物车某个图书类数量加1
+         * 参数：要加1的图书类ID
+         * 返回值：无
+         */
         public void ItemAddOne(String ItemID)
-        {//为该物件数目加1
+        {
             Stat_Class order = (Stat_Class)Cart_Orders[ItemID];
             
             order.Quantity++;
         }
 
+        /*给购物车某个图书类数量减1
+         * 参数：要减1的图书类ID
+         * 返回值：无
+         */
         public void ItemDelOne(String ItemID)
-        {//为该物件数目减1
+        {
             Stat_Class order = (Stat_Class)Cart_Orders[ItemID];
             if(order.Quantity==1)
             {
