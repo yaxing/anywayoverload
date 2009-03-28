@@ -82,28 +82,28 @@ function tick() {
                                             <td width="73%" valign="top">
                                                 <table width="100%" style="height: 35" border="0" cellpadding="0" cellspacing="0">
                                                     <tr align="center">
-                                                        <td height="22" valign="bottom">
+                                                        <td valign="bottom" style="height: 22px">
                                                             <a href="index.aspx">首页</a></td>
                                                         <td width="1" rowspan="2" valign="top">
                                                             <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
-                                                        <td valign="bottom">
-                                                            <a href="">新书上架</a></td>
+                                                        <td valign="bottom" style="height: 22px">
+                                                            <a href="newBooks.aspx">新书上架</a></td>
                                                         <td width="1" rowspan="2" valign="top">
                                                             <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
-                                                        <td valign="bottom">
-                                                            <a href="">图书分类</a></td>
+                                                        <td valign="bottom" style="height: 22px">
+                                                            <a href="bookSort.aspx">图书分类</a></td>
                                                         <td width="1" rowspan="2" valign="top">
                                                             <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
-                                                        <td valign="bottom">
+                                                        <td valign="bottom" style="height: 22px">
                                                             <a href="">购物车</a></td>
                                                         <td width="1" rowspan="2" valign="top">
                                                             <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
-                                                        <td valign="bottom">
+                                                        <td valign="bottom" style="height: 22px">
                                                             <a href="">订单查询</a></td>
                                                         <td width="1" rowspan="2" valign="top">
                                                             <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
-                                                        <td valign="bottom">
-                                                            <a href="">销售排行</a></td>
+                                                        <td valign="bottom" style="height: 22px">
+                                                            <a href="saleRank.aspx">销售排行</a></td>
                                                         <td width="1" rowspan="2">
                                                             &nbsp;</td>
                                                     </tr>
@@ -111,15 +111,15 @@ function tick() {
                                                         <td height="13">
                                                             <a href="index.aspx">Index</a></td>
                                                         <td>
-                                                            <a href="">New Books</a></td>
+                                                            <a href="newBooks.aspx">New Books</a></td>
                                                         <td>
-                                                            <a href="">Book Sort</a></td>
+                                                            <a href="bookSort.aspx">Book Sort</a></td>
                                                         <td>
                                                             <a href="">Shopping Bag</a></td>
                                                         <td>
                                                             <a href="">Order Search</a></td>
                                                         <td>
-                                                            <a href="">Sell Sort</a></td>
+                                                            <a href="saleRank.aspx">Sell Sort</a></td>
                                                     </tr>
                                                     <tr style="text-align: right;">
                                                         <td colspan="12" style="height: 34px">
@@ -361,11 +361,13 @@ function tick() {
                                                                 <tr>
                                                                     <td width="15%" style="height: 27px">
                                                                         &nbsp;</td>
-                                                                    <td width="67%" style="height: 27px">
-                                                                        请输入书名：&nbsp;
-                                                                        <asp:TextBox ID="searchContent" runat="server" Width="319px"></asp:TextBox></td>
+                                                                    <td width="67%" style="height: 27px; font-family:幼圆">
+                                                                        &nbsp;&nbsp;
+                                                                        <asp:Label ID="Label3" runat="server" Height="17px" Style="left: 19px; position: relative;
+                                                                            top: -4px" Text="我想找：" Width="51px"></asp:Label>
+                                                                        <asp:TextBox ID="searchContent" runat="server" Width="319px" style="left: 24px; position: relative; top: -6px"></asp:TextBox></td>
                                                                     <td width="18%" style="height: 27px">
-                                                                        <asp:ImageButton ID="searchButton" runat="server" Style="position: relative; left: -84px; top: -5px;" OnClick="searchButton_Click" Height="25px" ImageUrl="~/Images/search.gif" Width="80px" /></td>
+                                                                        <asp:ImageButton ID="searchButton" runat="server" Style="position: relative; left: -59px; top: -8px;" OnClick="searchButton_Click" Height="25px" ImageUrl="~/Images/search.gif" Width="80px" /></td>
                                                                 </tr>
                                                             </table>
                                                         </td>
