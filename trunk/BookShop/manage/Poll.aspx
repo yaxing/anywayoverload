@@ -73,7 +73,7 @@
                 &nbsp;&nbsp;
                 <asp:Label ID="Label5" runat="server" Width="151px"></asp:Label>
                 <asp:GridView ID="GridView1" runat="server" ForeColor="#333333" GridLines="None"
-                    Visible="False" AllowPaging="True" PageSize="5" DataKeyNames="ID" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" AutoGenerateColumns="False" >
+                    Visible="False" AllowPaging="True" PageSize="5" DataKeyNames="ID" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" AutoGenerateColumns="False" Width="341px" >
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                     <EditRowStyle BackColor="#999999" />
@@ -91,7 +91,7 @@
                         <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="pollDetail.aspx?ID={0}"
                             DataTextFormatString="s" HeaderText="添加选项" Text="添加选项" />
                     </Columns>
-                    <PagerSettings Mode="NumericFirstLast" />
+                    <PagerSettings PageButtonCount="5" />
                 </asp:GridView>
             </td>
             <td style="width: 157px">
