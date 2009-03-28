@@ -67,8 +67,6 @@ public partial class manage_Poll : System.Web.UI.Page
             flags1 = 0;
             str = "insert into poll (theme, introduce, available) values ('" + TextBox1.Text + "', '" + TextBox2.Text + "', 0)";
         }
-        //String str = "insert into poll (theme, introduce, available) values ('" + TextBox1.Text + "', '" + TextBox2.Text + "', flags1)";
-        //String str = "insert into poll (theme, introduce, available) values('asfda', 'dafsa', 1)";
         string Querystring = "select * from poll where available = 1";
         DataSet mydataset1 = connStr.executeQuery(Querystring);
         if (mydataset1.Tables[0].Rows.Count >= 1 && RadioButton1.Checked == true)
