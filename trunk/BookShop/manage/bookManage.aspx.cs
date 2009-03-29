@@ -123,7 +123,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         String script = this.TxtScript.Text;
         String bookType = this.DDDLType.SelectedValue;
         BsBookInfo bookIn = new BsBookInfo(server, userName, passWord);
-        if (bookIn.InsertNewBook(bookName, bookType, author, pub, pubTime, ISBN, price, quan, CoverPath, script) && bookIn.UpdateBookType(bookType))
+        if (bookIn.InsertNewBook(bookName, bookType, author, pub, pubTime, ISBN, price, quan, CoverPath, script) && bookIn.UpdateBookType(bookType,1))
         {
             Response.Write("<script language='javascript'>alert('添加成功。');location.href('bookManage.aspx');</script>");
         }
@@ -166,12 +166,34 @@ public partial class manage_bookManage : System.Web.UI.Page
         }
         else
         {
-            this.lblStat.Text = "删除失败,请重新添加";
+            this.lblStat.Text = "删除失败,请确定该分类没有书籍";
         }         
     }
     protected void BookGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-        
+        DataKey key = this.BookGridView.DataKeys[e.RowIndex];
+        String bookID = key[0].ToString();
+        int bookIDI = Convert.ToInt32(key[0]);
+        BsBookInfo bookInfo = new BsBookInfo(server,userName,passWord);
+        DataSet ds = new DataSet();
+        ds = bookInfo.GetBookInfo(bookIDI);
+        String ImgPath = ds.Tables[0].Rows[0][13].ToString();
+        String bookType = ds.Tables[0].Rows[0][0].ToString();
+        String fileName = ImgPath.Substring(ImgPath.LastIndexOf("\\") + 1);
+        if(bookInfo.DeleteOneBook(bookID) && bookInfo.UpdateBookType(bookType,2))
+        {
+            if (ImgPath != "cover\\ASPgcyyysj.gif" && File.Exists(Server.MapPath("..\\cover") + "\\" + fileName))
+            {
+               File.Delete(Server.MapPath("..\\cover") + "\\" + fileName);  
+            }
+            Response.Write("<script language='javascript'>alert('删除成功');</script>");
+        }
+        else
+        {
+            Response.Write("<script language='javascript'>alert('删除失败：数据操作失败，请确认数据库是否正常工作。');</script>");
+        }
+        ds = bookInfo.GetAllBooks();
+        BookGridView_Load(ds);
     }
     protected void BtnSearch_Click(object sender, EventArgs e)
     {
@@ -270,5 +292,13 @@ public partial class manage_bookManage : System.Web.UI.Page
         {
             Response.Write("<script language='javascript'>alert('更新失败。请重新添加。');</script>");
         }
+    }
+    protected void BookGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        this.BookGridView.PageIndex = e.NewPageIndex;
+        BsBookInfo bookInfo = new BsBookInfo(server,userName,passWord);
+        DataSet ds = new DataSet();
+        ds = bookInfo.GetAllBooks();
+        this.BookGridView_Load(ds);
     }
 }
