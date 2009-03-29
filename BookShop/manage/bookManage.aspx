@@ -227,7 +227,7 @@
               <asp:Panel ID="BookListPanel" runat="server" Height="400px" Width="520px">
                   <asp:GridView ID="BookGridView" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                       BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px"
-                      CellPadding="4" ForeColor="Black" GridLines="Vertical" OnRowDeleting="BookGridView_RowDeleting" OnRowEditing="BookGridView_RowEditing" Width="510px" DataKeyNames="ID">
+                      CellPadding="4" ForeColor="Black" GridLines="Vertical" OnRowDeleting="BookGridView_RowDeleting" OnRowEditing="BookGridView_RowEditing" Width="510px" DataKeyNames="ID" OnPageIndexChanging="BookGridView_PageIndexChanging">
                       <FooterStyle BackColor="#CCCC99" />
                       <RowStyle BackColor="#F7F7DE" />
                       <Columns>
