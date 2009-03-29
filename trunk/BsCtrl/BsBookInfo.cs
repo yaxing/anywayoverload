@@ -145,7 +145,7 @@ namespace BsCtrl
             return ret;
         }
 
-        /*功能： 根据strKeyWords数组查询图书
+       /*功能： 根据strKeyWords数组查询图书
           返回值：查询到的图书详细信息*/
         public DataSet SearchBooks(string[] strKeyWords)
         {
@@ -220,9 +220,17 @@ namespace BsCtrl
         }
 
         /*更新书籍分类*/
-        public Boolean UpdateBookType(String TypeID)
+        public Boolean UpdateBookType(String TypeID,int controlID)
         {
-            String sqlcmd = "Update bookClass set bookCount = bookCount+1 where ID = '"+TypeID+"'";
+            String sqlcmd = null;
+            if(controlID == 1)
+            {
+                sqlcmd = "Update bookClass set bookCount = bookCount+1 where ID = '"+TypeID+"'";
+            }
+            else
+            {
+                sqlcmd = "Update bookClass set bookCount = bookCount-1 where ID = '" + TypeID + "'";
+            }
             if (conn.executeUpdate(sqlcmd) > 0)
             {
                 return true;
@@ -294,7 +302,15 @@ namespace BsCtrl
         /*删除单个书籍*/
         public Boolean DeleteOneBook(String BookID)
         {
-            return true;
+            String sqlcmd = "delete from bookInfo where ID = '"+BookID+"'";
+            if (conn.executeUpdate(sqlcmd) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /*指定书籍*/
