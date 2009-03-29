@@ -150,7 +150,24 @@ namespace BsCtrl
         public DataSet SearchBooks(string[] strKeyWords)
         {
             DataSet ret = null;
-
+            try
+            {
+                string sql = "select ID, classID, bookName, publisher, author, price, indatetime from " +
+                             "bookInfo where ";
+                bool bFirst = true;
+                foreach(string str in strKeyWords)
+                {
+                    if (!bFirst)
+                        sql = sql + " or ";
+                    sql = sql + "bookName like '%" + str + "%'";
+                    bFirst = false;
+                }
+                ret = conn.executeQuery(sql);
+            }
+            catch (System.Exception e)
+            {
+                ret = null;
+            }
             return ret;
         }
 
