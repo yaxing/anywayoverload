@@ -26,7 +26,7 @@ namespace BsCtrl
         //取出查询结果
         public void getDsRecord()
         {
-            //DbconnObj.connDB("server=PCOFWAP\\SQLEXPRESS;Initial Catalog=shanzhai;Integrated Security=SSPI");
+            DbconnObj.connDB("Server=localhost;Database=shanzhai;User ID=sa;Password=kklvictspsd;Trusted_Connection=False");
             dsRecord = null;
             dsRecord = DbconnObj.executeQuery(strSql);
             DbconnObj.close();
@@ -35,7 +35,7 @@ namespace BsCtrl
         //执行语句strSql
         public void executeSql()
         {
-            DbconnObj.connDB("server=PCOFWAP\\SQLEXPRESS;Initial Catalog=shanzhai;Integrated Security=SSPI");
+            DbconnObj.connDB("Server=localhost;Database=shanzhai;User ID=sa;Password=kklvictspsd;Trusted_Connection=False");
             DbconnObj.executeUpdate(strSql);
             DbconnObj.close();
         }
