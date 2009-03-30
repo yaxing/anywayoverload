@@ -19,14 +19,20 @@ public partial class _Default : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            this.PageInfo_Load();
+            if (Request["bookID"] != null) this.PageInfo_Load();
+            else
+            {
+                Response.Write("<script language='javascript'>alert('错误的书籍索引值');location.href('index.aspx')</script>");
+            }
         }
     }
     protected void PageInfo_Load()
     {
-        String bookNum = "1";
-        BsBookInfo bookInfo = new BsBookInfo(server,userName,passWord);
-        int bookID = Convert.ToInt32(bookNum);
+        //String bookNum = "1";
+        //int bookID = Convert.ToInt32(bookNum);
+
+        int bookID = Convert.ToInt32(Request["bookID"]);
+        BsBookInfo bookInfo = bookInfo = new BsBookInfo(server, userName, passWord);
         DataSet ds = new DataSet();
         ds = bookInfo.GetBookInfo(bookID);
         this.lblBookName.Text = ds.Tables[0].Rows[0][6].ToString();
