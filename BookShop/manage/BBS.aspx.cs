@@ -14,6 +14,7 @@ using System.Data.SqlClient;
 
 public partial class manage_BBS : System.Web.UI.Page
 {
+    String strConn = ConfigurationManager.AppSettings["dbConnString"];
     protected void Page_Load(object sender, EventArgs e)
     {
         GridView1.Visible = false;
@@ -27,7 +28,7 @@ public partial class manage_BBS : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         DbConnector connStr = new DbConnector();
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         DateTime d = DateTime.Now;
         String str = "insert into bbs (content, postTime) values('" + TextBox1.Text + "',  '"+d+"')";
         int flags = connStr.executeUpdate(str);
@@ -44,7 +45,7 @@ public partial class manage_BBS : System.Web.UI.Page
         GridView1.Visible = true;
         DbConnector myConn = new DbConnector();
         string SqlQuery = "select * from bbs";
-        myConn.connDB("localhost", "sa", ".");
+        myConn.connDB(strConn);
         DataSet Datas = myConn.executeQuery(SqlQuery);
         if (Datas.Tables[0].Rows.Count > 0)
         {
@@ -63,7 +64,7 @@ public partial class manage_BBS : System.Web.UI.Page
     protected void BindData()
     {
         DbConnector connStr = new DbConnector();
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         string Query = "select * from bbs";
         DataSet mydataset = new DataSet();
         mydataset = connStr.executeQuery(Query);
@@ -87,7 +88,7 @@ public partial class manage_BBS : System.Web.UI.Page
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         DbConnector connStr = new DbConnector();
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         string id = this.GridView1.DataKeys[e.RowIndex]["ID"].ToString();
         string delCmd = "delete from bbs where id = " + id;
         int flags = connStr.executeUpdate(delCmd);
@@ -98,7 +99,7 @@ public partial class manage_BBS : System.Web.UI.Page
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         DbConnector connStr = new DbConnector();
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         string id = GridView1.DataKeys[e.RowIndex].Values[0].ToString();
         string bbs_content = ((TextBox)GridView1.Rows[e.RowIndex].Cells[3].Controls[0]).Text;
         string bbs_postTime = ((TextBox)GridView1.Rows[e.RowIndex].Cells[4].Controls[0]).Text;
