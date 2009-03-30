@@ -59,14 +59,13 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
         //获得userManage页面传递过来的参数
         String str = Request.QueryString["str"];
 
-        //运用全局变量dbServer、dbUserName、dbPassWord，要链接数据库就按照这个来-------------
+        //运用全局变量dbConnString，要链接数据库就按照这个来-------------
         //如果要修改全局变量值的话就在Web.Config里面的<appSettings>改
-        string server = ConfigurationSettings.AppSettings["dbServer"];
-        string userName = ConfigurationSettings.AppSettings["dbUserName"];
-        string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
+
+        string conn = ConfigurationSettings.AppSettings["dbConnString"];
 
         //实例化BsUserManager
-        BsUserManager Admin = new BsUserManager(server, userName, passWord);
+        BsUserManager Admin = new BsUserManager(conn);
         DataSet ds = Admin.searchUser(str);
 
         //绑定数据源s
