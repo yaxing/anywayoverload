@@ -15,6 +15,7 @@ using DbConnect;
 public partial class manage_Poll : System.Web.UI.Page
 {
     public string gridview1id = "";
+    String strConn = ConfigurationManager.AppSettings["dbConnString"];
     protected void Page_Load(object sender, EventArgs e)
     {
     }
@@ -24,7 +25,7 @@ public partial class manage_Poll : System.Web.UI.Page
         Label5.Text = "";
         DbConnector myConn = new DbConnector();
         string SqlQuery = "select * from poll";
-        myConn.connDB("localhost", "sa", ".");
+        myConn.connDB(strConn);
         DataSet Datas = myConn.executeQuery(SqlQuery);
         if (Datas.Tables[0].Rows.Count > 0)
         {
@@ -55,7 +56,7 @@ public partial class manage_Poll : System.Web.UI.Page
         GridView1.Visible = false;
         int flags1, flags2;
         DbConnector connStr = new DbConnector();
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         String str = "";
         if (RadioButton1.Checked == true)
         {
@@ -93,7 +94,7 @@ public partial class manage_Poll : System.Web.UI.Page
     protected void BindData()
     {
         DbConnector connStr = new DbConnector();
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         string Query = "select * from poll";
         DataSet mydataset = new DataSet();
         mydataset = connStr.executeQuery(Query);
@@ -123,7 +124,7 @@ public partial class manage_Poll : System.Web.UI.Page
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         DbConnector connStr = new DbConnector();
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         string id = this.GridView1.DataKeys[e.RowIndex]["ID"].ToString();
         gridview1id = id;
         //string id = GridView1.DataKeys[e.RowIndex].Values[0].ToString();
@@ -141,7 +142,7 @@ public partial class manage_Poll : System.Web.UI.Page
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         DbConnector connStr = new DbConnector();
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         string id = GridView1.DataKeys[e.RowIndex].Values[0].ToString();
         gridview1id = id;
         string poll_theme = ((TextBox)GridView1.Rows[e.RowIndex].Cells[3].Controls[0]).Text;
