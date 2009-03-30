@@ -43,7 +43,7 @@
                 <asp:TemplateField HeaderText="联系电话">
                     <ItemTemplate>
                         &nbsp;
-                        <asp:Label ID="Lb_tel" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.tel") %>' Width="95px"></asp:Label>
+                        <asp:Label ID="Lb_tel" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.tel") %>' Width="95px" Font-Size="Small"></asp:Label>
                     </ItemTemplate>
                     <HeaderStyle BackColor="#C0C0FF" HorizontalAlign="Center" VerticalAlign="Bottom"
                         Wrap="False" />
@@ -58,7 +58,7 @@
                 <asp:TemplateField HeaderText="电子邮箱">
                     <ItemTemplate>
                         &nbsp;
-                        <asp:Label ID="Lb_email" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.email") %>' Width="110px"></asp:Label>
+                        <asp:Label ID="Lb_email" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.email") %>' Width="110px" Font-Size="Small"></asp:Label>
                     </ItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     <HeaderStyle BackColor="#C0C0FF" HorizontalAlign="Center" VerticalAlign="Bottom"
