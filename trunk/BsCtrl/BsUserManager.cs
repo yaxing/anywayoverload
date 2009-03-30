@@ -44,6 +44,27 @@ namespace BsCtrl
             return ret;
         }
 
+        /*功能：返回用户ID
+         参数：用户的userName
+       */
+        public int findUser(String userName)
+        {
+            DbConnector conn = new DbConnector();
+            DataSet ds = null;
+
+            string server = ConfigurationSettings.AppSettings["dbServer"];
+            string userID = ConfigurationSettings.AppSettings["dbUserName"];
+            string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
+            string SqlState = "Select ID from users where username = '" + userName + "'";
+
+            conn.connDB(server, userID, passWord);
+            ds = conn.executeQuery(SqlState);
+
+            int userid = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+            return userid;
+        }
+
         /*功能：删除用户信息
           参数：strDelID[]	存放待删除用户的ID号*/
         public bool deleteUser(int id)
