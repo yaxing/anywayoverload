@@ -16,6 +16,7 @@ public partial class manage_PollDetail : System.Web.UI.Page
 {
     public String PollID = "";
     public DbConnector connStr = new DbConnector();
+    String strConn = ConfigurationManager.AppSettings["dbConnString"];
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request["ID"] == null)
@@ -23,7 +24,7 @@ public partial class manage_PollDetail : System.Web.UI.Page
         PollID = Request["ID"];
         TextBox2.Enabled = false;
         TextBox4.Enabled = false;
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         string QueryString = "select * from poll where ID = " + PollID;
         DataSet QueryResult = connStr.executeQuery(QueryString);
         //TextBox2.Text = QueryResult.Tables[0].Rows[]
@@ -34,9 +35,10 @@ public partial class manage_PollDetail : System.Web.UI.Page
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
+        String strConn = ConfigurationManager.AppSettings["dbConnString"];
         String PollItemContent = TextBox3.Text;
         String InsertString = "insert into pollDetail (pollID, optionName, counts) values (" + PollID + ", '"+TextBox3.Text+"', 0)";
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         int flags = connStr.executeUpdate(InsertString);
         connStr.close();
         if (flags == 0)
@@ -51,7 +53,7 @@ public partial class manage_PollDetail : System.Web.UI.Page
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         String QueryString = "select * from pollDetail where pollid = " + PollID;
         DataSet QueryResult = connStr.executeQuery(QueryString);
         connStr.close();
@@ -73,7 +75,7 @@ public partial class manage_PollDetail : System.Web.UI.Page
     }
     protected void BindData()
     {
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         String QueryString = "select * from pollDetail where pollid = " + PollID;
         DataSet QueryResult = connStr.executeQuery(QueryString);
         connStr.close();
@@ -90,7 +92,7 @@ public partial class manage_PollDetail : System.Web.UI.Page
     }
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         string id = this.GridView1.DataKeys[e.RowIndex]["ID"].ToString();
         //gridview1id = id;
         string delCmd = "delete from pollDetail where id = " + id;
@@ -116,7 +118,7 @@ public partial class manage_PollDetail : System.Web.UI.Page
     }
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-        connStr.connDB("localhost", "sa", ".");
+        connStr.connDB(strConn);
         string id = GridView1.DataKeys[e.RowIndex].Values[0].ToString();
         //gridview1id = id;
         //string PollID = ((TextBox)GridView1.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
