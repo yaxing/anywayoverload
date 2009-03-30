@@ -26,7 +26,8 @@ public partial class manage_orderManage : System.Web.UI.Page
 
     public void showContent(int flag)
     {
-        orderManObj = new orderManage();
+        string dbConnStr = ConfigurationManager.AppSettings["dbConnString"];
+        orderManObj = new orderManage(dbConnStr);
         orderManObj.setSql("select * from v_orderManage where userName like '%" + hfUserName.Value + "%'");
         orderManObj.getDsRecord();
         orderManObj.initPages();            //…Ë÷√“≥ ˝
