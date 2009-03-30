@@ -13,9 +13,15 @@ namespace BsCtrl
         private String strDbUserName;
         private String strDbPassWord;
 
-        public BsUserManager()
+        private String strConn;     //链接数据库的另一种方式(1个参数)
+
+        public BsUserManager(string conn)   //1个参数的重载——王超
         {
-            
+            this.strConn=conn;   
+        }
+
+        public BsUserManager()      //0个参数的重载——曹让
+        {
         }
 
         public BsUserManager(String strDbServer, String strDbUserName, String strDbPassWord)
@@ -37,7 +43,8 @@ namespace BsCtrl
             DataSet ret = null;
 
             DbConnector connSch = new  DbConnector();
-            connSch.connDB("localhost","sa",".");
+            //第一种链接数据库的方式（3个参数）  connSch.connDB("localhost","sa",".");
+            connSch.connDB(strConn);
             ret = connSch.executeQuery(str);
             connSch.close();
 
