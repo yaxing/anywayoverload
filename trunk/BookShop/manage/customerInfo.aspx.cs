@@ -13,10 +13,11 @@ using BsCtrl;
 
 public partial class manage_customerInfo : System.Web.UI.Page
 {
-    orderManage orderManObj = new orderManage();
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        string dbConnStr = ConfigurationManager.AppSettings["dbConnString"];
+        orderManage orderManObj = new orderManage(dbConnStr);
         if (!IsPostBack)
         {
             test();

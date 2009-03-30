@@ -15,7 +15,8 @@ public partial class manage_orderDeal : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         test();
-        orderManage orderManObj = new orderManage();
+        string dbConnStr = ConfigurationManager.AppSettings["dbConnString"];
+        orderManage orderManObj = new orderManage(dbConnStr);
         string ID = Request.QueryString["id"].ToString();
         String value = Request.QueryString["value"].ToString();
         orderManObj.setSql("update orders set pay="+value+" where ID="+ID);
