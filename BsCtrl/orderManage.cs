@@ -13,9 +13,17 @@ namespace BsCtrl
         private int recordAmount;       //记录的总条数
         private const int pageSize=10;  //一页显示的条数
 
+        private string connStr;
+
         private DataSet dsRecord;
         private string strSql;
         private DbConnector DbconnObj=new DbConnector();
+
+        //
+        public orderManage(String connStr)
+        {
+            this.connStr = connStr;
+        }
 
         //设置查询语句
         public void setSql(String sql)
@@ -26,7 +34,7 @@ namespace BsCtrl
         //取出查询结果
         public void getDsRecord()
         {
-            DbconnObj.connDB("Server=localhost;Database=shanzhai;User ID=sa;Password=kklvictspsd;Trusted_Connection=False");
+            DbconnObj.connDB(connStr);
             dsRecord = null;
             dsRecord = DbconnObj.executeQuery(strSql);
             DbconnObj.close();
@@ -35,7 +43,7 @@ namespace BsCtrl
         //执行语句strSql
         public void executeSql()
         {
-            DbconnObj.connDB("Server=localhost;Database=shanzhai;User ID=sa;Password=kklvictspsd;Trusted_Connection=False");
+            DbconnObj.connDB(connStr);
             DbconnObj.executeUpdate(strSql);
             DbconnObj.close();
         }
@@ -92,7 +100,7 @@ namespace BsCtrl
         {
             string strContent = "";
             strContent += "<table cellspacing=2  cellpadding=2   bordercolordark='#ffffff'  bordercolorlight='#000000' width='100%'> ";
-            strContent += "<tr><th width='25%'>用户名</th><th width='25%'>下单时间</th><th width='15%'>交易金额</th><th>交易状态</th><th></th><th></th></tr>";
+            strContent += "<tr><th width='15%'>用户名</th><th width='20%'>下单时间</th><th width='15%'>交易金额</th><th>交易状态</th><th></th><th></th></tr>";
             if (pageAmount == 0)
             {
                 strContent += "<tr><td colspan='6'>没有任何记录!!</td></tr>";
@@ -114,7 +122,8 @@ namespace BsCtrl
                     if (dsRecord.Tables[0].Rows[i]["pay"].ToString().Equals("1"))
                     {
                         strContent += "<td align='center'>" + "交易完成" + "</td>";
-                        strContent += "<td align='center'>&nbsp;</td>";
+                        strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=0'>" + "买家未付款" + "</a>";
+                        strContent += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=-1'>" + "取消" + "</a>" + "</td>";
                     }
                     else if (dsRecord.Tables[0].Rows[i]["pay"].ToString().Equals("0"))
                     {
@@ -125,7 +134,8 @@ namespace BsCtrl
                     else
                     {
                         strContent += "<td align='center'>" + "交易取消" + "</td>";
-                        strContent += "<td align='center'>&nbsp;</td>";
+                        strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=0'>" + "买家未付款" + "</a>";
+                        strContent += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=1'>" + "已付款" + "</a>" + "</td>";
                     }
                     strContent += "<td align='center'>" +"<a href='orderDetail.aspx?id="+dsRecord.Tables[0].Rows[i]["ID"]+"'>"+ "详情" +"</a>"+ "</td>";
                     strContent += "</tr>";
