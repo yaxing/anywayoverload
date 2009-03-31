@@ -9,10 +9,10 @@
 				  	<div style="width:250px;float:left;">
 				  	<table style="height:123px;width:100%;"  border="0" cellpadding="0" cellspacing="0">
                     <tr>
-                      <td width="43%" align="center"><img src='<%#Eval("coverPath") %>' width="76" height="110"></td>
+                      <td width="43%" align="center"><a href="bookInfo.aspx?bookID=<%#Eval("ID") %>"><img src='<%#Eval("coverPath") %>' width="76" height="110"></a></td>
                       <td width="57%" align="center"><table width="100%" height="119"  border="0" cellpadding="0" cellspacing="0">
                         <tr>
-                          <td><%#Eval("bookName") %></td>
+                          <td><a href="bookInfo.aspx?bookID=<%#Eval("ID") %>"><%#Eval("bookName") %></a></td>
                         </tr>
                         <tr>
                           <td><%#Eval("publisher") %></td>

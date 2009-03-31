@@ -6,7 +6,7 @@
         <tr><td>
             <asp:GridView ID="gvSearchResult" runat="server" AutoGenerateColumns="False" BackColor="White"
             BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black"
-            GridLines="Vertical" Width="90%">
+            GridLines="Vertical" Width="90%" OnPageIndexChanging="gvSearchResult_PageIndexChanging" PageSize="5">
             <FooterStyle BackColor="#CCCC99" />
             <Columns>
                 <asp:BoundField DataField="bookName" HeaderText="书籍名称" />
@@ -23,5 +23,6 @@
             </asp:GridView>
         </td></tr>
     </table>
+    <asp:HiddenField ID="hfKeyWord" runat="server" />
 </asp:Content>
 

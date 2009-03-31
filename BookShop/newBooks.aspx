@@ -4,7 +4,7 @@
         <tr><td>最新上架图书</td></tr>
         <tr><td>
             <asp:GridView ID="gvNewBooks" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                ForeColor="Black" GridLines="Vertical" AllowPaging="True" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" Width="90%">
+                ForeColor="Black" GridLines="Vertical" AllowPaging="True" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" Width="90%" OnPageIndexChanging="gvNewBooks_PageIndexChanging">
                 <FooterStyle BackColor="#CCCC99" />
                 <RowStyle BackColor="#F7F7DE" />
                 <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
@@ -18,6 +18,8 @@
                     <asp:BoundField DataField="indatetime" HeaderText="添加时间" />
                     <asp:BoundField DataField="className" HeaderText="分类" />
                     <asp:BoundField DataField="price" HeaderText="价格" />
+                    <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="bookInfo.aspx?bookID={0}"
+                        HeaderText="点击进入" Text="点击进入" />
                 </Columns>
             </asp:GridView>
         </td></tr>

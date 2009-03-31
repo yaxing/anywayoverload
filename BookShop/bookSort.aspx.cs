@@ -13,6 +13,7 @@ using BsCtrl;
 public partial class bookSort : System.Web.UI.Page
 {
     private BsBookInfo bookInfo = null;
+    private int id = -1;
     protected void Page_Load(object sender, EventArgs e)
     {
         if(!Page.IsPostBack)
@@ -22,7 +23,6 @@ public partial class bookSort : System.Web.UI.Page
 
             //分类列表
             string classId = Request.QueryString["classID"];
-            int id = -1;
             if(classId != null)
             {
                 try
@@ -48,6 +48,29 @@ public partial class bookSort : System.Web.UI.Page
                 gvBookList.DataBind();
                 lblClassName.Text = "所有分类";
             }
+        }
+    }
+    protected void gvBookList_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvBookList.PageIndex = e.NewPageIndex;
+        string strDbConn = ConfigurationManager.AppSettings["dbConnString"];
+        int id = -1;
+        string classID = Request.QueryString["classID"];
+
+        if (classID != null)
+            id = Convert.ToInt32(classID);
+
+        bookInfo = new BsBookInfo(strDbConn);
+
+        if(id == -1)
+        {
+            gvBookList.DataSource = bookInfo.GetNewBooks(100);
+            gvBookList.DataBind();
+        }
+        else
+        {
+            gvBookList.DataSource = bookInfo.GetClassBooks(id);
+            gvBookList.DataBind();
         }
     }
 }
