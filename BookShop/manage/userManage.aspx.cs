@@ -13,11 +13,16 @@ public partial class manage_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        /*
         TB_ID.Attributes.Add("OnClick", "this.value = '';");
         TB_Name.Attributes.Add("OnClick", "this.value = '';");
         TB_TEL.Attributes.Add("OnClick", "this.value = '';");
         TB_Email.Attributes.Add("OnClick", "this.value = '';");
-      
+      */
+
+        if (Session["AdminN"] == null) {    //如果不是管理员身份
+            Response.Redirect("adminLogin.html");
+        }
         
     }
 
@@ -83,11 +88,5 @@ public partial class manage_Default : System.Web.UI.Page
         }
     }
 
-    /*
-    protected void change_Email_Text(object sender, EventArgs e)
-    {
-        int test;
-    }
-     */
       
 }
