@@ -17,6 +17,12 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["AdminN"] == null)
+        {    //如果不是管理员身份
+            Response.Redirect("adminLogin.html");
+        }
+
+        
         if (this.IsPostBack == false)
             LoadData();
 
@@ -61,7 +67,6 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
 
         //运用全局变量dbConnString，要链接数据库就按照这个来-------------
         //如果要修改全局变量值的话就在Web.Config里面的<appSettings>改
-
         string conn = ConfigurationSettings.AppSettings["dbConnString"];
 
         //实例化BsUserManager
@@ -72,17 +77,6 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
         GV1.DataSource = ds;
         GV1.DataBind();
     }
-
-
-    /*
-    //当改变页次时，将启动ChangePage事件程序
-    public void ChangePage(object sender, DataGridPageChangedEventArgs e)
-    {
-        int test;
-
-    }
-     */
-
 
 
     //当点击“返回查询” 时，返回查询页面userManage.aspx
@@ -145,7 +139,9 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
     //提交编辑数据，更新
     protected void GV1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-        BsUserManager admin1 = new BsUserManager("localhost", "sa", ".");     //实例化BsUserManager
+        string conn = ConfigurationSettings.AppSettings["dbConnString"];
+        //实例化BsUserManager
+        BsUserManager admin1 = new BsUserManager(conn);
 
         int RowEditIndex = GV1.EditIndex;
         if (GV1.Rows[RowEditIndex].RowType == DataControlRowType.DataRow)
@@ -174,7 +170,11 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
     //执行删除操作
     protected void Bt_del_Click(object sender, EventArgs e)
     {
-        BsUserManager admin1 = new BsUserManager("localhost", "sa", ".");     //实例化BsUserManager
+
+        string conn = ConfigurationSettings.AppSettings["dbConnString"];
+
+        //实例化BsUserManager
+        BsUserManager admin1 = new BsUserManager(conn);
         bool del_no = true; // 标记执行删除前是否选择了1个以上用户。为true说明没有选择用户，提示错误 
 
         for (int i = 0; i < GV1.Rows.Count; i++) {      //删除选中的用户
