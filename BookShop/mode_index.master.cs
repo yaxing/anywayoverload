@@ -36,6 +36,7 @@ public partial class mode_index : System.Web.UI.MasterPage
             bPoll.Visible = true;
             panelPollResult.Visible = false;
         }
+
         if (Session["Grade"]!=null)//每次进入页面时根据session判断登录框显示内容
         {
             String uN = Session["userName"].ToString();
@@ -49,14 +50,17 @@ public partial class mode_index : System.Web.UI.MasterPage
             Panel1.Visible = false;
             Panel2.Visible = true;
         }
+
         else 
         {
             Panel1.Visible = true;
             Panel2.Visible = false; 
         }
-        Bbs.DataSource = indexCtrl.GetBbs();
+
+        Bbs.DataSource = indexCtrl.GetBbs();//获取公告板内容
         Bbs.DataBind() ;
-        ds = indexCtrl.GetAvailablePoll();
+
+        ds = indexCtrl.GetAvailablePoll();//获取投票项
         rblPoll.DataSource = ds;
         pollTheme.DataSource = ds;
         pollTheme.DataBind();
@@ -137,6 +141,7 @@ public partial class mode_index : System.Web.UI.MasterPage
     {
         Response.Redirect("pollResult.aspx");
     }
+
     protected void searchButton_Click(object sender, ImageClickEventArgs e)
     {
         String searchC = searchContent.Text.Trim();
