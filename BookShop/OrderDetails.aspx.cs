@@ -36,6 +36,7 @@ public partial class OrderDetails : System.Web.UI.Page
         this.lblAmountFinish.Text = String.Format("гд{0:c}", Convert.ToString(total));
         this.OrderDetailsView.DataBind();
 
+        this.lblAddress.Text = dt2.Rows[0]["address"].ToString();
         this.lblMobile.Text = dt2.Rows[0]["tel"].ToString();
         this.lblOrderDate.Text = dt2.Rows[0]["orderdatetime"].ToString();
         this.lblStatus.Text = dt2.Rows[0]["pay"].ToString();
