@@ -19,11 +19,13 @@ public partial class OrderDetails : System.Web.UI.Page
     {
         BsOrder bs = new BsOrder();
         DataTable dt = new DataTable();
+        DataTable dt2 = new DataTable();
         Double total = 0;
         String Book_Name;
         
         Order_ID = Request.QueryString["OrderID"].ToString();
         dt = bs.ShowOrderDetails(Convert.ToInt32(Order_ID));
+        dt2 = bs.ShowOrderInfo(Convert.ToInt32(Order_ID));
         this.OrderDetailsView.DataSource = dt;
 
         foreach(DataRow dr in dt.Rows)
@@ -32,6 +34,10 @@ public partial class OrderDetails : System.Web.UI.Page
         }
 
         this.lblAmountFinish.Text = String.Format("гд{0:c}", Convert.ToString(total));
-        Page.DataBind();
+        this.OrderDetailsView.DataBind();
+
+        this.lblMobile.Text = dt2.Rows[0]["tel"].ToString();
+        this.lblOrderDate.Text = dt2.Rows[0]["orderdatetime"].ToString();
+        this.lblStatus.Text = dt2.Rows[0]["pay"].ToString();
     }
 }
