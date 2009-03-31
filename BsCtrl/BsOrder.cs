@@ -60,7 +60,7 @@ namespace BsCtrl
             string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
 
             db.connDB(server, userName, passWord);
-            string SqlState = "select * from orderDetail where orderID = " + Convert.ToString(iOrderID);
+            string SqlState = "select * from orders,orderDetail,bookInfo where orders.ID =orderDetail.orderID and orderDetail.bookID = bookInfo.ID and orderDetail.orderID = " + Convert.ToString(iOrderID);
 
             ds = db.executeQuery(SqlState);
 
