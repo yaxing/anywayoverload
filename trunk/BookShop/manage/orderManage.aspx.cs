@@ -16,6 +16,7 @@ public partial class manage_orderManage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        loginChk();
         if (!IsPostBack)
         {
             hfUserName.Value = "";           //第一次加载页面，搜索关键字字段为空
@@ -81,5 +82,13 @@ public partial class manage_orderManage : System.Web.UI.Page
         userName=userName.Replace("\\", "、");
         hfUserName.Value = userName;
         showContent(1);
+    }
+
+    public void loginChk()
+    {
+        if (Session["AdminN"] == null || Session["AdminLv"] == null)
+        {
+            Response.Redirect("adminLogin.html");
+        }
     }
 }
