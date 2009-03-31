@@ -16,7 +16,7 @@ public partial class manage_customerInfo : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        loginChk();
+        //loginChk();
         string dbConnStr = ConfigurationManager.AppSettings["dbConnString"];
         orderManage orderManObj = new orderManage(dbConnStr);
         if (!IsPostBack)

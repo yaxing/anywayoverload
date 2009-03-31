@@ -16,7 +16,7 @@ public partial class manage_orderManage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        loginChk();
+        //loginChk();
         if (!IsPostBack)
         {
             hfUserName.Value = "";           //第一次加载页面，搜索关键字字段为空
