@@ -10,12 +10,21 @@ namespace BsCtrl
     public class AdminControl
     {
         DataSet adminInfo;
+        String strDbServer;
+        String strDbUserName;
+        String strDbPassWord;
+        private DbConnector conn;
+        public AdminControl(String strDbServer, String strDbUserName, String strDbPassWord)
+        {
+            this.strDbServer = strDbServer;
+            this.strDbUserName = strDbUserName;
+            this.strDbPassWord = strDbPassWord;
+            conn = new DbConnector();
+            conn.connDB(strDbServer, strDbUserName, strDbPassWord);
+        }
         public Boolean AdminLogin(String adminName,String adminPwd)
         {
-            
-            DbConnector con = new DbConnector();
-            con.connDB("localhost","sa","2019608");
-            adminInfo = con.executeQuery("select * from admin where userName = '" + adminName + "' and passWord = '" + adminPwd+"'");
+            adminInfo = conn.executeQuery("select * from admin where userName = '" + adminName + "' and passWord = '" + adminPwd+"'");
             if (adminInfo.Tables[0].Rows.Count > 0)
                 return true;
             else
