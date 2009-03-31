@@ -193,7 +193,7 @@ namespace BsCtrl
         /*Ìí¼ÓÊé¼®*/
         public Boolean InsertNewBook(String BookName,String BookType,String Author,String Pub,String PubTime,String ISBN,String Price,String Quantity,String ImageUrl,String BookScript)
         {
-            String indate = DateTime.Now.ToShortDateString();
+            String indate = DateTime.Now.ToString();
             String sqlcmd = "Insert into bookInfo(ISBN,classID,bookName,publisher,author,introduce,price,available,pubdatetime,indatetime,coverPath) values('"+ISBN+"','"+BookType+"','"+BookName+"','"+Pub+"','"+Author+"','"+BookScript+"',"+Price+",'"+Quantity+"','"+PubTime+"','"+indate+"','"+ImageUrl+"')";
             if (conn.executeUpdate(sqlcmd) > 0)
             {
