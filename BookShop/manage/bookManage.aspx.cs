@@ -18,6 +18,10 @@ public partial class manage_bookManage : System.Web.UI.Page
     String passWord = ConfigurationSettings.AppSettings["dbPassWord"];
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["AdminN"] == null || Session["AdminLv"] == null)
+        {
+            Response.Redirect("adminLogin.html");
+        }
         if (!IsPostBack)
         {
             BsBookInfo bookInfo = new BsBookInfo(server, userName, passWord);
