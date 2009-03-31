@@ -1,0 +1,7 @@
+C:\Documents and Settings\jeck\桌面\bookstore\BsCtrl\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\jeck\桌面\bookstore\BsCtrl\bin\Debug\BsCtrl.dll
+C:\Documents and Settings\jeck\桌面\bookstore\BsCtrl\bin\Debug\BsCtrl.pdb
+C:\Documents and Settings\jeck\桌面\bookstore\BsCtrl\bin\Debug\DbConnect.dll
+C:\Documents and Settings\jeck\桌面\bookstore\BsCtrl\bin\Debug\DbConnect.pdb
+C:\Documents and Settings\jeck\桌面\bookstore\BsCtrl\obj\Debug\BsCtrl.dll
+C:\Documents and Settings\jeck\桌面\bookstore\BsCtrl\obj\Debug\BsCtrl.pdb
