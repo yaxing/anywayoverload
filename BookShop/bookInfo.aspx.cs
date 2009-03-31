@@ -31,7 +31,7 @@ public partial class _Default : System.Web.UI.Page
         //String bookNum = "1";
         //int bookID = Convert.ToInt32(bookNum);
 
-        int bookID = Convert.ToInt32(Request["bookID"]);
+        int bookID = Convert.ToInt32(Request.QueryString["bookID"]);
         BsBookInfo bookInfo = bookInfo = new BsBookInfo(server, userName, passWord);
         DataSet ds = new DataSet();
         ds = bookInfo.GetBookInfo(bookID);
