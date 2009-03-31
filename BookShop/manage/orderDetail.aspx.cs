@@ -14,6 +14,7 @@ public partial class manage_orderDetail : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        loginChk();
         string dbConnStr = ConfigurationManager.AppSettings["dbConnString"];
         orderManage orderManObj = new orderManage(dbConnStr);
         test();
@@ -39,6 +40,14 @@ public partial class manage_orderDetail : System.Web.UI.Page
             {//参数不是数字
                 Response.Redirect("orderManage.aspx");
             }
+        }
+    }
+
+    public void loginChk()
+    {
+        if (Session["AdminN"] == null || Session["AdminLv"] == null)
+        {
+            Response.Redirect("adminLogin.html");
         }
     }
 }
