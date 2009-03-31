@@ -40,25 +40,25 @@
         <td width="72%" valign="top"><table width="100%" height="35"  border="0" cellpadding="0" cellspacing="0">
           <tr align="center">
             <td rowspan="2" valign="bottom">&nbsp;</td>
-            <td height="22" valign="bottom"><a href="#">图书管理</a></td>
+            <td height="22" valign="bottom"><a href="bookManage.aspx">图书管理</a></td>
             <td width="1" rowspan="2" valign="top"><img src="../Images/Nav_separate.gif" width="1" height="36"></td>
-            <td valign="bottom"><a href="#">用户管理</a></td>
+            <td valign="bottom"><a href="userManage.aspx">用户管理</a></td>
             <td width="1" rowspan="2" valign="top"><img src="../Images/Nav_separate.gif" width="1" height="36"></td>
-            <td valign="bottom"><a href="#">订单管理</a></td>
+            <td valign="bottom"><a href="orderManage.aspx">订单管理</a></td>
             <td width="1" rowspan="2" valign="top"><img src="../Images/Nav_separate.gif" width="1" height="36"></td>
-            <td valign="bottom"><a href="#">公告管理</a></td>
+            <td valign="bottom"><a href="BBS.aspx">公告管理</a></td>
             <td width="1" rowspan="2" valign="top"><img src="../Images/Nav_separate.gif" width="1" height="36"></td>
-            <td valign="bottom"><a href="#">投票管理</a></td>
+            <td valign="bottom"><a href="Poll.aspx">投票管理</a></td>
             <td width="1" rowspan="2" valign="top"><img src="../Images/Nav_separate.gif" width="1" height="36"></td>
-            <td valign="bottom">&nbsp;<a href="#">退出</a>&nbsp;</td>
+            <td valign="bottom">&nbsp;<a href="Quit.aspx">退出</a>&nbsp;</td>
           </tr>
           <tr align="center">
-            <td height="13"><a href="#">Books Manage</a></td>
-            <td><a href="#">Member Manage</a></td>
-            <td><a href="#">Order Manage</a></td>
-            <td><a href="#">BBS Manage </a></td>
-            <td><a href="#">Poll manage </a></td>
-            <td>&nbsp;<a href="#">Quit</a>&nbsp;</td>
+            <td height="13"><a href="bookManage.aspx">Books Manage</a></td>
+            <td><a href="userManage.aspx">Member Manage</a></td>
+            <td><a href="orderManage.aspx">Order Manage</a></td>
+            <td><a href="BBS.aspx">BBS Manage </a></td>
+            <td><a href="Poll.aspx">Poll manage </a></td>
+            <td>&nbsp;<a href="">Quit</a>&nbsp;</td>
           </tr>
         </table></td>
       </tr>
