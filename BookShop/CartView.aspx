@@ -18,6 +18,15 @@
             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <EditRowStyle BackColor="#999999" />
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+            <EmptyDataTemplate>
+                <table width="100%">
+                    <tr>
+                        <td align="center" style="height: 82px">
+                            购物车列表为空。<a href="index.aspx">浏览商品</a>
+                        </td>
+                    </tr>
+                </table>
+            </EmptyDataTemplate>
             <Columns>
                 <asp:BoundField DataField="ID" ReadOnly="True" Visible="False" />
                 <asp:TemplateField>
