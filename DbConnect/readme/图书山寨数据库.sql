@@ -27,7 +27,7 @@ GO
 
 CREATE TABLE bookInfo (
 	ID int primary key IDENTITY (1, 1) NOT NULL ,
-	ISBN varchar (15) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	ISBN varchar (45) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	classID int NULL,
 	bookName varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	publisher varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
