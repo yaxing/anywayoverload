@@ -6,7 +6,7 @@
       <asp:Label ID="lblClassName" runat="server" Text="Label"></asp:Label></td></tr>
   <tr><td>
       <asp:GridView ID="gvBookList" runat="server" AllowPaging="True" CellPadding="4" ForeColor="Black"
-        GridLines="Vertical" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" Width="90%">
+        GridLines="Vertical" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" Width="90%" OnPageIndexChanging="gvBookList_PageIndexChanging">
         <FooterStyle BackColor="#CCCC99" />
         <RowStyle BackColor="#F7F7DE" />
         <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />

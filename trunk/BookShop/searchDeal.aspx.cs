@@ -37,8 +37,13 @@ public partial class _Default : System.Web.UI.Page
             {
                 lblSearch.Text = "无对应书籍";
             }
-
+            hfKeyWord.Value = keyWords.ToString();
             Session.Remove("sContent");
         }
+    }
+    protected void gvSearchResult_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvSearchResult.PageIndex = e.NewPageIndex;
+        string s = hfKeyWord.Value;
     }
 }
