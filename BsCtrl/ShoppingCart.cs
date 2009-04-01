@@ -63,6 +63,8 @@ namespace BsCtrl
     {
         //定义一个Hashtable
         Hashtable Cart_Orders = new Hashtable();
+        int totalRecords = 0;
+
 
         /*返回整个Hashtable的值，包含所有的图书类
          * 参数： 无
@@ -72,6 +74,16 @@ namespace BsCtrl
         {
             get { return Cart_Orders.Values; }
         }
+
+        /*返回整个ArrayList的元素个数
+         * 参数： 无
+         * 返回值：ArrayList的元素个数
+         */
+        public int TotalRecords
+        {
+            get { return Cart_Orders.Count; }
+        }
+
 
         /*返回整个购物车的图书价格
          * 参数： 无
@@ -141,6 +153,15 @@ namespace BsCtrl
                 order.Quantity--;
             }
         }
+
+        /*返回购物车pageIndx到pageSize的图书
+         * 参数：pageIndx，pageSize
+         * 返回值：购物车pageIndx到pageSize的图书
+         */
+        //public ArrayList GetCarts(int pageIndx, int pageSize)
+        //{
+
+        //}
     }
 
 }
