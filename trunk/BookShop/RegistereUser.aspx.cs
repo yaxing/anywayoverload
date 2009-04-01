@@ -43,13 +43,13 @@ public partial class RegistereUser : System.Web.UI.Page
             int userId = 0;
             if (bs.InsertUser(user_Name, user_Password, true_Name, email, address, post, tel) == true)
             {
-                Response.Write("注册成功！");
+                ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"注册成功！\");this.location.href='index.aspx'</script>");
             }
-            else { Response.Write("注册不成功！"); }
+            else { ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"注册失败，请重新注册！\");this.location.href='RegistereUser.aspx'</script>"); }
         }
         else
         {
-            Response.Write("注册不成功，请重新注册！");
+            ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"注册失败，请重新注册！\");this.location.href='RegistereUser.aspx'</script>");
         }
     }
 }

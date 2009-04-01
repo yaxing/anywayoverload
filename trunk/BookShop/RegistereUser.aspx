@@ -89,7 +89,8 @@
                     移动电话：</td>
                 <td align="left" style="height: 26px">
                     <asp:TextBox ID="txtMobile" runat="server" Width="180px" MaxLength="50" CssClass="textarea"></asp:TextBox>&nbsp;
-                </td>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtMobile"
+                        Display="Dynamic" ErrorMessage="请输入合法的电话号码" ValidationExpression="\d{11}"></asp:RegularExpressionValidator></td>
             </tr>
             <tr>
                 <td style="height: 26px; text-align: center;" align="left" colspan="2">
