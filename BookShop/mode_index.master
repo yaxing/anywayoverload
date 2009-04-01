@@ -30,7 +30,20 @@ function logincheck(){
    else{
     return true;
    }
-}
+}  
+  
+//function pollcheck(){
+//var p = document.getElementById("<%=rblPoll.ClientID %>");
+//for(var i = 0;i<p.rows.length;i++){
+//  if(p[i].checked==true){
+//   alert(p[i]+"chenggong");
+//   return true;
+// }
+//}
+//alert(p.rows[1].selected);
+//alert("failed");
+//return false;
+//}
 
 function tick() {
     var hours, minutes, seconds, xfile;
@@ -358,7 +371,7 @@ function tick() {
                                                                 <asp:RadioButtonList ID="rblPoll" runat="server">
                                                                 </asp:RadioButtonList>
                                                                 <asp:ImageButton ID="bPoll" runat="server" Height="29px" ImageUrl="~/Images/poll.gif"
-                                                                    Style="left: 62px; position: relative; top: 21px" Width="85px" OnClick="bPoll_Click" /></asp:Panel>
+                                                                    Style="left: 62px; position: relative; top: 21px" Width="85px" OnClick="bPoll_Click" OnClientClick="return pollcheck()" /></asp:Panel>
                                                             <asp:Panel ID="panelPollResult" runat="server" Height="50px" Width="125px">
                                                                 &nbsp;<asp:Label ID="lableshowPollR" runat="server" Text="感谢您的参与！" Width="223px"></asp:Label>
                                                                 <br />
