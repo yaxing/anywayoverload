@@ -97,7 +97,7 @@ function tick() {
                                                         <td width="1" rowspan="2" valign="top">
                                                             <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
                                                         <td valign="bottom" style="height: 22px">
-                                                            <a href="">购物车</a></td>
+                                                            <a href="CartView.aspx">购物车</a></td>
                                                         <td width="1" rowspan="2" valign="top">
                                                             <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
                                                         <td valign="bottom" style="height: 22px">
@@ -211,20 +211,17 @@ function tick() {
                                                     <tr>
                                                         <td width="15%">
                                                             &nbsp;</td>
-                                                        <td width="67%">
+                                                        <td width="67%" style="height: 27px; font-family: 幼圆">
                                                             &nbsp;&nbsp;
-                                                            <asp:Label ID="Label3" runat="server" Height="17px" Style="left: 19px; position: relative;
-                                                                top: -4px" Text="我想找：" Width="51px">
-                                                            </asp:Label>
-                                                            <asp:TextBox ID="searchContent" runat="server" Width="319px" Style="left: 24px; position: relative;
-                                                                top: -6px">
-                                                            </asp:TextBox>
+                                                            <asp:Label ID="Label3" runat="server" Height="17px" Style="left: -15px; position: relative;
+                                                                top: 0px" Text="我想找：" Width="51px"></asp:Label>
+                                                            <asp:TextBox ID="searchContent" runat="server" Width="319px" Style="left: -1px; position: relative;
+                                                                top: -2px"></asp:TextBox>
                                                         </td>
-                                                        <td width="18%">
-                                                            <asp:ImageButton ID="searchButton" runat="server" Style="position: relative; left: -59px;
-                                                                top: -8px;" OnClick="searchButton_Click" Height="25px" ImageUrl="~/Images/search.gif"
-                                                                Width="80px" CausesValidation="False" />
-                                                        </td>
+                                                        <td width="18%" style="height: 27px">
+                                                            <asp:ImageButton ID="searchButton" runat="server" Style="position: relative; left: -48px;
+                                                                top: -5px;" OnClick="searchButton_Click" Height="25px" ImageUrl="~/Images/search.gif"
+                                                                Width="80px" CausesValidation="False" /></td>
                                                     </tr>
                                                 </table>
                                                 <%-- </form>--%>

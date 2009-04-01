@@ -145,8 +145,16 @@ public partial class mode_index : System.Web.UI.MasterPage
     protected void searchButton_Click(object sender, ImageClickEventArgs e)
     {
         String searchC = searchContent.Text.Trim();
+        if (searchC.Equals(null)) 
+        {
+            Response.Write("<script>alert('您还没有输入搜索条件！');</script>");
+            return;
+        }
         String[] sC = searchC.Split(' ');
         Session.Add("sContent",sC);
         Response.Redirect("searchDeal.aspx");
+        return;
     }
+
+  
 }
