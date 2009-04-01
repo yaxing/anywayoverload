@@ -4,6 +4,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <script type="text/javascript" language="javascript">
+
+function checkSearch(){
+    var c =document.getElementById("<%= searchContent.ClientID%>").getAttribute("value");
+    if(c==null){
+    alert("请输入搜索条件！");
+    return false;
+    }
+    else{
+    return true;
+    }
+}
+
+function logincheck(){
+   var n = document.getElementById("<%= uName.ClientID%>").getAttribute("value");
+   var p = document.getElementById("<%= pWord.ClientID%>").getAttribute("value");
+   if(n==null){
+   alert("登录名不能为空！");
+   return false;
+   }
+   if(p==null){
+   alert("登录密码不能为空！");
+   return false;
+   }
+   else{
+    return true;
+   }
+}
+
 function tick() {
     var hours, minutes, seconds, xfile;
     var intHours, intMinutes, intSeconds;
@@ -175,7 +203,7 @@ function tick() {
                                                                         <td>
                                                                             &nbsp;</td>
                                                                         <td height="24" align="center">
-                                                                            <font face="幼圆">密</font>&nbsp;&nbsp;&nbsp;&nbsp;<font face="幼圆">码</font>
+                                                                            <font face="幼圆">密</font>&nbsp;&nbsp;&nbsp;<font face="幼圆">码</font>
                                                                             <asp:TextBox ID="pWord" TextMode="Password" MaxLength="16" Style="width: 100px" runat="server"></asp:TextBox>
                                                                         </td>
                                                                         <td>
@@ -185,7 +213,7 @@ function tick() {
                                                                         <td>
                                                                             &nbsp;</td>
                                                                         <td height="31" align="center">
-                                                                            <asp:Button ID="LogIn" runat="server" Style="position: relative" Text="登录" OnClick="LogIn_Click"
+                                                                            <asp:Button ID="LogIn" runat="server" Style="position: relative" Text="登录" OnClick="LogIn_Click" OnClientClick="return logincheck()"
                                                                                 CausesValidation="False" />
                                                                             <asp:Button ID="Regisiter" runat="server" Style="left: 36px; position: relative;
                                                                                 top: 0px" Text="注册" OnClick="Regisiter_Click" CausesValidation="False" />
@@ -329,7 +357,8 @@ function tick() {
                                                             <asp:Panel ID="panelPoll" runat="server" Height="50px" Width="125px">
                                                                 <asp:RadioButtonList ID="rblPoll" runat="server">
                                                                 </asp:RadioButtonList>
-                                                            </asp:Panel>
+                                                                <asp:ImageButton ID="bPoll" runat="server" Height="29px" ImageUrl="~/Images/poll.gif"
+                                                                    Style="left: 62px; position: relative; top: 21px" Width="85px" OnClick="bPoll_Click" /></asp:Panel>
                                                             <asp:Panel ID="panelPollResult" runat="server" Height="50px" Width="125px">
                                                                 &nbsp;<asp:Label ID="lableshowPollR" runat="server" Text="感谢您的参与！" Width="223px"></asp:Label>
                                                                 <br />
@@ -342,8 +371,6 @@ function tick() {
                                                         </td>
                                                     </tr>
                                                 </table>
-                                                <asp:Button ID="bPoll" runat="server" Style="left: 121px; position: relative; top: 0px"
-                                                    Text="投票" OnClick="bPoll_Click" CausesValidation="False" />
                                             </td>
                                             <td valign="top" style="background-image: url(Images/Cen_separate.gif); width: 5px;
                                                 height: 599px;">
@@ -366,15 +393,16 @@ function tick() {
                                                                         &nbsp;</td>
                                                                     <td width="67%" style="height: 27px; font-family: 幼圆">
                                                                         &nbsp;&nbsp;
-                                                                        <asp:Label ID="Label3" runat="server" Height="17px" Style="left: 19px; position: relative;
+                                                                        <asp:Label ID="Label3" runat="server" Height="17px" Style="left: -12px; position: relative;
                                                                             top: -4px" Text="我想找：" Width="51px"></asp:Label>
-                                                                        <asp:TextBox ID="searchContent" runat="server" Width="319px" Style="left: 24px; position: relative;
-                                                                            top: -6px"></asp:TextBox>
+                                                                        <asp:TextBox ID="searchContent" runat="server" Width="319px" Style="left: -1px; position: relative;
+                                                                            top: -2px">
+                                                                        </asp:TextBox>
                                                                     </td>
                                                                     <td width="18%" style="height: 27px">
-                                                                        <asp:ImageButton ID="searchButton" runat="server" Style="position: relative; left: -59px;
-                                                                            top: -8px;" OnClick="searchButton_Click" Height="25px" ImageUrl="~/Images/search.gif"
-                                                                            Width="80px" CausesValidation="False" /></td>
+                                                                        <asp:ImageButton ID="searchButton" runat="server" Style="position: relative; left: -48px;
+                                                                            top: -5px;" OnClick="searchButton_Click" OnClientClick="return checkSearch()"
+                                                                            Height="25px" ImageUrl="~/Images/search.gif" Width="80px" CausesValidation="False" /></td>
                                                                 </tr>
                                                             </table>
                                                         </td>
