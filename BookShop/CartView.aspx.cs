@@ -12,14 +12,18 @@ using BsCtrl;
 
 public partial class CartView : System.Web.UI.Page
 {
+    int totals = 0;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"]; //创建实例
+        ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"]; //获取购物车
 
         if (cart != null)
         {
 
             GridView1.DataSource = cart.Orders;
+
+            totals = cart.TotalRecords;
 
             GridView1.DataBind();
 
@@ -41,6 +45,8 @@ public partial class CartView : System.Web.UI.Page
             {
 
                 cart.DeleteItem(e.Item.Cells[0].Text);
+
+                totals = cart.TotalRecords;
 
                 GridView1.DataBind();
 
@@ -72,6 +78,8 @@ public partial class CartView : System.Web.UI.Page
 
                 cart.ItemAddOne(Convert.ToString(index));
 
+                totals = cart.TotalRecords;
+
                 GridView1.DataBind();
 
                 Total.Text = String.Format("合计:{0:c}", cart.TotalCost);
@@ -86,6 +94,8 @@ public partial class CartView : System.Web.UI.Page
             {
 
                 cart.ItemDelOne(Convert.ToString(index));
+
+                totals = cart.TotalRecords;
 
                 GridView1.DataBind();
 
@@ -103,6 +113,8 @@ public partial class CartView : System.Web.UI.Page
 
                 cart.DeleteItem(index);
 
+                totals = cart.TotalRecords;
+
                 GridView1.DataBind();
 
                 Total.Text = String.Format("合计:{0:c}", cart.TotalCost);
@@ -111,4 +123,36 @@ public partial class CartView : System.Web.UI.Page
 
         }
     }
+
+    //protected void PagerButton_Click(object sender, EventArgs e)
+    //{
+    //    int pageSize = 2;
+    //    int pageIndx = Convert.ToInt32(CurrentPage.Value);
+    //    int pages = (totals % pageSize) == 0 ? (totals / pageSize) : (totals / pageSize + 1);
+    //    string arg = ((LinkButton)sender).CommandArgument.ToString().ToLower();
+    //    switch (arg)
+    //    {
+    //        case "prev":
+    //            if (pageIndx > 0)
+    //            {
+    //                pageIndx -= 1;
+    //            }
+    //            break;
+    //        case "next":
+    //            if (pageIndx < pages - 1)
+    //            {
+    //                pageIndx += 1;
+    //            }
+    //            break;
+    //        case "last":
+    //            pageIndx = pages - 1;
+    //            break;
+    //        default:
+    //            pageIndx = 0;
+    //            break;
+    //    }
+    //    CurrentPage.Value = pageIndx.ToString();
+    //    GridView1.DataSource = ShoppingCart.GetCarts(pageIndx, pageSize);
+    //    GridView1.DataBind();
+    //}
 }

@@ -10,7 +10,8 @@
     </table>
     <br />
     <center>
-        &nbsp;我的购物车<asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" BorderWidth="3px" Width="90%" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand">
+        &nbsp;我的购物车<asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333"
+            GridLines="None" BorderWidth="3px" Width="90%" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand">
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
             <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
@@ -46,7 +47,7 @@
                 <asp:TemplateField HeaderText="删除">
                     <ItemTemplate>
                         <asp:LinkButton ID="DelBt" runat="server" CommandName="DelFromCart" OnClientClick="return confirm('真的要从购物车中删除该商品吗？')"
-                          CommandArgument='<%# Eval("ID") %>'>删除</asp:LinkButton>
+                            CommandArgument='<%# Eval("ID") %>'>删除</asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
