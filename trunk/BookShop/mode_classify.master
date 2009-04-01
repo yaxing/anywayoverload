@@ -60,6 +60,7 @@ function tick() {
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <title>mode_classify </title>
     <link href="CSS/style.css" rel="stylesheet" />
+    <link href="CSS/Adminlogstyle.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
