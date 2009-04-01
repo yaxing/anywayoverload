@@ -35,4 +35,31 @@ public partial class ShowOrder : System.Web.UI.Page
             Response.Write("<script>alert('ÇëÏÈµÇÂ½!');</script>");
         }
     }
+
+    protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        int index = Convert.ToInt32(e.CommandArgument);
+        
+        if(e.CommandName=="CancelOrder")
+        {
+            BsOrder bs = new BsOrder();
+            BsUserManager bm = new BsUserManager();
+            bs.DelOrder(index);
+            if (Session["userName"] != null)
+            {
+                String uN = Session["userName"].ToString();
+
+                int userID = bm.findUser(uN);
+
+                this.GridView1.DataSource = bs.SelectOrders(userID);
+
+                this.GridView1.DataBind();
+            }
+            else
+            {
+                Response.Redirect("index.aspx");
+                Response.Write("<script>alert('ÇëÏÈµÇÂ½!');</script>");
+            }
+        }
+    }
 }
