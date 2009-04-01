@@ -1,12 +1,8 @@
 <%@ Import Namespace = "BsCtrl"%>
+<%@ Import Namespace = "System.Web"%>
 <%@ Application Language="C#" %>
 
 <script runat="server">
-    
-    void Session_Start()
-    {
-        Session["MyShoppingCart"] = new ShoppingCart();
-    }
 
     void Application_Start(object sender, EventArgs e) 
     {
@@ -29,6 +25,8 @@
     void Session_Start(object sender, EventArgs e) 
     {
         // Code that runs when a new session is started
+        Session["MyShoppingCart"] = new ShoppingCart();
+        Session.Timeout = 600;
 
     }
 
