@@ -60,6 +60,7 @@ function tick() {
 <head>
     <title>网上图书超市</title>
     <link href="CSS/style.css" rel="stylesheet" />
+    <link href="CSS/Adminlogstyle.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -184,7 +185,8 @@ function tick() {
                                                                         <td>
                                                                             &nbsp;</td>
                                                                         <td height="31" align="center">
-                                                                            <asp:Button ID="LogIn" runat="server" Style="position: relative" Text="登录" OnClick="LogIn_Click" CausesValidation="False" />
+                                                                            <asp:Button ID="LogIn" runat="server" Style="position: relative" Text="登录" OnClick="LogIn_Click"
+                                                                                CausesValidation="False" />
                                                                             <asp:Button ID="Regisiter" runat="server" Style="left: 36px; position: relative;
                                                                                 top: 0px" Text="注册" OnClick="Regisiter_Click" CausesValidation="False" />
                                                                             <asp:Button ID="Reput" runat="server" Style="left: 40px; position: relative; top: 0px"
@@ -274,7 +276,7 @@ function tick() {
                                                             <asp:FormView ID="Bbs" runat="server" Style="left: 0px; position: relative; top: 6px;
                                                                 text-align: center" Height="85px" Width="220px">
                                                                 <ItemTemplate>
-                                                                   <marquee direction="up" scrollamount="1" scrolldelay="1" height="100" onmousemove="this.stop()"
+                                                                    <marquee direction="up" scrollamount="1" scrolldelay="1" height="100" onmousemove="this.stop()"
                                                                         onmouseout="this.start()">
                                                                         <table style="text-align: center">
                                                                             <tr align="center">
@@ -295,7 +297,7 @@ function tick() {
                                                 </table>
                                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                                     <tr>
-                                                        <td style="height:50px" colspan="2" align="right">
+                                                        <td style="height: 50px" colspan="2" align="right">
                                                             <img src="Images/index_18.gif" width="185" height="50" alt="" /></td>
                                                     </tr>
                                                     <tr>
@@ -305,11 +307,11 @@ function tick() {
                                                             <asp:FormView ID="pollTheme" runat="server" Style="left: 4px; position: relative;
                                                                 top: 6px" Width="224px">
                                                                 <ItemTemplate>
-                                                                    <table style="text-align:center">
+                                                                    <table style="text-align: center">
                                                                         <tr>
                                                                             <td style="width: 60%">
                                                                             </td>
-                                                                            <td style="widows:40%; text-align:center; font-family:幼圆">
+                                                                            <td style="widows: 40%; text-align: center; font-family: 幼圆">
                                                                                 <%#Eval("theme") %>
                                                                             </td>
                                                                         </tr>
@@ -333,8 +335,9 @@ function tick() {
                                                                 <br />
                                                                 <asp:Label ID="lableshowPollR2" runat="server" Text="您已经完成本次投票，接下来可以：" Width="223px"></asp:Label><br />
                                                                 <asp:ImageButton ID="showPR" runat="server" Style="left: 59px; position: relative;
-                                                                    top: 22px" OnClick="showPR_Click" Height="29px" ImageUrl="~/Images/showPResult.gif" Width="85px" CausesValidation="False" /><br />
-                                                                </asp:Panel>
+                                                                    top: 22px" OnClick="showPR_Click" Height="29px" ImageUrl="~/Images/showPResult.gif"
+                                                                    Width="85px" CausesValidation="False" /><br />
+                                                            </asp:Panel>
                                                             &nbsp;&nbsp;
                                                         </td>
                                                     </tr>
@@ -361,13 +364,17 @@ function tick() {
                                                                 <tr>
                                                                     <td width="15%" style="height: 27px">
                                                                         &nbsp;</td>
-                                                                    <td width="67%" style="height: 27px; font-family:幼圆">
+                                                                    <td width="67%" style="height: 27px; font-family: 幼圆">
                                                                         &nbsp;&nbsp;
                                                                         <asp:Label ID="Label3" runat="server" Height="17px" Style="left: 19px; position: relative;
                                                                             top: -4px" Text="我想找：" Width="51px"></asp:Label>
-                                                                        <asp:TextBox ID="searchContent" runat="server" Width="319px" style="left: 24px; position: relative; top: -6px"></asp:TextBox></td>
+                                                                        <asp:TextBox ID="searchContent" runat="server" Width="319px" Style="left: 24px; position: relative;
+                                                                            top: -6px"></asp:TextBox>
+                                                                    </td>
                                                                     <td width="18%" style="height: 27px">
-                                                                        <asp:ImageButton ID="searchButton" runat="server" Style="position: relative; left: -59px; top: -8px;" OnClick="searchButton_Click" Height="25px" ImageUrl="~/Images/search.gif" Width="80px" CausesValidation="False" /></td>
+                                                                        <asp:ImageButton ID="searchButton" runat="server" Style="position: relative; left: -59px;
+                                                                            top: -8px;" OnClick="searchButton_Click" Height="25px" ImageUrl="~/Images/search.gif"
+                                                                            Width="80px" CausesValidation="False" /></td>
                                                                 </tr>
                                                             </table>
                                                         </td>

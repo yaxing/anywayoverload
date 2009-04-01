@@ -124,7 +124,6 @@ function tick() {
                                                     </tr>
                                                     <tr style="text-align: right">
                                                         <td height="35" colspan="12">
-                                                            
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -212,11 +211,19 @@ function tick() {
                                                         <td width="15%">
                                                             &nbsp;</td>
                                                         <td width="67%">
-                                                            请输入书名：
-                                                            <input name="bookkey" type="text" class="txt_grey" size="48">
+                                                            &nbsp;&nbsp;
+                                                            <asp:Label ID="Label3" runat="server" Height="17px" Style="left: 19px; position: relative;
+                                                                top: -4px" Text="我想找：" Width="51px">
+                                                            </asp:Label>
+                                                            <asp:TextBox ID="searchContent" runat="server" Width="319px" Style="left: 24px; position: relative;
+                                                                top: -6px">
+                                                            </asp:TextBox>
                                                         </td>
                                                         <td width="18%">
-                                                            <input name="search" type="submit" class="btn_grey" value="搜索"></td>
+                                                            <asp:ImageButton ID="searchButton" runat="server" Style="position: relative; left: -59px;
+                                                                top: -8px;" OnClick="searchButton_Click" Height="25px" ImageUrl="~/Images/search.gif"
+                                                                Width="80px" CausesValidation="False" />
+                                                        </td>
                                                     </tr>
                                                 </table>
                                                 <%-- </form>--%>
