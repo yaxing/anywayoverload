@@ -31,8 +31,7 @@ public partial class ShowOrder : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("index.aspx");
-            Response.Write("<script>alert('ÇëÏÈµÇÂ½!');</script>");
+            ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"ÇëÏÈµÇÂ½£¡\");this.location.href='index.aspx'</script>");
         }
     }
 
