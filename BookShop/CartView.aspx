@@ -54,5 +54,6 @@
         </asp:GridView>
         <asp:Label ID="Total" runat="server" />
         <asp:Button ID="Button1" Text="继续购物" OnClick="Gonoshopping" runat="server" />
+        <asp:Button ID="Button2" runat="server" Text="进入结账" OnClick="Check_out" />
     </center>
 </asp:Content>
