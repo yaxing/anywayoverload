@@ -30,6 +30,22 @@ namespace BsCtrl
             return ds.Tables[0];
         }
 
+        /*功能：查看此订单的详细表项OrderDetail
+          参数：iOrderID存放待订单的ID
+          返回：此订单的详细表项*/
+        public void DelOrder(int iOrderID)
+        {
+            DbConnector db = new DbConnector();
+
+            string server = ConfigurationSettings.AppSettings["dbServer"];
+            string userName = ConfigurationSettings.AppSettings["dbUserName"];
+            string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
+
+            db.connDB(server, userName, passWord);
+            string SqlState = "delete orders where ID = " + Convert.ToString(iOrderID);
+            db.executeUpdate(SqlState);
+        }
+
         /*功能：查看此订单的状态
           参数：pay存放待用户的状态*/
         public static String ShowOrderStatus(int pay)
@@ -47,7 +63,7 @@ namespace BsCtrl
             return status;
         }
 
-        /*功能：查看此订单的详细表项
+        /*功能：查看此订单的详细表项OrderDetail
           参数：iOrderID存放待订单的ID
           返回：此订单的详细表项*/
         public DataTable ShowOrderDetails(int iOrderID)
@@ -64,6 +80,25 @@ namespace BsCtrl
 
             ds = db.executeQuery(SqlState);
 
+            return ds.Tables[0];
+        }
+
+        /*功能：查看此订单的内容Orders
+          参数：iOrderID存放待订单的ID
+          返回：此订单的的内容*/
+        public DataTable ShowOrderInfo(int iOrderID)
+        {
+            DataSet ds = new DataSet();
+            DbConnector db = new DbConnector();
+
+            string server = ConfigurationSettings.AppSettings["dbServer"];
+            string userName = ConfigurationSettings.AppSettings["dbUserName"];
+            string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
+
+            db.connDB(server, userName, passWord);
+            string SqlState = "select * from orders where ID = " + Convert.ToString(iOrderID);
+
+            ds = db.executeQuery(SqlState);
             return ds.Tables[0];
         }
     }
