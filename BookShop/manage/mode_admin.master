@@ -50,7 +50,7 @@
             <td width="1" rowspan="2" valign="top"><img src="../Images/Nav_separate.gif" width="1" height="36"></td>
             <td valign="bottom"><a href="Poll.aspx">投票管理</a></td>
             <td width="1" rowspan="2" valign="top"><img src="../Images/Nav_separate.gif" width="1" height="36"></td>
-            <td valign="bottom">&nbsp;<a href="Quit.aspx">退出</a>&nbsp;</td>
+            <td valign="bottom">&nbsp;<a href="Logout.aspx">退出</a>&nbsp;</td>
           </tr>
           <tr align="center">
             <td height="13"><a href="bookManage.aspx">Books Manage</a></td>
@@ -58,7 +58,7 @@
             <td><a href="orderManage.aspx">Order Manage</a></td>
             <td><a href="BBS.aspx">BBS Manage </a></td>
             <td><a href="Poll.aspx">Poll manage </a></td>
-            <td>&nbsp;<a href="">Quit</a>&nbsp;</td>
+            <td>&nbsp;<a href="Logout.aspx">Quit</a>&nbsp;</td>
           </tr>
         </table></td>
       </tr>
