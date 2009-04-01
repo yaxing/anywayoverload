@@ -121,6 +121,7 @@ public partial class mode_index : System.Web.UI.MasterPage
     protected void bPoll_Click(object sender, EventArgs e)
     {
         String selected = rblPoll.SelectedValue;
+        
         if (selected.Length<=0) 
         {
             Response.Write("<script>alert('您还没有选中投票项！');</script>");
