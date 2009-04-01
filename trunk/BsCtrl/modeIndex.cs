@@ -51,18 +51,19 @@ namespace BsCtrl
         public DataSet GetBbs() 
         {
             //获取公告内容
-            ds = conn.executeQuery("select * from bbs");
+            ds = conn.executeQuery("select top 1 * from bbs order by postTime desc");
             return ds; 
         }
 
         public DataSet GetAvailablePoll() 
-        {
+        {  //获取可用投票
             ds = conn.executeQuery("select * from poll, pollDetail where poll.available = '1' and pollDetail.pollID = poll.ID");
             return ds; 
         }
 
         public void ModifyPoll(int id) 
         {
+            //获取投票结果
             ds = conn.executeQuery("select counts from pollDetail where ID = '"+id+"'");
             conn.executeUpdate("update pollDetail set counts = "+ds.Tables[0].Columns[0]+"+1 where ID = '"+id+"'");
             return;
