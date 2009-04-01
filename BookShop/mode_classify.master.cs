@@ -25,4 +25,12 @@ public partial class mode_classify : System.Web.UI.MasterPage
             rpClass.DataBind();
         }
     }
+
+    protected void searchButton_Click(object sender, ImageClickEventArgs e)
+    {
+        String searchC = searchContent.Text.Trim();
+        String[] sC = searchC.Split(' ');
+        Session.Add("sContent", sC);
+        Response.Redirect("searchDeal.aspx");
+    }
 }
