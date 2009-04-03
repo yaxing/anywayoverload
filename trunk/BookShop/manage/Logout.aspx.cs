@@ -17,6 +17,6 @@ public partial class manage_Logout : System.Web.UI.Page
         Session.Remove("AdminLv");
         Session.Clear();
         Session.Abandon();
-        Response.Redirect("adminLogin.html");
+        Response.Write("<script type='text/javascript'>alert('欢迎再来，再见！');location.href('adminLogin.html')</script>");
     }
 }

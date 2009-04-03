@@ -13,9 +13,7 @@ using BsCtrl;
 
 public partial class manage_bookManage : System.Web.UI.Page
 {
-    String server = ConfigurationSettings.AppSettings["dbServer"];
-    String userName = ConfigurationSettings.AppSettings["dbUserName"];
-    String passWord = ConfigurationSettings.AppSettings["dbPassWord"];
+    String DbConnectString = ConfigurationSettings.AppSettings["dbConnString"];
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["AdminN"] == null || Session["AdminLv"] == null)
@@ -24,7 +22,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         }
         if (!IsPostBack)
         {
-            BsBookInfo bookInfo = new BsBookInfo(server, userName, passWord);
+            BsBookInfo bookInfo = new BsBookInfo(DbConnectString);
             DataSet ds = bookInfo.GetBookClassify();
             DataSet ds1 = new DataSet();
             ds1 = bookInfo.GetAllBooks();
@@ -126,7 +124,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         String quan = this.TxtQuantity.Text;
         String script = this.TxtScript.Text;
         String bookType = this.DDDLType.SelectedValue;
-        BsBookInfo bookIn = new BsBookInfo(server, userName, passWord);
+        BsBookInfo bookIn = new BsBookInfo(DbConnectString);
         if (bookIn.InsertNewBook(bookName, bookType, author, pub, pubTime, ISBN, price, quan, CoverPath, script) && bookIn.UpdateBookType(bookType,1))
         {
             Response.Write("<script language='javascript'>alert('添加成功。');location.href('bookManage.aspx');</script>");
@@ -144,7 +142,7 @@ public partial class manage_bookManage : System.Web.UI.Page
     protected void BtnAddP_Click(object sender, EventArgs e)
     {
         String TypeName = this.TxtTypeP.Text;
-        BsBookInfo bookType = new BsBookInfo(server, userName, passWord);
+        BsBookInfo bookType = new BsBookInfo(DbConnectString);
         if(bookType.InsertNewBookType(TypeName))
         {
             this.lblStat.Text = "新分类添加成功";
@@ -160,7 +158,7 @@ public partial class manage_bookManage : System.Web.UI.Page
     protected void BtnDelP_Click(object sender, EventArgs e)
     {
         String TypeName = this.TxtTypeP.Text;
-        BsBookInfo bookType = new BsBookInfo(server, userName, passWord);
+        BsBookInfo bookType = new BsBookInfo(DbConnectString);
         if(bookType.DeleteBookType(TypeName))
         {
             this.lblStat.Text = "分类删除成功";
@@ -178,7 +176,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         DataKey key = this.BookGridView.DataKeys[e.RowIndex];
         String bookID = key[0].ToString();
         int bookIDI = Convert.ToInt32(key[0]);
-        BsBookInfo bookInfo = new BsBookInfo(server,userName,passWord);
+        BsBookInfo bookInfo = new BsBookInfo(DbConnectString);
         DataSet ds = new DataSet();
         ds = bookInfo.GetBookInfo(bookIDI);
         String ImgPath = ds.Tables[0].Rows[0][13].ToString();
@@ -202,7 +200,7 @@ public partial class manage_bookManage : System.Web.UI.Page
     protected void BtnSearch_Click(object sender, EventArgs e)
     {
         String bookSearch = this.TxtBookSearch.Text;
-        BsBookInfo bookInfo = new BsBookInfo(server,userName,passWord);
+        BsBookInfo bookInfo = new BsBookInfo(DbConnectString);
         DataSet ds = new DataSet();
         ds = bookInfo.GetFamiliarBooks(bookSearch);
         BookGridView_Load(ds);
@@ -217,7 +215,7 @@ public partial class manage_bookManage : System.Web.UI.Page
     {
         DataKey key = this.BookGridView.DataKeys[e.NewEditIndex];
         int bookID = Convert.ToInt32(key[0]);
-        BsBookInfo bookInfo = new BsBookInfo(server, userName, passWord);
+        BsBookInfo bookInfo = new BsBookInfo(DbConnectString);
         DataSet ds = new DataSet();
         ds = bookInfo.GetBookInfo(bookID);
         this.TxtBookNameU.Text = ds.Tables[0].Rows[0][6].ToString();
@@ -287,7 +285,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         {
             CoverPath = this.ImgEx.ImageUrl.Substring(3);
         }
-        BsBookInfo bookIn = new BsBookInfo(server, userName, passWord);
+        BsBookInfo bookIn = new BsBookInfo(DbConnectString);
         if (bookIn.UpdateOneBook(bookID, bookName, bookType, author, pub, pubTime, ISBN, price, quan, CoverPath, script) && bookIn.UpdateBookType(bookType, OldType))
         {
             Response.Write("<script language='javascript'>alert('更新成功。');location.href('bookManage.aspx');</script>");
@@ -300,7 +298,7 @@ public partial class manage_bookManage : System.Web.UI.Page
     protected void BookGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         this.BookGridView.PageIndex = e.NewPageIndex;
-        BsBookInfo bookInfo = new BsBookInfo(server,userName,passWord);
+        BsBookInfo bookInfo = new BsBookInfo(DbConnectString);
         DataSet ds = new DataSet();
         ds = bookInfo.GetAllBooks();
         this.BookGridView_Load(ds);
