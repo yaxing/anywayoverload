@@ -1,6 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/manage/mode_admin.master" AutoEventWireup="true" CodeFile="orderManage.aspx.cs" Inherits="manage_orderManage" Title="Untitled Page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
-    <a href="orderManage.aspx">≡≡≡订单管理≡≡≡</a>
+    ====<asp:LinkButton ID="lBtnPageType" runat="server" Text="" OnClick="lBtnPageType_Click"></asp:LinkButton>====
+    <asp:HiddenField ID="hfPageType" runat="server" Value="" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <br/>
@@ -17,4 +18,8 @@
             </td>
         </tr>
     </table>
+    <p style="text-align:right">
+        <asp:LinkButton ID="lBtnTran" runat="server" OnClick="lBtnTran_Click" OnClientClick="confirm('您确定要执行此操作吗？')">
+            已完成交易处理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</asp:LinkButton>
+   </p>
 </asp:Content>
