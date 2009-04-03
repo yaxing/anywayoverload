@@ -53,4 +53,16 @@ public partial class _Default : System.Web.UI.Page
         this.coverImgP.Src = ds.Tables[0].Rows[0][13].ToString();
         this.ltlScript.Text = ds.Tables[0].Rows[0][9].ToString();
     }
+    protected void AddtoCartBt_Click(object sender, ImageClickEventArgs e)
+    {
+        Stat_Class order = new Stat_Class(Request.QueryString["bookID"]);
+
+        ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"]; //´´½¨ÊµÀý
+
+        if (cart != null)
+        {
+            cart.AddItem(order);
+            Response.Redirect("CartView.aspx");
+        }
+    }
 }
