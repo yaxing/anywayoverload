@@ -56,16 +56,14 @@ namespace BsCtrl
        */
         public int findUser(String userName)
         {
-            DbConnector conn = new DbConnector();
             DataSet ds = null;
+            DbConnector db = new DbConnector();
 
-            string server = ConfigurationSettings.AppSettings["dbServer"];
-            string userID = ConfigurationSettings.AppSettings["dbUserName"];
-            string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
+            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            db.connDB(connStr);
+
             string SqlState = "Select ID from users where username = '" + userName + "'";
-
-            conn.connDB(server, userID, passWord);
-            ds = conn.executeQuery(SqlState);
+            ds = db.executeQuery(SqlState);
 
             int userid = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
 
@@ -121,23 +119,20 @@ namespace BsCtrl
         public bool InsertUser(string UserName, string UserPwd, string TrueName, string UserEmail, string Address, string UserPost, string UserTel)
         {
             bool ret = true;
+            DbConnector db = new DbConnector();
 
-            DbConnector conn = new DbConnector();
+            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            db.connDB(connStr);
+            string SqlState = "insert into users(username,password,TrueName,email,address,postcode,tel) values('" + UserName + "','" + UserPwd + "','" + TrueName + "','" + UserEmail + "','" + Address + "','" + UserPost + "','" + UserTel + "')"; 
 
-            string server = ConfigurationSettings.AppSettings["dbServer"];
-            string userName = ConfigurationSettings.AppSettings["dbUserName"];
-            string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
-            string SqlState = "insert into users(username,password,TrueName,email,address,postcode,tel) values('" + UserName + "','" + UserPwd + "','" + TrueName + "','" + UserEmail + "','" + Address + "','" + UserPost + "','" + UserTel + "')"; ;
-
-            conn.connDB(server, userName, passWord);
-            if (conn.executeUpdate(SqlState) > 0)
+            if (db.executeUpdate(SqlState) > 0)
             {
-                conn.close();
+                db.close();
                 return ret;
             }
             else
             {
-                conn.close();
+                db.close();
                 return false;
             }
         }
@@ -147,16 +142,13 @@ namespace BsCtrl
         public bool IsUserExist(String strUserName)
         {
             bool ret = true;
-            DbConnector conn = new DbConnector();
             DataSet ds = null;
+            DbConnector db = new DbConnector();
 
-            string server = ConfigurationSettings.AppSettings["dbServer"];
-            string userName = ConfigurationSettings.AppSettings["dbUserName"];
-            string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
+            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            db.connDB(connStr);
             string SqlState = "Select Count(*) from users where userName = '" + strUserName + "'";
-
-            conn.connDB(server, userName, passWord);
-            ds = conn.executeQuery(SqlState);
+            ds = db.executeQuery(SqlState);
 
             int count = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
             if (count > 0)
@@ -165,7 +157,7 @@ namespace BsCtrl
             }
             else ret = false;
 
-            conn.close();
+            db.close();
             return ret;
         }
     }
