@@ -61,7 +61,7 @@ public partial class CartView : System.Web.UI.Page
     public void Gonoshopping(Object sender, EventArgs e)
     {
 
-        Response.Redirect("addTest.aspx");
+        Response.Redirect("index.aspx");
 
     }
 

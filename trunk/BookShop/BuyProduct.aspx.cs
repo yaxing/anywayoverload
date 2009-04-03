@@ -77,7 +77,7 @@ public partial class BuyProduct : System.Web.UI.Page
 
         int OrderID = bo.AddOrder(user_ID,user_Name,user_Amount,user_Address,user_Email,user_Tel,user_Post,user_Deal);
         cart.AddToOrder(OrderID);
-        Session.Remove("MyShoppingCart");
+        cart.ClearCart();
         ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"订单创建成功！\");this.location.href='ShowOrder.aspx'</script>");
     }
     protected void Button2_Click(object sender, EventArgs e)
