@@ -16,11 +16,9 @@ public partial class LoginCheck : System.Web.UI.Page
     {
         String userName = Request["userName"].ToString();
         String userPwd = Request["userPwd"].ToString();
-        String server = ConfigurationSettings.AppSettings["dbServer"];
-        String sqluserName = ConfigurationSettings.AppSettings["dbUserName"];
-        String passWord = ConfigurationSettings.AppSettings["dbPassWord"];
+        String DbConnectString = ConfigurationSettings.AppSettings["dbConnString"];
 
-        AdminControl AdminC = new AdminControl(server,sqluserName,passWord);
+        AdminControl AdminC = new AdminControl(DbConnectString);
         if(userName.Length == 0 || userPwd.Length == 0)
         {
             Response.Write("<script type='text/javascript'>alert('请输入用户名或密码。');</script>");
