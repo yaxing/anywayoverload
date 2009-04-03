@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 using System.Collections;
+using System.Configuration;
 
 namespace BsCtrl
 {
@@ -11,7 +13,8 @@ namespace BsCtrl
     { 
         String Book_ID; //图书ID
         String Book_Name; //图书名称
-        decimal Book_Price; //图书价格
+        Double Book_Price; //图书价格
+        Double Book_Discount;//图书折扣
         int Quan; //图书数量
 
         /*图书ID字段*/
@@ -29,10 +32,17 @@ namespace BsCtrl
         }
 
         /*图书价格字段*/
-        public decimal Price
+        public Double Price
         {
             get { return Book_Price; }
             set { Book_Price = value; }
+        }
+
+        /*图书折扣字段*/
+        public Double Discount
+        {
+            get { return Book_Discount; }
+            set { Book_Discount = value; }
         }
 
         /*图书数量字段*/
@@ -43,16 +53,34 @@ namespace BsCtrl
         }
 
         /*构造方法，初始化图书的各个属性
+         * 参数： 图书的ID
+         * 返回值：无
+         */
+        public Stat_Class(String ItemID)
+        {
+            Book_ID = ItemID;
+            String connectString = ConfigurationSettings.AppSettings["dbConnString"];
+            BsBookInfo bs = new BsBookInfo(connectString);
+            int bookID = Convert.ToInt32(ItemID);
+            DataSet ds = bs.GetBookInfo(bookID);
+            Book_Name = ds.Tables[0].Rows[0]["bookName"].ToString();
+            Book_Price = Convert.ToDouble(ds.Tables[0].Rows[0]["price"].ToString());
+            Book_Discount = Convert.ToDouble(ds.Tables[0].Rows[0]["discount"].ToString());
+            Quan = 1;
+        }
+
+        /*构造方法，初始化图书的各个属性
          * 参数： 图书的各个属性值
          * 返回值：无
          */
 
-        public Stat_Class(String ItemID, String bName, decimal bPrice, int Quantity)
+        public Stat_Class(String ItemID, String bName, Double bPrice, Double bDiscount,int Quantity)
         { 
 
             Book_ID = ItemID;
             Book_Name = bName;
             Book_Price = bPrice;
+            Book_Discount = bDiscount;
             Quan = Quantity;
         }
     }
@@ -89,15 +117,15 @@ namespace BsCtrl
          * 参数： 无
          * 返回值：整个购物车的图书价格
          */
-        public decimal TotalCost
+        public Double TotalCost
         { 
             get
             {
-                decimal total = 0;
+                Double total = 0;
                 foreach (DictionaryEntry entry in Cart_Orders)
                 {
                     Stat_Class order = (Stat_Class)entry.Value;
-                    total += (order.Price * order.Quantity);
+                    total += (order.Price * order.Quantity * order.Discount);
                 }
                 return total;
             }
@@ -124,6 +152,36 @@ namespace BsCtrl
         { 
             if (Cart_Orders[ItemID] != null)
                 Cart_Orders.Remove(ItemID);
+        }
+
+        /*把购物车信息添加到OrderDetail表
+         * 参数：iOrderID表示要添加的订单号
+         * 返回值：无
+         */
+        public void AddToOrder(int iOrderID)
+        {
+            BsOrder bo = new BsOrder();
+            foreach (DictionaryEntry entry in Cart_Orders)
+            {
+                Stat_Class order = (Stat_Class)entry.Value;
+                if(order!=null)
+                {
+                    bo.AddOrderDetails(iOrderID, order);
+                }
+            }
+        }
+
+        /*清空购物车
+        * 参数：无
+        * 返回值：无
+        */
+        public void ClearCart()
+        {
+            foreach (DictionaryEntry entry in Cart_Orders)
+            {
+                Stat_Class order = (Stat_Class)entry.Value;
+                Cart_Orders.Remove(order.ID);
+            }
         }
 
         /*给购物车某个图书类数量加1
