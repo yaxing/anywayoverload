@@ -10,7 +10,8 @@
     </table>
     <br />
     <center>
-        &nbsp;我的购物车<asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333"
+        &nbsp;我的购物车
+        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333"
             GridLines="None" BorderWidth="3px" Width="90%" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand">
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
@@ -37,6 +38,7 @@
                 </asp:TemplateField>
                 <asp:BoundField DataField="BookName" HeaderText="书名" ReadOnly="True" />
                 <asp:BoundField DataField="Price" HeaderText="价格" DataFormatString="{0:c}" />
+                <asp:BoundField DataField="Discount" HeaderText="折扣" />
                 <asp:BoundField DataField="Quantity" HeaderText="数量" />
                 <asp:TemplateField HeaderText="加减">
                     <ItemTemplate>
