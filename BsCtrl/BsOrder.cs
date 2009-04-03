@@ -30,19 +30,47 @@ namespace BsCtrl
             return ds.Tables[0];
         }
 
-        /*功能：查看此订单的详细表项OrderDetail
-          参数：iOrderID存放待订单的ID
-          返回：此订单的详细表项*/
-        public void DelOrder(int iOrderID)
+        /*功能：添加此用户的订单
+         参数：存放订单信息
+         返回：生成的订单ID*/
+        public int AddOrder(String user_ID, String user_Name, String user_Amount, String user_Address, String user_Email, String user_Tel, String user_Post, String user_Deal)
         {
             DbConnector db = new DbConnector();
 
-            string server = ConfigurationSettings.AppSettings["dbServer"];
-            string userName = ConfigurationSettings.AppSettings["dbUserName"];
-            string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
+            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            db.connDB(connStr);
 
-            db.connDB(server, userName, passWord);
-            string SqlState = "delete orders where ID = " + Convert.ToString(iOrderID);
+            string SqlState = "insert into orders(userID,orderdatetime,trueName,amount,address,email,tel,postcode,dealMethod) values(" + user_ID + ",getdate(),'" + user_Name + "'," + user_Amount + ",'" + user_Address + "','" + user_Email + "','" + user_Tel + "','" + user_Post +  "','" + user_Deal + "')"; 
+            int orderid = db.executeUpdate_id(SqlState);
+
+            return orderid;
+        }
+
+        /*功能：添加此订单的OrderDetails
+         参数：iOrderID存放订单的ID,sOrder存放购物车单条信息
+         返回值：无*/
+        public void AddOrderDetails(int iOrderID, Stat_Class sOrder)
+        {
+            DbConnector db = new DbConnector();
+            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            db.connDB(connStr);
+
+            string SqlState = "insert into orderDetail(orderID,bookID,price,number,discount) values (" + iOrderID + "," + sOrder.ID + "," + sOrder.Price + "," + sOrder.Quantity + "," + sOrder.Discount + ")";
+            
+            db.executeUpdate(SqlState);
+        }
+
+        /*功能：取消此订单
+          参数：iOrderID存放待订单的ID
+          返回：无*/
+        public void CancelOrder(int iOrderID)
+        {
+            DbConnector db = new DbConnector();
+
+            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            db.connDB(connStr);
+
+            string SqlState = "Update orders Set pay = -1 where ID = " + Convert.ToString(iOrderID);
             db.executeUpdate(SqlState);
         }
 
@@ -52,13 +80,17 @@ namespace BsCtrl
         {
             String status="";
 
-            if(pay!=0)
+            if(pay==1)
             {
                 status = "已付款";
             }
-            else
+            else if(pay==0)
             {
                 status = "未付款";
+            }
+            else if(pay==-1)
+            {
+                status = "已取消";
             }
             return status;
         }
@@ -97,6 +129,23 @@ namespace BsCtrl
 
             db.connDB(server, userName, passWord);
             string SqlState = "select * from orders where ID = " + Convert.ToString(iOrderID);
+
+            ds = db.executeQuery(SqlState);
+            return ds.Tables[0];
+        }
+
+        /*功能：返回此用户的详细信息
+          参数：iUserID存放待用户的ID
+          返回：此用户的详细信息*/
+        public DataTable ShowUserInfo(int iUserID)
+        {
+            DataSet ds = new DataSet();
+            DbConnector db = new DbConnector();
+
+            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+
+            db.connDB(connStr);
+            String SqlState = "select * from users where ID = " + Convert.ToString(iUserID);
 
             ds = db.executeQuery(SqlState);
             return ds.Tables[0];
