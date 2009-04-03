@@ -17,21 +17,22 @@ public partial class _Default : System.Web.UI.Page
     String passWord = ConfigurationSettings.AppSettings["dbPassWord"];
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
-            if (Request["bookID"] != null) this.PageInfo_Load();
-            else
-            {
-                Response.Write("<script language='javascript'>alert('错误的书籍索引值');location.href('index.aspx')</script>");
-            }
-        }
+        //if (!IsPostBack)
+        //{
+        //    if (Request["bookID"] != null) this.PageInfo_Load();
+        //    else
+        //    {
+        //        Response.Write("<script language='javascript'>alert('错误的书籍索引值');location.href('index.aspx')</script>");
+        //    }
+        //}
+        this.PageInfo_Load();
     }
     protected void PageInfo_Load()
     {
-        //String bookNum = "1";
-        //int bookID = Convert.ToInt32(bookNum);
+        String bookNum = "2";
+        int bookID = Convert.ToInt32(bookNum);
 
-        int bookID = Convert.ToInt32(Request.QueryString["bookID"]);
+        //int bookID = Convert.ToInt32(Request.QueryString["bookID"]);
         BsBookInfo bookInfo = bookInfo = new BsBookInfo(server, userName, passWord);
         DataSet ds = new DataSet();
         ds = bookInfo.GetBookInfo(bookID);
@@ -48,5 +49,8 @@ public partial class _Default : System.Web.UI.Page
         this.lblPrice.Text = price.Substring(0, priceIndex + 3);
         this.lblQuantity.Text = ds.Tables[0].Rows[0][14].ToString();
         this.lblSold.Text = ds.Tables[0].Rows[0][15].ToString();
+        this.coverImg.Src = ds.Tables[0].Rows[0][13].ToString();
+        this.coverImgP.Src = ds.Tables[0].Rows[0][13].ToString();
+        this.ltlScript.Text = ds.Tables[0].Rows[0][9].ToString();
     }
 }
