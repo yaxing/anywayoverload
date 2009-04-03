@@ -43,7 +43,7 @@ public partial class addTest : System.Web.UI.Page
         if (e.CommandName == "AddToCart")
         {
 
-            Stat_Class order = new Stat_Class(e.Item.Cells[0].Text, e.Item.Cells[1].Text, Convert.ToDouble(e.Item.Cells[2].Text.Substring(1)),0.8, 1);
+            Stat_Class order = new Stat_Class(e.Item.Cells[0].Text);
 
             ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"]; //´´½¨ÊµÀý
 

@@ -33,7 +33,7 @@
                 <asp:BoundField DataField="ID" ReadOnly="True" Visible="False" />
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%# "~/ReadImage.aspx?BookID=" + Eval("ID").ToString() %>' />
+                        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%#Eval("Cover") %>' PostBackUrl='<%# "bookInfo.aspx?bookID="+Eval("ID").ToString() %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="BookName" HeaderText="书名" ReadOnly="True" />
@@ -54,7 +54,8 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
-        <asp:Label ID="Total" runat="server" />
+        <asp:Label ID="Total" runat="server" /></center>
+    <center>
         <asp:Button ID="Button1" Text="继续购物" OnClick="Gonoshopping" runat="server" />
         <asp:Button ID="Button2" runat="server" Text="进入结账" OnClick="Check_out" />
     </center>

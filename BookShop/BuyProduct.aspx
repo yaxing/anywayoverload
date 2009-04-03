@@ -32,7 +32,7 @@
                     <asp:BoundField DataField="ID" ReadOnly="True" Visible="False" />
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%# "~/ReadImage.aspx?BookID=" + Eval("ID").ToString() %>' />
+                            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%#Eval("Cover") %>' PostBackUrl='<%# "bookInfo.aspx?bookID="+Eval("ID").ToString() %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="BookName" HeaderText="ÊéÃû" ReadOnly="True" />
