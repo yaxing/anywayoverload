@@ -19,13 +19,14 @@ public partial class manage_orderDetail : System.Web.UI.Page
         orderManage orderManObj = new orderManage(dbConnStr);
         test();
         String orderID = Request.QueryString["id"].ToString();
-        lblContent.Text = orderManObj.orderDetail(Convert.ToInt32(orderID));
+        String flag = Request.QueryString["flag"].ToString();
+        lblContent.Text = orderManObj.orderDetail(Convert.ToInt32(orderID), Convert.ToInt32(flag));
     }
 
     //验证参数的安全性
     private void test()
     {
-        if (Request.QueryString.Count != 1)
+        if (Request.QueryString.Count != 2)
         {//参数个数不对
             Response.Redirect("orderManage.aspx");
         }
@@ -33,6 +34,7 @@ public partial class manage_orderDetail : System.Web.UI.Page
         {
             try
             {
+                Convert.ToInt32(Request.QueryString["id"].ToString());
                 Convert.ToInt32(Request.QueryString["id"].ToString());
                 return;
             }

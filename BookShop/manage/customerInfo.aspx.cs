@@ -23,7 +23,8 @@ public partial class manage_customerInfo : System.Web.UI.Page
         {
             test();
             String id = Request.QueryString["id"].ToString();
-            lblContent.Text = orderManObj.customerInfo(Convert.ToInt32(id));
+            String flag = Request.QueryString["flag"].ToString();
+            lblContent.Text = orderManObj.customerInfo(Convert.ToInt32(id), Convert.ToInt32(flag));
         }
     }
 
@@ -31,7 +32,7 @@ public partial class manage_customerInfo : System.Web.UI.Page
     //验证参数的安全性
     private void test()
     {
-        if (Request.QueryString.Count != 1)
+        if (Request.QueryString.Count != 2)
         {//参数个数不对
             Response.Redirect("orderManage.aspx");
         }
@@ -40,6 +41,7 @@ public partial class manage_customerInfo : System.Web.UI.Page
             try
             {
                 Convert.ToInt32(Request.QueryString["id"].ToString());
+                Convert.ToInt32(Request.QueryString["flag"].ToString());
                 return;
             }
             catch
