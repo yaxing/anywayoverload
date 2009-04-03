@@ -94,7 +94,7 @@
         </tr>
         <tr>
             <td align="center" colspan="6" rowspan="1">
-                </td>
+                <asp:ImageButton ID="AddtoCartBt" runat="server" OnClick="AddtoCartBt_Click" /></td>
         </tr>
     </table>
     <br />
