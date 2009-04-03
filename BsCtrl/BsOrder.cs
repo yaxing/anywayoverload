@@ -17,12 +17,9 @@ namespace BsCtrl
         {
             DataSet ds = new DataSet();
             DbConnector db = new DbConnector();
-            
-            string server = ConfigurationSettings.AppSettings["dbServer"];
-            string userName = ConfigurationSettings.AppSettings["dbUserName"];
-            string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
 
-            db.connDB(server, userName, passWord);
+            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            db.connDB(connStr);
             string SqlState = "select * from orders where userID = " + Convert.ToString(iUserID);
 
             ds = db.executeQuery(SqlState);
@@ -103,11 +100,8 @@ namespace BsCtrl
             DataSet ds = new DataSet();
             DbConnector db = new DbConnector();
 
-            string server = ConfigurationSettings.AppSettings["dbServer"];
-            string userName = ConfigurationSettings.AppSettings["dbUserName"];
-            string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
-
-            db.connDB(server, userName, passWord);
+            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            db.connDB(connStr);
             string SqlState = "select * from orders,orderDetail,bookInfo where orders.ID =orderDetail.orderID and orderDetail.bookID = bookInfo.ID and orderDetail.orderID = " + Convert.ToString(iOrderID);
 
             ds = db.executeQuery(SqlState);
@@ -123,11 +117,8 @@ namespace BsCtrl
             DataSet ds = new DataSet();
             DbConnector db = new DbConnector();
 
-            string server = ConfigurationSettings.AppSettings["dbServer"];
-            string userName = ConfigurationSettings.AppSettings["dbUserName"];
-            string passWord = ConfigurationSettings.AppSettings["dbPassWord"];
-
-            db.connDB(server, userName, passWord);
+            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            db.connDB(connStr);
             string SqlState = "select * from orders where ID = " + Convert.ToString(iOrderID);
 
             ds = db.executeQuery(SqlState);
