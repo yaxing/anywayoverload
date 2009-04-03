@@ -95,12 +95,15 @@ namespace BsCtrl
             return pageAmount;
         }
 
-        //返回订单记录
-        public String recordToShow()
+       /*
+        返回订单记录
+        * 参数：flag 标识该订单所在的标，1 orders 、0 orders_done
+        */
+        public String recordToShow(int flag)
         {
             string strContent = "";
             strContent += "<table cellspacing=2  cellpadding=2   bordercolordark='#ffffff'  bordercolorlight='#000000' width='100%'> ";
-            strContent += "<tr><th width='15%'>用户名</th><th width='20%'>下单时间</th><th width='15%'>交易金额</th><th>交易状态</th><th></th><th></th></tr>";
+            strContent += "<tr><th width='25%'>用户名</th><th width='20%'>下单时间</th><th width='15%'>交易金额</th><th>交易状态</th><th></th><th></th></tr>";
             if (pageAmount == 0)
             {
                 strContent += "<tr><td colspan='6'>没有任何记录!!</td></tr>";
@@ -116,28 +119,35 @@ namespace BsCtrl
                 for (int i = fRecordID; i <= lRecordID; i++)
                 {
                     strContent += "<tr>";
-                    strContent += "<td align='center'>" +"<a href='customerInfo.aspx?id="+dsRecord.Tables[0].Rows[i]["ID"]+"'>"+ dsRecord.Tables[0].Rows[i]["userName"] +"</a>"+ "</td>";
+                    strContent += "<td align='center'>" +"<a href='customerInfo.aspx?id="+dsRecord.Tables[0].Rows[i]["ID"]+"&flag="+flag+"'>"+ dsRecord.Tables[0].Rows[i]["userName"] +"</a>"+ "</td>";
                     strContent += "<td align='center'>" + dsRecord.Tables[0].Rows[i]["orderdatetime"] + "</td>";
                     strContent += "<td align='center'>" + dsRecord.Tables[0].Rows[i]["amount"] + "</td>";
                     if (dsRecord.Tables[0].Rows[i]["pay"].ToString().Equals("1"))
                     {
                         strContent += "<td align='center'>" + "交易完成" + "</td>";
-                        strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=0'>" + "买家未付款" + "</a>";
-                        strContent += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=-1'>" + "取消" + "</a>" + "</td>";
+                        if (flag == 1)
+                        {
+                            strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=0'>" + "未付款" + "</a>";
+                            strContent += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=-1'>" + "取消" + "</a>" + "</td>";
+                        }
+                        else
+                        {
+                            strContent += "<td align='center'>&nbsp;&nbsp;</td>";
+                        }
                     }
                     else if (dsRecord.Tables[0].Rows[i]["pay"].ToString().Equals("0"))
                     {
-                        strContent += "<td align='center'>" + "买家未付款" + "</td>";
+                        strContent += "<td align='center'>" + "未付款" + "</td>";
                         strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=1'>" + "已付款" + "</a>";
                         strContent += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=-1'>" + "取消" + "</a>" + "</td>";
                     }
                     else
                     {
                         strContent += "<td align='center'>" + "交易取消" + "</td>";
-                        strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=0'>" + "买家未付款" + "</a>";
+                        strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=0'>" + "未付款" + "</a>";
                         strContent += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=1'>" + "已付款" + "</a>" + "</td>";
                     }
-                    strContent += "<td align='center'>" +"<a href='orderDetail.aspx?id="+dsRecord.Tables[0].Rows[i]["ID"]+"'>"+ "详情" +"</a>"+ "</td>";
+                    strContent += "<td align='center'>" +"<a href='orderDetail.aspx?id="+dsRecord.Tables[0].Rows[i]["ID"]+"&flag="+flag+"'>"+ "详情" +"</a>"+ "</td>";
                     strContent += "</tr>";
                 }
             }
@@ -146,10 +156,20 @@ namespace BsCtrl
             return strContent;
         }
 
-        //返回用户信息
-        public String customerInfo(int orderID)
+        /*
+         * 返回用户信息
+         * 参数：orderID,订单的ID；flag 标识该订单所在的表，1 orders、0 orders_done
+         */
+        public String customerInfo(int orderID,int flag)
         {
-            setSql("select * from v_orderManage where ID=" + orderID);
+            if (flag == 1)
+            {
+                setSql("select * from v_orderManage where ID=" + orderID);
+            }
+            else
+            {
+                setSql("select * from v_orderManage_done where ID=" + orderID);
+            }
             getDsRecord();
 
             string strInfo = "<p>&nbsp;</p>";
@@ -166,12 +186,19 @@ namespace BsCtrl
 
 
         /*返回订单详细信息
-         * 参数： orderID(主订单的ID)
+         * 参数： orderID(主订单的ID)；flag 标识该订单所在的表，1 orders,0 orders_done
          * 返回值：显示订单详细信息的html脚本
          */
-        public String orderDetail(int orderID)
+        public String orderDetail(int orderID,int flag)
         {
-            setSql("select * from v_orderDetailManage where orderID="+orderID);
+            if (flag == 1)
+            {
+                setSql("select * from v_orderDetailManage where orderID=" + orderID);
+            }
+            else
+            {
+                setSql("select * from v_orderDetailManage_done where orderID=" + orderID);
+            }
             getDsRecord();
             String strContent = "";
             strContent += "<table cellspacing=2  cellpadding=2   bordercolordark='#ffffff'  bordercolorlight='#000000' width='100%'> ";
