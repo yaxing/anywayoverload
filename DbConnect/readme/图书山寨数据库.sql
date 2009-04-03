@@ -6,9 +6,9 @@ use shanzhai
 
 CREATE TABLE users (
 	ID int primary key IDENTITY (1, 1) NOT NULL ,
-	username varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
-	password varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
-	TrueName varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	userName varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	passWord varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	trueName varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	address varchar (300) COLLATE Chinese_PRC_CI_AS NULL,
 	postcode varchar (30) COLLATE Chinese_PRC_CI_AS NULL,
 	tel varchar (30) COLLATE Chinese_PRC_CI_AS NULL ,
@@ -52,7 +52,7 @@ CREATE TABLE comment (
 	bookID int NOT NULL,
 	userID int NOT NULL,
 	comment text COLLATE Chinese_PRC_CI_AS NULL ,
-	commdatetime datetime DEFAULT getdate() ,
+	commDatetime datetime DEFAULT getdate() ,
 	score int DEFAULT 0 ,
 	constraint fk_bookInfo foreign key(bookID) references bookInfo(ID),
 	constraint fk_users foreign key(userID) references users(ID),
@@ -72,7 +72,7 @@ GO
 CREATE TABLE orders (
 	ID int primary key IDENTITY (1, 1) NOT NULL ,
 	userID int NOT NULL,
-	orderdatetime datetime DEFAULT getdate() ,
+	orderDatetime datetime DEFAULT getdate() ,
 	amount money DEFAULT 0,
 	trueName varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	address varchar (300) COLLATE Chinese_PRC_CI_AS NOT NULL ,
@@ -119,4 +119,77 @@ CREATE TABLE pollDetail (
 	counts int DEFAULT 0,
 	constraint fk_poll foreign key(pollID) references poll(ID),
 )
+GO
+
+use shanzhai
+go
+CREATE TABLE orders_done (
+	ID int primary key IDENTITY (1, 1) NOT NULL ,
+	userID int NOT NULL,
+	orderdatetime datetime DEFAULT getdate() ,
+	amount money DEFAULT 0,
+	trueName varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	address varchar (300) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	postcode varchar (30) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	tel varchar (30) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	email varchar (128) NOT NULL ,
+	dealMethod varchar (128) NOT NULL , --运送方式
+	pay int DEFAULT 0, --是否付款
+) 
+GO
+
+CREATE TABLE orderDetail_done (
+	ID int primary key IDENTITY (1, 1) NOT NULL ,
+	orderID int NOT NULL ,
+	bookID int NOT NULL ,
+	price money NOT NULL ,
+	number int DEFAULT 1 ,
+	discount float DEFAULT 1,
+	constraint fk_orders_done foreign key(orderID) references orders_done(ID),
+	constraint fk_bookDetail_done foreign key(bookID) references bookInfo(ID),
+)
+GO
+
+USE shanzhai
+CREATE VIEW v_orderManage
+AS
+SELECT orders.*,users.userName from orders
+inner join users on orders.userID=users.ID
+GO
+
+use shanzhai
+create view v_orderDetailManage
+as
+select orderDetail.*,
+		bookInfo.ISBN,
+		bookInfo.bookName,
+		bookInfo.publisher
+from orderDetail inner join bookInfo on bookInfo.ID=orderDetail.bookID
+go
+
+use shanzhai
+go
+CREATE PROCEDURE pro_deal_orders
+	@counter int=0,
+	@orderID int =-1,
+	@orderID_new int=-1
+AS
+BEGIN
+	/*已完成订单的数量*/
+	select @counter=count(*)  from orders where pay=1
+	/*从表orders,orderDetail中逐个取出，放入orders_done,orderDetail_done中*/
+	while(@counter>0)
+	begin
+		select top 1 @orderID=ID from orders where pay=1
+		/*转移orders中的一个记录*/
+		insert into orders_done select userID,orderdatetime,amount,trueName,address,postcode,tel,email,dealMethod,pay from orders where ID=@orderID
+		/*转移相应的orderDetail中的记录*/
+		select @orderID_new=max(ID) from orders_done
+		insert into orderDetail_done select @orderID_new,bookID,price,number,discount from orderDetail where orderID=@orderID
+		delete orderDetail where orderID=@orderID
+		delete orders where ID=@orderID
+		/*@counter 减 1*/
+		set @counter=@counter-1
+	end
+END
 GO
