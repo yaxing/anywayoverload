@@ -43,7 +43,7 @@ public partial class ShowOrder : System.Web.UI.Page
         {
             BsOrder bs = new BsOrder();
             BsUserManager bm = new BsUserManager();
-            bs.DelOrder(index);
+            bs.CancelOrder(index);
             if (Session["userName"] != null)
             {
                 String uN = Session["userName"].ToString();

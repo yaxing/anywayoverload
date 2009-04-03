@@ -67,6 +67,14 @@ public partial class CartView : System.Web.UI.Page
 
     protected void Check_out(object sender, EventArgs e)
     {
+        ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"]; //获取购物车
+        
+        if (Session["userName"] != null)
+        {
+            if(cart.TotalRecords != 0) Response.Redirect("BuyProduct.aspx");
+            else ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"请先购买商品！\");this.location.href='index.aspx'</script>");
+        }
+        else ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"请先登陆！\");this.location.href='index.aspx'</script>");
 
     }
 

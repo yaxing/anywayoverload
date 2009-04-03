@@ -3,6 +3,7 @@
 
 <%@ Import Namespace="BsCtrl" %>
 <%@ Import Namespace="System.Data" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div>
         <h4>
@@ -45,7 +46,7 @@
                         <ItemTemplate>
                             <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl='<%#"OrderDetails.aspx?OrderID="+Eval("ID").ToString() %>'>查看</asp:LinkButton>
                             <asp:LinkButton ID="lbtnCancel" runat="server" CommandArgument='<%#Eval("ID") %>'
-                                CommandName="CancelOrder"  Visible = '<%# !Convert.ToBoolean(Eval("pay")) %>' OnClientClick="return confirm('真的要删除该订单吗？')">删除</asp:LinkButton>
+                                CommandName="CancelOrder"  Visible = '<%# !Convert.ToBoolean(System.Math.Abs(Convert.ToInt32(Eval("pay")))) %>' OnClientClick="return confirm('真的要删除该订单吗？')">取消</asp:LinkButton>
                             
                         </ItemTemplate>
                     </asp:TemplateField>
