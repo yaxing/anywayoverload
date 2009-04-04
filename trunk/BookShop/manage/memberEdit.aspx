@@ -12,7 +12,7 @@
         &nbsp;&nbsp;<br />
         
         <asp:GridView ID="GV1" runat="server" AllowPaging="True" AutoGenerateColumns="False" HorizontalAlign="Center" AutoGenerateEditButton="True"
-        EditCommand ="EditRowsCommand" PageSize="2" OnRowCancelingEdit="GV1_CancelEdit" OnRowEditing="GV1_RowEdit" Height="61px" OnRowUpdating="GV1_RowUpdating" Width="552px" BackColor="Transparent" BorderColor="Transparent" ForeColor="DodgerBlue" OnPageIndexChanging="GV1_PageIndexChanging" >
+        EditCommand ="EditRowsCommand" PageSize="3" OnRowCancelingEdit="GV1_CancelEdit" OnRowEditing="GV1_RowEdit" Height="61px" OnRowUpdating="GV1_RowUpdating" Width="552px" BackColor="Transparent" BorderColor="Transparent" ForeColor="DodgerBlue" OnPageIndexChanging="GV1_PageIndexChanging" >
             <Columns>
                 <asp:TemplateField HeaderText="ID">
                     <EditItemTemplate>
@@ -36,23 +36,25 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="密码">
                     <ItemTemplate>
-                        &nbsp;<asp:Label ID="Lb_pwd" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.password") %>' Width="35px"></asp:Label>
+                        &nbsp;<asp:Label ID="Lb_pwd" runat="server" Width="60px">Password</asp:Label>
                     </ItemTemplate>
                     <HeaderStyle BackColor="#C0C0FF" HorizontalAlign="Center" VerticalAlign="Bottom"
                         Wrap="False" />
                     <EditItemTemplate>
-                        <asp:TextBox ID="TB_pwd" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.password") %>' Width="35px" Wrap="False" TextMode="Password" MaxLength="32"></asp:TextBox>
+                        <asp:TextBox ID="TB_pwd" runat="server" Text='Password' Width="60px" Wrap="False" MaxLength="32" ForeColor="#FF8000"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RFV_pwd" runat="server" ControlToValidate="TB_pwd"
                             ErrorMessage="*"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RV_pwd" runat="server" ControlToValidate="TB_pwd"
                             ErrorMessage="*" ValidationExpression="[a-zA-Z0-9_]*"></asp:RegularExpressionValidator>
+                        <asp:Label ID="Lb_PrePwd" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.password") %>'
+                            Visible="False" Width="35px"></asp:Label>
                     </EditItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="确认密码">
                     <EditItemTemplate>
-                        <asp:TextBox ID="TB_repwd" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.password") %>'
-                            Width="35px" Wrap="False" TextMode="Password" MaxLength="32"></asp:TextBox>
+                        <asp:TextBox ID="TB_repwd" runat="server" Text='Password'
+                            Width="60px" Wrap="False" MaxLength="32" ForeColor="#FF8000"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RFV_repwd" runat="server" ControlToValidate="TB_repwd"
                             ErrorMessage="*"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="REV_repwd" runat="server" ControlToValidate="TB_repwd"
@@ -61,8 +63,7 @@
                             ErrorMessage="*"></asp:CompareValidator>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Lb_repwd" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.password") %>'
-                            Width="35px"></asp:Label>
+                        &nbsp;
                     </ItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     <HeaderStyle BackColor="#C0C0FF" HorizontalAlign="Center" VerticalAlign="Bottom"
