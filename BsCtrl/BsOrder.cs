@@ -37,7 +37,7 @@ namespace BsCtrl
             String connStr = ConfigurationSettings.AppSettings["dbConnString"];
             db.connDB(connStr);
 
-            string SqlState = "insert into orders(userID,orderdatetime,trueName,amount,address,email,tel,postcode,dealMethod) values(" + user_ID + ",getdate(),'" + user_Name + "'," + user_Amount + ",'" + user_Address + "','" + user_Email + "','" + user_Tel + "','" + user_Post +  "','" + user_Deal + "')"; 
+            string SqlState = "insert into orders(userID,orderdatetime,trueName,amount,address,email,tel,postcode,dealMethod) values(" + user_ID + ",getdate(),'" + user_Name + "'," + Convert.ToDouble(user_Amount) + ",'" + user_Address + "','" + user_Email + "','" + user_Tel + "','" + user_Post + "','" + user_Deal + "')"; 
             int orderid = db.executeUpdate_id(SqlState);
 
             return orderid;

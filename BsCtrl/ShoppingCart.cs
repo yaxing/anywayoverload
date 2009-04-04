@@ -13,6 +13,7 @@ namespace BsCtrl
     { 
         String Book_ID; //图书ID
         String Book_Name; //图书名称
+        String Book_Cover;//图书封面
         Double Book_Price; //图书价格
         Double Book_Discount;//图书折扣
         int Quan; //图书数量
@@ -29,6 +30,13 @@ namespace BsCtrl
         {
             get { return Book_Name; }
             set { Book_Name = value; }
+        }
+
+        /*图书封面字段*/
+        public String Cover
+        {
+            get { return Book_Cover; }
+            set { Book_Cover = value; }
         }
 
         /*图书价格字段*/
@@ -64,6 +72,7 @@ namespace BsCtrl
             int bookID = Convert.ToInt32(ItemID);
             DataSet ds = bs.GetBookInfo(bookID);
             Book_Name = ds.Tables[0].Rows[0]["bookName"].ToString();
+            Book_Cover = ds.Tables[0].Rows[0]["coverPath"].ToString();
             Book_Price = Convert.ToDouble(ds.Tables[0].Rows[0]["price"].ToString());
             Book_Discount = Convert.ToDouble(ds.Tables[0].Rows[0]["discount"].ToString());
             Quan = 1;
@@ -177,11 +186,7 @@ namespace BsCtrl
         */
         public void ClearCart()
         {
-            foreach (DictionaryEntry entry in Cart_Orders)
-            {
-                Stat_Class order = (Stat_Class)entry.Value;
-                Cart_Orders.Remove(order.ID);
-            }
+            Cart_Orders.Clear();
         }
 
         /*给购物车某个图书类数量加1
