@@ -32,34 +32,36 @@
                 <asp:TemplateField HeaderText="用户名">
                     <EditItemTemplate>
                         <asp:Label ID="Lb_name" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.userName") %>'
-                            Width="40px"></asp:Label>
+                            Width="50px"></asp:Label>
                     </EditItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     <HeaderStyle BackColor="#C0C0FF" HorizontalAlign="Center" VerticalAlign="Bottom" />
                     <ItemTemplate>
-                        <asp:Label ID="Label2_name" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.userName") %>' Width="40px"></asp:Label>
+                        <asp:Label ID="Label2_name" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.userName") %>' Width="50px"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="密码">
                     <EditItemTemplate>
                         <asp:TextBox ID="TB_pwd" runat="server"
-                            Width="35px" Wrap="False" TextMode="Password" MaxLength="32"></asp:TextBox>
+                            Width="60px" Wrap="False" MaxLength="32" ForeColor="#FF8000" Text="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RFV_pwd" runat="server" Display="Dynamic" ErrorMessage="*" ControlToValidate="TB_pwd"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RV_pwd" runat="server" ControlToValidate="TB_pwd"
                             ErrorMessage="*" ValidationExpression="[a-zA-Z0-9_]*"></asp:RegularExpressionValidator>
+                        <asp:Label ID="Lb_PrePwd" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.password") %>'
+                            Visible="False" Width="35px"></asp:Label>
                     </EditItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     <HeaderStyle BackColor="#C0C0FF" HorizontalAlign="Center" VerticalAlign="Bottom"
                         Wrap="False" />
                     <ItemTemplate>
-                        &nbsp;<asp:Label ID="Lb_pwd" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.password") %>'
-                            Width="50px"></asp:Label>
+                        &nbsp;<asp:Label ID="Lb_pwd" runat="server" Text='Password'
+                            Width="60px" ForeColor="Transparent"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="确认密码">
                     <EditItemTemplate>
-                        <asp:TextBox ID="TB_repwd" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.password") %>'
-                            Width="35px" Wrap="False" TextMode="Password" MaxLength="32"></asp:TextBox>
+                        <asp:TextBox ID="TB_repwd" runat="server" Text='Password'
+                            Width="60px" Wrap="False" MaxLength="32" ForeColor="#FF8000"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RFV_repwd" runat="server" Display="Dynamic" ErrorMessage="*" ControlToValidate="TB_repwd"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RV_repwd" runat="server" ControlToValidate="TB_repwd"
                             ErrorMessage="*" ValidationExpression="[a-zA-Z0-9_]*"></asp:RegularExpressionValidator>
@@ -67,8 +69,8 @@
                             Display="Dynamic" ErrorMessage="*"></asp:CompareValidator>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Lb_repwd" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.password") %>'
-                            Width="50px"></asp:Label>
+                        <asp:Label ID="Lb_repwd" runat="server" Text='Password'
+                            Width="60px" ForeColor="Transparent"></asp:Label>
                     </ItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     <HeaderStyle BackColor="#C0C0FF" HorizontalAlign="Center" VerticalAlign="Bottom" />

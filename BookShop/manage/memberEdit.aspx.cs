@@ -160,6 +160,7 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
     {
         //实例化BsUserManager
         BsUserManager admin = new BsUserManager();
+        String strMd5Pwd;   //写回数据库的密码
 
         int RowEditIndex = GV1.EditIndex;
         //判断当前是否为数据行
@@ -172,9 +173,16 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
             String strTEL = ((TextBox)GV1.Rows[RowEditIndex].FindControl("TB_tel")).Text.Trim();    //tel
             String strEmail = ((TextBox)GV1.Rows[RowEditIndex].FindControl("TB_email")).Text.Trim();    //email
             String strGrade = ((TextBox)GV1.Rows[RowEditIndex].FindControl("TB_grade")).Text.Trim();  //用户等级grade
-    
-            //密码md5加密
-            String strMd5Pwd = MD5(strPwd);
+
+            if (strPwd != "Password")    //输入了新密码
+            {    //密码md5加密
+                strMd5Pwd = MD5(strPwd);
+            }
+            else    //将原密码写回数据库
+            {
+                strMd5Pwd = ((Label)GV1.Rows[RowEditIndex].FindControl("Lb_PrePwd")).Text;  
+                 
+            }
 
             //执行更新操作
             admin.updateMember(strID, strName, strMd5Pwd, strTEL, strEmail, strGrade);       //更新用户
@@ -182,6 +190,33 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
             //退出编辑模式，显示更新后的页面
             GV1.EditIndex = -1;
             LoadData();
+
+            
+            //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
+            if (GV1.Rows.Count == 0)
+            {   //查询结果为空
+
+                //“全选”按钮不可见
+                Button Bt_all = (Button)Panel2.FindControl("Bt_all");
+                Bt_all.Visible = false;
+
+                //“全不选”按钮不可见
+                Button Bt_allnot = (Button)Panel2.FindControl("Bt_allnot");
+                Bt_allnot.Visible = false;
+
+                //“修改”按钮不可见
+                Button Bt_del = (Button)Panel2.FindControl("Bt_del");
+                Bt_del.Visible = false;
+
+                //位置在上的“返回查询”按钮不可见
+                Button Bt_search = (Button)Panel2.FindControl("Bt_search");
+                Bt_search.Visible = false;
+
+                //位置在下的“返回查询”按钮可见
+                LinkButton LB_search = (LinkButton)Panel2.FindControl("LB_search");
+                LB_search.Visible = true;
+            }
+
             Lb_ret.Text = "操作成功";   //提示成功
         }
     }
