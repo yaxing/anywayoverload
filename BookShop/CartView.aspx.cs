@@ -81,10 +81,11 @@ public partial class CartView : System.Web.UI.Page
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         String index = Convert.ToString(e.CommandArgument);
+
+        ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"];
         
         if(e.CommandName=="AddItemOne")
         {
-            ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"];
 
             if (cart != null)
             {
@@ -101,7 +102,6 @@ public partial class CartView : System.Web.UI.Page
         }
         else if (e.CommandName == "DelItemOne")
         {
-            ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"];
 
             if (cart != null)
             {
@@ -119,8 +119,6 @@ public partial class CartView : System.Web.UI.Page
         else if (e.CommandName == "DelFromCart")
         {
 
-            ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"];
-
             if (cart != null)
             {
 
@@ -135,6 +133,7 @@ public partial class CartView : System.Web.UI.Page
             }
 
         }
+        Response.Redirect("CartView.aspx");
     }
 
     //protected void PagerButton_Click(object sender, EventArgs e)
