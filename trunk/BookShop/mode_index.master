@@ -141,7 +141,7 @@ function tick() {
                                                         <td width="1" rowspan="2" valign="top">
                                                             <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
                                                         <td valign="bottom" style="height: 22px">
-                                                            <a href="">订单查询</a></td>
+                                                            <a href="ShowOrder.aspx">订单查询</a></td>
                                                         <td width="1" rowspan="2" valign="top">
                                                             <img src="Images/Nav_separate.gif" width="1" height="36" alt="" /></td>
                                                         <td valign="bottom" style="height: 22px">
@@ -150,17 +150,17 @@ function tick() {
                                                             &nbsp;</td>
                                                     </tr>
                                                     <tr align="center">
-                                                        <td height="13">
+                                                        <td style="height: 14px">
                                                             <a href="index.aspx">Index</a></td>
-                                                        <td>
+                                                        <td style="height: 14px">
                                                             <a href="newBooks.aspx">New Books</a></td>
-                                                        <td>
+                                                        <td style="height: 14px">
                                                             <a href="bookSort.aspx">Book Sort</a></td>
-                                                        <td>
+                                                        <td style="height: 14px">
                                                             <a href="CartView.aspx">Shopping Bag</a></td>
-                                                        <td>
-                                                            <a href="">Order Search</a></td>
-                                                        <td>
+                                                        <td style="height: 14px">
+                                                            <a href="ShowOrder.aspx">Order Search</a></td>
+                                                        <td style="height: 14px">
                                                             <a href="saleRank.aspx">Sell Sort</a></td>
                                                     </tr>
                                                     <tr style="text-align: right;">
@@ -226,8 +226,8 @@ function tick() {
                                                                         <td>
                                                                             &nbsp;</td>
                                                                         <td height="31" align="center">
-                                                                            <asp:Button ID="LogIn" runat="server" Style="position: relative" Text="登录" OnClick="LogIn_Click" OnClientClick="return logincheck()"
-                                                                                CausesValidation="False" />
+                                                                            <asp:Button ID="LogIn" runat="server" Style="position: relative" Text="登录" OnClick="LogIn_Click"
+                                                                                OnClientClick="return logincheck()" CausesValidation="False" />
                                                                             <asp:Button ID="Regisiter" runat="server" Style="left: 36px; position: relative;
                                                                                 top: 0px" Text="注册" OnClick="Regisiter_Click" CausesValidation="False" />
                                                                             <asp:Button ID="Reput" runat="server" Style="left: 40px; position: relative; top: 0px"
@@ -352,7 +352,7 @@ function tick() {
                                                                         <tr>
                                                                             <td style="width: 60%">
                                                                             </td>
-                                                                            <td style="widows: 40%; text-align: center; font-family: 幼圆">
+                                                                            <td style="width: 40%; text-align: center; font-family: 幼圆">
                                                                                 <%#Eval("theme") %>
                                                                             </td>
                                                                         </tr>
@@ -371,7 +371,8 @@ function tick() {
                                                                 <asp:RadioButtonList ID="rblPoll" runat="server">
                                                                 </asp:RadioButtonList>
                                                                 <asp:ImageButton ID="bPoll" runat="server" Height="29px" ImageUrl="~/Images/poll.gif"
-                                                                    Style="left: 62px; position: relative; top: 21px" Width="85px" OnClick="bPoll_Click" OnClientClick="return pollcheck()" /></asp:Panel>
+                                                                    Style="left: 62px; position: relative; top: 21px" Width="85px" OnClick="bPoll_Click"
+                                                                    OnClientClick="return pollcheck()" /></asp:Panel>
                                                             <asp:Panel ID="panelPollResult" runat="server" Height="50px" Width="125px">
                                                                 &nbsp;<asp:Label ID="lableshowPollR" runat="server" Text="感谢您的参与！" Width="223px"></asp:Label>
                                                                 <br />
@@ -423,10 +424,8 @@ function tick() {
                                                     <tr>
                                                         <td width="73%" height="220" valign="top">
                                                             <table width="100%" style="height: 126" border="0" cellpadding="0" cellspacing="0">
-                                                                <div>
-                                                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                                                                    </asp:ContentPlaceHolder>
-                                                                </div>
+                                                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                                </asp:ContentPlaceHolder>
                                                             </table>
                                                             &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                                                         </td>
