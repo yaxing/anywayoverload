@@ -13,14 +13,14 @@ namespace DbConnect
         DataSet ds;
 
         ////数据库链接函数，server为地址
-        //public void connDB(string server, string userName, string passWord)
-        //{
-        //    sqlConnection = new SqlConnection();
-        //    sqlConnection.ConnectionString =
-        //    "Server=" + server + ";Database=shanzhai;User ID=" + userName + ";Password=" + passWord
-        //    + ";Trusted_Connection=False";
-        //    sqlConnection.Open();
-        //}
+        public void connDB(string server, string userName, string passWord)
+        {
+            sqlConnection = new SqlConnection();
+            sqlConnection.ConnectionString =
+            "Server=" + server + ";Database=shanzhai;User ID=" + userName + ";Password=" + passWord
+            + ";Trusted_Connection=False";
+            sqlConnection.Open();
+        }
 
         //数据库链接函数，直接传入链接字符串
         public void connDB(String strConn)
