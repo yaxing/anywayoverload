@@ -13,8 +13,6 @@ namespace BsCtrl
         private String strDbUserName;
         private String strDbPassWord;
 
-        private String strConn;     //链接数据库的另一种方式(1个参数)
-
 
         public BsUserManager()    
         {
