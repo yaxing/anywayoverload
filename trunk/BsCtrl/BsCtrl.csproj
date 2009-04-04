@@ -34,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminControl.cs" />
+    <Compile Include="BsBook.cs" />
     <Compile Include="BsBookInfo.cs" />
     <Compile Include="BsOrder.cs" />
     <Compile Include="BsUserManager.cs" />
