@@ -15,7 +15,12 @@ public partial class ShowOrder : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindToGridView();
+        if(!IsPostBack)
+        {
+            this.GridView1.Attributes.Add("SortExpression", "ID");
+            this.GridView1.Attributes.Add("SortDirection", "ASC");
+            BindToGridView();
+        }
     }
 
     protected void BindToGridView()
@@ -26,12 +31,15 @@ public partial class ShowOrder : System.Web.UI.Page
 
         if (Session["userName"] != null)
         {
+            DataTable dt = new DataTable();
             String uN = Session["userName"].ToString();
 
             int userID = bm.findUser(uN);
-
-            this.GridView1.DataSource = bs.SelectOrders(userID);
-
+            dt = bs.SelectOrders(userID);
+            string SortDirection = this.GridView1.Attributes["SortDirection"].ToString();
+            string SortExpression = this.GridView1.Attributes["SortExpression"].ToString();
+            dt.DefaultView.Sort = string.Format("{0} {1}", SortExpression, SortDirection);
+            this.GridView1.DataSource = dt;
             this.GridView1.DataBind();
         }
         else
@@ -43,11 +51,10 @@ public partial class ShowOrder : System.Web.UI.Page
     }
 
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
-    {
-        int index = Convert.ToInt32(e.CommandArgument);
-        
+    {   
         if(e.CommandName=="CancelOrder")
         {
+            int index = Convert.ToInt32(e.CommandArgument);
             BsOrder bs = new BsOrder();
             BsUserManager bm = new BsUserManager();
             bs.CancelOrder(index);
@@ -119,5 +126,22 @@ public partial class ShowOrder : System.Web.UI.Page
                 break;
         }
         BindToGridView();
+    }
+    protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        if (e.SortExpression != "")
+        {
+            if (GridView1.PageCount > 0)
+            {
+                //设定排序方向
+                string SortDirection = "ASC";
+                SortDirection = (this.GridView1.Attributes["SortDirection"].ToString() == SortDirection ? "DESC" : "ASC");
+                this.GridView1.Attributes["SortExpression"] = e.SortExpression;
+                this.GridView1.Attributes["SortDirection"] = SortDirection;
+                //重新绑定数据
+                BindToGridView();
+            }
+        }
+
     }
 }
