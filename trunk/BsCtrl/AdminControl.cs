@@ -4,6 +4,7 @@ using System.Text;
 using DbConnect;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace BsCtrl
 {
@@ -44,6 +45,14 @@ namespace BsCtrl
         {
             return adminInfo.Tables[0].Rows[0][4].ToString();
         }
+
+        public String MD5(String strPwd)
+        {
+            MD5CryptoServiceProvider MD5CSP = new MD5CryptoServiceProvider();
+            byte[] MD5Pwd = System.Text.Encoding.UTF8.GetBytes(strPwd);
+            byte[] MD5Out = MD5CSP.ComputeHash(MD5Pwd);
+            return Convert.ToBase64String(MD5Out);
+        } 
 
     }
 }
