@@ -26,10 +26,10 @@
                 </td>
             </tr>
             <tr>
-                <td style="width: 118px; height: 21px; text-align: right;">
+                <td style="width: 118px; height: 27px; text-align: right;" align="left">
                     密码：
                 </td>
-                <td style="height: 21px">
+                <td align="left" style="height: 27px">
                     <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" Width="150px" MaxLength="128" CssClass="textarea"></asp:TextBox>(必填)
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword"
                         ErrorMessage="密码不能为空" Display="Dynamic"></asp:RequiredFieldValidator>
@@ -37,9 +37,10 @@
                         ControlToValidate="txtPassword2" Display="Dynamic" ErrorMessage="重复输入密码不匹配"></asp:CompareValidator></td>
             </tr>
             <tr>
-                <td style="width: 118px; text-align: right;">
-                    确认密码：</td>
-                <td>
+                <td style="width: 118px; height: 27px; text-align: right;" align="left">
+                    确认密码：
+                </td>
+                <td align="left" style="height: 27px">
                     <asp:TextBox ID="txtPassword2" runat="server" TextMode="Password" Width="150px" MaxLength="128" CssClass="textarea"></asp:TextBox>(必填)
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtPassword2"
                         ErrorMessage="重复密码不能为空"></asp:RequiredFieldValidator></td>
