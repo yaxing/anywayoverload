@@ -12,7 +12,7 @@ using BsCtrl;
 
 public partial class _Default : System.Web.UI.Page
 {
-    String strDbConn = ConfigurationSettings.AppSettings["dbConnString"];
+    String strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
