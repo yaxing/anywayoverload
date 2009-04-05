@@ -167,7 +167,7 @@ namespace BsCtrl
          * 参数：iOrderID表示要添加的订单号
          * 返回值：无
          */
-        public void AddToOrder(int iOrderID)
+        public Boolean AddToOrder(int iOrderID)
         {
             BsOrder bo = new BsOrder();
             foreach (DictionaryEntry entry in Cart_Orders)
@@ -175,9 +175,11 @@ namespace BsCtrl
                 Stat_Class order = (Stat_Class)entry.Value;
                 if(order!=null)
                 {
-                    bo.AddOrderDetails(iOrderID, order);
+                    if(bo.AddOrderDetails(iOrderID, order) == false)
+                        return false;
                 }
             }
+            return true;
         }
 
         /*清空购物车

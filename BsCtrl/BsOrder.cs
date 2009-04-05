@@ -20,7 +20,7 @@ namespace BsCtrl
 
             String connStr = ConfigurationSettings.AppSettings["dbConnString"];
             db.connDB(connStr);
-            string SqlState = "select * from orders where userID = " + Convert.ToString(iUserID);
+            string SqlState = "select * from orders where userID = " + Convert.ToString(iUserID) + "Order by orderDatetime DESC";
 
             ds = db.executeQuery(SqlState);
 
@@ -33,28 +33,31 @@ namespace BsCtrl
         public int AddOrder(String user_ID, String user_Name, String user_Amount, String user_Address, String user_Email, String user_Tel, String user_Post, String user_Deal)
         {
             DbConnector db = new DbConnector();
+            int orderid = 0;
 
             String connStr = ConfigurationSettings.AppSettings["dbConnString"];
             db.connDB(connStr);
 
             string SqlState = "insert into orders(userID,orderdatetime,trueName,amount,address,email,tel,postcode,dealMethod) values(" + user_ID + ",getdate(),'" + user_Name + "'," + Convert.ToDouble(user_Amount) + ",'" + user_Address + "','" + user_Email + "','" + user_Tel + "','" + user_Post + "','" + user_Deal + "')"; 
-            int orderid = db.executeUpdate_id(SqlState);
-
+            
+            orderid = db.executeUpdate_id(SqlState);
+            
             return orderid;
         }
 
         /*功能：添加此订单的OrderDetails
          参数：iOrderID存放订单的ID,sOrder存放购物车单条信息
          返回值：无*/
-        public void AddOrderDetails(int iOrderID, Stat_Class sOrder)
+        public Boolean AddOrderDetails(int iOrderID, Stat_Class sOrder)
         {
             DbConnector db = new DbConnector();
             String connStr = ConfigurationSettings.AppSettings["dbConnString"];
             db.connDB(connStr);
 
             string SqlState = "insert into orderDetail(orderID,bookID,price,number,discount) values (" + iOrderID + "," + sOrder.ID + "," + sOrder.Price + "," + sOrder.Quantity + "," + sOrder.Discount + ")";
-            
-            db.executeUpdate(SqlState);
+
+            if (db.executeUpdate(SqlState) == 1) return true;
+            else return false;
         }
 
         /*功能：取消此订单
