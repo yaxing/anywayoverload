@@ -79,6 +79,7 @@ public partial class mode_index : System.Web.UI.MasterPage
         DataSet loginInfo;//获取数据库匹配信息数据集
         name = uName.Text;//从页面取出登录信息
         pass = pWord.Text;
+        pass = BsUserManager.MD5(pass);
         String g = "";
         loginInfo = indexCtrl.VerifyUserInfo(name,pass);//数据库匹配登录信息
         if (loginInfo.Tables[0].Rows.Count > 0)//如果信息匹配，登录成功设置session，并修改登录框显示内容
