@@ -13,7 +13,7 @@ using BsCtrl;
 
 public partial class manage_bookManage : System.Web.UI.Page
 {
-    String DbConnectString = ConfigurationSettings.AppSettings["dbConnString"];
+    String DbConnectString = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["AdminN"] == null || Session["AdminLv"] == null)

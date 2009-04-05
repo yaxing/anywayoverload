@@ -16,7 +16,7 @@ public partial class LoginCheck : System.Web.UI.Page
     {
         String userName = Request["userName"].ToString();
         String userPwd = Request["userPwd"].ToString();
-        String DbConnectString = ConfigurationSettings.AppSettings["dbConnString"];
+        String DbConnectString = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
 
         AdminControl AdminC = new AdminControl(DbConnectString);
         if(userName.Length == 0 || userPwd.Length == 0)
@@ -26,6 +26,7 @@ public partial class LoginCheck : System.Web.UI.Page
         }
         else
         {
+            userPwd = AdminC.MD5(userPwd);
             if(AdminC.AdminLogin(userName,userPwd))
             {
                 Session.Add("AdminN",userName);
