@@ -1,127 +1,134 @@
 ﻿using System;
-using System.Data;
-using System.Configuration;
 using System.Collections;
+using System.Configuration;
+using System.Data;
+//using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
+//using System.Xml.Linq;
 using DbConnect;
-using System.Data.Common;
-using System.Data.SqlClient;
 
 public partial class manage_BBS : System.Web.UI.Page
 {
+    DbConnector connStr = new DbConnector();
     String strConn = ConfigurationManager.AppSettings["dbConnString"];
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        GridView1.Visible = false;
-    }
-    protected void Button2_Click(object sender, EventArgs e)
-    {
-        Label2.Text = "";
-        TextBox1.Text = "";
-        GridView1.Visible = false;
-    }
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        DbConnector connStr = new DbConnector();
-        connStr.connDB(strConn);
-        DateTime d = DateTime.Now;
-        String str = "insert into bbs (content, postTime) values('" + TextBox1.Text + "',  '"+d+"')";
-        int flags = connStr.executeUpdate(str);
-        if (flags == 0)
-        {
-            Label2.Text = "添加失败！";
-        }
-        else Label2.Text = "添加成功！";
-        connStr.close();
-    }
-    protected void Button3_Click(object sender, EventArgs e)
-    {
-        Label2.Text = "所有公告：";
-        GridView1.Visible = true;
-        DbConnector myConn = new DbConnector();
-        string SqlQuery = "select * from bbs";
-        myConn.connDB(strConn);
-        DataSet Datas = myConn.executeQuery(SqlQuery);
-        if (Datas.Tables[0].Rows.Count > 0)
-        {
-            //Label4.Text = "";
-            GridView1.Visible = true;
-            GridView1.DataSource = Datas.Tables[0].DefaultView;
-            GridView1.DataBind();
-        }
-        else
-        {
-            //Label4.Visible = true;
-        }
-        myConn.close();
-    }
 
     protected void BindData()
     {
-        DbConnector connStr = new DbConnector();
         connStr.connDB(strConn);
-        string Query = "select * from bbs";
-        DataSet mydataset = new DataSet();
-        mydataset = connStr.executeQuery(Query);
-        if (mydataset.Tables[0].Rows.Count >= 0)
+        String BindDataStr = "select * from bbs";
+        DataSet BindDataSet = connStr.executeQuery(BindDataStr);
+        BBS.DataSource = BindDataSet.Tables[0].DefaultView;
+        BBS.DataBind();
+    }
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        Tittle.Text = "";
+        Updates.Text = "";
+        String QueryString = "select * from bbs";
+        connStr.connDB(strConn);
+        DataSet Result = connStr.executeQuery(QueryString);
+        if (Result.Tables[0].Rows.Count == 0)
         {
-            Label2.Text = "所有的公告";
-            GridView1.DataSource = mydataset.Tables[0].DefaultView;
-            GridView1.DataBind();
+            Tittle.Text = "暂时没有公告！";
         } 
         else
         {
-            Label2.Text = "没有公告";
-            GridView1.Visible = false;
+            Tittle.Text = "公告内容如下：";
+            BBS.DataSource = Result.Tables[0].DefaultView;
+            BBS.DataBind();
         }
+        connStr.close();
     }
-    protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void Reset_Click(object sender, EventArgs e)
     {
-        this.GridView1.EditIndex = e.NewEditIndex;
-        BindData();
+        BBSContent.Text = "";
     }
-    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    protected void Save_Click(object sender, EventArgs e)
     {
-        DbConnector connStr = new DbConnector();
         connStr.connDB(strConn);
-        string id = this.GridView1.DataKeys[e.RowIndex]["ID"].ToString();
+        DateTime d = DateTime.Now;
+        String insertStr = "insert into bbs (content, postTime) values('" + BBSContent.Text + "', '" + d + "')";
+        int ResultFlags = connStr.executeUpdate(insertStr);
+        if (ResultFlags == 0)
+        {
+            InsertFlags.Text = "添加失败！";
+        } 
+        else
+        {
+            InsertFlags.Text = "添加成功！";
+        }
+        connStr.close();
+        Response.Redirect(Request.Url.ToString());
+    }
+    protected void BBS_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        connStr.connDB(strConn);
+        string id = this.BBS.DataKeys[e.RowIndex]["ID"].ToString();
         string delCmd = "delete from bbs where id = " + id;
         int flags = connStr.executeUpdate(delCmd);
-        if (flags == 0) Label5.Text = "失败！";
-        else Label5.Text = "成功！";
-        BindData();
-    }
-    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
-    {
-        DbConnector connStr = new DbConnector();
-        connStr.connDB(strConn);
-        string id = GridView1.DataKeys[e.RowIndex].Values[0].ToString();
-        string bbs_content = ((TextBox)GridView1.Rows[e.RowIndex].Cells[3].Controls[0]).Text;
-        string bbs_postTime = ((TextBox)GridView1.Rows[e.RowIndex].Cells[4].Controls[0]).Text;
-        string sqlStr = "update bbs set content = '" + bbs_content + "', postTime = '" + bbs_postTime + "' where ID = " + id;
-        int flags = connStr.executeUpdate(sqlStr);
         if (flags == 0)
         {
-            Label5.Text = "更新失败！";
+            UpdateFlags.Text = "删除失败！";
         } 
         else
         {
-            Label5.Text = "更新成功！";
+            UpdateFlags.Text = "删除成功！";
         }
+        connStr.close();
+        Response.Redirect(Request.Url.ToString());
     }
-    protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    protected void BBS_RowEditing(object sender, GridViewEditEventArgs e)
     {
-        GridView1.EditIndex = -1;
+        this.BBS.EditIndex = e.NewEditIndex;
         BindData();
     }
-    protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void BBS_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-        GridView1.PageIndex = e.NewPageIndex;
+        connStr.connDB(strConn);
+        string id = BBS.DataKeys[e.RowIndex].Values[0].ToString();
+        string bbs_content = ((TextBox)BBS.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
+        string bbs_postTime = ((TextBox)BBS.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
+        string QueryStr = "select id from bbs where id = " + id;
+        DataSet ResultDataset = connStr.executeQuery(QueryStr);
+        if (ResultDataset.Tables[0].Rows.Count > 1)
+        {
+            Updates.Text = "序号不能重复！";
+        } 
+        else
+        {
+            string UpdataString = "update bbs set content = '" + bbs_content + "', postTime = '" + bbs_postTime + "' where ID = " + id;
+            int ResultFlags = connStr.executeUpdate(UpdataString);
+            if (ResultFlags == 0)
+            {
+                Updates.Text = "更新失败！";
+            } 
+            else
+            {
+                Updates.Text = "更新成功！";
+            }
+        }
+        connStr.close();
+    }
+    protected void BBS_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        BBS.EditIndex = -1;
         BindData();
+    }
+    protected void BBS_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        BBS.PageIndex = e.NewPageIndex;
+        BindData();
+    }
+    protected void DeleteAll_Click(object sender, EventArgs e)
+    {
+        String DelStr = "delete * from bbs";
+        connStr.connDB(strConn);
+        connStr.executeUpdate(DelStr);
+        connStr.close();
     }
 }

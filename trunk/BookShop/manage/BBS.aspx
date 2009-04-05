@@ -1,149 +1,51 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/manage/mode_admin.master" AutoEventWireup="true" CodeFile="BBS.aspx.cs" Inherits="manage_BBS" Title="Untitled Page" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <table>
-        <tr>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 862px">
-            </td>
-            <td colspan="4">
-                公告管理</td>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 100px">
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 862px">
-                <asp:Label ID="Label1" runat="server" Text="公告内容："></asp:Label></td>
-            <td colspan="3">
-                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1"
-                    ErrorMessage="内容不能为空"></asp:RequiredFieldValidator></td>
-            <td style="width: 113px">
-                <asp:Button ID="Button3" runat="server" Text="显示所有公告" CausesValidation="False" OnClick="Button3_Click" /></td>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 100px">
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 21px">
-            </td>
-            <td style="width: 862px; height: 21px">
-            </td>
-            <td style="width: 100px; height: 21px">
-                <asp:Button ID="Button1" runat="server" Text="添加" OnClick="Button1_Click" /></td>
-            <td style="width: 100px; height: 21px">
-                <asp:Button ID="Button2" runat="server" Text="重置" CausesValidation="False" OnClick="Button2_Click" /></td>
-            <td style="width: 164px; height: 21px">
-            </td>
-            <td style="width: 113px; height: 21px">
-            </td>
-            <td style="width: 100px; height: 21px">
-            </td>
-            <td style="width: 100px; height: 21px">
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 862px">
-            </td>
-            <td style="width: 100px">
-                <asp:Label ID="Label2" runat="server"></asp:Label></td>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 164px">
-            </td>
-            <td style="width: 113px">
-            </td>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 100px">
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 862px">
-            </td>
-            <td colspan="2" rowspan="2">
-                &nbsp;
-                <asp:GridView ID="GridView1" runat="server" AllowPaging="True"
-                    PageSize="5" DataKeyNames="ID" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" AutoGenerateColumns="False" ForeColor="Black" GridLines="None">
-                    <Columns>
-                        <asp:CommandField ButtonType="Button" ShowEditButton="True" />
-                        <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
-                        <asp:BoundField DataField="ID" HeaderText="序号" />
-                        <asp:BoundField DataField="content" HeaderText="内容" />
-                        <asp:BoundField DataField="postTime" HeaderText="发布时间" />
-                    </Columns>
-                </asp:GridView>
-            </td>
-            <td style="width: 164px">
-                &nbsp;<br />
-                </td>
-            <td style="width: 113px">
-                &nbsp;</td>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 100px">
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 33px;">
-            </td>
-            <td style="width: 862px; height: 33px;">
-            </td>
-            <td style="width: 164px; height: 33px;">
-            </td>
-            <td style="width: 113px; height: 33px;">
-                &nbsp; &nbsp;&nbsp;
-            </td>
-            <td style="width: 100px; height: 33px;">
-            </td>
-            <td style="width: 100px; height: 33px;">
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 862px">
-            </td>
-            <td style="width: 100px">
-                <asp:Label ID="Label5" runat="server"></asp:Label></td>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 164px">
-            </td>
-            <td style="width: 113px">
-            </td>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 100px">
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 862px">
-            </td>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 164px">
-            </td>
-            <td style="width: 113px">
-            </td>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 100px">
-            </td>
-        </tr>
-    </table>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <asp:Label ID="Tittle" runat="server"></asp:Label>
+    <asp:GridView ID="BBS" runat="server" CellPadding="4" ForeColor="Black" 
+        Width="318px" AutoGenerateColumns="False" BackColor="#CCCCCC" 
+        BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellSpacing="2" 
+        DataKeyNames="ID" onrowdeleting="BBS_RowDeleting" AllowPaging="True" 
+        onpageindexchanging="BBS_PageIndexChanging" 
+        onrowcancelingedit="BBS_RowCancelingEdit" onrowediting="BBS_RowEditing" 
+        onrowupdating="BBS_RowUpdating" PageSize="5" >
+        <FooterStyle BackColor="#CCCCCC" />
+        <RowStyle BackColor="White" />
+        <Columns>
+            <asp:BoundField DataField="ID" HeaderText="序号" />
+            <asp:BoundField DataField="content" HeaderText="内容" />
+            <asp:BoundField DataField="postTime" HeaderText="发布时间" />
+            <asp:CommandField HeaderText="删除" ShowDeleteButton="True" 
+                CausesValidation="False" />
+            <asp:CommandField HeaderText="编辑" ShowEditButton="True" 
+                CausesValidation="False" />
+        </Columns>
+        <PagerStyle BackColor="#CCCCCC" ForeColor="Black" HorizontalAlign="Left" />
+        <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+    </asp:GridView>
+    <asp:Button ID="DeleteAll" runat="server" Text="删除所有" CausesValidation="False" 
+        onclick="DeleteAll_Click" />
+    &nbsp;
+    <asp:Label ID="Updates" runat="server"></asp:Label>
+    <br />
+    <br />
+    <asp:Label ID="BBSContentTitle" runat="server" Text="公告内容"></asp:Label>
+    <asp:TextBox ID="BBSContent" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+        ErrorMessage="RequiredFieldValidator" ControlToValidate="BBSContent">公告的内容不能为空！</asp:RequiredFieldValidator>
+    <br />
+    <br />
+    <br />
+    <asp:Button ID="Save" runat="server" Text="保存" onclick="Save_Click" />
+    &nbsp;&nbsp;&nbsp;
+    <asp:Button ID="Reset" runat="server" Text="重置" CausesValidation="False" 
+        onclick="Reset_Click" />
+    &nbsp;&nbsp;<asp:Label ID="InsertFlags" runat="server"></asp:Label>
+    &nbsp;
+    <asp:Label ID="UpdateFlags" runat="server"></asp:Label>
+    <br />
 </asp:Content>
 
