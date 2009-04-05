@@ -18,7 +18,7 @@ public partial class bookSort : System.Web.UI.Page
     {
         if(!Page.IsPostBack)
         {
-            string strDbConn = ConfigurationManager.AppSettings["dbConnString"];
+            string strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
             bookInfo = new BsBookInfo(strDbConn);
 
             //分类列表
@@ -53,7 +53,8 @@ public partial class bookSort : System.Web.UI.Page
     protected void gvBookList_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvBookList.PageIndex = e.NewPageIndex;
-        string strDbConn = ConfigurationManager.AppSettings["dbConnString"];
+        //string strDbConn = ConfigurationManager.AppSettings["dbConnString"];
+        string strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
         int id = -1;
         string classID = Request.QueryString["classID"];
 

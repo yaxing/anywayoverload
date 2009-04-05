@@ -17,7 +17,7 @@ public partial class index : System.Web.UI.Page
     {
         if(!Page.IsPostBack)
         {
-            string dbConnStr = ConfigurationManager.AppSettings["dbConnString"];
+            string dbConnStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
 
             bsBookInfo = new BsBookInfo(dbConnStr);
 

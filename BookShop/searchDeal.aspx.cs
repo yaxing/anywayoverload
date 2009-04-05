@@ -17,7 +17,7 @@ public partial class _Default : System.Web.UI.Page
     {
         if(!Page.IsPostBack)
         {
-            string strDbConn = ConfigurationManager.AppSettings["dbConnString"];
+            string strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
             bookInfo = new BsBookInfo(strDbConn);
 
             if (Session["sContent"] == null)
