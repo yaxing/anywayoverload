@@ -14,11 +14,16 @@
         <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
         <AlternatingRowStyle BackColor="White" />
         <Columns>
+            <asp:ImageField DataImageUrlField="coverPath" DataImageUrlFormatString="{0}" HeaderText="书籍封面">
+                <ControlStyle Height="110px" Width="76px" />
+            </asp:ImageField>
             <asp:BoundField DataField="bookName" HeaderText="书籍名称" />
             <asp:BoundField DataField="author" HeaderText="作者" />
             <asp:BoundField DataField="publisher" HeaderText="出版社" />
-            <asp:BoundField DataField="price" HeaderText="价格" />
+            <asp:BoundField DataField="price" HeaderText="价格" DataFormatString="{0:f2}" HtmlEncode="False" />
             <asp:BoundField DataField="available" HeaderText="剩余数量" />
+            <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="bookInfo.aspx?bookID={0}"
+                HeaderText="点击进入" Text="点击进入" />
         </Columns>
     </asp:GridView>
     </td></tr>

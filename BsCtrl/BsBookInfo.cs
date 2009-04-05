@@ -81,7 +81,7 @@ namespace BsCtrl
         {
             DataSet ret = null;
             string sql = "select top " + iTopN.ToString() + 
-                        " bookInfo.ID, bookName, sale, price, author, publisher," + 
+                        " bookInfo.ID, coverPath, bookName, sale, price, author, publisher," + 
                         " bookClass.className from bookInfo left join bookClass on bookClass.ID = classID order by sale desc";
             try
             {
@@ -119,7 +119,7 @@ namespace BsCtrl
             DataSet ret = null;
             try
             {
-                string sql = "select ID, bookName, author, publisher, price, available from bookInfo where classID=" + iClassId.ToString();
+                string sql = "select ID, coverPath, bookName, author, publisher, price, available from bookInfo where classID=" + iClassId.ToString();
                 ret = conn.executeQuery(sql);
             }
             catch (System.Exception e)
@@ -152,7 +152,7 @@ namespace BsCtrl
             DataSet ret = null;
             try
             {
-                string sql = "select ID, classID, bookName, publisher, author, price, indatetime from " +
+                string sql = "select ID, coverPath, classID, bookName, publisher, author, price, indatetime from " +
                              "bookInfo where ";
                 bool bFirst = true;
                 foreach(string str in strKeyWords)
