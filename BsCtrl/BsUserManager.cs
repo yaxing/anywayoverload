@@ -4,6 +4,7 @@ using System.Text;
 using System.Data;
 using DbConnect;
 using System.Configuration;
+using System.Security.Cryptography;
 
 namespace BsCtrl
 {
@@ -282,6 +283,19 @@ namespace BsCtrl
             db.close();
             return ret;
         }
+
+        /*功能：密码md5加密
+          参数：原密码strPwd
+          返回：加密后的密码（String）
+        */
+
+        public static string MD5(string strPwd)
+        {
+            MD5CryptoServiceProvider MD5CSP = new MD5CryptoServiceProvider();
+            byte[] MD5Pwd = System.Text.Encoding.UTF8.GetBytes(strPwd);
+            byte[] MD5Out = MD5CSP.ComputeHash(MD5Pwd);
+            return Convert.ToBase64String(MD5Out);
+        } 
     }
 
 }
