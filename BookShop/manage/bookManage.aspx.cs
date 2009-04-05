@@ -81,6 +81,10 @@ public partial class manage_bookManage : System.Web.UI.Page
     }
     protected void BookList_Click(object sender, ImageClickEventArgs e)
     {
+        BsBookInfo bookInfo = new BsBookInfo(DbConnectString);
+        DataSet ds = new DataSet();
+        ds = bookInfo.GetAllBooks();
+        BookGridView_Load(ds);
         NewBookPanel.Visible = false;
         BookListPanel.Visible = true;
         TypePanel.Visible = false;
