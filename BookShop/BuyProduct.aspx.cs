@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Configuration;
 using System.Collections;
 using System.Web;
@@ -74,11 +75,16 @@ public partial class BuyProduct : System.Web.UI.Page
         String user_Tel = this.txtMobile.Text.Trim();
         String user_Post = this.txtPost.Text.Trim();
         String user_Deal = Convert.ToString(this.DropDownList1.SelectedValue);
+        
+        int OrderID = bo.AddOrder(user_ID, user_Name, user_Amount, user_Address, user_Email, user_Tel, user_Post, user_Deal);
+        if (cart.AddToOrder(OrderID) == true)
+        {
+            cart.ClearCart();
+            ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"订单创建成功！\");this.location.href='ShowOrder.aspx'</script>");
+        }
 
-        int OrderID = bo.AddOrder(user_ID,user_Name,user_Amount,user_Address,user_Email,user_Tel,user_Post,user_Deal);
-        cart.AddToOrder(OrderID);
-        cart.ClearCart();
-        ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"订单创建成功！\");this.location.href='ShowOrder.aspx'</script>");
+        else ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"数据库出现异常，订单创建失败！\");this.location.href='BuyProduct.aspx'</script>");
+        
     }
     protected void Button2_Click(object sender, EventArgs e)
     {
