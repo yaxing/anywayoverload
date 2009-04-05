@@ -17,7 +17,7 @@ public partial class newBooks : System.Web.UI.Page
     {
         if(!Page.IsPostBack)
         {
-            string strDbConn = ConfigurationManager.AppSettings["dbConnString"];
+            string strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
             bookInfo = new BsBookInfo(strDbConn);
 
             //新书列表
@@ -28,7 +28,7 @@ public partial class newBooks : System.Web.UI.Page
     protected void gvNewBooks_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvNewBooks.PageIndex = e.NewPageIndex;
-        string strDbConn = ConfigurationManager.AppSettings["dbConnString"];
+        string strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
         bookInfo = new BsBookInfo(strDbConn);
 
         //新书列表

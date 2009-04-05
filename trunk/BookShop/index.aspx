@@ -66,7 +66,7 @@
                 			  <table width="100%" height="21"  border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td width="9%"><img src="Images/greendot.gif" width="11" height="13"></td>
-                  <td width="91%" style="padding:5px;"><a href='#'><%#Eval("bookName") %></a></td>
+                  <td width="91%" style="padding:5px;"><a href='bookInfo.aspx?bookID=<%# Eval("ID")%>'><%#Eval("bookName") %></a></td>
                 </tr>
               </table>
                 </ItemTemplate>
