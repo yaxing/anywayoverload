@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Security.Cryptography;
 using System.Configuration;
 using System.Collections;
 using System.Web;
@@ -40,6 +41,7 @@ public partial class RegistereUser : System.Web.UI.Page
             string tel = txtMobile.Text.Trim();
 
             BsUserManager bs = new BsUserManager();
+            user_Password = BsUserManager.MD5(user_Password);
             int userId = 0;
             if (bs.InsertUser(user_Name, user_Password, true_Name, email, address, post, tel) == true)
             {
