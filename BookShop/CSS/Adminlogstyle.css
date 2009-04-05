@@ -40,8 +40,8 @@
 {
 	display: block;
 	position: absolute;
-	top: -60px;
-	left: -90px;
+	top: 0px;
+	left: 0px;
 	z-index: 1;
 }
 
