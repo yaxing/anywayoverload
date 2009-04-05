@@ -30,7 +30,7 @@ public partial class OrderDetails : System.Web.UI.Page
 
         foreach(DataRow dr in dt.Rows)
         {
-            total += Convert.ToDouble(dr["price"])*Convert.ToDouble(dr["discount"]);
+            total += Convert.ToDouble(dr["price"])*Convert.ToDouble(dr["discount"])*Convert.ToInt32(dr["number"]);
         }
 
         this.lblAmountFinish.Text = String.Format("гд{0:c}", Convert.ToString(total));

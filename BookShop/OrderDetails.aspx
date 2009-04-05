@@ -32,7 +32,7 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="±àºÅ">
                                             <ItemTemplate>
-                                                <asp:Image ID="Image1" Width="40px" Height="30px" runat="server" ImageUrl='' />
+                                                <asp:Image ID="Image1" Width="80px" Height="100px" runat="server" ImageUrl='<%#Eval("coverPath") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="ÊéÃû">
