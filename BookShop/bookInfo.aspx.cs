@@ -31,7 +31,7 @@ public partial class _Default : System.Web.UI.Page
         //int bookID = Convert.ToInt32(bookNum);
 
         int bookID = Convert.ToInt32(Request.QueryString["bookID"]);
-        BsBookInfo bookInfo = bookInfo = new BsBookInfo(strDbConn);
+        BsBookInfo bookInfo = new BsBookInfo(strDbConn);
         DataSet ds = new DataSet();
         ds = bookInfo.GetBookInfo(bookID);
         this.lblBookName.Text = ds.Tables[0].Rows[0][6].ToString();
@@ -42,14 +42,41 @@ public partial class _Default : System.Web.UI.Page
         int dateIndex = pubDate.LastIndexOf(" ");
         this.lblPubDate.Text = pubDate.Substring(0, dateIndex);
         this.lblISBN.Text = ds.Tables[0].Rows[0][4].ToString();
+
         String price = ds.Tables[0].Rows[0][10].ToString();
+        Double priceM = Convert.ToDouble(price);
+        Double discount = Convert.ToDouble(ds.Tables[0].Rows[0][19]);
+        Double priceN = priceM * discount;
+        discount = discount * 10;
+        String priceNow = priceN.ToString();
         int priceIndex = price.LastIndexOf(".");
+
         this.lblPrice.Text = price.Substring(0, priceIndex + 3);
+
+        priceIndex = priceNow.LastIndexOf(".");
+        if (discount < 10.0)
+            this.lblDis.Text = discount.ToString() + "уш";
+        else
+            this.lblDis.Text = "нчуш©ш";
+        if(priceIndex > 0)
+        {
+            this.lblPriceN.Text = priceNow.Substring(0, priceIndex + 3);
+        }
+        else
+        {
+            this.lblPriceN.Text = priceNow + ".00";
+        }
         this.lblQuantity.Text = ds.Tables[0].Rows[0][14].ToString();
         this.lblSold.Text = ds.Tables[0].Rows[0][15].ToString();
+        this.lblGood.Text = ds.Tables[0].Rows[0][16].ToString();
+        this.lblNormal.Text = ds.Tables[0].Rows[0][17].ToString();
+        this.lblbad.Text = ds.Tables[0].Rows[0][18].ToString();
+        this.lblCommentAcount.Text = Convert.ToString(Convert.ToInt32(ds.Tables[0].Rows[0][16]) + Convert.ToInt32(ds.Tables[0].Rows[0][17]) + Convert.ToInt32(ds.Tables[0].Rows[0][18]));
         this.coverImg.Src = ds.Tables[0].Rows[0][13].ToString();
         this.coverImgP.Src = ds.Tables[0].Rows[0][13].ToString();
         this.ltlScript.Text = ds.Tables[0].Rows[0][9].ToString();
+        this.rpRank.DataSource = bookInfo.GetHotBooks(10);
+        this.rpRank.DataBind();
     }
     protected void AddtoCartBt_Click(object sender, ImageClickEventArgs e)
     {
