@@ -15,9 +15,9 @@
                 <tr>
                     <td colspan="3" style="height: 16px">
                         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                            ForeColor="#333333" GridLines="None" OnRowCommand="GridView1_RowCommand" AllowPaging="True"
+                            ForeColor="#333333" GridLines="None" OnRowCommand="GridView1_RowCommand" AllowSorting="True" AllowPaging="True"
                             OnPageIndexChanged="GridView1_PageIndexChanged"
-                            PageSize="5" Width="620px">
+                            PageSize="5" Width="620px" OnSorting="GridView1_Sorting">
                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                             <EmptyDataTemplate>
@@ -30,18 +30,18 @@
                                 </table>
                             </EmptyDataTemplate>
                             <Columns>
-                                <asp:BoundField DataField="ID" HeaderText="订单编号" ReadOnly="True" />
-                                <asp:TemplateField HeaderText="订单日期">
+                                <asp:BoundField DataField="ID" HeaderText="订单编号" SortExpression="ID" ReadOnly="True" />
+                                <asp:TemplateField HeaderText="订单日期" SortExpression="orderdatetime">
                                     <ItemTemplate>
                                         <asp:Label ID="Label1" runat="server" Text='<%# String.Format("{0:D}",Eval("orderdatetime"))%>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="总金额">
+                                <asp:TemplateField HeaderText="总金额" SortExpression="amount">
                                     <ItemTemplate>
                                         <asp:Label ID="Label2" runat="server" Text='<%# String.Format("{0:c}",Eval("amount")) %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="订单状态">
+                                <asp:TemplateField HeaderText="订单状态" SortExpression="pay">
                                     <ItemTemplate>
                                         <asp:Label ID="Label3" runat="server" Text='<%# BsOrder.ShowOrderStatus(Convert.ToInt32(Eval("pay"))) %>'></asp:Label>
                                     </ItemTemplate>

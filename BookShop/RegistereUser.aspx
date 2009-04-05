@@ -18,7 +18,7 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="用户名不能为空"
                         ControlToValidate="txtUserName" Display="Dynamic"></asp:RequiredFieldValidator>
                     <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtUserName"
-                        ErrorMessage="用户已经存在" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator><br />
+                        ErrorMessage="用户已经存在" OnServerValidate="CustomValidator1_ServerValidate" Display="Dynamic"></asp:CustomValidator><br />
                     </td>
             </tr>
             <tr>
