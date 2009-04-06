@@ -2,6 +2,31 @@
     CodeFile="CartView.aspx.cs" Inherits="CartView" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <script language="JavaScript">
+
+<!--
+
+function makevisible(cur,which){
+
+if (which==0)
+
+cur.filters.alpha.opacity=100
+
+else
+
+cur.filters.alpha.opacity=20
+
+}
+
+
+
+-->
+
+
+
+    </script>
+
     <table width="100%">
         <tr>
             <td>
@@ -11,8 +36,8 @@
     <br />
     <center>
         &nbsp;我的购物车
-        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333"
-            GridLines="None" BorderWidth="3px" Width="90%" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand">
+        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
+            BorderWidth="3px" Width="90%" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand">
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
             <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
@@ -33,7 +58,8 @@
                 <asp:BoundField DataField="ID" ReadOnly="True" Visible="False" />
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%#Eval("Cover") %>' PostBackUrl='<%# "bookInfo.aspx?bookID="+Eval("ID").ToString() %>' />
+                        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%#Eval("Cover") %>'
+                            PostBackUrl='<%# "bookInfo.aspx?bookID="+Eval("ID").ToString() %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="BookName" HeaderText="书名" ReadOnly="True" />
@@ -56,7 +82,10 @@
         </asp:GridView>
         <asp:Label ID="Total" runat="server" /></center>
     <center>
-        <asp:Button ID="Button1" Text="继续购物" OnClick="Gonoshopping" runat="server" />
-        <asp:Button ID="Button2" runat="server" Text="进入结账" OnClick="Check_out" />
+        &nbsp;
+        <asp:ImageButton ID="ImageButton2" runat="server" style="filter:alpha(opacity=20)" onMouseOver="makevisible(this,0)" onMouseOut="makevisible(this,1)" OnClick="Gonoshopping" ImageUrl="~/Images/goOn.gif"
+            Width="100px" />
+        <asp:ImageButton ID="ImageButton3" runat="server" style="filter:alpha(opacity=20)" onMouseOver="makevisible(this,0)" onMouseOut="makevisible(this,1)" OnClick="Check_out" ImageUrl="~/Images/confirm.gif"
+            Width="100px" />
     </center>
 </asp:Content>

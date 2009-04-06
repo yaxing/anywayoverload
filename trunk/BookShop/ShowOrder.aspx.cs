@@ -17,9 +17,13 @@ public partial class ShowOrder : System.Web.UI.Page
     {
         if(!IsPostBack)
         {
-            this.GridView1.Attributes.Add("SortExpression", "ID");
-            this.GridView1.Attributes.Add("SortDirection", "ASC");
-            BindToGridView();
+            if (Session["userName"] != null)
+            {
+                this.GridView1.Attributes.Add("SortExpression", "ID");
+                this.GridView1.Attributes.Add("SortDirection", "DESC");
+                BindToGridView();
+            }
+            else ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"请先登陆！\");this.location.href='index.aspx'</script>");
         }
     }
 
@@ -134,8 +138,8 @@ public partial class ShowOrder : System.Web.UI.Page
             if (GridView1.PageCount > 0)
             {
                 //设定排序方向
-                string SortDirection = "ASC";
-                SortDirection = (this.GridView1.Attributes["SortDirection"].ToString() == SortDirection ? "DESC" : "ASC");
+                string SortDirection = "DESC";
+                SortDirection = (this.GridView1.Attributes["SortDirection"].ToString() == SortDirection ? "ASC" : "DESC");
                 this.GridView1.Attributes["SortExpression"] = e.SortExpression;
                 this.GridView1.Attributes["SortDirection"] = SortDirection;
                 //重新绑定数据
