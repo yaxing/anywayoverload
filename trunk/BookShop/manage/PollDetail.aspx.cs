@@ -1,139 +1,137 @@
 ﻿using System;
-using System.Data;
-using System.Configuration;
 using System.Collections;
+using System.Configuration;
+using System.Data;
+//using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using System.Data.SqlClient;
+//using System.Xml.Linq;
 using DbConnect;
-using System.Data.SqlClient;
 
 public partial class manage_PollDetail : System.Web.UI.Page
 {
-    public String PollID = "";
-    public DbConnector connStr = new DbConnector();
-    String strConn = ConfigurationManager.AppSettings["dbConnString"];
+    DbConnector connStr = new DbConnector();
+    String connection = ConfigurationManager.AppSettings["dbConnString"];
+    String PollID = "";
+
+    protected void BindData()
+    {
+        connStr.connDB(connection);
+        string BindStr = "select * from pollDetail";
+        DataSet BindDataSet = connStr.executeQuery(BindStr);
+        PollDetail.DataSource = BindDataSet.Tables[0].DefaultView;
+        PollDetail.DataBind();
+        connStr.close();
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request["ID"] == null)
+        {
             Response.Redirect("poll.aspx");
+        }
         PollID = Request["ID"];
-        TextBox2.Enabled = false;
-        TextBox4.Enabled = false;
-        connStr.connDB(strConn);
-        string QueryString = "select * from poll where ID = " + PollID;
-        DataSet QueryResult = connStr.executeQuery(QueryString);
-        //TextBox2.Text = QueryResult.Tables[0].Rows[]
-        connStr.close();
-        DataTable TableResult = new DataTable();
-        TableResult = QueryResult.Tables[0];
-        TextBox2.Text = TableResult.Rows[0]["theme"].ToString();
-    }
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        String strConn = ConfigurationManager.AppSettings["dbConnString"];
-        String PollItemContent = TextBox3.Text;
-        String InsertString = "insert into pollDetail (pollID, optionName, counts) values (" + PollID + ", '"+TextBox3.Text+"', 0)";
-        connStr.connDB(strConn);
-        int flags = connStr.executeUpdate(InsertString);
-        connStr.close();
-        if (flags == 0)
+        connStr.connDB(connection);
+        string QueryPollTitle = "select * from poll where ID = " + PollID;
+        DataSet ResultPT = connStr.executeQuery(QueryPollTitle);
+        DataTable ResultDataTable = ResultPT.Tables[0];
+        PollThemeText.Text = ResultDataTable.Rows[0]["theme"].ToString();
+        string QueryStr = "select * from pollDetail where pollID = " + PollID;
+        DataSet pollDetailData = connStr.executeQuery(QueryStr);
+        if (pollDetailData.Tables[0].Rows.Count > 0)
         {
-            Label1.Text = "插入失败！";
+            PollDetailTitle.Text = "当前投票主题的投票选项：";
+            PollDetail.DataSource = pollDetailData.Tables[0].DefaultView;
+            PollDetail.DataBind();
         } 
         else
         {
-            Label1.Text = "插入成功！";
+            PollDetailTitle.Text = "当前投票主题暂时没有投票选项！";
+            DelAll.Visible = false;
         }
-        //str = "insert into poll (theme, introduce, available) values ('" + TextBox1.Text + "', '" + TextBox2.Text + "', 1)";
-    }
-    protected void Button3_Click(object sender, EventArgs e)
-    {
-        connStr.connDB(strConn);
-        String QueryString = "select * from pollDetail where pollid = " + PollID;
-        DataSet QueryResult = connStr.executeQuery(QueryString);
         connStr.close();
-        if (QueryResult.Tables[0].Rows.Count > 0)
+    }
+    protected void Reset_Click(object sender, EventArgs e)
+    {
+        PollOptionText.Text = "";
+    }
+    protected void Save_Click(object sender, EventArgs e)
+    {
+        connStr.connDB(connection);
+        string pollItemContent = PollOptionText.Text;
+        string InsertStr = "insert into pollDetail (pollID, optionName, counts) values (" + PollID + ", '" +PollOptionText.Text+ "', 0)";
+        int flag = connStr.executeUpdate(InsertStr);
+        if (flag == 0)
         {
-            Label1.Text = "投票选项如下：";
-            GridView1.DataSource = QueryResult.Tables[0].DefaultView;
-            GridView1.DataBind();
+            flag2.Text = "添加失败！";
         } 
         else
         {
-            Label1.Text = "暂时还没有投票选项！";
+            flag2.Text = "添加成功！";
+            Response.Redirect(Request.Url.ToString());
         }
-    }
-    protected void Button2_Click(object sender, EventArgs e)
-    {
-        TextBox3.Text = "";
-        Label1.Text = "";
-    }
-    protected void BindData()
-    {
-        connStr.connDB(strConn);
-        String QueryString = "select * from pollDetail where pollid = " + PollID;
-        DataSet QueryResult = connStr.executeQuery(QueryString);
         connStr.close();
-        if (QueryResult.Tables[0].Rows.Count > 0)
+    }
+    protected void DelAll_Click(object sender, EventArgs e)
+    {
+        string DelCmd = "delete from pollDetail";
+        connStr.connDB(connection);
+        connStr.executeUpdate(DelCmd);
+        connStr.close();
+        Response.Redirect(Request.Url.ToString());
+    }
+    protected void PollDetail_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        connStr.connDB(connection);
+        string id = this.PollDetail.DataKeys[e.RowIndex]["ID"].ToString();
+        string DelCmd = "delete from pollDetail where id = " + id;
+        int flag = connStr.executeUpdate(DelCmd);
+        if (flag == 0)
         {
-            Label1.Text = "投票选项如下：";
-            GridView1.DataSource = QueryResult.Tables[0].DefaultView;
-            GridView1.DataBind();
+            flag2.Text = "删除失败！";
         } 
         else
         {
-            Label1.Text = "暂时还没有投票选项！";
+            flag2.Text = "删除成功！";
+            BindData();
+            Response.Redirect(Request.Url.ToString());
         }
+        connStr.close();
     }
-    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    protected void PollDetail_RowEditing(object sender, GridViewEditEventArgs e)
     {
-        connStr.connDB(strConn);
-        string id = this.GridView1.DataKeys[e.RowIndex]["ID"].ToString();
-        //gridview1id = id;
-        string delCmd = "delete from pollDetail where id = " + id;
-        int flags = connStr.executeUpdate(delCmd);
-        if (flags == 0) Label1.Text = "失败！";
-        else Label1.Text = "成功！";
+        this.PollDetail.EditIndex = e.NewEditIndex;
         BindData();
     }
-    protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void PollDetail_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
-        this.GridView1.EditIndex = e.NewEditIndex;
+        this.PollDetail.EditIndex = -1;
         BindData();
     }
-    protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void PollDetail_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-        GridView1.PageIndex = e.NewPageIndex;
-        DataBind();
-    }
-    protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-    {
-        GridView1.EditIndex = -1;
-        BindData();
-    }
-    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
-    {
-        connStr.connDB(strConn);
-        string id = GridView1.DataKeys[e.RowIndex].Values[0].ToString();
-        //gridview1id = id;
-        //string PollID = ((TextBox)GridView1.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
-        string pollDetailOption = ((TextBox)GridView1.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
-        //string poll_available = ((TextBox)GridView1.Rows[e.RowIndex].Cells[5].Controls[0]).Text;
-        //string sqlStr = "update poll set theme = '" + poll_theme + "', introduce = '" + poll_introduce + "', available = '" + poll_available + "' where ID = " + id;
-        String sqlStr = "update pollDetail set optionName ='" + pollDetailOption + "' where id = " + id;
-        int flags = connStr.executeUpdate(sqlStr);
-        if (flags == 0)
+        connStr.connDB(connection);
+        string id = this.PollDetail.DataKeys[e.RowIndex].Values[0].ToString();
+        string pollDetailOption = ((TextBox)PollDetail.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
+        string UpdateStr = "update pollDetail set optionName = '" + pollDetailOption + "' where id = " + id;
+        int flag = connStr.executeUpdate(UpdateStr);
+        if (flag == 0)
         {
-            Label1.Text = "更新失败！";
-        }
+            flag2.Text = "更新失败！";
+        } 
         else
         {
-            Label1.Text = "更新成功！";
+            flag2.Text = "更新成功！";
         }
+        connStr.close();
+    }
+    protected void PollDetail_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        PollDetail.EditIndex = -1;
+        BindData();
     }
 }
