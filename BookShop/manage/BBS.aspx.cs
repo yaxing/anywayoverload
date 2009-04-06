@@ -11,6 +11,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 //using System.Xml.Linq;
 using DbConnect;
+using System.Data.SqlClient;
+using System.IO;
 
 public partial class manage_BBS : System.Web.UI.Page
 {
@@ -130,5 +132,46 @@ public partial class manage_BBS : System.Web.UI.Page
         connStr.connDB(strConn);
         connStr.executeUpdate(DelStr);
         connStr.close();
+    }
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+        //base.VerifyRenderingInServerForm(control);
+    }
+    protected void WordOut_Click(object sender, EventArgs e)
+    {
+        //string QueryStr = "select * from bbs";
+        //connStr.connDB(strConn);
+        //DataSet WordResult = connStr.executeQuery(QueryStr);
+        //connStr.close();
+        //DataTable dataTable1 = WordResult.Tables[0];
+        //Response.Clear();
+        //Response.Buffer = true;
+        //Response.ContentType = "web/vnd.ms-word";
+        //Response.ContentEncoding = System.Text.Encoding.UTF8;
+        //Response.Charset = "Word文档";
+        //this.EnableViewState = false;
+        //StringWriter oStringWriter = new StringWriter();
+        //HtmlTextWriter oHtmlTextWriter = new HtmlTextWriter(oStringWriter);
+        //GridView gv = new GridView();
+        //gv.DataSource = dataTable1;
+        //gv.DataBind();
+        ////Response.Clear();
+        ////Response.BufferOutput = true;
+        ////Response.Charset = "GB2312";
+        ////Response.AppendHeader("Content-Disposition", "attachment; filename = FileName.doc");
+        ////Response.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
+        Response.Clear();
+        Response.BufferOutput = true;
+        Response.Charset = "GB2312";
+        Response.AppendHeader("Content-Disposition", "attachment; filename = Filename.doc");
+        Response.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
+        Response.ContentType = "application/ms-word";
+        BBS.EnableViewState = false;
+        System.Globalization.CultureInfo cultureInfo = new System.Globalization.CultureInfo("ZH-CN", true);
+        System.IO.StringWriter stringwriter = new StringWriter(cultureInfo);
+        System.Web.UI.HtmlTextWriter textWriter = new HtmlTextWriter(stringwriter);
+        BBS.RenderControl(textWriter);
+        Response.Write(stringwriter.ToString());
+        Response.End();
     }
 }
