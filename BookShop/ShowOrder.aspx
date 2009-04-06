@@ -17,7 +17,7 @@
                         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4"
                             ForeColor="#333333" GridLines="None" OnRowCommand="GridView1_RowCommand" AllowSorting="True" AllowPaging="True"
                             OnPageIndexChanged="GridView1_PageIndexChanged"
-                            PageSize="5" Width="90%" OnSorting="GridView1_Sorting">
+                            PageSize="10" Width="90%" OnSorting="GridView1_Sorting">
                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                             <EmptyDataTemplate>
@@ -55,7 +55,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
-                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                            <PagerStyle BackColor="#5D7B9D" ForeColor="White" HorizontalAlign="Center" />
                             <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                             <EditRowStyle BackColor="#999999" />
