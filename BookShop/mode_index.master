@@ -6,7 +6,9 @@
 <script type="text/javascript" language="javascript">
 
 function checkSearch(){
+    //alert("");
     var c =document.getElementById("<%= searchContent.ClientID%>").getAttribute("value");
+
     if(c==null){
     alert("请输入搜索条件！");
     return false;
