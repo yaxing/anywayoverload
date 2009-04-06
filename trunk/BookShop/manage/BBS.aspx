@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/manage/mode_admin.master" AutoEventWireup="true" CodeFile="BBS.aspx.cs" Inherits="manage_BBS" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/manage/mode_admin.master" EnableEventValidation ="false"  AutoEventWireup="true" CodeFile="BBS.aspx.cs" Inherits="manage_BBS" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
 </asp:Content>
@@ -28,8 +28,9 @@
     </asp:GridView>
     <asp:Button ID="DeleteAll" runat="server" Text="删除所有" CausesValidation="False" 
         onclick="DeleteAll_Click" />
-    &nbsp;
-    <asp:Label ID="Updates" runat="server"></asp:Label>
+    &nbsp;<asp:Button ID="WordOut" runat="server" CausesValidation="False" 
+        onclick="WordOut_Click" Text="公告导出到Word" />
+&nbsp;<asp:Label ID="Updates" runat="server"></asp:Label>
     <br />
     <br />
     <asp:Label ID="BBSContentTitle" runat="server" Text="公告内容"></asp:Label>
