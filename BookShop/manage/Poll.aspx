@@ -1,111 +1,55 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/manage/mode_admin.master" AutoEventWireup="true" CodeFile="Poll.aspx.cs" Inherits="manage_Poll" Title="Untitled Page" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <table style="width: 645px; height: 168px">
-        <tr>
-            <td style="width: 100px">
-            </td>
-            <td colspan="4">
-                添加投票类型</td>
-            <td style="width: 100px">
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 26px;">
-                <asp:Label ID="Label1" runat="server" Text="主题"></asp:Label></td>
-            <td colspan="2" style="height: 26px">
-                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1"
-                    ErrorMessage="RequiredFieldValidator">主题名不能为空！</asp:RequiredFieldValidator></td>
-            <td style="width: 100px; height: 26px;">
-                <asp:Button ID="Button1" runat="server" Text="显示所有主题" OnClick="Button1_Click" CausesValidation="False" /></td>
-            <td style="width: 100px; height: 26px;">
-            </td>
-            <td style="width: 100px; height: 26px;">
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 26px;">
-                <asp:Label ID="Label2" runat="server" Text="简介"></asp:Label></td>
-            <td colspan="2" style="height: 26px">
-                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox2"
-                    ErrorMessage="RequiredFieldValidator">内容不能为空！</asp:RequiredFieldValidator></td>
-            <td style="width: 100px; height: 26px;">
-            </td>
-            <td style="width: 100px; height: 26px;">
-            </td>
-            <td style="width: 100px; height: 26px;">
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px">
-                <asp:Label ID="Label3" runat="server" Text="状态"></asp:Label></td>
-            <td style="width: 130px">
-                <asp:RadioButton ID="RadioButton1" runat="server" Checked="True" GroupName="Ballot"
-                    Text="可用" /></td>
-            <td style="width: 157px">
-                <asp:RadioButton ID="RadioButton2" runat="server" GroupName="Ballot" Text="不可用" /></td>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 100px">
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px; height: 26px;">
-            </td>
-            <td style="width: 130px; height: 26px;">
-                <asp:Button ID="Button2" runat="server" Text="添加" OnClick="Button2_Click" /></td>
-            <td style="width: 157px; height: 26px;">
-                <asp:Button ID="Button3" runat="server" Text="重置" OnClick="Button3_Click" CausesValidation="False" /></td>
-            <td style="width: 100px; height: 26px;">
-                <asp:Label ID="Label4" runat="server"></asp:Label></td>
-            <td style="width: 100px; height: 26px;">
-            </td>
-            <td style="width: 100px; height: 26px;">
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 130px">
-                &nbsp;&nbsp;
-                <asp:Label ID="Label5" runat="server" Width="151px"></asp:Label>
-                <asp:GridView ID="GridView1" runat="server" ForeColor="#333333" GridLines="None"
-                    Visible="False" AllowPaging="True" PageSize="5" DataKeyNames="ID" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" AutoGenerateColumns="False" Width="341px" >
-                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                    <EditRowStyle BackColor="#999999" />
-                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                    <PagerStyle BackColor="#FFFFC0" ForeColor="White" HorizontalAlign="Center" />
-                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                    <Columns>
-                        <asp:CommandField ButtonType="Button" CausesValidation="False" ShowEditButton="True" />
-                        <asp:CommandField ButtonType="Button" CausesValidation="False" ShowDeleteButton="True" />
-                        <asp:BoundField DataField="ID" HeaderText="序号" />
-                        <asp:BoundField DataField="theme" HeaderText="主题" />
-                        <asp:BoundField DataField="introduce" HeaderText="简介" />
-                        <asp:BoundField DataField="available" HeaderText="状态" />
-                        <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="pollDetail.aspx?ID={0}"
-                            DataTextFormatString="s" HeaderText="添加选项" Text="添加选项" />
-                    </Columns>
-                    <PagerSettings PageButtonCount="5" />
-                </asp:GridView>
-            </td>
-            <td style="width: 157px">
-                &nbsp;
-            </td>
-            <td style="width: 100px">
-                &nbsp;
-            </td>
-            <td style="width: 100px">
-            </td>
-            <td style="width: 100px">
-            </td>
-        </tr>
-    </table>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <asp:Label ID="PollTitle" runat="server"></asp:Label>
+    <asp:GridView ID="Poll" runat="server" AutoGenerateColumns="False" 
+        BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" 
+        CellPadding="4" CellSpacing="2" ForeColor="Black" Width="438px" 
+        AllowPaging="True" DataKeyNames="ID" 
+        onpageindexchanging="Poll_PageIndexChanging" 
+        onrowcancelingedit="Poll_RowCancelingEdit" onrowdeleting="Poll_RowDeleting" 
+        onrowediting="Poll_RowEditing" onrowupdating="Poll_RowUpdating" PageSize="5">
+        <FooterStyle BackColor="#CCCCCC" />
+        <RowStyle BackColor="White" />
+        <Columns>
+            <asp:BoundField DataField="ID" HeaderText="序号" />
+            <asp:BoundField DataField="theme" HeaderText="主题" />
+            <asp:BoundField DataField="introduce" HeaderText="简介" />
+            <asp:BoundField DataField="available" HeaderText="状态" />
+            <asp:CommandField HeaderText="删除" ShowDeleteButton="True" />
+            <asp:CommandField HeaderText="编辑" ShowEditButton="True" />
+            <asp:HyperLinkField DataNavigateUrlFields="ID" 
+                DataNavigateUrlFormatString="pollDetail.aspx?ID={0}" HeaderText="查看详细" 
+                Text="详细信息" />
+        </Columns>
+        <PagerStyle BackColor="#CCCCCC" ForeColor="Black" HorizontalAlign="Left" />
+        <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+    </asp:GridView>
+    <asp:Button ID="DeleteAll" runat="server" Text="删除全部" CausesValidation="False" 
+        onclick="DeleteAll_Click" />
+    <asp:Label ID="availableFlags" runat="server"></asp:Label>
+    <br />
+    <asp:Label ID="Theme" runat="server" Text="投票主题"></asp:Label>
+    <asp:TextBox ID="ThemeText" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+        ControlToValidate="ThemeText" ErrorMessage="主题不能为空"></asp:RequiredFieldValidator>
+    <br />
+    <asp:Label ID="PollContent" runat="server" Text="投票简介"></asp:Label>
+    <asp:TextBox ID="introText" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+        ControlToValidate="introText" ErrorMessage="简介不能为空"></asp:RequiredFieldValidator>
+    <br />
+    <asp:RadioButton ID="Able" runat="server" GroupName="State" Text="可用" />
+    <asp:RadioButton ID="unAble" runat="server" Checked="True" GroupName="State" 
+        Text="不可用" />
+    <br />
+    <asp:Button ID="Save" runat="server" Text="保存" onclick="Save_Click" />
+    &nbsp;
+    <asp:Button ID="Reset" runat="server" Text="重置" CausesValidation="False" 
+        onclick="Reset_Click" />
+    <asp:Label ID="availablenum" runat="server"></asp:Label>
 </asp:Content>
 
