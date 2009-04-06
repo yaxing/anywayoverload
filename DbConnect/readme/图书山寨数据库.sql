@@ -34,8 +34,8 @@ CREATE TABLE bookInfo (
 	author varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	introduce text COLLATE Chinese_PRC_CI_AS NULL ,
 	price money NOT NULL ,
-	pubdatetime datetime ,
-	indatetime datetime NOT NULL ,
+	pubDatetime datetime ,
+	inDatetime datetime DEFAULT getdate(),
 	coverPath varchar (128) COLLATE Chinese_PRC_CI_AS NULL ,--Í¼Æ¬Â·¾¶
 	available int NULL ,
 	sale int NULL ,--ÏúÁ¿
@@ -121,7 +121,6 @@ CREATE TABLE pollDetail (
 )
 GO
 
-use shanzhai
 go
 CREATE TABLE orders_done (
 	ID int primary key IDENTITY (1, 1) NOT NULL ,
@@ -150,14 +149,12 @@ CREATE TABLE orderDetail_done (
 )
 GO
 
-USE shanzhai
 CREATE VIEW v_orderManage
 AS
 SELECT orders.*,users.userName from orders
 inner join users on orders.userID=users.ID
 GO
 
-use shanzhai
 create view v_orderDetailManage
 as
 select orderDetail.*,
