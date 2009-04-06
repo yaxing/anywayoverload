@@ -78,7 +78,8 @@ public partial class _Default : System.Web.UI.Page
         this.rpRank.DataSource = bookInfo.GetHotBooks(10);
         this.rpRank.DataBind();
     }
-    protected void AddtoCartBt_Click(object sender, ImageClickEventArgs e)
+    
+    protected void AddtoCartBt_Click1(object sender, ImageClickEventArgs e)
     {
         Stat_Class order = new Stat_Class(Request.QueryString["bookID"]);
 
@@ -86,6 +87,9 @@ public partial class _Default : System.Web.UI.Page
 
         if (cart != null)
         {
+            if (this.TxtQuan.Text != null && this.TxtQuan.Text != "")
+                order.Quantity = Convert.ToInt32(this.TxtQuan.Text);
+            else order.Quantity = 1;
             cart.AddItem(order);
             Response.Redirect("CartView.aspx");
         }
