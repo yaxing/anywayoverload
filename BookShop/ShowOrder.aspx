@@ -11,13 +11,13 @@
     </div>
     <div>
         <center>
-            <table>
+            <table style="width: 100%">
                 <tr>
-                    <td colspan="3" style="height: 16px">
+                    <td colspan="3">
                         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4"
                             ForeColor="#333333" GridLines="None" OnRowCommand="GridView1_RowCommand" AllowSorting="True" AllowPaging="True"
                             OnPageIndexChanged="GridView1_PageIndexChanged"
-                            PageSize="5" Width="620px" OnSorting="GridView1_Sorting">
+                            PageSize="5" Width="90%" OnSorting="GridView1_Sorting">
                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                             <EmptyDataTemplate>
