@@ -16,7 +16,7 @@ public partial class manage_orderDeal : System.Web.UI.Page
     {
         //loginChk();
         test();
-        string dbConnStr = ConfigurationManager.AppSettings["dbConnString"];
+        string dbConnStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
         orderManage orderManObj = new orderManage(dbConnStr);
         string ID = Request.QueryString["id"].ToString();
         String value = Request.QueryString["value"].ToString();
