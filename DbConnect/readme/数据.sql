@@ -1,8 +1,8 @@
 insert into admin ( userName, passWord) values('mr','mingrisoft');
 insert into admin ( userName, passWord) values('admin','111');
 
-insert into bbs (Content, postTime) values('在圣诞节来临之际，本书店为答解新老朋友的，特举办购物有奖活动！','2005-12-15 11:00:00');
-insert into bbs (Content, postTime) values('购物有奖，快快行动吧！','2005-12-15 15:00:00');
+insert into bbs (Content, postTime) values('在圣诞节来临之际，本书店为答解新老朋友的，特举办购物有奖活动！','2008-12-20 11:00:00');
+insert into bbs (Content, postTime) values('购物有奖，快快行动吧！','2009-4-8 15:00:00');
 
 insert into bookClass (className, bookCount) values('Jsp测试','');
 insert into bookClass (className, bookCount) values('Visual Basic系列丛书','');
@@ -88,3 +88,4 @@ insert into pollDetail ( pollID, optionName, counts) values(1,'教程类','3');
 insert into pollDetail ( pollID, optionName, counts) values(1,'手册类','3');
 insert into pollDetail ( pollID, optionName, counts) values(1,'经验技巧类','2');
 
+insert into 
