@@ -80,7 +80,7 @@ insert into orderDetail (orderID, bookID, price, number) values(7,12,38,5);
 insert into orderDetail (orderID, bookID, price, number) values(8,12,36.1,1);
 
 
-insert into poll (theme) values('热销书分类投票');
+insert into poll (theme, available) values('热销书分类投票', 1);
 
 
 insert into pollDetail ( pollID, optionName, counts) values(1,'实例类','5');
