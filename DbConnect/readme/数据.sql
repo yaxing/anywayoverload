@@ -1,3 +1,5 @@
+use shanzhai
+go
 insert into admin ( userName, passWord) values('mr','mingrisoft');
 insert into admin ( userName, passWord) values('admin','111');
 
