@@ -88,4 +88,3 @@ insert into pollDetail ( pollID, optionName, counts) values(1,'教程类','3');
 insert into pollDetail ( pollID, optionName, counts) values(1,'手册类','3');
 insert into pollDetail ( pollID, optionName, counts) values(1,'经验技巧类','2');
 
-insert into 
