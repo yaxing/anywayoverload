@@ -139,27 +139,6 @@ public partial class manage_BBS : System.Web.UI.Page
     }
     protected void WordOut_Click(object sender, EventArgs e)
     {
-        //string QueryStr = "select * from bbs";
-        //connStr.connDB(strConn);
-        //DataSet WordResult = connStr.executeQuery(QueryStr);
-        //connStr.close();
-        //DataTable dataTable1 = WordResult.Tables[0];
-        //Response.Clear();
-        //Response.Buffer = true;
-        //Response.ContentType = "web/vnd.ms-word";
-        //Response.ContentEncoding = System.Text.Encoding.UTF8;
-        //Response.Charset = "Word文档";
-        //this.EnableViewState = false;
-        //StringWriter oStringWriter = new StringWriter();
-        //HtmlTextWriter oHtmlTextWriter = new HtmlTextWriter(oStringWriter);
-        //GridView gv = new GridView();
-        //gv.DataSource = dataTable1;
-        //gv.DataBind();
-        ////Response.Clear();
-        ////Response.BufferOutput = true;
-        ////Response.Charset = "GB2312";
-        ////Response.AppendHeader("Content-Disposition", "attachment; filename = FileName.doc");
-        ////Response.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
         Response.Clear();
         Response.BufferOutput = true;
         Response.Charset = "GB2312";
