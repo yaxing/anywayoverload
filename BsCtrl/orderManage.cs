@@ -124,28 +124,25 @@ namespace BsCtrl
                     strContent += "<td align='center'>" + dsRecord.Tables[0].Rows[i]["amount"] + "</td>";
                     if (dsRecord.Tables[0].Rows[i]["pay"].ToString().Equals("1"))
                     {
+                        strContent += "<td align='center'>" + "发货中" + "</td>";
+                        strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=-1'>" + "取消" + "</a>" + "</td>";
+                    }
+                    else if (dsRecord.Tables[0].Rows[i]["pay"].ToString().Equals("2"))
+                    {
                         strContent += "<td align='center'>" + "交易完成" + "</td>";
                         if (flag == 1)
                         {
-                            strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=0'>" + "未付款" + "</a>";
-                            strContent += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=-1'>" + "取消" + "</a>" + "</td>";
+                            strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=1'>" + "配货中" + "</a>" + "</td>";
                         }
                         else
                         {
                             strContent += "<td align='center'>&nbsp;&nbsp;</td>";
                         }
                     }
-                    else if (dsRecord.Tables[0].Rows[i]["pay"].ToString().Equals("0"))
-                    {
-                        strContent += "<td align='center'>" + "未付款" + "</td>";
-                        strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=1'>" + "已付款" + "</a>";
-                        strContent += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=-1'>" + "取消" + "</a>" + "</td>";
-                    }
                     else
                     {
                         strContent += "<td align='center'>" + "交易取消" + "</td>";
-                        strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=0'>" + "未付款" + "</a>";
-                        strContent += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=1'>" + "已付款" + "</a>" + "</td>";
+                        strContent += "<td align='center'>" + "&nbsp;&nbsp;" + "</td>";
                     }
                     strContent += "<td align='center'>" +"<a href='orderDetail.aspx?id="+dsRecord.Tables[0].Rows[i]["ID"]+"&flag="+flag+"'>"+ "详情" +"</a>"+ "</td>";
                     strContent += "</tr>";
