@@ -30,12 +30,11 @@ public partial class ShowOrder : System.Web.UI.Page
     protected void BindToGridView()
     {
         BsOrder bs = new BsOrder();
-
+        DataTable dt = new DataTable();
         BsUserManager bm = new BsUserManager();
 
         if (Session["userName"] != null)
         {
-            DataTable dt = new DataTable();
             String uN = Session["userName"].ToString();
 
             int userID = bm.findUser(uN);
@@ -50,8 +49,12 @@ public partial class ShowOrder : System.Web.UI.Page
         {
             ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"ÇëÏÈµÇÂ½£¡\");this.location.href='index.aspx'</script>");
         }
-        ResetKey();
-        ShowPageIndex();
+
+        if(dt.Rows.Count!=0) 
+        {
+            ResetKey();
+            ShowPageIndex();
+        }
     }
 
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
