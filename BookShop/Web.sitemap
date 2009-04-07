@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap>
+    <siteMapNode url="~/index.aspx" title="首页"  description="主页">
+      <siteMapNode url="~/newBooks.aspx" title="新书上架"  description="新书" >
+        <siteMapNode url="~/bookInfo.aspx" title="详细信息"  description="详细"/>
+      </siteMapNode>
+        <siteMapNode url="~/bookSort.aspx" title="图书分类"  description="分类" />
+        <siteMapNode url="~/CartView.aspx" title="购物车"  description="购物车" />
+      <siteMapNode url="~/ShowOrder.aspx" title="订单查询"  description="订单" >
+        <siteMapNode url="~/OrderDetails.aspx" title="订单详细信息"  description="详细订单" />
+      </siteMapNode>
+        <siteMapNode url="~/saleRank.aspx" title="销售排行"  description="排行" />
+    </siteMapNode>
+</siteMap>

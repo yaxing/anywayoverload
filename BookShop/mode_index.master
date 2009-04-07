@@ -174,11 +174,21 @@ function tick() {
                                         </tr>
                                         <tr align="left">
                                             <td colspan="2" style="height: 84px">
-                                                <img src="Images/index_06.gif" width="1024" height="244" alt="" />
+                                                <div>
+                                                    <img src="Images/index_06.gif" width="1024" height="244" alt="" />
+                                                </div>
+                                                <div style="position: relative; margin-top: -25px; margin-left: 150px">
+                                                    <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+                                                    <asp:SiteMapPath ID="SiteMapPath1" runat="server" BackColor="Transparent" Font-Bold="False"
+                                                        Font-Italic="False" Font-Overline="False" Font-Underline="False">
+                                                        <NodeStyle BackColor="Transparent" Font-Bold="False" />
+                                                        <RootNodeStyle Font-Bold="True" />
+                                                    </asp:SiteMapPath>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr align="right">
-                                            <td height="17" colspan="2">
+                                            <td colspan="2" style="height: 17px">
                                                 <div id="Clock" align="right" style="font-family: 幼圆; font-size: 15px; color: #000000;
                                                     position: relative; margin-top: -50px;">
                                                 </div>
@@ -465,7 +475,7 @@ function tick() {
                                                         <td width="124" height="13">
                                                             &nbsp;</td>
                                                         <td height="13" colspan="3" align="center">
-                                                            <a href="manage/adminLogin.html">图书山寨</a>客户服务热线：13811828174&nbsp;&nbsp;&nbsp;&nbsp;联系人：AnywayOverload小组</td>
+                                                            <a href="manage/adminLogin.html">图书山寨</a>客户服务热线：13161321542&nbsp;&nbsp;&nbsp;&nbsp;联系人：AnywayOverload小组</td>
                                                         <td width="141">
                                                             &nbsp;</td>
                                                     </tr>

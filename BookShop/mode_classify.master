@@ -132,7 +132,16 @@ function tick() {
                                         </tr>
                                         <tr align="left">
                                             <td height="70" colspan="2">
-                                                <img src="Images/index_06.gif" width="1024" height="244" atl="">
+                                                <div>
+                                                <img src="Images/index_06.gif" width="1024" height="244" alt="" />
+                                                </div>
+                                                <div style="position:relative; margin-top:-25px; margin-left:150px">
+                                                    <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+                                                    <asp:SiteMapPath ID="SiteMapPath1" runat="server" BackColor="Transparent" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Underline="False">
+                                                        <NodeStyle BackColor="Transparent" Font-Bold="False" />
+                                                        <RootNodeStyle Font-Bold="True" />
+                                                    </asp:SiteMapPath>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr align="right">
@@ -241,14 +250,6 @@ function tick() {
                                 <%-- 右版块end --%>
                             </tr>
                         </table>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </form>
-</body>
-</html>
-                        <%-- --------------------------------------------bottom starts here-------------------------------------------------------------- --%>
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td>
@@ -275,7 +276,7 @@ function tick() {
                                             <td width="124" height="13">
                                                 &nbsp;</td>
                                             <td height="13" colspan="3" align="center">
-                                                <a href="#">图书吧</a>客户服务热线：010-6891xxx&nbsp;&nbsp;&nbsp;&nbsp;联系人:AnywayOverload小组</td>
+                                                <a href="#">图书山寨</a>客户服务热线：13161321542&nbsp;&nbsp;&nbsp;&nbsp;联系人:AnywayOverload小组</td>
                                             <td width="141">
                                                 &nbsp;</td>
                                         </tr>
@@ -309,8 +310,11 @@ function tick() {
                                 </td>
                             </tr>
                         </table>
-                        <%-- ---------------------------------------------------------------------------------------------------------------------------- --%>
+                        
                     </td>
                 </tr>
             </table>
         </div>
+    </form>
+</body>
+</html>
