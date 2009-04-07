@@ -17,7 +17,7 @@ public partial class manage_customerInfo : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //loginChk();
-        string dbConnStr = ConfigurationManager.AppSettings["dbConnString"];
+        string dbConnStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
         orderManage orderManObj = new orderManage(dbConnStr);
         if (!IsPostBack)
         {
