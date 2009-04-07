@@ -38,10 +38,10 @@ CREATE TABLE bookInfo (
 	inDatetime datetime DEFAULT getdate(),
 	coverPath varchar (128) COLLATE Chinese_PRC_CI_AS NULL ,--图片路径
 	available int NULL ,
-	sale int NULL ,--销量
-	good int NULL ,--好评
-	middle int NULL ,
-	bad int NULL ,
+	sale int DEFAULT 0 ,--销量
+	good int DEFAULT 0 ,--好评
+	middle int DEFAULT 0 ,
+	bad int DEFAULT 0,
 	discount float DEFAULT 1 ,
 	constraint fk_classID foreign key(classID) references bookClass(ID)
 )
