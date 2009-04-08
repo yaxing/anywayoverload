@@ -24,6 +24,7 @@ public partial class mode_classify : System.Web.UI.MasterPage
             rpClass.DataSource = bookInfo.GetBookClassify();
             rpClass.DataBind();
         }
+        this.searchContent.Attributes.Add("onMouseOver", "this.select()"); //鼠标移至搜索框时全选其中内容
     }
 
     protected void searchButton_Click(object sender, ImageClickEventArgs e)

@@ -238,7 +238,7 @@ function tick() {
                                                             &nbsp;&nbsp;
                                                             <asp:Label ID="Label3" runat="server" Height="17px" Style="left: -15px; position: relative;
                                                                 top: 0px" Text="我想找：" Width="51px"></asp:Label>
-                                                            <asp:TextBox ID="searchContent" runat="server" Width="319px" Style="left: -1px; position: relative;
+                                                            <asp:TextBox ID="searchContent" runat="server" Text="输入您想找的书名关键字" Width="319px" Style="left: -1px; position: relative;
                                                                 top: -2px"></asp:TextBox>
                                                         </td>
                                                         <td width="18%" style="height: 27px">
