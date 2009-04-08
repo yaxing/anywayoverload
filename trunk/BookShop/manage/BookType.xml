@@ -1,1 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?><BookTypes><BookType><TypeID>学习</TypeID><TypeName>学习</TypeName></BookType><BookType><TypeID>计算机</TypeID><TypeName>计算机</TypeName></BookType></BookTypes>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BookTypes>
+  <BookType>
+    <TypeID>(备选分类)</TypeID>
+    <TypeName>(备选分类)</TypeName>
+  </BookType>
+  <BookType>
+    <TypeID>学习</TypeID>
+    <TypeName>学习</TypeName>
+  </BookType>
+  <BookType>
+    <TypeID>计算机</TypeID>
+    <TypeName>计算机</TypeName>
+  </BookType>
+</BookTypes>
