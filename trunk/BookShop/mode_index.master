@@ -297,8 +297,8 @@ function tick() {
                                                                         <td>
                                                                             &nbsp;</td>
                                                                         <td height="31" align="center">
-                                                                            &nbsp;<asp:Button ID="Button2" runat="server" Style="left: 15px; position: relative;
-                                                                                top: -1px" Text="退出登录" OnClick="Button2_Click" CausesValidation="False" />
+                                                                            &nbsp;<asp:Button ID="logout" runat="server" Style="left: 15px; position: relative;
+                                                                                top: -1px" Text="退出登录" OnClick="logout_Click" CausesValidation="False" />
                                                                             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
                                                                         </td>
                                                                         <td>
@@ -423,7 +423,7 @@ function tick() {
                                                                         &nbsp;&nbsp;
                                                                         <asp:Label ID="Label3" runat="server" Height="17px" Style="left: -12px; position: relative;
                                                                             top: -4px" Text="我想找：" Width="51px"></asp:Label>
-                                                                        <asp:TextBox ID="searchContent" runat="server" Width="319px" Style="left: -1px; position: relative;
+                                                                        <asp:TextBox ID="searchContent" runat="server" Text="输入您想找的书名关键字" Width="319px" Style="left: -1px; position: relative;
                                                                             top: -2px">
                                                                         </asp:TextBox>
                                                                     </td>

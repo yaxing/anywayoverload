@@ -70,6 +70,7 @@ public partial class mode_index : System.Web.UI.MasterPage
         {
             rblPoll.DataBind();
         }
+        this.searchContent.Attributes.Add("onMouseOver", "this.select()"); //鼠标移至搜索框时全选其中内容
 
     }
 
@@ -102,9 +103,10 @@ public partial class mode_index : System.Web.UI.MasterPage
         }
     }
 
-    protected void Button2_Click(object sender, EventArgs e)//退出登录时撤销session
+    protected void logout_Click(object sender, EventArgs e)//退出登录时撤销session
     {
-        Session.Abandon();
+        Session.Remove("userName");
+        Session.Remove("Grade");
         Response.Redirect("index.aspx");
     }
 
