@@ -14,7 +14,7 @@ public partial class manage_orderDetail : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //loginChk();
+        loginChk();
         string dbConnStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
         orderManage orderManObj = new orderManage(dbConnStr);
         test();
