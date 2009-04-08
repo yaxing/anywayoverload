@@ -86,10 +86,10 @@
             </tr>
             <tr>
               <td height="112" colspan="2" valign="top" class="word_grey"><ul>
-                <li><asp:ImageButton ID="NewBook" runat="server" OnClick="NewBook_Click"/></li>
-                <li><asp:ImageButton ID="NewType" runat="server" OnClick="NewType_Click"/></li>
-                <li><asp:ImageButton ID="BookList" runat="server" OnClick="BookList_Click"/></li>
-                <li><asp:ImageButton ID="BookUpdate" runat="server" OnClick="BookUpdate_Click"/></li>
+                <li><asp:ImageButton ID="NewBook" runat="server" OnClick="NewBook_Click" Height="23px" ImageUrl="~/Images/newBooks.gif" Width="89px"/></li>
+                <li><asp:ImageButton ID="NewType" runat="server" OnClick="NewType_Click" Height="23px" Width="89px" ImageUrl="~/Images/newType.gif"/></li>
+                <li><asp:ImageButton ID="BookList" runat="server" OnClick="BookList_Click" Height="23px" Width="89px" ImageUrl="~/Images/bookList.gif"/></li>
+                <li><asp:ImageButton ID="BookUpdate" runat="server" OnClick="BookUpdate_Click" Height="23px" Width="89px" ImageUrl="~/Images/bookUpdate.gif"/></li>
               </ul></td>
             </tr>
             <tr align="center">
