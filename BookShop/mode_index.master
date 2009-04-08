@@ -8,8 +8,7 @@
 function checkSearch(){
     //alert("");
     var c =document.getElementById("<%= searchContent.ClientID%>").getAttribute("value");
-
-    if(c==null){
+    if(c==""){
     alert("请输入搜索条件！");
     return false;
     }
@@ -21,11 +20,11 @@ function checkSearch(){
 function logincheck(){
    var n = document.getElementById("<%= uName.ClientID%>").getAttribute("value");
    var p = document.getElementById("<%= pWord.ClientID%>").getAttribute("value");
-   if(n==null){
+   if(n==""){
    alert("登录名不能为空！");
    return false;
    }
-   if(p==null){
+   if(p==""){
    alert("登录密码不能为空！");
    return false;
    }
@@ -192,7 +191,7 @@ function tick() {
                                         <tr align="right">
                                             <td colspan="2" style="height: 17px">
                                                 <div id="Clock" align="right" style="font-family: 幼圆; font-size: 15px; color: #000000;
-                                                    position: relative; margin-top: -50px;">
+                                                    position: relative; margin-top: -35px;">
                                                 </div>
                                             </td>
                                         </tr>
