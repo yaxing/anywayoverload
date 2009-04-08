@@ -12,7 +12,7 @@
         &nbsp;&nbsp;<br />
         
         <asp:GridView ID="GV1" runat="server" AllowPaging="True" AutoGenerateColumns="False" HorizontalAlign="Center" AutoGenerateEditButton="True"
-        EditCommand ="EditRowsCommand" PageSize="3" OnRowCancelingEdit="GV1_CancelEdit" OnRowEditing="GV1_RowEdit" Height="61px" OnRowUpdating="GV1_RowUpdating" Width="552px" BackColor="Transparent" BorderColor="Transparent" ForeColor="DodgerBlue" OnPageIndexChanging="GV1_PageIndexChanging" >
+        EditCommand ="EditRowsCommand" PageSize="7" OnRowCancelingEdit="GV1_CancelEdit" OnRowEditing="GV1_RowEdit" Height="61px" OnRowUpdating="GV1_RowUpdating" Width="552px" BackColor="Transparent" BorderColor="Transparent" ForeColor="DodgerBlue" OnPageIndexChanging="GV1_PageIndexChanging" >
             <Columns>
                 <asp:TemplateField HeaderText="ID">
                     <EditItemTemplate>
@@ -41,11 +41,11 @@
                     <HeaderStyle BackColor="#C0C0FF" HorizontalAlign="Center" VerticalAlign="Bottom"
                         Wrap="False" />
                     <EditItemTemplate>
-                        <asp:TextBox ID="TB_pwd" runat="server" Text='Password' Width="60px" Wrap="False" MaxLength="32" ForeColor="#FF8000"></asp:TextBox>
+                        <asp:TextBox ID="TB_pwd" runat="server" Text='Password' Width="60px" Wrap="False" MaxLength="12" ForeColor="#FF8000"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RFV_pwd" runat="server" ControlToValidate="TB_pwd"
                             ErrorMessage="*"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RV_pwd" runat="server" ControlToValidate="TB_pwd"
-                            ErrorMessage="*" ValidationExpression="[a-zA-Z0-9_]*"></asp:RegularExpressionValidator>
+                            ErrorMessage="*" ValidationExpression="[a-zA-Z0-9_]{6,12}"></asp:RegularExpressionValidator>
                         <asp:Label ID="Lb_PrePwd" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.password") %>'
                             Visible="False" Width="35px"></asp:Label>
                     </EditItemTemplate>
@@ -54,11 +54,11 @@
                 <asp:TemplateField HeaderText="确认密码">
                     <EditItemTemplate>
                         <asp:TextBox ID="TB_repwd" runat="server" Text='Password'
-                            Width="60px" Wrap="False" MaxLength="32" ForeColor="#FF8000"></asp:TextBox>
+                            Width="60px" Wrap="False" MaxLength="12" ForeColor="#FF8000"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RFV_repwd" runat="server" ControlToValidate="TB_repwd"
                             ErrorMessage="*"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="REV_repwd" runat="server" ControlToValidate="TB_repwd"
-                            ErrorMessage="*" ValidationExpression="[a-zA-Z0-9_]*"></asp:RegularExpressionValidator>
+                            ErrorMessage="*" ValidationExpression="[a-zA-Z0-9_]{6,12}"></asp:RegularExpressionValidator>
                         <asp:CompareValidator ID="CV_repwd" runat="server" ControlToCompare="TB_pwd" ControlToValidate="TB_repwd"
                             ErrorMessage="*"></asp:CompareValidator>
                     </EditItemTemplate>
@@ -96,20 +96,6 @@
                             Display="Dynamic" ErrorMessage="*" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                     </EditItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="等级">
-                    <ItemTemplate>
-                        &nbsp;
-                        <asp:Label ID="Lb_grade" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.grade") %>' Width="15px"></asp:Label>
-                    </ItemTemplate>
-                    <HeaderStyle BackColor="#C0C0FF" HorizontalAlign="Center" VerticalAlign="Bottom"
-                        Wrap="False" />
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TB_grade" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.grade") %>' Width="15px" MaxLength="1"></asp:TextBox>
-                        <asp:RegularExpressionValidator ID="rev_grade" runat="server" ControlToValidate="TB_grade"
-                            Display="Dynamic" ErrorMessage="1-5之间" ValidationExpression="[1-5]{1}"></asp:RegularExpressionValidator>
-                    </EditItemTemplate>
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                </asp:TemplateField>
                 <asp:TemplateField HeaderText="选择">
                     <ItemTemplate>
                         <asp:CheckBox ID="CB_del" runat="server" Width="5px" />
@@ -121,37 +107,61 @@
             <EditRowStyle BackColor="#FFE0C0" />
         </asp:GridView>
       
-        &nbsp;<br />
+        &nbsp;&nbsp;<br />
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <asp:Panel ID="Panel2" runat="server" HorizontalAlign="Center">
-            <br />
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp;
+        <br />
+        <table style="width: 549px">
+            <tr>
+                <td style="width: 281px">
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td style="width: 10446px">
+                </td>
+                <td style="width: 354px">
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 281px">
             <asp:Button ID="Bt_all" runat="server" OnClick="Bt_all_Click"
-            Text="全选" />&nbsp; &nbsp;<asp:Button ID="Bt_allnot" runat="server" OnClick="Bt_allnot_Click"
-            Text="全不选" />&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<asp:Button ID="Bt_del" runat="server" OnClick="Bt_del_Click"
-                Text="删除" />
-            &nbsp;<asp:Button ID="Bt_search" runat="server" OnClick="Bt_search_Click" Text="返回查询" /><br />
-            <br />
-            <br />
-        <asp:Label ID="Lb_ret" runat="server" ForeColor="Blue"></asp:Label>&nbsp;
-            <asp:LinkButton ID="LB_search" runat="server" Font-Bold="True" Font-Underline="True"
+            Text="全选" /></td>
+                <td>
+                    <asp:Button ID="Bt_allnot" runat="server" OnClick="Bt_allnot_Click"
+            Text="全不选" /></td>
+                <td>
+                </td>
+                <td style="width: 10446px">
+                </td>
+                <td style="width: 354px">
+                    <asp:Button ID="Bt_del" runat="server" OnClick="Bt_del_Click"
+                Text="删除" /></td>
+                <td>
+                    <asp:Button ID="Bt_search" runat="server" OnClick="Bt_search_Click" Text="返回查询" /></td>
+            </tr>
+        </table>
+        <asp:ValidationSummary ID="vs1" runat="server" DisplayMode="BulletList" HeaderText="错误" Visible="False" ShowSummary="False" />
+        <br />
+        <br />
+        &nbsp;&nbsp;<br />
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        </asp:Panel>
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<asp:Panel ID="Panel_ret" runat="server" Height="50px"
+        HorizontalAlign="Center" Visible="False" Width="553px">
+        <br />
+        <br />
+        <br />
+        <asp:Label ID="Lb_ret" runat="server" ForeColor="Blue"></asp:Label>&nbsp;&nbsp;&nbsp;
+        &nbsp;<asp:LinkButton ID="LB_search" runat="server" Font-Bold="True" Font-Underline="True"
                 ForeColor="#FF8080" OnClick="LB_search_Click">返回查询</asp:LinkButton><br />
-            <br />
-            <br />
-            <br />
-        <asp:ValidationSummary ID="vs1" runat="server" DisplayMode="BulletList" HeaderText="错误" Visible="False" />
-            <br />
-        </asp:Panel>
-        &nbsp;<br />
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        </asp:Panel>
-    &nbsp; &nbsp; &nbsp;
+    </asp:Panel>
 </asp:Content>

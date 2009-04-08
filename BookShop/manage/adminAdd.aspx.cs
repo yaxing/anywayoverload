@@ -15,6 +15,26 @@ public partial class manage_adminAdd : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        //判断权限
+
+        //若不是管理员，回到管理员登录页面
+        if (Session["AdminN"] == null)
+        {
+            Response.Redirect("adminLogin.html");
+        }
+
+        //判断是否为4级管理员，只有4级管理员能访问该页面
+        //不是4级管理员
+        if (Session["AdminLv"].ToString() != "4")
+        {
+            Response.Redirect("adminLogin.html");
+        }
+
+         
+
+        Lb_error.Visible = false;
+ 
         Panel_ins.Visible = true;
         Panel_ret.Visible = false;
     }
@@ -49,20 +69,34 @@ public partial class manage_adminAdd : System.Web.UI.Page
             String strMd5Pwd = MD5(strPwd);
 
             BsUserManager admin = new BsUserManager();
-            ret = admin.addAdmin(strName,strMd5Pwd,strEmail,strLevel);  //添加新管理员
-            
-            if(ret != 0){       //插入操作成功
-                Panel_ins.Visible = false;
-                Panel_ret.Visible = true;
-                Lb_ret.Text = "添加操作成功";
-            }
 
-            else{
-                Panel_ins.Visible = false;
-                Panel_ret.Visible = true;
-                Lb_ret.Text = "添加操作失败";
-            
+            //验证用户名是否已经存在
+
+            DataSet ds = admin.searchAdmin("",strName,"","不选");    
+            //ds中的表有数据——数据库该用户名存在
+            if(ds != null)
+                if (ds.Tables.Count == 1 && ds.Tables[0].Rows.Count != 0)
+                {
+                    Lb_error.Visible = true;
+                }
+                
+            else
+            { 
+                ret = admin.addAdmin(strName,strMd5Pwd,strEmail,strLevel);  //添加新管理员
+                
+                if(ret != 0){       //插入操作成功
+                    Panel_ins.Visible = false;
+                    Panel_ret.Visible = true;
+                    Lb_ret.Text = "添加操作成功";
+                }
+
+                else{
+                    Panel_ins.Visible = false;
+                    Panel_ret.Visible = true;
+                    Lb_ret.Text = "添加操作失败";
+                    }
             }
+           
 
         }
     }
@@ -78,4 +112,11 @@ public partial class manage_adminAdd : System.Web.UI.Page
     {
         Response.Redirect("userManage.aspx");
     }
+
+    protected void Bt_return_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("adminAdd.aspx");
+    }
+
+
 }
