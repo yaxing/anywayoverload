@@ -122,9 +122,9 @@ function tick() {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td width="15%" align="center" style="height: 77px">
+                                            <td width="27%" align="center" style="height: 77px">
                                                 <img src="Images/logo.gif" alt="" style="width: 194px; height: 68px; left: -7px; position: relative; top: 0px;" id="IMG1"/></td>
-                                            <td width="85%" valign="top" style="height: 77px">
+                                            <td width="73%" valign="top" style="height: 77px">
                                                 <table width="100%" style="height: 35" border="0" cellpadding="0" cellspacing="0">
                                                     <tr align="center">
                                                         <td valign="bottom" style="height: 22px">
