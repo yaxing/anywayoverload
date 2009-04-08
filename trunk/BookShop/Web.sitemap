@@ -10,5 +10,6 @@
         <siteMapNode url="~/OrderDetails.aspx" title="订单详细信息"  description="详细订单" />
       </siteMapNode>
         <siteMapNode url="~/saleRank.aspx" title="销售排行"  description="排行" />
+        <siteMapNode url="~/pollResult.aspx" title="查看投票结果"  description="投票结果" />
     </siteMapNode>
 </siteMap>

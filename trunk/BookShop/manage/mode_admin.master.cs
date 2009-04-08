@@ -13,6 +13,58 @@ public partial class manage_mode_admin : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //判断管理页面类型
+        String[] url = Request.Url.ToString().Split('/');//获取当前URL
+        String[] urlWithoutParameter = url[url.Length - 1].Split('?') ;//去除URL所带的参数
+        String currentURL = urlWithoutParameter[0];
+        userManage.Visible = false;
+        orderManage.Visible = false;
+        BBS.Visible = false;
+        Poll.Visible = false;
+        memberSearch.Visible = false;
+        adminAdd.Visible = false;
+        adminSearch.Visible = false;
+        pollDetail.Visible = false;
+        if (currentURL.Equals("userManage.aspx")) 
+        {
+            adminType.Text = "用户管理";
+            userManage.Visible = true;
+        }
+        else if (currentURL.Equals("orderManage.aspx"))
+        {
+            adminType.Text = "订单管理";
+            orderManage.Visible = true;
+        }
+        else if (currentURL.Equals("BBS.aspx"))
+        {
+            adminType.Text = "公告管理";
+            BBS.Visible = true;
+        }
+        else if (currentURL.Equals("Poll.aspx"))
+        {
+            adminType.Text = "投票管理";
+            Poll.Visible = true;
+        }
+        else if (currentURL.Equals("memberSearch.aspx"))
+        {
+            adminType.Text = "用户搜索";
+            memberSearch.Visible = true;
+        }
+        else if (currentURL.Equals("adminAdd.aspx"))
+        {
+            adminType.Text = "添加管理员";
+            adminAdd.Visible = true;
+        }
+        else if (currentURL.Equals("adminSearch.aspx"))
+        {
+            adminType.Text = "查询或修改管理员";
+            adminSearch.Visible = true;
+        }
+        else if (currentURL.Equals("pollDetail.aspx"))
+        {
+            adminType.Text = "投票详请";
+            pollDetail.Visible = true;
+        }
+        
     }
 }

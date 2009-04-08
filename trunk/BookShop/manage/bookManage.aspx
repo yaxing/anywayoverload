@@ -82,7 +82,7 @@
           <td width="26%" height="395" valign="top"><table width="100%"  border="0" cellspacing="-2" cellpadding="-2">
             <tr>
               <td width="55%" height="82" align="center" class="word_grey">&nbsp;<img src="../Images/reg.gif" width="84" height="54"></td>
-              <td width="45%" align="left" class="word_grey">图书管理</td>
+              <td style="width:45%; font-family:华文隶书; font-size:medium" align="left" class="word_grey">书籍管理</td>
             </tr>
             <tr>
               <td height="112" colspan="2" valign="top" class="word_grey"><ul>
@@ -377,7 +377,7 @@
             </tr>
             <tr>
               <td width="124" height="13">&nbsp;</td>
-              <td height="13" colspan="3" align="center"><a href="#">图书山寨</a>客户服务热线：010-6891xxx&nbsp;&nbsp;&nbsp;&nbsp;联系人:AnywayOverload小组</td>
+              <td height="13" colspan="3" align="center"><a href="../index.aspx">图书山寨</a>客户服务热线：010-6891xxx&nbsp;&nbsp;&nbsp;&nbsp;联系人:AnywayOverload小组</td>
               <td width="141">&nbsp;</td>
             </tr>
             <tr>
