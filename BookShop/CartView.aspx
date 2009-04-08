@@ -26,11 +26,13 @@ cur.filters.alpha.opacity=60
 
 
     </script>
+
     <center>
-        <h4 style="margin:30px 40px; background-color:#E0F5F4; text-align:center">我的购物车</h4>
+        <h4 style="margin: 30px 40px; background-color: #E0F5F4; text-align: center">
+            我的购物车</h4>
         <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
             BorderWidth="3px" Width="90%" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand">
-            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <FooterStyle BackColor="#E0F5F4" Font-Bold="True" ForeColor="White" />
             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
             <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
@@ -41,10 +43,10 @@ cur.filters.alpha.opacity=60
                 <table width="100%">
                     <tr>
                         <td align="center" style="height: 82px">
-                            <img src="Images/cart.gif" />
-                             <p style="padding:50px 10px">
-                              购物车列表为空。<a href="index.aspx">浏览商品</a>
-                             </p>
+                            <img src="Images/cart.gif" style="margin: 20px 30px" />
+                            <p style="padding: 50px 10px">
+                                购物车列表为空。<a href="index.aspx">浏览商品</a>
+                            </p>
                         </td>
                     </tr>
                 </table>
@@ -53,8 +55,12 @@ cur.filters.alpha.opacity=60
                 <asp:BoundField DataField="ID" ReadOnly="True" Visible="False" />
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%#Eval("Cover") %>'
-                            PostBackUrl='<%# "bookInfo.aspx?bookID="+Eval("ID").ToString() %>' />
+                        <div class="shadow">
+                            <div>
+                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%#Eval("Cover") %>' BorderStyle=Solid
+                                    PostBackUrl='<%# "bookInfo.aspx?bookID="+Eval("ID").ToString() %>' BorderColor="Black" BorderWidth="1px" />
+                            </div>
+                        </div>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="BookName" HeaderText="书名" ReadOnly="True" />
@@ -77,10 +83,11 @@ cur.filters.alpha.opacity=60
         </asp:GridView>
         <asp:Label ID="Total" runat="server" /></center>
     <center>
-        
-        <asp:ImageButton ID="ImageButton2" runat="server" style="filter:alpha(opacity=60)" onMouseOver="makevisible(this,0)" onMouseOut="makevisible(this,1)" OnClick="Gonoshopping" ImageUrl="~/Images/goOn.gif"
-            Width="100px" />
-        <asp:ImageButton ID="ImageButton3" runat="server" style="filter:alpha(opacity=60)" onMouseOver="makevisible(this,0)" onMouseOut="makevisible(this,1)" OnClick="Check_out" ImageUrl="~/Images/confirm.gif"
-            Width="100px" />
+        <asp:ImageButton ID="ImageButton2" runat="server" Style="filter: alpha(opacity=60)"
+            onMouseOver="makevisible(this,0)" onMouseOut="makevisible(this,1)" OnClick="Gonoshopping"
+            ImageUrl="~/Images/goOn.gif" Width="100px" />
+        <asp:ImageButton ID="ImageButton3" runat="server" Style="filter: alpha(opacity=60)"
+            onMouseOver="makevisible(this,0)" onMouseOut="makevisible(this,1)" OnClick="Check_out"
+            ImageUrl="~/Images/confirm.gif" Width="100px" />
     </center>
 </asp:Content>
