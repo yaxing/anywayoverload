@@ -5,8 +5,8 @@
 <%@ Import Namespace="System.Data" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div>
-        <h4 style="text-align: center">
-            <span style="color: #0000cc">订单列表</span>
+        <h4 style="margin:30px 40px; background-color:#E0F5F4; text-align:center">
+            订单列表
         </h4>
     </div>
     <div>
