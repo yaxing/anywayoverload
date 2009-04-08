@@ -29,10 +29,10 @@ public partial class manage_BBS : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["AdminN"] == null || Session["AdminLv"] == null)
-        {
-            Response.Redirect("../index.aspx");
-        }
+        //if (Session["AdminN"] == null || Session["AdminLv"] == null)
+        //{
+        //    Response.Redirect("../index.aspx");
+        //}
         Tittle.Text = "";
         Updates.Text = "";
         String QueryString = "select * from bbs";
@@ -41,6 +41,8 @@ public partial class manage_BBS : System.Web.UI.Page
         if (Result.Tables[0].Rows.Count == 0)
         {
             Tittle.Text = "暂时没有公告！";
+            DeleteAll.Visible = false;
+            WordOut.Visible = false;
         } 
         else
         {
@@ -49,6 +51,13 @@ public partial class manage_BBS : System.Web.UI.Page
             BBS.DataBind();
         }
         connStr.close();
+
+        //BBS.Attributes.Add("style", "word-break:keep-all;word-wrap:normal");
+        BBS.Attributes.Add("style", "word-break:break-all;word-wrap:break-word");
+        if (!IsPostBack)
+        {
+            DataBind();
+        }
     }
     protected void Reset_Click(object sender, EventArgs e)
     {
@@ -107,7 +116,8 @@ public partial class manage_BBS : System.Web.UI.Page
         } 
         else
         {
-            string UpdataString = "update bbs set content = '" + bbs_content + "', postTime = '" + bbs_postTime + "' where ID = " + id;
+            //string UpdataString = "update bbs set content = '" + bbs_content + "', postTime = '" + bbs_postTime + "' where ID = " + id;
+            string UpdataString = "update bbs set content = '" + bbs_content + "' where ID = " + id;
             int ResultFlags = connStr.executeUpdate(UpdataString);
             if (ResultFlags == 0)
             {
