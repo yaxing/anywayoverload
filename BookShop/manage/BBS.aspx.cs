@@ -29,6 +29,10 @@ public partial class manage_BBS : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["AdminN"] == null || Session["AdminLv"] == null)
+        {
+            Response.Redirect("../index.aspx");
+        }
         Tittle.Text = "";
         Updates.Text = "";
         String QueryString = "select * from bbs";
@@ -112,6 +116,7 @@ public partial class manage_BBS : System.Web.UI.Page
             else
             {
                 Updates.Text = "更新成功！";
+                BindData();
             }
         }
         connStr.close();
@@ -128,10 +133,11 @@ public partial class manage_BBS : System.Web.UI.Page
     }
     protected void DeleteAll_Click(object sender, EventArgs e)
     {
-        String DelStr = "delete * from bbs";
+        String DelStr = "delete from bbs";
         connStr.connDB(strConn);
         connStr.executeUpdate(DelStr);
         connStr.close();
+        Response.Redirect(Request.Url.ToString());
     }
     public override void VerifyRenderingInServerForm(Control control)
     {

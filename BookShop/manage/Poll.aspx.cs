@@ -28,6 +28,10 @@ public partial class manage_Poll : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["AdminN"] == null || Session["AdminLv"] == null)
+        {
+            Response.Redirect("../index.aspx");
+        }
         connStr.connDB(connection);
         string QueryStr = "select * from poll";
         DataSet pollData = connStr.executeQuery(QueryStr);
