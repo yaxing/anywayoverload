@@ -41,7 +41,10 @@ cur.filters.alpha.opacity=60
                 <table width="100%">
                     <tr>
                         <td align="center" style="height: 82px">
-                            购物车列表为空。<a href="index.aspx">浏览商品</a>
+                            <img src="Images/cart.gif" />
+                             <p style="padding:50px 10px">
+                              购物车列表为空。<a href="index.aspx">浏览商品</a>
+                             </p>
                         </td>
                     </tr>
                 </table>
