@@ -97,6 +97,7 @@ function tick() {
     window.setTimeout("tick();", 100);
 }
  window.onload = tick;
+
 </script>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -121,9 +122,9 @@ function tick() {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td width="27%" height="70" align="center">
-                                                <img src="Images/index_03.gif" width="185" height="56" alt="" /></td>
-                                            <td width="73%" valign="top">
+                                            <td width="15%" align="center" style="height: 77px">
+                                                <img src="Images/logo.gif" alt="" style="width: 194px; height: 68px; left: -7px; position: relative; top: 0px;" id="IMG1"/></td>
+                                            <td width="85%" valign="top" style="height: 77px">
                                                 <table width="100%" style="height: 35" border="0" cellpadding="0" cellspacing="0">
                                                     <tr align="center">
                                                         <td valign="bottom" style="height: 22px">
@@ -362,9 +363,9 @@ function tick() {
                                                                 <ItemTemplate>
                                                                     <table style="text-align: center">
                                                                         <tr>
-                                                                            <td style="width: 60%">
-                                                                            </td>
-                                                                            <td style="width: 40%; text-align: center; font-family: 幼圆">
+                                                                            <%--<td style="width: 60%">
+                                                                            </td>--%>
+                                                                            <td style="width: 40%; text-align: center; font-family:幼圆; font-size:small; font-style:bold">
                                                                                 <%#Eval("theme") %>
                                                                             </td>
                                                                         </tr>
