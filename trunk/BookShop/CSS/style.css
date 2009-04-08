@@ -59,11 +59,20 @@ body {
 	color: #333333;
 	border: 1px solid #999999;
 }
-.shadow{
-font-size:13pt;
-filter:DropShadow(Color=#111111,offX=1,offY=0,positive=1);
-height:10;color:#FF9900;
-}
+.shadow {
+  float:left;
+  background: url(../Images/bottom-right.png) no-repeat bottom right;
+  }
+
+.shadow div {
+  background: url(../Images/top-left.png) no-repeat;
+  padding: 0 6px 6px 0;
+  }
+
+.shadow img {
+  border: 1px solid #000;
+  padding: 4px;
+  }
 .tableBorder_B {
  padding:5px;
  border-bottom: #aaaaaa 1px solid;
