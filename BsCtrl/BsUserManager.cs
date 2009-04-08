@@ -95,7 +95,8 @@ namespace BsCtrl
         {
             bool ret = true;
             String strConn = ConfigurationSettings.AppSettings["dbConnString"];
-            String sql = "Update admin set password=" + "'" + strPwd + "'" + ",email=" + "'" + strEmail + "'" + ",level=" + strLevel + "Where id=" + strID;
+            int intID = Convert.ToInt32(strID);
+            String sql = "Update admin set password=" + "'" + strPwd + "'" + ",email=" + "'" + strEmail + "'" + ",level=" + strLevel + "Where id=" + intID;
 
             //链接数据库，执行更新操作
             DbConnector connUp = new DbConnector();
@@ -135,25 +136,25 @@ namespace BsCtrl
                 strEmail	表示用户的Email
                 strGrade*/
 
-        public DataSet searchMember(String strID, String strName, String strTEL, String strEmail, String strGrade)
+        public DataSet searchMember(String strID, String strName, String strTEL, String strEmail)
         {
             DataSet ret = null;
             String strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "select id,username,password,tel,email,grade from users where 1=1 and ";
 
             if (strID != "")
-                sql += "id = " + "'" + strID + "'";
+            {
+                int intID = Convert.ToInt32(strID);
+                sql += "id = " + "'" + intID + "'";
+            }
+             
             if (strName != "")
                 sql += "username = " + "'" + strName + "'";
             if (strTEL != "")
                 sql += "tel = " + "'" + strTEL + "'";
             if (strEmail != "")
                 sql += "email = " + "'" + strEmail + "'";
-            if (strGrade != "不选")
-            {
-                int intGrade = Convert.ToInt32(strGrade);
-                sql += "grade = " + strGrade;
-            }
+            
 
             //链接数据库，执行查询操作
             DbConnector connSch = new DbConnector();
@@ -183,14 +184,13 @@ namespace BsCtrl
 
         /*功能：更新（修改）用户信息
          参数：id,userName,password,tel,email,grade*/
-        public bool updateMember(String strID, String strName, String strPwd, String strTEL, String strEmail, String strGrade)
+        public bool updateMember(String strID, String strName, String strPwd, String strTEL, String strEmail)
         {
             bool ret = true;
             int intID = Convert.ToInt32(strID);
-            int intGrade = Convert.ToInt32(strGrade);
             String strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "Update users set password=" + "'" + strPwd + "'" + ",tel="
-                + "'" + strTEL + "'" + ",email=" + "'" + strEmail + "'" + ",grade=" + strGrade + "Where id=" + intID;
+                + "'" + strTEL + "'" + ",email=" + "'" + strEmail + "'" + "Where id=" + intID;
 
             //链接数据库，执行更新操作
             DbConnector connUp = new DbConnector();
