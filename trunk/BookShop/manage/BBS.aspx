@@ -5,17 +5,18 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:Label ID="Tittle" runat="server"></asp:Label>
     <asp:GridView ID="BBS" runat="server" CellPadding="4" ForeColor="Black" 
-        Width="318px" AutoGenerateColumns="False" BackColor="#CCCCCC" 
+        Width="553px" AutoGenerateColumns="False" BackColor="#CCCCCC" 
         BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellSpacing="2" 
         DataKeyNames="ID" onrowdeleting="BBS_RowDeleting" AllowPaging="True" 
         onpageindexchanging="BBS_PageIndexChanging" 
         onrowcancelingedit="BBS_RowCancelingEdit" onrowediting="BBS_RowEditing" 
-        onrowupdating="BBS_RowUpdating" PageSize="5" >
+        onrowupdating="BBS_RowUpdating" PageSize="5" Height="209px" >
         <FooterStyle BackColor="#CCCCCC" />
         <RowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="ID" HeaderText="序号" />
-            <asp:BoundField DataField="content" HeaderText="内容" />
+            <asp:BoundField DataField="content" HeaderText="内容" SortExpression ="content">
+            </asp:BoundField>
             <asp:BoundField DataField="postTime" HeaderText="发布时间" />
             <asp:CommandField HeaderText="删除" ShowDeleteButton="True" 
                 CausesValidation="False" />
@@ -30,7 +31,9 @@
         onclick="DeleteAll_Click" />
     &nbsp;<asp:Button ID="WordOut" runat="server" CausesValidation="False" 
         onclick="WordOut_Click" Text="公告导出到Word" />
-&nbsp;<asp:Label ID="Updates" runat="server"></asp:Label>
+    &nbsp;<asp:Label ID="Updates" runat="server"></asp:Label>
+    <br />
+    <asp:Label ID="AddBBS" runat="server" Text="添加公告："></asp:Label>
     <br />
     <br />
     <asp:Label ID="BBSContentTitle" runat="server" Text="公告内容"></asp:Label>
