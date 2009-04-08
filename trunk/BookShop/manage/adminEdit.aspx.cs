@@ -16,26 +16,34 @@ public partial class manage_adminEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-       /*
+        //判断权限
+
+        //若不是管理员，回到管理员登录页面
         if (Session["AdminN"] == null)
-        {    //如果不是管理员身份
+        {
             Response.Redirect("adminLogin.html");
         }
-        */ 
+
+        //判断是否为4级管理员，只有4级管理员能访问该页面
+        //不是4级管理员
+        if (Session["AdminLv"].ToString() != "4")
+        {
+            Response.Redirect("adminLogin.html");
+        }
+
 
         //不是返回结果，初始化页面
         if (this.IsPostBack == false)
             LoadData();
 
-        //位置在下的“返回查询”按钮可见
-        LinkButton LB_search = (LinkButton)Panel2.FindControl("LB_search");
-        LB_search.Visible = false;
+        Panel_ret.Visible = false;
 
         //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
         //查询结果为空
         if (GV1.Rows.Count == 0)
         {   
            
+            /*
             //“全选”按钮不可见
             Button Bt_all = (Button)Panel2.FindControl("Bt_all");
             Bt_all.Visible = false;
@@ -54,6 +62,9 @@ public partial class manage_adminEdit : System.Web.UI.Page
             //位置在下的“返回查询”按钮可见
             LB_search.Visible = true;
 
+             */
+            Panel1.Visible = false;
+            Panel_ret.Visible = true;
             Lb_ret.Text = "没有符合条件的用户信息";
 
         }
@@ -79,6 +90,17 @@ public partial class manage_adminEdit : System.Web.UI.Page
 
         //“确认密码”栏不可见
         GV1.Columns[3].Visible = false;
+
+        //对等级为4的管理员，不能进行删除操作
+        if (strLevel == "4")
+        {
+            //“选择”栏不可见
+            GV1.Columns[6].Visible = false;
+            //删除按钮不可见
+            Button Bt_del = (Button)Panel1.FindControl("Bt_del");
+            Bt_del.Visible = false;
+        }
+        
     }
 
     /*功能：密码md5加密
@@ -144,6 +166,7 @@ public partial class manage_adminEdit : System.Web.UI.Page
 
         //“确认密码”栏可见
         GV1.Columns[3].Visible = true;
+       
     }
 
     //取消编辑  
@@ -186,39 +209,50 @@ public partial class manage_adminEdit : System.Web.UI.Page
 
             }
 
-            //执行更新操作
-            admin.updateAdmin(strID, strName, strMd5Pwd, strEmail, strLevel);       //更新用户        /////////
 
-            //退出编辑模式，显示更新后的页面
-            GV1.EditIndex = -1;
-            LoadData();
+            //判断管理员等级变更是否合法
+            //管理员原来的等级strPreLevel
+            String strPreLevel = ((Label)GV1.Rows[RowEditIndex].FindControl("Lb_prelevel")).Text;
+            int intPreLevel = Convert.ToInt32(strPreLevel);
 
-            //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
-            if (GV1.Rows.Count == 0)
-            {   //查询结果为空
-
-                //“全选”按钮不可见
-                Button Bt_all = (Button)Panel2.FindControl("Bt_all");
-                Bt_all.Visible = false;
-
-                //“全不选”按钮不可见
-                Button Bt_allnot = (Button)Panel2.FindControl("Bt_allnot");
-                Bt_allnot.Visible = false;
-
-                //“修改”按钮不可见
-                Button Bt_del = (Button)Panel2.FindControl("Bt_del");
-                Bt_del.Visible = false;
-
-                //位置在上的“返回查询”按钮不可见
-                Button Bt_search = (Button)Panel2.FindControl("Bt_search");
-                Bt_search.Visible = false;
-
-                //位置在下的“返回查询”按钮可见
-                LinkButton LB_search = (LinkButton)Panel2.FindControl("LB_search");
-                LB_search.Visible = true;
+            //不能把等级为4的管理员降级
+            if (intLevel != 4 && intPreLevel == 4)
+            {
+                Panel1.Visible = false;
+                Panel_ret.Visible = true;
+                Lb_ret.Text = "不能对等级为4的管理员执行降级操作";
+                
             }
 
-            Lb_ret.Text = "操作成功";   //提示成功
+            //不能提升等级在3级以下的管理员为4级
+            else if (intLevel == 4 && intPreLevel != 4)
+            {
+                Panel1.Visible = false;
+                Panel_ret.Visible = true;
+                Lb_ret.Text = "不能提升管理员的等级到4级";
+            }
+
+            else
+            {
+
+                //执行更新操作
+                admin.updateAdmin(strID, strName, strMd5Pwd, strEmail, strLevel);       //更新用户        /////////
+
+                //退出编辑模式，显示更新后的页面
+                GV1.EditIndex = -1;
+                LoadData();
+
+                //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
+                if (GV1.Rows.Count == 0)
+                {   //查询结果为空
+
+                    Panel1.Visible = false;
+                    Panel_ret.Visible = true;
+                }
+
+                Lb_ret.Text = "操作成功";   //提示成功
+            }
+
         }
     }
 
@@ -255,26 +289,9 @@ public partial class manage_adminEdit : System.Web.UI.Page
             //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
              //查询结果为空
             if (GV1.Rows.Count == 0)
-            {  
-                //“全选”按钮不可见
-                Button Bt_all = (Button)Panel2.FindControl("Bt_all");
-                Bt_all.Visible = false;
-
-                //“全不选”按钮不可见
-                Button Bt_allnot = (Button)Panel2.FindControl("Bt_allnot");
-                Bt_allnot.Visible = false;
-
-                //“修改”按钮不可见
-                Button Bt_del = (Button)Panel2.FindControl("Bt_del");
-                Bt_del.Visible = false;
-
-                //位置在上的“返回查询”按钮不可见
-                Button Bt_search = (Button)Panel2.FindControl("Bt_search");
-                Bt_search.Visible = false;
-
-                //位置在下的“返回查询”按钮可见
-                LinkButton LB_search = (LinkButton)Panel2.FindControl("LB_search");
-                LB_search.Visible = true;
+            {
+                Panel1.Visible = false;
+                Panel_ret.Visible = true;
 
             }
 

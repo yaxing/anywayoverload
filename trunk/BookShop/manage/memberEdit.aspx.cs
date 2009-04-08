@@ -18,45 +18,33 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        /*
-        if (Session["AdminN"] == null)
-        {    //如果不是管理员身份
+        //判断权限
+
+        //若不是管理员，回到管理员登录页面
+        if(Session["AdminN"] == null)
+        {
             Response.Redirect("adminLogin.html");
         }
-
-         */ 
+        
+        //判断是否为4级管理员，只有4级管理员能访问该页面
+        //不是4级管理员
+        if(Session["AdminLv"].ToString() !=  "4")
+        {
+            Response.Redirect("adminLogin.html");
+           
+        }
         
         if (this.IsPostBack == false)
             LoadData();
-
-            //位置在下的“返回查询”按钮可见
-            LinkButton LB_search = (LinkButton)Panel2.FindControl("LB_search");
-            LB_search.Visible = false;
+        Panel_ret.Visible = false;
 
         //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
         if (GV1.Rows.Count == 0)
         {   //查询结果为空
 
-            //“全选”按钮不可见
-            Button Bt_all = (Button)Panel2.FindControl("Bt_all");
-            Bt_all.Visible = false;
-
-            //“全不选”按钮不可见
-            Button Bt_allnot = (Button)Panel2.FindControl("Bt_allnot");
-            Bt_allnot.Visible = false;
-
-            //“修改”按钮不可见
-            Button Bt_del = (Button)Panel2.FindControl("Bt_del");
-            Bt_del.Visible = false;
-            //位置在上的“返回查询”按钮不可见
-            Button Bt_search = (Button)Panel2.FindControl("Bt_search");
-            Bt_search.Visible = false;
-
-            //位置在下的“返回查询”按钮可见
-            LB_search.Visible = true;
-
+            Panel1.Visible = false;
+            Panel_ret.Visible = true;
             Lb_ret.Text = "没有符合条件的用户信息";
-
         }
 
     }
@@ -68,11 +56,10 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
         String strName = Request.QueryString["name"];
         String strTEL = Request.QueryString["tel"];
         String strEmail = Request.QueryString["email"];
-        String strGrade = Request.QueryString["grade"];
 
         //实例化BsUserManager
         BsUserManager admin = new BsUserManager();
-        DataSet ds = admin.searchMember(strID,strName,strTEL,strEmail,strGrade);
+        DataSet ds = admin.searchMember(strID,strName,strTEL,strEmail);
 
         //绑定数据源
         GV1.DataSource = ds;
@@ -172,7 +159,7 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
             String strPwd = ((TextBox)GV1.Rows[RowEditIndex].FindControl("TB_pwd")).Text.Trim();  //用户密码
             String strTEL = ((TextBox)GV1.Rows[RowEditIndex].FindControl("TB_tel")).Text.Trim();    //tel
             String strEmail = ((TextBox)GV1.Rows[RowEditIndex].FindControl("TB_email")).Text.Trim();    //email
-            String strGrade = ((TextBox)GV1.Rows[RowEditIndex].FindControl("TB_grade")).Text.Trim();  //用户等级grade
+          
 
             if (strPwd != "Password")    //输入了新密码
             {    //密码md5加密
@@ -185,7 +172,7 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
             }
 
             //执行更新操作
-            admin.updateMember(strID, strName, strMd5Pwd, strTEL, strEmail, strGrade);       //更新用户
+            admin.updateMember(strID, strName, strMd5Pwd, strTEL, strEmail);       //更新用户
 
             //退出编辑模式，显示更新后的页面
             GV1.EditIndex = -1;
@@ -196,25 +183,8 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
             if (GV1.Rows.Count == 0)
             {   //查询结果为空
 
-                //“全选”按钮不可见
-                Button Bt_all = (Button)Panel2.FindControl("Bt_all");
-                Bt_all.Visible = false;
-
-                //“全不选”按钮不可见
-                Button Bt_allnot = (Button)Panel2.FindControl("Bt_allnot");
-                Bt_allnot.Visible = false;
-
-                //“修改”按钮不可见
-                Button Bt_del = (Button)Panel2.FindControl("Bt_del");
-                Bt_del.Visible = false;
-
-                //位置在上的“返回查询”按钮不可见
-                Button Bt_search = (Button)Panel2.FindControl("Bt_search");
-                Bt_search.Visible = false;
-
-                //位置在下的“返回查询”按钮可见
-                LinkButton LB_search = (LinkButton)Panel2.FindControl("LB_search");
-                LB_search.Visible = true;
+                Panel1.Visible = false;
+                Panel_ret.Visible = true;
             }
 
             Lb_ret.Text = "操作成功";   //提示成功
@@ -253,26 +223,8 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
             if (GV1.Rows.Count == 0)
             {   //查询结果为空
 
-                //“全选”按钮不可见
-                Button Bt_all = (Button)Panel2.FindControl("Bt_all");
-                Bt_all.Visible = false;
-
-                //“全不选”按钮不可见
-                Button Bt_allnot = (Button)Panel2.FindControl("Bt_allnot");
-                Bt_allnot.Visible = false;
-
-                //“修改”按钮不可见
-                Button Bt_del = (Button)Panel2.FindControl("Bt_del");
-                Bt_del.Visible = false;
-
-                //位置在上的“返回查询”按钮不可见
-                Button Bt_search = (Button)Panel2.FindControl("Bt_search");
-                Bt_search.Visible = false;
-
-                //位置在下的“返回查询”按钮可见
-                LinkButton LB_search = (LinkButton)Panel2.FindControl("LB_search");
-                LB_search.Visible = true;
-
+                Panel1.Visible = false;
+                Panel_ret.Visible = true;
             }
 
         }
