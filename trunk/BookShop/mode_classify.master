@@ -3,6 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <script type="text/javascript" language="javascript">
+
+function checkSearch(){
+    //alert("");
+    var c =document.getElementById("<%= searchContent.ClientID%>").getAttribute("value");
+    if(c==""){
+    alert("ÇëÊäÈëËÑË÷Ìõ¼þ£¡");
+    return false;
+    }
+    else{
+    return true;
+    }
+}
+ 
+
 function tick() {
     var hours, minutes, seconds, xfile;
     var intHours, intMinutes, intSeconds;
@@ -147,7 +161,7 @@ function tick() {
                                         <tr align="right">
                                             <td height="17" colspan="2">
                                                 <div id="Clock" align="right" style="font-family: Ó×Ô²; font-size: 15px; color: #000000;
-                                                    position: relative; margin-top: -50px;">
+                                                    position: relative; margin-top: -35px;">
                                                 </div>
                                             </td>
                                         </tr>
@@ -229,7 +243,7 @@ function tick() {
                                                         </td>
                                                         <td width="18%" style="height: 27px">
                                                             <asp:ImageButton ID="searchButton" runat="server" Style="position: relative; left: -48px;
-                                                                top: -5px;" OnClick="searchButton_Click" Height="25px" ImageUrl="~/Images/search.gif"
+                                                                top: -5px;" OnClick="searchButton_Click" OnClientClick="return checkSearch()" Height="25px" ImageUrl="~/Images/search.gif"
                                                                 Width="80px" CausesValidation="False" /></td>
                                                     </tr>
                                                 </table>
