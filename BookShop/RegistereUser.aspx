@@ -6,7 +6,7 @@
             <tr>
                 <td style="height: 40px;" align="left" colspan="2">
                     <h4 style="text-align: center">
-                        <span style="color: #3366ff">
+                        <span>
                         用户注册：</span></h4>
                 </td>
             </tr>
@@ -67,7 +67,7 @@
                 <td style="width: 118px; text-align: right; height: 20px;" align="left">
                     真实姓名：</td>
                 <td align="left" style="height: 20px">
-                    <asp:TextBox ID="txtName" runat="server" Width="150px" MaxLength="10" CssClass="textarea"></asp:TextBox>
+                    <asp:TextBox ID="txtName" runat="server" Width="150px" MaxLength="10" CssClass="textarea"></asp:TextBox>(必填)
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtName"
                         Display="Dynamic" ErrorMessage="真实姓名不能为空"></asp:RequiredFieldValidator></td>
             </tr>
