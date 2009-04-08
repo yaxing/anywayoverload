@@ -185,7 +185,7 @@ namespace BsCtrl
         public DataSet GetAllBooks()
         {
 
-            DataSet ds = conn.executeQuery("select bookClass.className,bookClass.bookCount,bookInfo.* from bookClass,bookInfo where bookClass.ID = bookInfo.classID");
+            DataSet ds = conn.executeQuery("select bookClass.className,bookClass.bookCount,bookInfo.* from bookClass,bookInfo where bookClass.ID = bookInfo.classID order by indatetime DESC");
             
             return ds;
         }
