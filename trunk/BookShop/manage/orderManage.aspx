@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <br/>
-    <p style="text-align:center">用户名：<asp:TextBox ID="tBoxUserName" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lBtnSearch" runat="server" OnClick="lBtnSearch_Click">订单搜索</asp:LinkButton></p>
+    <p style="text-align:center">用户名：<asp:TextBox ID="tBoxUserName" runat="server" MaxLength="20"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lBtnSearch" runat="server" OnClick="lBtnSearch_Click">订单搜索</asp:LinkButton></p>
     <asp:HiddenField ID="hfUserName" runat="server" Value="" />
     <asp:Label ID="lblContent" runat="server" Text=""></asp:Label>
     <br />

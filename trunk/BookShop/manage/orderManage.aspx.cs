@@ -33,7 +33,7 @@ public partial class manage_orderManage : System.Web.UI.Page
      显示订单信息
      * 参数：flag，1表示第一次显示该内容；0，表示翻页
      */
-    public void showContent(int flag)
+    private void showContent(int flag)
     {
         string dbConnStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString(); // ConfigurationManager.AppSettings["dbConnString"];
         orderManObj = new orderManage(dbConnStr);
