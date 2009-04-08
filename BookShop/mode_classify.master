@@ -276,7 +276,7 @@ function tick() {
                                             <td width="124" height="13">
                                                 &nbsp;</td>
                                             <td height="13" colspan="3" align="center">
-                                                <a href="#">图书山寨</a>客户服务热线：13161321542&nbsp;&nbsp;&nbsp;&nbsp;联系人:AnywayOverload小组</td>
+                                                <a href="manage/adminLogin.html">图书山寨</a>客户服务热线：13161321542&nbsp;&nbsp;&nbsp;&nbsp;联系人:AnywayOverload小组</td>
                                             <td width="141">
                                                 &nbsp;</td>
                                         </tr>

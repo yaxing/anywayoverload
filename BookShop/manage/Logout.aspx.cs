@@ -18,5 +18,6 @@ public partial class manage_Logout : System.Web.UI.Page
         Session.Clear();
         Session.Abandon();
         Response.Write("<script type='text/javascript'>alert('欢迎再来，再见！');location.href('adminLogin.html')</script>");
+        Response.Redirect("../index.aspx");
     }
 }
