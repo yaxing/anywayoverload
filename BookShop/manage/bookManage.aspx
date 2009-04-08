@@ -106,65 +106,65 @@
                   <table style="width: 520px; height: 390px">
                       <tr>
                           <td align="left" style="width: 83px">
-                              书&nbsp; 名：</td>
+                              书&nbsp; 名<span style="color: #ff0033">*</span>：</td>
                           <td colspan="1" style="width: 260px">
-                              <asp:TextBox ID="TxtBookName" runat="server"></asp:TextBox>
+                              <asp:TextBox ID="TxtBookName" runat="server" MaxLength="128"></asp:TextBox>
                               <asp:RequiredFieldValidator ID="RvalBookName" runat="server" ControlToValidate="TxtBookName"
                                   Display="Dynamic" ErrorMessage="*书名不能为空" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator></td>
                           <td colspan="4" style="width: 166px" align="center" rowspan="9"><div id="newPreview"></div></td>
                       </tr>
                       <tr>
                           <td align="left" style="width: 83px">
-                              图书分类：</td>
+                              图书分类<span style="color: #ff0033">*</span>：</td>
                           <td colspan="1" style="width: 260px">
                               <asp:DropDownList ID="DDDLType" runat="server">
                               </asp:DropDownList></td>
                       </tr>
                       <tr>
                           <td align="left" style="width: 83px">
-                              作&nbsp; 者：</td>
+                              作&nbsp; 者<span style="color: #ff0033">*</span>：</td>
                           <td colspan="1" style="width: 260px">
-                              <asp:TextBox ID="TxtAuthor" runat="server"></asp:TextBox>
+                              <asp:TextBox ID="TxtAuthor" runat="server" MaxLength="128"></asp:TextBox>
                               <asp:RequiredFieldValidator ID="RvalAuthor" runat="server" ControlToValidate="TxtAuthor"
                                   Display="Dynamic" ErrorMessage="*请填写作者" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator></td>
                       </tr>
                       <tr>
                           <td align="left" style="width: 83px">
-                              出版社：</td>
+                              出版社<span style="color: #ff0033">*</span>：</td>
                           <td colspan="1" style="width: 260px">
-                              <asp:TextBox ID="TxtPub" runat="server"></asp:TextBox>
+                              <asp:TextBox ID="TxtPub" runat="server" MaxLength="128"></asp:TextBox>
                               <asp:RequiredFieldValidator ID="RvalPrint" runat="server" ControlToValidate="TxtPub"
                                   Display="Dynamic" ErrorMessage="*请填写出版社" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator></td>
                       </tr>
                       <tr>
                           <td align="left" style="width: 83px">
-                              出版日期：</td>
+                              出版日期<span style="color: #ff0033">*</span>：</td>
                           <td colspan="1" style="width: 260px">
-                              <asp:TextBox ID="TxtPubTime" runat="server"></asp:TextBox>
+                              <asp:TextBox ID="TxtPubTime" runat="server" MaxLength="10"></asp:TextBox>
                               <asp:RequiredFieldValidator ID="RvalPubT" runat="server" ControlToValidate="TxtPubTime"
                                   Display="Dynamic" ErrorMessage="*请填写出版日期" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator></td>
                       </tr>
                       <tr>
                           <td align="left" style="width: 83px">
-                              ISBN号：</td>
+                              ISBN号<span style="color: #ff0033">*</span>：</td>
                           <td colspan="1" style="width: 260px">
-                              <asp:TextBox ID="TxtISBN" runat="server"></asp:TextBox>
+                              <asp:TextBox ID="TxtISBN" runat="server" MaxLength="32"></asp:TextBox>
                               <asp:RequiredFieldValidator ID="RvalISBN" runat="server" ControlToValidate="TxtISBN"
                                   Display="Dynamic" ErrorMessage="*请填写ISBN" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator></td>
                       </tr>
                       <tr>
                           <td align="left" style="width: 83px">
-                              定&nbsp; 价：</td>
+                              定&nbsp; 价<span style="color: #ff0033">*</span>：</td>
                           <td colspan="1" style="width: 260px">
-                              <asp:TextBox ID="TxtPrice" runat="server"></asp:TextBox>(元)<asp:RequiredFieldValidator
+                              <asp:TextBox ID="TxtPrice" runat="server" MaxLength="20"></asp:TextBox>(元)<asp:RequiredFieldValidator
                                   ID="RvalPrice" runat="server" ControlToValidate="TxtPrice" Display="Dynamic"
                                   ErrorMessage="*请给书籍定价" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator></td>
                       </tr>
                       <tr>
                           <td align="left" style="width: 83px">
-                              存&nbsp; 量：</td>
+                              存&nbsp; 量<span style="color: #ff0033">*</span>：</td>
                           <td colspan="1" style="width: 260px">
-                              <asp:TextBox ID="TxtQuantity" runat="server"></asp:TextBox>
+                              <asp:TextBox ID="TxtQuantity" runat="server" MaxLength="20"></asp:TextBox>
                               <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TxtQuantity"
                                   Display="Dynamic" ErrorMessage="*请填写书籍存量" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator></td>
                       </tr>
@@ -213,7 +213,7 @@
                       top: 20%; height: 200px; margin-left: 100px;" SelectionMode="Multiple"></asp:ListBox>
                   <asp:Button ID="BtnAdd" runat="server" Style="left: 22px; top: -52px; margin-top: -130px; margin-left: -180px;"
                       Text=">" Width="47px" OnClick="BtnAdd_Click"/>&nbsp;<asp:Button ID="BtnDel" runat="server"
-                          Style="margin-top: -100px; margin-left: -185px" Text="<" Width="47px" /><br />
+                          Style="margin-top: -100px; margin-left: -185px" Text="<" Width="47px" OnClick="BtnDel_Click" /><br />
                   <br />
                   <asp:Label ID="lblSelf" runat="server" BackColor="White" Style="margin-top: 20px;
                       margin-left: 100px" Text="自定义分类："></asp:Label>
@@ -227,7 +227,7 @@
               <asp:Panel ID="BookListPanel" runat="server" Height="400px" Width="520px">
                   <asp:GridView ID="BookGridView" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                       BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px"
-                      CellPadding="4" ForeColor="Black" GridLines="Vertical" OnRowDeleting="BookGridView_RowDeleting" OnRowEditing="BookGridView_RowEditing" Width="510px" DataKeyNames="ID" OnPageIndexChanging="BookGridView_PageIndexChanging">
+                      CellPadding="4" ForeColor="Black" GridLines="Vertical" OnRowDeleting="BookGridView_RowDeleting" OnRowEditing="BookGridView_RowEditing" Width="510px" DataKeyNames="ID" OnPageIndexChanging="BookGridView_PageIndexChanging" PageSize="6">
                       <FooterStyle BackColor="#CCCC99" />
                       <RowStyle BackColor="#F7F7DE" />
                       <Columns>
@@ -248,9 +248,9 @@
               <asp:Panel ID="BookUpdatePanel" runat="server" Height="400px" Visible="False" Width="520px"><table style="width: 520px; height: 390px">
                   <tr>
                       <td align="left" style="width: 83px">
-                          书&nbsp; 名：</td>
+                          书&nbsp; 名<span style="color: #ff0033">*</span>：</td>
                       <td colspan="1" style="width: 260px">
-                          <asp:TextBox ID="TxtBookNameU" runat="server"></asp:TextBox>
+                          <asp:TextBox ID="TxtBookNameU" runat="server" MaxLength="128"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtBookNameU"
                               Display="Dynamic" ErrorMessage="*书名不能为空" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator>
                           <asp:HiddenField ID="HFBookID" runat="server" />
@@ -260,7 +260,7 @@
                   </tr>
                   <tr style="color: #000000">
                       <td align="left" style="width: 83px">
-                          图书分类：</td>
+                          图书分类<span style="color: #ff0033">*</span>：</td>
                       <td colspan="1" style="width: 260px">
                           <asp:DropDownList ID="DDLTypeU" runat="server">
                           </asp:DropDownList>
@@ -269,49 +269,49 @@
                   </tr>
                   <tr>
                       <td align="left" style="width: 83px">
-                          作&nbsp; 者：</td>
+                          作&nbsp; 者<span style="color: #ff0033">*</span>：</td>
                       <td colspan="1" style="width: 260px">
-                          <asp:TextBox ID="TxtAuthorU" runat="server"></asp:TextBox>
+                          <asp:TextBox ID="TxtAuthorU" runat="server" MaxLength="128"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TxtAuthorU"
                               Display="Dynamic" ErrorMessage="*请填写作者" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
                   </tr>
                   <tr style="color: #000000">
                       <td align="left" style="width: 83px">
-                          出版社：</td>
+                          出版社<span style="color: #ff0033">*</span>：</td>
                       <td colspan="1" style="width: 260px">
-                          <asp:TextBox ID="TxtPubU" runat="server"></asp:TextBox>
+                          <asp:TextBox ID="TxtPubU" runat="server" MaxLength="128"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtPubU"
                               Display="Dynamic" ErrorMessage="*请填写出版社" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
                   </tr>
                   <tr style="color: #000000">
                       <td align="left" style="width: 83px">
-                          出版日期：</td>
+                          出版日期<span style="color: #ff0033">*</span>：</td>
                       <td colspan="1" style="width: 260px">
-                          <asp:TextBox ID="TxtPubDateU" runat="server"></asp:TextBox>
+                          <asp:TextBox ID="TxtPubDateU" runat="server" MaxLength="10"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TxtPubDateU"
                               Display="Dynamic" ErrorMessage="*请填写出版日期" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
                   </tr>
                   <tr style="color: #000000">
                       <td align="left" style="width: 83px">
-                          ISBN号：</td>
+                          ISBN号<span style="color: #ff0033">*</span>：</td>
                       <td colspan="1" style="width: 260px">
-                          <asp:TextBox ID="TxtISBNU" runat="server"></asp:TextBox>
+                          <asp:TextBox ID="TxtISBNU" runat="server" MaxLength="32"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="TxtISBNU"
                               Display="Dynamic" ErrorMessage="*请填写ISBN" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
                   </tr>
                   <tr>
                       <td align="left" style="width: 83px">
-                          定&nbsp; 价：</td>
+                          定&nbsp; 价<span style="color: #ff0033">*</span>：</td>
                       <td colspan="1" style="width: 260px">
-                          <asp:TextBox ID="TxtPriceU" runat="server"></asp:TextBox>(元)<asp:RequiredFieldValidator
+                          <asp:TextBox ID="TxtPriceU" runat="server" MaxLength="20"></asp:TextBox>(元)<asp:RequiredFieldValidator
                               ID="RequiredFieldValidator7" runat="server" ControlToValidate="TxtPriceU" Display="Dynamic"
                               ErrorMessage="*请给书籍定价" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
                   </tr>
                   <tr>
                       <td align="left" style="width: 83px">
-                          存&nbsp; 量：</td>
+                          存&nbsp; 量<span style="color: #ff0033">*</span>：</td>
                       <td colspan="1" style="width: 260px">
-                          <asp:TextBox ID="TxtAvailableU" runat="server"></asp:TextBox>
+                          <asp:TextBox ID="TxtAvailableU" runat="server" MaxLength="20"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TxtAvailableU"
                               Display="Dynamic" ErrorMessage="*请填写书籍存量" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
                   </tr>
