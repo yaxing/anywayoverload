@@ -15,7 +15,7 @@ cur.filters.alpha.opacity=100
 
 else
 
-cur.filters.alpha.opacity=20
+cur.filters.alpha.opacity=60
 
 }
 
@@ -26,16 +26,8 @@ cur.filters.alpha.opacity=20
 
 
     </script>
-
-    <table width="100%">
-        <tr>
-            <td>
-                &nbsp;</td>
-        </tr>
-    </table>
-    <br />
     <center>
-        &nbsp;我的购物车
+        <h4 style="margin:30px 40px; background-color:#E0F5F4; text-align:center">我的购物车</h4>
         <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
             BorderWidth="3px" Width="90%" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand">
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -82,10 +74,10 @@ cur.filters.alpha.opacity=20
         </asp:GridView>
         <asp:Label ID="Total" runat="server" /></center>
     <center>
-        &nbsp;
-        <asp:ImageButton ID="ImageButton2" runat="server" style="filter:alpha(opacity=20)" onMouseOver="makevisible(this,0)" onMouseOut="makevisible(this,1)" OnClick="Gonoshopping" ImageUrl="~/Images/goOn.gif"
+        
+        <asp:ImageButton ID="ImageButton2" runat="server" style="filter:alpha(opacity=60)" onMouseOver="makevisible(this,0)" onMouseOut="makevisible(this,1)" OnClick="Gonoshopping" ImageUrl="~/Images/goOn.gif"
             Width="100px" />
-        <asp:ImageButton ID="ImageButton3" runat="server" style="filter:alpha(opacity=20)" onMouseOver="makevisible(this,0)" onMouseOut="makevisible(this,1)" OnClick="Check_out" ImageUrl="~/Images/confirm.gif"
+        <asp:ImageButton ID="ImageButton3" runat="server" style="filter:alpha(opacity=60)" onMouseOver="makevisible(this,0)" onMouseOut="makevisible(this,1)" OnClick="Check_out" ImageUrl="~/Images/confirm.gif"
             Width="100px" />
     </center>
 </asp:Content>
