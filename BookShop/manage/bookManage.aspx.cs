@@ -58,6 +58,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         this.LBNew.DataValueField = ds.Tables[0].Columns[0].ToString();
         this.LBNew.DataTextField = ds.Tables[0].Columns[1].ToString();
         this.LBNew.DataBind();
+        fs.Close();
     }
     protected void BookGridView_Load(DataSet ds)
     {
@@ -309,42 +310,81 @@ public partial class manage_bookManage : System.Web.UI.Page
 
     protected void BtnAdd_Click(object sender, EventArgs e)
     {
+        String TypeName = this.LBNew.SelectedValue.ToString();
+        if (TypeName == "(备选分类)")
+        {
+            return;
+        }
+
+        BsBookInfo bookType = new BsBookInfo(DbConnectString);
+        if (bookType.InsertNewBookType(TypeName))
+        {
+            this.lblStat.Text = "新分类添加成功";
+            DataSet ds = bookType.GetBookClassify();
+            LBEx_Load(ds);
+            DDLType_Load(ds);
+        }
+        else
+        {
+            this.lblStat.Text = "添加失败,请重新添加";
+            return;
+        }
+
         XmlDocument xmlD = new XmlDocument();
         xmlD.Load(Server.MapPath("BookType.xml"));
-        XmlElement xmlEle = xmlD.CreateElement("BookType");
         XmlNodeList xmlNL = xmlD.SelectNodes("//BookType");
         foreach (XmlNode xmlN in xmlNL)
         {
-            if (xmlN.FirstChild.FirstChild.Value == "oooo")
+            if (xmlN.FirstChild.FirstChild.Value == TypeName)
             {
                 xmlN.RemoveAll();
                 xmlN.ParentNode.RemoveChild(xmlN);
                 break;
             }
         }
-        xmlD.DocumentElement.AppendChild(xmlEle);
         xmlD.PreserveWhitespace = true;
         XmlTextWriter xmlTW = new XmlTextWriter(Server.MapPath("BookType.xml"), Encoding.UTF8);
         xmlD.WriteTo(xmlTW);
         xmlTW.Close();
+
+        LBNew_Load();
+
     }
 
     protected void BtnDel_Click(object sender, EventArgs e)
     {
+        String TypeName = this.LBEx.SelectedItem.Text.ToString();
+
+        BsBookInfo bookType = new BsBookInfo(DbConnectString);
+        if (bookType.DeleteBookType(TypeName))
+        {
+            this.lblStat.Text = "分类删除成功";
+            DataSet ds = bookType.GetBookClassify();
+            LBEx_Load(ds);
+            DDLType_Load(ds);
+        }
+        else
+        {
+            this.lblStat.Text = "删除失败,请确定该分类没有书籍";
+            return;
+        } 
+
         XmlDocument xmlD = new XmlDocument();
         xmlD.Load(Server.MapPath("BookType.xml"));
 
         XmlElement xmlEle = xmlD.CreateElement("BookType");
         xmlEle.InnerXml = "\r\n<TypeID></TypeID>\r\n<TypeName></TypeName>";
-        xmlEle["TypeID"].InnerText = "oooo";
+        xmlEle["TypeID"].InnerText = TypeName;
         xmlEle.AppendChild(xmlD.CreateWhitespace("\r\n"));
-        xmlEle["TypeName"].InnerText = "oooo";
+        xmlEle["TypeName"].InnerText = TypeName;
 
         xmlD.DocumentElement.AppendChild(xmlEle);
         xmlD.PreserveWhitespace = true;
         XmlTextWriter xmlTW = new XmlTextWriter(Server.MapPath("BookType.xml"), Encoding.UTF8);
         xmlD.WriteTo(xmlTW);
         xmlTW.Close();
+
+        LBNew_Load();
 
     }
 }
