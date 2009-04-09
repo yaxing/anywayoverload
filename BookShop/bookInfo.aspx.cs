@@ -75,7 +75,7 @@ public partial class _Default : System.Web.UI.Page
         this.coverImg.Src = ds.Tables[0].Rows[0][13].ToString();
         this.coverImgP.Src = ds.Tables[0].Rows[0][13].ToString();
         this.ltlScript.Text = ds.Tables[0].Rows[0][9].ToString();
-        this.rpRank.DataSource = bookInfo.GetHotBooks(10);
+        this.rpRank.DataSource = bookInfo.GetHotBooks(5);
         this.rpRank.DataBind();
     }
     
