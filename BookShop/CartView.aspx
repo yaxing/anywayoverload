@@ -55,10 +55,13 @@ cur.filters.alpha.opacity=60
                 <asp:BoundField DataField="ID" ReadOnly="True" Visible="False" />
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <div class="shadow">
-                            <div>
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%#Eval("Cover") %>' BorderStyle=Solid
-                                    PostBackUrl='<%# "bookInfo.aspx?bookID="+Eval("ID").ToString() %>' BorderColor="Black" BorderWidth="1px" />
+                        <div style="margin-left:0px; margin-top:5px; width:50px">
+                            <div class="shadow">
+                                <div>
+                                    <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%#Eval("Cover") %>'
+                                        BorderStyle="Solid" PostBackUrl='<%# "bookInfo.aspx?bookID="+Eval("ID").ToString() %>'
+                                        BorderColor="Black" BorderWidth="1px" />
+                                </div>
                             </div>
                         </div>
                     </ItemTemplate>
