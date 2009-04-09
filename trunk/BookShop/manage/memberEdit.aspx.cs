@@ -15,7 +15,6 @@ using BsCtrl;
 public partial class manage_userSearchResultaspx : System.Web.UI.Page
 {
 
-
     protected void Page_Load(object sender, EventArgs e)
     {
         //判断权限
@@ -30,8 +29,7 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
         //不是4级管理员
         if(Session["AdminLv"].ToString() !=  "4")
         {
-            Response.Redirect("adminLogin.html");
-           
+            Response.Redirect("adminLogin.html");          
         }
         
         if (this.IsPostBack == false)
@@ -88,7 +86,6 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
         Response.Redirect("memberSearch.aspx");
     }
 
-
      /*全选
       功能：选中所有用户
       */
@@ -105,8 +102,6 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
             }
         }
     }
-
-
 
     /*全不选
    功能：不选所用户  */
@@ -132,6 +127,11 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
 
         //“确认密码”栏可见
         GV1.Columns[3].Visible = true;
+        //复选框不可见——编辑状态不能进行删除操作
+        GV1.Columns[6].Visible = false;
+        //“删除”按钮不可见
+        Button Bt_del = (Button)Panel1.FindControl("Bt_del");
+        Bt_del.Visible = false;
     }
 
     //取消编辑  
@@ -139,9 +139,15 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
     {
         GV1.EditIndex = -1;         //退出编辑模式
         LoadData();
+
+        //复选框可见
+        GV1.Columns[6].Visible = true;
+        //“删除”按钮可见
+        Button Bt_del = (Button)Panel1.FindControl("Bt_del");
+        Bt_del.Visible = true;
+
     }
 
-   
     //提交编辑数据，更新
     protected void GV1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
@@ -160,15 +166,13 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
             String strTEL = ((TextBox)GV1.Rows[RowEditIndex].FindControl("TB_tel")).Text.Trim();    //tel
             String strEmail = ((TextBox)GV1.Rows[RowEditIndex].FindControl("TB_email")).Text.Trim();    //email
           
-
             if (strPwd != "Password")    //输入了新密码
             {    //密码md5加密
                 strMd5Pwd = MD5(strPwd);
             }
             else    //将原密码写回数据库
             {
-                strMd5Pwd = ((Label)GV1.Rows[RowEditIndex].FindControl("Lb_PrePwd")).Text;  
-                 
+                strMd5Pwd = ((Label)GV1.Rows[RowEditIndex].FindControl("Lb_PrePwd")).Text;         
             }
 
             //执行更新操作
@@ -178,6 +182,11 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
             GV1.EditIndex = -1;
             LoadData();
 
+            //复选框可见
+            GV1.Columns[6].Visible = true;
+            //“删除”按钮可见
+            Button Bt_del = (Button)Panel1.FindControl("Bt_del");
+            Bt_del.Visible = true;
             
             //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
             if (GV1.Rows.Count == 0)
@@ -213,7 +222,7 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
         }
 
         //显示更新后的页面
-        LoadData(); 
+        LoadData();
 
         if (del_no == false)
         {
@@ -229,7 +238,11 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
 
         }
         else
+        {
+            Panel_ret.Visible = true;
+            LB_search.Visible = false;
             Lb_ret.Text = "你没有选择任何用户，删除操作失败";   //选择0个用户删除，提示错误
+        }
 
     }
     protected void GV1_PageIndexChanging(object sender, GridViewPageEventArgs e)

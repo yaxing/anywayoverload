@@ -24,7 +24,7 @@
                             Width="20px"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="用户名">
+                <asp:TemplateField HeaderText="管理员名">
                     <EditItemTemplate>
                         <asp:Label ID="Lb_name" runat="server" Text='<%# DataBinder.Eval(Container,"DataItem.userName") %>'
                             Width="50px"></asp:Label>

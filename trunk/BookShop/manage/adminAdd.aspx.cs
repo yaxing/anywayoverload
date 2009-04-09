@@ -31,10 +31,7 @@ public partial class manage_adminAdd : System.Web.UI.Page
             Response.Redirect("adminLogin.html");
         }
 
-         
-
-        Lb_error.Visible = false;
- 
+        Lb_error.Visible = false; 
         Panel_ins.Visible = true;
         Panel_ret.Visible = false;
     }
@@ -64,14 +61,12 @@ public partial class manage_adminAdd : System.Web.UI.Page
             String strEmail = TB_email.Text.Trim();
             String strLevel = DDL_level.Items[intSelectedIndex].Value;
 
-
             //密码md5加密
             String strMd5Pwd = MD5(strPwd);
 
             BsUserManager admin = new BsUserManager();
 
             //验证用户名是否已经存在
-
             DataSet ds = admin.searchAdmin("",strName,"","不选");    
             //ds中的表有数据——数据库该用户名存在
             if(ds != null)
@@ -96,8 +91,6 @@ public partial class manage_adminAdd : System.Web.UI.Page
                     Lb_ret.Text = "添加操作失败";
                     }
             }
-           
-
         }
     }
 
@@ -117,6 +110,5 @@ public partial class manage_adminAdd : System.Web.UI.Page
     {
         Response.Redirect("adminAdd.aspx");
     }
-
 
 }

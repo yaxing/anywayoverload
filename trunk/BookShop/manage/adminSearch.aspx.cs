@@ -27,7 +27,6 @@ public partial class manage_adminSearch : System.Web.UI.Page
         if (Session["AdminLv"].ToString() != "4")
         {
             Response.Redirect("adminLogin.html");
-            
         }
     }
 
@@ -42,7 +41,6 @@ public partial class manage_adminSearch : System.Web.UI.Page
             String strName = TB_name.Text.Trim();
             String strEmail = TB_email.Text.Trim();
             String strLevel = DDL_level.Items[intSelectedIndex].Value;
-
 
             //查询条件>=1项
             if (strID != "" || strName != "" || strEmail != "" || strLevel != "不选")
