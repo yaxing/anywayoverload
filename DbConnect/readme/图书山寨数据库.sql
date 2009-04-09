@@ -155,6 +155,12 @@ SELECT orders.*,users.userName from orders
 inner join users on orders.userID=users.ID
 GO
 
+create view v_orderManage_done
+as
+select orders_done.*,users.userName from orders_done
+inner join users on orders_done.userID=users.ID
+go
+
 create view v_orderDetailManage
 as
 select orderDetail.*,
@@ -164,8 +170,15 @@ select orderDetail.*,
 from orderDetail inner join bookInfo on bookInfo.ID=orderDetail.bookID
 go
 
-use shanzhai
+create view v_orderDetailManage_done
+as
+select orderDetail_done.*,
+		bookInfo.ISBN,
+		bookInfo.bookName,
+		bookInfo.publisher
+from orderDetail_done inner join bookInfo on bookInfo.ID=orderDetail_done.bookID
 go
+
 CREATE PROCEDURE pro_deal_orders
 	@counter int=0,
 	@orderID int =-1,
