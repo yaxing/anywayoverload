@@ -26,11 +26,11 @@ public partial class index : System.Web.UI.Page
             rpBookInfo.DataBind();
 
             //最热门分类
-            rpTopClass.DataSource = bsBookInfo.GetHotClasses(10);
+            rpTopClass.DataSource = bsBookInfo.GetHotClasses(5);
             rpTopClass.DataBind();
 
             //最热图书
-            rpRank.DataSource = bsBookInfo.GetHotBooks(10);
+            rpRank.DataSource = bsBookInfo.GetHotBooks(5);
             rpRank.DataBind();
         }
     }

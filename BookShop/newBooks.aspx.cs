@@ -25,7 +25,11 @@ public partial class newBooks : System.Web.UI.Page
             gvNewBooks.DataBind();
         }
     }
-    protected void gvNewBooks_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvNewBooks_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void gvNewBooks_PageIndexChanging1(object sender, GridViewPageEventArgs e)
     {
         gvNewBooks.PageIndex = e.NewPageIndex;
         string strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();

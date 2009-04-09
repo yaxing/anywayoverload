@@ -1,29 +1,40 @@
 <%@ Page Language="C#" MasterPageFile="~/mode_index.master" AutoEventWireup="true" CodeFile="newBooks.aspx.cs" Inherits="newBooks" Title="Untitled Page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <table width="100%" style="text-align:center;">
-        <tr><td style="height: 17px">最新上架图书</td></tr>
         <tr><td style="height: 286px">
-            <asp:GridView ID="gvNewBooks" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                ForeColor="Black" GridLines="Vertical" AllowPaging="True" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" Width="90%" OnPageIndexChanging="gvNewBooks_PageIndexChanging">
+            &nbsp;<asp:GridView ID="gvNewBooks" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvNewBooks_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="gvNewBooks_PageIndexChanging1" PageSize="5" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical">
+                <Columns>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <table style="text-align:left; width:100%;">
+                                <tr>
+                                    <td style="width:120px; text-align:center">
+                                        <asp:Image ID="Image1" runat="server" ImageUrl=<%#"cover/" + Eval("coverPath") %> Width="76px" Height="110px"/></td>
+                                    <td style="width:500px;">
+                                        <table style="width:100%">
+                                            <tr><td><asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "bookInfo.aspx?bookID="+Eval("ID") %>' Font-Bold="True" Font-Size="14px" ForeColor="#1A66B3"><%#Eval("bookName") %></asp:HyperLink></td></tr>
+                                            <tr><td>
+                                                 <asp:Label ID="Label2" runat="server" Text='<%# "作者: "+Eval("author") %>' Font-Size="12px" ForeColor="#878787"></asp:Label></td></tr>
+                                            <tr><td> <asp:Label ID="Label3" runat="server" Text='<%# "出版社: "+Eval("publisher") %>' Font-Size="12px" ForeColor="#878787"></asp:Label></td></tr>
+                                            <tr><td><asp:Label ID="Label4" runat="server" Text='<%# "上架时间: "+ Eval("indatetime", "{0:d}") %>' Font-Size="12px" ForeColor="#878787"></asp:Label></td></tr>
+                                            <tr><td><asp:Label ID="Label5" runat="server" Text='<%# "简介: "+Eval("intro") + "..."%>' Font-Size="12px" ForeColor="#404040"></asp:Label></td></tr>
+                                            <tr><td><asp:Label ID="Label6" runat="server" Text='<%# "定价: "+Eval("price", "{0:f}") %>' Font-Size="12px" ForeColor="#404040"></asp:Label></td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </ItemTemplate>
+                        <HeaderTemplate>
+                            新书上架
+                        </HeaderTemplate>
+                    </asp:TemplateField>
+                </Columns>
                 <FooterStyle BackColor="#CCCC99" />
                 <RowStyle BackColor="#F7F7DE" />
                 <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
                 <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
                 <AlternatingRowStyle BackColor="White" />
-                <Columns>
-                    <asp:ImageField DataImageUrlField="coverPath" DataImageUrlFormatString="{0}" HeaderText="书籍封面">
-                        <ControlStyle Height="110px" Width="76px" />
-                    </asp:ImageField>
-                    <asp:BoundField DataField="bookName" HeaderText="名称" />
-                    <asp:BoundField DataField="author" HeaderText="作者" />
-                    <asp:BoundField DataField="publisher" HeaderText="出版社" />
-                    <asp:BoundField DataField="indatetime" HeaderText="添加时间" DataFormatString="{0:yyyy-M-dd}" HtmlEncode="False" />
-                    <asp:BoundField DataField="className" HeaderText="分类" />
-                    <asp:BoundField DataField="price" HeaderText="价格" DataFormatString="{0:f2}" HtmlEncode="False" />
-                    <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="bookInfo.aspx?bookID={0}"
-                        HeaderText="点击进入" Text="点击进入" />
-                </Columns>
             </asp:GridView>
         </td></tr>
     </table>

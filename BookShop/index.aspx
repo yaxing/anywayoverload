@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <table>
         <tr>
-            <td style="width:80%;text-align:left;">
+            <td style="width:80%;text-align:left; ">
                 <asp:Repeater ID="rpBookInfo" runat="server">
                     <ItemTemplate>
 				  	<%-- Í¼ÊéÐÅÏ¢ --%>
