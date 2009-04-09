@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Security.Cryptography;
+using System.Drawing;
 using BsCtrl;
 
 public partial class manage_adminEdit : System.Web.UI.Page
@@ -65,6 +66,7 @@ public partial class manage_adminEdit : System.Web.UI.Page
              */
             Panel1.Visible = false;
             Panel_ret.Visible = true;
+            Lb_ret.ForeColor = Color.Red;
             Lb_ret.Text = "没有符合条件的用户信息";
 
         }
@@ -215,7 +217,9 @@ public partial class manage_adminEdit : System.Web.UI.Page
             {
                 Panel1.Visible = false;
                 Panel_ret.Visible = true;
+                Lb_ret.ForeColor = Color.Red;
                 Lb_ret.Text = "不能对等级为4的管理员执行降级操作";
+                LB_search.Visible = true;
                 
             }
 
@@ -224,7 +228,9 @@ public partial class manage_adminEdit : System.Web.UI.Page
             {
                 Panel1.Visible = false;
                 Panel_ret.Visible = true;
+                Lb_ret.ForeColor = Color.Red;
                 Lb_ret.Text = "不能提升管理员的等级到4级";
+                LB_search.Visible = true;
             }
 
             else
@@ -246,12 +252,13 @@ public partial class manage_adminEdit : System.Web.UI.Page
                 //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
                 if (GV1.Rows.Count == 0)
                 {   //查询结果为空
-
                     Panel1.Visible = false;
-                    Panel_ret.Visible = true;
                 }
 
+                Panel_ret.Visible = true;
+                Lb_ret.ForeColor = Color.Blue;
                 Lb_ret.Text = "操作成功";   //提示成功
+                LB_search.Visible = true;
             }
 
         }
@@ -290,16 +297,16 @@ public partial class manage_adminEdit : System.Web.UI.Page
         if (del_no == false)
         {
             //选择1个以上用户删除，提示成功
+            Panel_ret.Visible = true;
+            Lb_ret.ForeColor = Color.Blue;
             Lb_ret.Text = "删除操作成功";
-
+            LB_search.Visible = true;
 
             //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
             //查询结果为空
             if (GV1.Rows.Count == 0)
             {
                 Panel1.Visible = false;
-                Panel_ret.Visible = true;
-
             }
 
         }
@@ -308,6 +315,8 @@ public partial class manage_adminEdit : System.Web.UI.Page
             //选择0个用户删除，提示错误
             Panel_ret.Visible = true;
             LB_search.Visible = false;
+            Lb_ret.ForeColor = Color.Red;
+            // System.Drawing.Color col = Color.Red;
             Lb_ret.Text = "删除操作失败，原因可能是：1.你没有选中任何用户进行删除  2.试图删除等级为4的管理员";
         }
 

@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Security.Cryptography;
+using System.Drawing;
 using BsCtrl;
 
 
@@ -42,7 +43,9 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
 
             Panel1.Visible = false;
             Panel_ret.Visible = true;
+            Lb_ret.ForeColor = Color.Red;
             Lb_ret.Text = "没有符合条件的用户信息";
+            LB_search.Visible = true;
         }
 
     }
@@ -193,9 +196,10 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
             {   //查询结果为空
 
                 Panel1.Visible = false;
-                Panel_ret.Visible = true;
             }
 
+            Panel_ret.Visible = true;
+            Lb_ret.ForeColor = Color.Blue;
             Lb_ret.Text = "操作成功";   //提示成功
         }
     }
@@ -226,7 +230,9 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
 
         if (del_no == false)
         {
+            Lb_ret.ForeColor = Color.Blue;
             Lb_ret.Text = "删除操作成功";   //选择1个以上用户删除，提示成功
+            LB_search.Visible = true;
 
             //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
             if (GV1.Rows.Count == 0)
@@ -234,6 +240,7 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
 
                 Panel1.Visible = false;
                 Panel_ret.Visible = true;
+                LB_search.Visible = true;
             }
 
         }
@@ -241,6 +248,7 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
         {
             Panel_ret.Visible = true;
             LB_search.Visible = false;
+            Lb_ret.ForeColor = Color.Red;
             Lb_ret.Text = "你没有选择任何用户，删除操作失败";   //选择0个用户删除，提示错误
         }
 
