@@ -89,7 +89,6 @@
             <asp:ListItem>1</asp:ListItem>
             <asp:ListItem>2</asp:ListItem>
             <asp:ListItem>3</asp:ListItem>
-            <asp:ListItem>4</asp:ListItem>
         </asp:DropDownList>
                     &nbsp; &nbsp; 
                     <asp:Label ID="Label1" runat="server" Text="*"></asp:Label>
@@ -139,8 +138,8 @@
         <asp:Label ID="Lb_ret" runat="server" Font-Size="Medium" ForeColor="Blue"></asp:Label><br />
         <br />
         <br />
-        <asp:LinkButton ID="LB_ins" runat="server" OnClick="LB_ins_Click" Font-Size="Medium" ForeColor="HotPink" Font-Underline="True">继续添加</asp:LinkButton>
-        &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<asp:LinkButton ID="LB_default" runat="server" OnClick="LB_default_Click" Font-Size="Medium" ForeColor="HotPink" Font-Underline="True">返回“用户管理”</asp:LinkButton></asp:Panel>
+        <asp:LinkButton ID="LB_ins" runat="server" OnClick="LB_ins_Click" Font-Size="Medium" ForeColor="Goldenrod" Font-Underline="True">继续添加</asp:LinkButton>
+        &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<asp:LinkButton ID="LB_default" runat="server" OnClick="LB_default_Click" Font-Size="Medium" ForeColor="Goldenrod" Font-Underline="True">返回“用户管理”</asp:LinkButton></asp:Panel>
 
 
 </asp:Content>

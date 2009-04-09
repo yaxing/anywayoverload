@@ -79,7 +79,6 @@ public partial class manage_adminEdit : System.Web.UI.Page
         String strEmail = Request.QueryString["email"];
         String strLevel = Request.QueryString["level"];
  
-
         //实例化BsUserManager
         BsUserManager Admin = new BsUserManager();
         DataSet ds = Admin.searchAdmin(strID,strName,strEmail,strLevel);
@@ -90,17 +89,6 @@ public partial class manage_adminEdit : System.Web.UI.Page
 
         //“确认密码”栏不可见
         GV1.Columns[3].Visible = false;
-
-        //对等级为4的管理员，不能进行删除操作
-        if (strLevel == "4")
-        {
-            //“选择”栏不可见
-            GV1.Columns[6].Visible = false;
-            //删除按钮不可见
-            Button Bt_del = (Button)Panel1.FindControl("Bt_del");
-            Bt_del.Visible = false;
-        }
-        
     }
 
     /*功能：密码md5加密
@@ -115,13 +103,11 @@ public partial class manage_adminEdit : System.Web.UI.Page
         return Convert.ToBase64String(MD5Out);
     } 
 
-
     //当点击“返回查询” 时，返回查询页面userManage.aspx
     protected void Bt_search_Click(object sender, EventArgs e)
     {
         Response.Redirect("adminSearch.aspx");
     }
-
 
      /*全选
       功能：选中所有用户
@@ -139,8 +125,6 @@ public partial class manage_adminEdit : System.Web.UI.Page
             }
         }
     }
-
-
 
     /*全不选
    功能：不选所用户  */
@@ -166,6 +150,11 @@ public partial class manage_adminEdit : System.Web.UI.Page
 
         //“确认密码”栏可见
         GV1.Columns[3].Visible = true;
+        //复选框不可见——编辑状态不能进行删除操作
+        GV1.Columns[6].Visible = false;
+        //“删除”按钮不可见
+        Button Bt_del = (Button)Panel1.FindControl("Bt_del");
+        Bt_del.Visible = false;
        
     }
 
@@ -174,6 +163,12 @@ public partial class manage_adminEdit : System.Web.UI.Page
     {
         GV1.EditIndex = -1;         //退出编辑模式
         LoadData();
+
+        //复选框可见
+        GV1.Columns[6].Visible = true;
+        //“删除”按钮可见
+        Button Bt_del = (Button)Panel1.FindControl("Bt_del");
+        Bt_del.Visible = true;
     }
 
    
@@ -242,6 +237,12 @@ public partial class manage_adminEdit : System.Web.UI.Page
                 GV1.EditIndex = -1;
                 LoadData();
 
+                //复选框可见
+                GV1.Columns[6].Visible = true;
+                //“删除”按钮可见
+                Button Bt_del = (Button)Panel1.FindControl("Bt_del");
+                Bt_del.Visible = true;
+
                 //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
                 if (GV1.Rows.Count == 0)
                 {   //查询结果为空
@@ -272,22 +273,28 @@ public partial class manage_adminEdit : System.Web.UI.Page
             //如果删除复选框被选中
             if (del.Checked)   
                 {
-                    admin.deleteAdmin(intID);  //删除用户  ///////
-                    del_no = false; 
+                    //检查待删除的管理员等级是否为4级，若是4级则不能进行删除操作
+                    string strLevel = ((Label)GV1.Rows[i].FindControl("Lb_level")).Text;   
+                    //不是4级，可以删除
+                    if(strLevel != "4")
+                    {
+                        admin.deleteAdmin(intID);  //删除用户  ///////
+                        del_no = false; 
+                    }
                 }
         }
 
         //显示更新后的页面
-        LoadData(); 
+        LoadData();
 
         if (del_no == false)
         {
             //选择1个以上用户删除，提示成功
-            Lb_ret.Text = "删除操作成功";  
+            Lb_ret.Text = "删除操作成功";
 
-            
+
             //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
-             //查询结果为空
+            //查询结果为空
             if (GV1.Rows.Count == 0)
             {
                 Panel1.Visible = false;
@@ -297,8 +304,12 @@ public partial class manage_adminEdit : System.Web.UI.Page
 
         }
         else
+        {
             //选择0个用户删除，提示错误
-            Lb_ret.Text = "你没有选择任何用户，删除操作失败";   
+            Panel_ret.Visible = true;
+            LB_search.Visible = false;
+            Lb_ret.Text = "删除操作失败，原因可能是：1.你没有选中任何用户进行删除  2.试图删除等级为4的管理员";
+        }
 
     }
     protected void GV1_PageIndexChanging(object sender, GridViewPageEventArgs e)
