@@ -34,10 +34,10 @@ CREATE TABLE bookInfo (
 	author varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	introduce text COLLATE Chinese_PRC_CI_AS NULL ,
 	price money NOT NULL ,
-	pubDatetime datetime ,
+	pubDatetime datetime NULL,
 	inDatetime datetime DEFAULT getdate(),
 	coverPath varchar (128) COLLATE Chinese_PRC_CI_AS NULL ,--图片路径
-	available int NULL ,
+	available int DEFAULT 0 ,
 	sale int DEFAULT 0 ,--销量
 	good int DEFAULT 0 ,--好评
 	middle int DEFAULT 0 ,
@@ -125,7 +125,7 @@ go
 CREATE TABLE orders_done (
 	ID int primary key IDENTITY (1, 1) NOT NULL ,
 	userID int NOT NULL,
-	orderdatetime datetime DEFAULT getdate() ,
+	orderDatetime datetime DEFAULT getdate() ,
 	amount money DEFAULT 0,
 	trueName varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	address varchar (300) COLLATE Chinese_PRC_CI_AS NOT NULL ,
