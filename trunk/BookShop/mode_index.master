@@ -33,18 +33,6 @@ function logincheck(){
    }
 }  
   
-//function pollcheck(){
-//var p = document.getElementById("<%=rblPoll.ClientID %>");
-//for(var i = 0;i<p.rows.length;i++){
-//  if(p[i].checked==true){
-//   alert(p[i]+"chenggong");
-//   return true;
-// }
-//}
-//alert(p.rows[1].selected);
-//alert("failed");
-//return false;
-//}
 
 function tick() {
     var hours, minutes, seconds, xfile;
