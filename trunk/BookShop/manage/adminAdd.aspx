@@ -1,6 +1,16 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/manage/mode_admin.master"  CodeFile="adminAdd.aspx.cs" Inherits="manage_adminAdd" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+<script language="javascript" type="text/javascript">
+// <!CDATA[
+
+function Bt_reset_onclick() {
+
+}
+
+// ]]>
+</script>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -84,9 +94,9 @@
                 <td style="width: 162px; height: 38px">
         <asp:Label ID="Lb_level" runat="server" Text="等级"></asp:Label></td>
                 <td style="width: 348px; height: 38px">
-                    &nbsp; &nbsp;<br />
-                    &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<asp:DropDownList ID="DDL_level" runat="server">
-            <asp:ListItem>1</asp:ListItem>
+                    &nbsp; &nbsp;&nbsp;<br />
+                    &nbsp; &nbsp;&nbsp; &nbsp;<asp:DropDownList ID="DDL_level" runat="server" Width="118px">
+            <asp:ListItem Value="1">1</asp:ListItem>
             <asp:ListItem>2</asp:ListItem>
             <asp:ListItem>3</asp:ListItem>
         </asp:DropDownList>
@@ -103,8 +113,10 @@
                 <td style="width: 162px; height: 38px">
                 </td>
                 <td style="width: 348px; height: 38px">
-        <asp:Button ID="Bt_commit" runat="server" OnClick="Bt_commit_Click" Text="提交" />
-                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp;
+        <asp:Button ID="Bt_commit" runat="server" OnClick="Bt_commit_Click" Text="提交" Width="50px" />
+                    &nbsp; &nbsp;&nbsp; <input id="Bt_reset" type="reset" onclick="return Bt_reset_onclick()" style="width: 49px" />
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     &nbsp; &nbsp; &nbsp;
                 </td>
                 <td style="width: 472px; height: 38px">
