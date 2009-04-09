@@ -18,7 +18,7 @@
                     <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtUserName"
                         ErrorMessage="用户已经存在" OnServerValidate="CustomValidator1_ServerValidate" Display="Dynamic">*</asp:CustomValidator>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ControlToValidate="txtUserName"
-                        ErrorMessage="用户名必须5-10位" ValidationExpression="\d{5,10}">*</asp:RegularExpressionValidator><br />
+                        ErrorMessage="用户名必须5-10位且不为数字开头" ValidationExpression="^[a-zA-Z_]\w{4,9}$">*</asp:RegularExpressionValidator><br />
                 </td>
             </tr>
             <tr>
@@ -37,7 +37,7 @@
                     <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPassword"
                         ControlToValidate="txtPassword2" Display="Dynamic" ErrorMessage="重复输入密码不匹配">*</asp:CompareValidator>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="txtPassword"
-                        Display="Dynamic" ErrorMessage="密码必须6-12位" ValidationExpression="\d{6,12}">*</asp:RegularExpressionValidator></td>
+                        Display="Dynamic" ErrorMessage="密码必须6-12位" ValidationExpression="[A-Za-z0-9]{6,12}">*</asp:RegularExpressionValidator></td>
             </tr>
             <tr>
                 <td style="text-align: right;" align="left">
