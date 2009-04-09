@@ -42,9 +42,9 @@ cur.filters.alpha.opacity=60
             <EmptyDataTemplate>
                 <table width="100%">
                     <tr>
-                        <td align="center" style="height: 82px">
-                            <img src="Images/cart.gif" style="margin: 20px 30px" />
-                            <p style="padding: 50px 10px">
+                        <td align="center" style="height: 80px">
+                            <img src="Images/cart.gif" style="margin: 10px auto; padding:20px 20px" />
+                            <p style="padding: 50px auto">
                                 购物车列表为空。<a href="index.aspx">浏览商品</a>
                             </p>
                         </td>
@@ -52,7 +52,7 @@ cur.filters.alpha.opacity=60
                 </table>
             </EmptyDataTemplate>
             <Columns>
-                <asp:BoundField DataField="ID" ReadOnly="True" Visible="False" />
+                <asp:BoundField DataField="ID" ReadOnly="True" Visible="False"/>
                 <asp:TemplateField>
                     <ItemTemplate>
                         <div style="margin-left:0px; margin-top:5px; width:50px">
@@ -84,7 +84,8 @@ cur.filters.alpha.opacity=60
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
-        <asp:Label ID="Total" runat="server" /></center>
+        <p style="margin:10px auto"><asp:Label ID="Total" runat="server" /></p>
+        </center>
     <center>
         <asp:ImageButton ID="ImageButton2" runat="server" Style="filter: alpha(opacity=60)"
             onMouseOver="makevisible(this,0)" onMouseOut="makevisible(this,1)" OnClick="Gonoshopping"

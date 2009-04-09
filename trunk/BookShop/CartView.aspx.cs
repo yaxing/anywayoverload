@@ -16,10 +16,7 @@ public partial class CartView : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
-        {
-            ViewState["UrlReferrer"] = Request.UrlReferrer.ToString();
-        }
+        
         ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"]; //获取购物车
 
         if (cart != null)
@@ -65,7 +62,7 @@ public partial class CartView : System.Web.UI.Page
     public void Gonoshopping(Object sender, EventArgs e)
     {
 
-        Response.Redirect((String)ViewState["UrlReferrer"]);
+        Response.Redirect("index.aspx");
 
     }
 
