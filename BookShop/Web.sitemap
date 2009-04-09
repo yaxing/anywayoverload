@@ -5,7 +5,9 @@
         <siteMapNode url="~/bookInfo.aspx" title="详细信息"  description="详细"/>
       </siteMapNode>
         <siteMapNode url="~/bookSort.aspx" title="图书分类"  description="分类" />
-        <siteMapNode url="~/CartView.aspx" title="购物车"  description="购物车" />
+      <siteMapNode url="~/CartView.aspx" title="购物车"  description="购物车" >
+        <siteMapNode url="~/BuyProduct.aspx" title="确认订单"  description="确认"/>
+      </siteMapNode>
       <siteMapNode url="~/ShowOrder.aspx" title="订单查询"  description="订单" >
         <siteMapNode url="~/OrderDetails.aspx" title="订单详细信息"  description="详细订单" />
       </siteMapNode>

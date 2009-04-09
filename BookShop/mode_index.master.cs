@@ -131,8 +131,9 @@ public partial class mode_index : System.Web.UI.MasterPage
             return;
         }
         Session.Add("selected","true");
+        Session.Timeout=120;
         int pID = 0;        
-        //Response.Write("ri"+selected);
+        //Response.Write(""+selected);
         pID = int.Parse(selected);
         indexCtrl.ModifyPoll(pID);
         panelPoll.Visible = false;
@@ -141,7 +142,7 @@ public partial class mode_index : System.Web.UI.MasterPage
         return;
     }
    
-    protected void showPR_Click(object sender, ImageClickEventArgs e)
+    protected void showPR_Click(object sender, ImageClickEventArgs e)//显示投票结果
     {
         Response.Redirect("pollResult.aspx");
     }
