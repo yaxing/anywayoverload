@@ -1,8 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/mode_index.master" AutoEventWireup="true"
     CodeFile="BuyProduct.aspx.cs" Inherits="BuyProduct" Title="Untitled Page" %>
-    
-<%@ Import Namespace = "BsCtrl"  %>
 
+<%@ Import Namespace="BsCtrl" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <center>
         <asp:Panel ID="Panel1" runat="server" Width="80%">
@@ -32,7 +31,15 @@
                     <asp:BoundField DataField="ID" ReadOnly="True" Visible="False" />
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%#Eval("Cover") %>' PostBackUrl='<%# "bookInfo.aspx?bookID="+Eval("ID").ToString() %>'/>
+                            <div style="margin-left: 0px; margin-top: 5px; width: 50px">
+                                <div class="shadow">
+                                    <div>
+                                        <asp:ImageButton ID="ImageButton1" runat="server" Width='60px' Height='80px' ImageUrl='<%#Eval("Cover") %>'
+                                            BorderStyle="Solid" PostBackUrl='<%# "bookInfo.aspx?bookID="+Eval("ID").ToString() %>'
+                                            BorderColor="Black" BorderWidth="1px" />
+                                    </div>
+                                </div>
+                            </div>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="BookName" HeaderText="书名" ReadOnly="True" />
@@ -74,8 +81,10 @@
                         Email：</td>
                     <td align="left" style="width: 356px; height: 20px;">
                         <asp:TextBox ID="txtEmail" runat="server" Width="180px"></asp:TextBox><asp:RegularExpressionValidator
-                            ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="邮箱格式不正确。" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Email地址不能为空" ControlToValidate="txtEmail">*</asp:RequiredFieldValidator>(必填)</td>
+                            ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail"
+                            ErrorMessage="邮箱格式不正确。" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Email地址不能为空"
+                            ControlToValidate="txtEmail">*</asp:RequiredFieldValidator>(必填)</td>
                 </tr>
                 <tr style="color: #000000">
                     <td align="right" style="width: 99px; height: 26px;">
@@ -90,8 +99,8 @@
                         邮编：</td>
                     <td align="left" style="height: 26px; width: 356px;">
                         <asp:TextBox ID="txtPost" runat="server" Width="180px"></asp:TextBox><asp:RegularExpressionValidator
-                            ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtPost"
-                            ErrorMessage="邮编格式不正确。" ValidationExpression="\d{6}">*</asp:RegularExpressionValidator></td>
+                            ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtPost" ErrorMessage="邮编格式不正确。"
+                            ValidationExpression="\d{6}">*</asp:RegularExpressionValidator></td>
                 </tr>
                 <tr>
                     <td align="right" style="width: 99px; height: 26px;">
