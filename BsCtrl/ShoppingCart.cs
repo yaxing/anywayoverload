@@ -4,6 +4,8 @@ using System.Text;
 using System.Data;
 using System.Collections;
 using System.Configuration;
+using BsCtrl;
+using DbConnect;
 
 namespace BsCtrl
 {
@@ -179,9 +181,11 @@ namespace BsCtrl
          * 返回值：无
          */
         public void DeleteItem(String ItemID)
-        { 
+        {
             if (Cart_Orders[ItemID] != null)
+            {
                 Cart_Orders.Remove(ItemID);
+            }
         }
 
         /*把购物车信息添加到OrderDetail表
@@ -194,7 +198,12 @@ namespace BsCtrl
             foreach (DictionaryEntry entry in Cart_Orders)
             {
                 Stat_Class order = (Stat_Class)entry.Value;
-                if(order!=null)
+                String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+                BsBookInfo bi = new BsBookInfo(connStr);
+                DataSet ds = new DataSet();
+                ds = bi.GetBookInfo(Convert.ToInt32(order.ID));
+                int iAva = Convert.ToInt32(ds.Tables[0].Rows[0]["available"]);
+                if(order!=null && order.Quantity <= iAva)
                 {
                     if(bo.AddOrderDetails(iOrderID, order) == false)
                         return false;
@@ -242,6 +251,33 @@ namespace BsCtrl
             {
                 order.Quantity--;
             }
+        }
+
+        /*根据当前的Quantity值更新数据库available字段
+         * 参数：图书ID iBookId值
+         * 返回值：成功与否
+         */
+        public Boolean UpdateAvalible()
+        {
+
+            foreach (DictionaryEntry entry in Cart_Orders)
+            {
+                Stat_Class order = (Stat_Class)entry.Value;
+                if (order != null)
+                {
+                    int iAva = order.Available - order.Quantity;
+                    DbConnector db = new DbConnector();
+
+                    String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+                    db.connDB(connStr);
+
+                    string SqlState = "Update bookInfo Set available = " + iAva + " where ID = " + order.ID;
+
+                    if (db.executeUpdate(SqlState) != 1)
+                        return false;
+                }
+            }
+            return true;
         }
 
         /*返回购物车pageIndx到pageSize的图书
