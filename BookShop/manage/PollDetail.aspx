@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/manage/mode_admin.master" AutoEventWireup="true" CodeFile="PollDetail.aspx.cs" Inherits="manage_PollDetail" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/manage/mode_admin.master" EnableEventValidation ="false" AutoEventWireup="true" CodeFile="PollDetail.aspx.cs" Inherits="manage_PollDetail" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
 </asp:Content>
@@ -17,35 +17,41 @@
         <Columns>
             <asp:TemplateField HeaderText="序号">
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBox1" runat="server" Enabled="False" Text='<%# Bind("ID") %>'></asp:TextBox>
+                    <asp:TextBox ID="TextBox1" runat="server" Enabled="False" Text='<%# Bind("ID") %>' Width="80%"></asp:TextBox>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("ID") %>'></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("ID") %>' Width="80%"></asp:Label>
                 </ItemTemplate>
+                <ItemStyle Width="10%" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="所属主题">
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBox2" runat="server" Enabled="False" Text='<%# Bind("theme") %>'></asp:TextBox>
+                    <asp:TextBox ID="TextBox2" runat="server" Enabled="False" Text='<%# Bind("theme") %>' Width="80%"></asp:TextBox>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("theme") %>'></asp:Label>
+                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("theme") %>' Width="80%"></asp:Label>
                 </ItemTemplate>
+                <ItemStyle Width="30%" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="投票选项">
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("optionName") %>'></asp:TextBox>
+                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("optionName") %>' TextMode="MultiLine" Width="80%"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox3"
+                        ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("optionName") %>'></asp:Label>
+                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("optionName") %>' Width="80%"></asp:Label>
                 </ItemTemplate>
+                <ItemStyle Width="30%" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="计数">
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBox4" runat="server" Enabled="False" Text='<%# Bind("counts") %>'></asp:TextBox>
+                    <asp:TextBox ID="TextBox4" runat="server" Enabled="False" Text='<%# Bind("counts") %>' Width="80%"></asp:TextBox>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("counts") %>'></asp:Label>
+                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("counts") %>' Width="80%"></asp:Label>
                 </ItemTemplate>
+                <ItemStyle Width="10%" />
             </asp:TemplateField>
         </Columns>
         <PagerStyle ForeColor="#8C4510" HorizontalAlign="Center" />
@@ -54,8 +60,11 @@
     </asp:GridView>
     <asp:Button ID="DelAll" runat="server" CausesValidation="False" 
         onclick="DelAll_Click" Text="删除所有" />
-&nbsp;<asp:Label ID="flag1" runat="server"></asp:Label>
+&nbsp;&nbsp;<asp:Button ID="OutWord" runat="server" OnClick="OutWord_Click" Text="导出Word" />&nbsp;
+    <asp:Label ID="flag1" runat="server"></asp:Label>
     <br />
+    <br />
+    <asp:Label ID="AddTitle" runat="server" Text="添加投票项：" Width="98px"></asp:Label><br />
     <asp:Label ID="PollTheme" runat="server" Text="投票主题"></asp:Label>
     <asp:TextBox ID="PollThemeText" runat="server" Enabled="False"></asp:TextBox>
     <br />
