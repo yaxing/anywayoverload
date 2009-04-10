@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 //using System.Xml.Linq;
 using DbConnect;
+using System.IO;
 
 public partial class manage_PollDetail : System.Web.UI.Page
 {
@@ -141,5 +142,25 @@ public partial class manage_PollDetail : System.Web.UI.Page
     {
         PollDetail.EditIndex = -1;
         BindData();
+    }
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+        //base.VerifyRenderingInServerForm(control);
+    }
+    protected void OutWord_Click(object sender, EventArgs e)
+    {
+        Response.Clear();
+        Response.BufferOutput = true;
+        Response.Charset = "GB2312";
+        Response.AppendHeader("Content-Disposition", "attachment; filename = Filename.doc");
+        Response.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
+        Response.ContentType = "application/ms-word";
+        PollDetail.EnableViewState = false;
+        System.Globalization.CultureInfo cultureInfo = new System.Globalization.CultureInfo("ZH-CN", true);
+        System.IO.StringWriter stringwriter = new StringWriter(cultureInfo);
+        System.Web.UI.HtmlTextWriter textWriter = new HtmlTextWriter(stringwriter);
+        PollDetail.RenderControl(textWriter);
+        Response.Write(stringwriter.ToString());
+        Response.End();
     }
 }
