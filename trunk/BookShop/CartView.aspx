@@ -58,7 +58,7 @@ cur.filters.alpha.opacity=60
                         <div style="margin-left:0px; margin-top:5px; width:50px">
                             <div class="shadow">
                                 <div>
-                                    <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%#Eval("Cover") %>'
+                                    <asp:ImageButton ID="ImageButton1" runat="server"  Width='60px'  Height='80px' ImageUrl='<%#Eval("Cover") %>'
                                         BorderStyle="Solid" PostBackUrl='<%# "bookInfo.aspx?bookID="+Eval("ID").ToString() %>'
                                         BorderColor="Black" BorderWidth="1px" />
                                 </div>
@@ -74,6 +74,7 @@ cur.filters.alpha.opacity=60
                     <ItemTemplate>
                         <asp:LinkButton ID="addItemBt" runat="server" CommandName="AddItemOne" CommandArgument='<%# Eval("ID") %>'>+</asp:LinkButton>
                         /<asp:LinkButton ID="delItemBt" runat="server" CommandName="DelItemOne" CommandArgument='<%# Eval("ID") %>'>-</asp:LinkButton>
+                        <br />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="É¾³ý">
