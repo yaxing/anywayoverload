@@ -142,7 +142,10 @@
                           <td colspan="1" style="width: 260px">
                               <asp:TextBox ID="TxtPubTime" runat="server" MaxLength="10"></asp:TextBox>
                               <asp:RequiredFieldValidator ID="RvalPubT" runat="server" ControlToValidate="TxtPubTime"
-                                  Display="Dynamic" ErrorMessage="*请填写出版日期" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator></td>
+                                  Display="Dynamic" ErrorMessage="*请填写出版日期" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator>
+                              <asp:RegularExpressionValidator ID="REVDateO" runat="server" ControlToValidate="TxtPubTime"
+                                  Display="Dynamic" ErrorMessage="日期格式应为xxxx-xx-xx，且每月日期不能有误" ValidationExpression="^((((1[6-9]|[2-9]\d)\d{2})-(0?[13578]|1[02])-(0?[1-9]|[12]\d|3[01]))|(((1[6-9]|[2-9]\d)\d{2})-(0?[13456789]|1[012])-(0?[1-9]|[12]\d|30))|(((1[6-9]|[2-9]\d)\d{2})-0?2-(0?[1-9]|1\d|2[0-8]))|(((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))-0?2-29-))$"
+                                  ValidationGroup="AddNewBook"></asp:RegularExpressionValidator></td>
                       </tr>
                       <tr>
                           <td align="left" style="width: 83px">
@@ -255,7 +258,7 @@
                               Display="Dynamic" ErrorMessage="*书名不能为空" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator>
                           <asp:HiddenField ID="HFBookID" runat="server" />
                       </td>
-                      <td colspan="4" style="width: 166px; color: #000000;" align="center" rowspan="9">
+                      <td colspan="4" style="width: 166px; color: #000000;" align="center" rowspan="10">
                           <asp:Image ID="ImgEx" runat="server" Height="165px" Width="128px" /></td>
                   </tr>
                   <tr style="color: #000000">
@@ -289,7 +292,10 @@
                       <td colspan="1" style="width: 260px">
                           <asp:TextBox ID="TxtPubDateU" runat="server" MaxLength="10"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TxtPubDateU"
-                              Display="Dynamic" ErrorMessage="*请填写出版日期" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
+                              Display="Dynamic" ErrorMessage="*请填写出版日期" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator>
+                          <asp:RegularExpressionValidator ID="REVDate" runat="server" ControlToValidate="TxtPubDateU"
+                              Display="Dynamic" ErrorMessage="日期格式应为xxxx-xx-xx，且每月日期不能有误" ValidationExpression="^((((1[6-9]|[2-9]\d)\d{2})-(0?[13578]|1[02])-(0?[1-9]|[12]\d|3[01]))|(((1[6-9]|[2-9]\d)\d{2})-(0?[13456789]|1[012])-(0?[1-9]|[12]\d|30))|(((1[6-9]|[2-9]\d)\d{2})-0?2-(0?[1-9]|1\d|2[0-8]))|(((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))-0?2-29-))$"
+                              ValidationGroup="UpdateBook"></asp:RegularExpressionValidator></td>
                   </tr>
                   <tr style="color: #000000">
                       <td align="left" style="width: 83px">
@@ -306,6 +312,14 @@
                           <asp:TextBox ID="TxtPriceU" runat="server" MaxLength="20"></asp:TextBox>(元)<asp:RequiredFieldValidator
                               ID="RequiredFieldValidator7" runat="server" ControlToValidate="TxtPriceU" Display="Dynamic"
                               ErrorMessage="*请给书籍定价" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
+                  </tr>
+                  <tr>
+                      <td align="left" style="width: 83px">
+                          折&nbsp; 扣<span style="color: #ff0033">*</span>：</td>
+                      <td colspan="1" style="width: 260px">
+                          <asp:TextBox ID="TxtDisc" runat="server" MaxLength="20"></asp:TextBox>
+                          <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="TxtDisc"
+                              Display="Dynamic" ErrorMessage="*折扣不能为空" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
                   </tr>
                   <tr>
                       <td align="left" style="width: 83px">
