@@ -95,7 +95,11 @@ public partial class _Default : System.Web.UI.Page
             if (this.TxtQuan.Text != null && this.TxtQuan.Text != "")
                 order.Quantity = Convert.ToInt32(this.TxtQuan.Text);
             else order.Quantity = 1;
-            cart.AddItem(order);
+            if(cart.AddItem(order) == false)
+            {
+                ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"ø‚¥Ê¡ø≤ªπª£°\");this.location.href='index.aspx'</script>");
+                return;
+            }
             Response.Redirect("CartView.aspx");
         }
     }
