@@ -78,15 +78,15 @@ namespace BsCtrl
           参数：pay存放待用户的状态*/
         public static String ShowOrderStatus(int pay)
         {
-            String status="";
+            String status="处理中";
 
-            if(pay==1)
+            if(pay==2)
             {
-                status = "已付款";
+                status = "成功交易";
             }
-            else if(pay==0)
+            else if(pay==1)
             {
-                status = "未付款";
+                status = "发货中";
             }
             else if(pay==-1)
             {
