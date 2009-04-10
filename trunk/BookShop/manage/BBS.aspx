@@ -21,16 +21,20 @@
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox1" runat="server" Enabled="False" 
-                        Text='<%# Bind("ID") %>'></asp:TextBox>
+                        Text='<%# Bind("ID") %>' Width="50%"></asp:TextBox>
                 </EditItemTemplate>
+                <ItemStyle Width="10%" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="内容" SortExpression="content">
                 <ItemTemplate>
                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("content") %>'></asp:Label>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("content") %>'></asp:TextBox>
+                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("content") %>' Width="80%"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox2"
+                        ErrorMessage="RequiredFieldValidator">内容不能为空!</asp:RequiredFieldValidator>
                 </EditItemTemplate>
+                <ItemStyle Width="50%" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="发布时间">
                 <ItemTemplate>
@@ -38,8 +42,9 @@
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox3" runat="server" Enabled="False" 
-                        Text='<%# Bind("postTime") %>'></asp:TextBox>
+                        Text='<%# Bind("postTime") %>' Width="80%"></asp:TextBox>
                 </EditItemTemplate>
+                <ItemStyle Width="20%" />
             </asp:TemplateField>
         </Columns>
         <PagerStyle ForeColor="#8C4510" HorizontalAlign="Center" />
