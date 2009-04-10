@@ -171,7 +171,15 @@ namespace BsCtrl
             }
             else
             {
-                Cart_Orders.Add(Order.ID, Order);
+                String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+                BsBookInfo bi = new BsBookInfo(connStr);
+                DataSet ds = new DataSet();
+                ds = bi.GetBookInfo(Convert.ToInt32(Order.ID));
+                int iAva = Convert.ToInt32(ds.Tables[0].Rows[0]["available"]);
+                if (Order.Quantity <= iAva)
+                    Cart_Orders.Add(Order.ID, Order);
+                else return false;
+
                 return true;
             }
         }
