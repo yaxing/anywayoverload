@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
+using System.Xml;
 using DbConnect;
 
 namespace BsCtrl
@@ -285,10 +286,10 @@ namespace BsCtrl
         }
 
         /*更新书籍信息*/
-        public Boolean UpdateOneBook(String BookID, String BookName, String BookType, String Author, String Pub, String PubTime, String ISBN, String Price, String Quantity, String ImageUrl, String BookScript)
+        public Boolean UpdateOneBook(String BookID, String BookName, String BookType, String Author, String Pub, String PubTime, String ISBN, String Price, String Quantity, String ImageUrl, String BookScript,String BookDis)
         {
             String indate = DateTime.Now.ToShortDateString();
-            String sqlcmd = "Update bookInfo set ISBN = '" + ISBN + "',classID = '" + BookType + "',bookName = '" + BookName + "',publisher = '" + Pub + "',author = '" + Author + "',introduce = '" + BookScript + "',price = " + Price + ",available = '" + Quantity + "',pubdatetime = '" + PubTime + "',coverPath = '" + ImageUrl + "' where ID = '"+BookID+"'";
+            String sqlcmd = "Update bookInfo set ISBN = '" + ISBN + "',classID = '" + BookType + "',bookName = '" + BookName + "',publisher = '" + Pub + "',author = '" + Author + "',introduce = '" + BookScript + "',price = " + Price + ",available = '" + Quantity + "',pubdatetime = '" + PubTime + "',coverPath = '" + ImageUrl + "',discount = '"+ BookDis +"' where ID = '"+BookID+"'";
             if (conn.executeUpdate(sqlcmd) > 0)
             {
                 return true;
@@ -320,6 +321,81 @@ namespace BsCtrl
             DataSet ds = conn.executeQuery("select bookClass.className,bookClass.bookCount,bookInfo.* from bookClass,bookInfo where bookClass.ID = bookInfo.classID and bookInfo.bookName like '%"+bookName+"%'");
 
             return ds;
+        }
+
+        /*向XML文件中写入数据*/
+        public Boolean WriteToXML(String TypeName,String FilePath)
+        {
+            XmlDocument xmlD = new XmlDocument();
+            try
+            {
+                xmlD.Load(FilePath);
+            }
+            catch (System.Exception e)
+            {
+                return false;
+            }
+            
+
+            XmlElement xmlEle = xmlD.CreateElement("BookType");
+            xmlEle.InnerXml = "\r\n<TypeID></TypeID>\r\n<TypeName></TypeName>";
+            xmlEle["TypeID"].InnerText = TypeName;
+            xmlEle.AppendChild(xmlD.CreateWhitespace("\r\n"));
+            xmlEle["TypeName"].InnerText = TypeName;
+
+            xmlD.DocumentElement.AppendChild(xmlEle);
+            xmlD.PreserveWhitespace = true;
+            try
+            {
+                XmlTextWriter xmlTW = new XmlTextWriter(FilePath, Encoding.UTF8);
+                xmlD.WriteTo(xmlTW);
+                xmlTW.Close();
+            }
+            catch (System.Exception e)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /*从XML文件中删除数据*/
+        public Boolean DeleteFromXML(String TypeName,String FilePath)
+        {
+            XmlDocument xmlD = new XmlDocument();
+            try
+            {
+                xmlD.Load(FilePath);
+            }
+            catch (System.Exception e)
+            {
+                return false;
+            }
+            
+            XmlNodeList xmlNL = xmlD.SelectNodes("//BookType");
+            foreach (XmlNode xmlN in xmlNL)
+            {
+                if (xmlN.FirstChild.FirstChild.Value == TypeName)
+                {
+                    xmlN.RemoveAll();
+                    xmlN.ParentNode.RemoveChild(xmlN);
+                    break;
+                }
+            }
+            xmlD.PreserveWhitespace = true;
+
+            try
+            {
+                XmlTextWriter xmlTW = new XmlTextWriter(FilePath, Encoding.UTF8);
+                xmlD.WriteTo(xmlTW);
+                xmlTW.Close();
+            }
+            catch (System.Exception e)
+            {
+                return false;
+            }
+            
+            return true;
         }
     }       
 }
