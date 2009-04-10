@@ -119,7 +119,7 @@ namespace BsCtrl
             DataSet ret = null;
             try
             {
-                string sql = "select ID, coverPath, bookName, author, publisher, price, available from bookInfo where classID=" + iClassId.ToString();
+                string sql = "select ID, coverPath, bookName, author, publisher, price, available, substring(introduce, 0, 50) as intro from bookInfo where classID=" + iClassId.ToString();
                 ret = conn.executeQuery(sql);
             }
             catch (System.Exception e)
@@ -152,7 +152,7 @@ namespace BsCtrl
             DataSet ret = null;
             try
             {
-                string sql = "select ID, coverPath, classID, bookName, publisher, author, price, indatetime from " +
+                string sql = "select ID, coverPath, classID, bookName, publisher, author, price, indatetime, substring(introduce, 0, 50) as intro, sale from " +
                              "bookInfo where ";
                 bool bFirst = true;
                 foreach(string str in strKeyWords)

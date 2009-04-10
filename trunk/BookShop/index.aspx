@@ -20,7 +20,7 @@
                         <tr>
                           <td>作者：<%#Eval("author") %></td>
                         </tr>
-                          <td>定价：<%#Eval("price") %>（元）</td>
+                          <td>定价：<%#Eval("price", "{0:f}") %>（元）</td>
                       </table></td>
                     </tr>
                   </table>
