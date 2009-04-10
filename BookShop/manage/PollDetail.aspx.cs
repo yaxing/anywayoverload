@@ -21,7 +21,7 @@ public partial class manage_PollDetail : System.Web.UI.Page
     protected void BindData()
     {
         connStr.connDB(connection);
-        string BindStr = "select * from pollDetail";
+        string BindStr = "select poll.theme, pollDetail.id, pollDetail.optionName, pollDetail.counts from poll, pollDetail where pollDetail.pollID=poll.id and poll.id = " + PollID;
         DataSet BindDataSet = connStr.executeQuery(BindStr);
         PollDetail.DataSource = BindDataSet.Tables[0].DefaultView;
         PollDetail.DataBind();
@@ -30,10 +30,10 @@ public partial class manage_PollDetail : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["AdminN"] == null || Session["AdminLv"] == null)
-        {
-            Response.Redirect("../index.aspx");
-        }
+        //if (Session["AdminN"] == null || Session["AdminLv"] == null)
+        //{
+        //    Response.Redirect("../index.aspx");
+        //}
         if (Request["ID"] == null)
         {
             Response.Redirect("poll.aspx");
@@ -44,7 +44,8 @@ public partial class manage_PollDetail : System.Web.UI.Page
         DataSet ResultPT = connStr.executeQuery(QueryPollTitle);
         DataTable ResultDataTable = ResultPT.Tables[0];
         PollThemeText.Text = ResultDataTable.Rows[0]["theme"].ToString();
-        string QueryStr = "select * from pollDetail where pollID = " + PollID;
+        //string QueryStr = "select * from pollDetail where pollID = " + PollID;
+        string QueryStr = "select poll.theme, pollDetail.id, pollDetail.optionName, pollDetail.counts from poll, pollDetail where pollDetail.pollID=poll.id and poll.id = " + PollID;
         DataSet pollDetailData = connStr.executeQuery(QueryStr);
         if (pollDetailData.Tables[0].Rows.Count > 0)
         {
@@ -120,8 +121,9 @@ public partial class manage_PollDetail : System.Web.UI.Page
     {
         connStr.connDB(connection);
         string id = this.PollDetail.DataKeys[e.RowIndex].Values[0].ToString();
-        string pollDetailOption = ((TextBox)PollDetail.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
-        string UpdateStr = "update pollDetail set optionName = '" + pollDetailOption + "' where id = " + id;
+        //string pollDetailOption = ((TextBox)PollDetail.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
+        TextBox pollDetailOption = (TextBox)this.PollDetail.Rows[e.RowIndex].Cells[3].FindControl("TextBox3") as TextBox;
+        string UpdateStr = "update pollDetail set optionName = '" + pollDetailOption.Text + "' where id = " + id;
         int flag = connStr.executeUpdate(UpdateStr);
         if (flag == 0)
         {
@@ -130,6 +132,8 @@ public partial class manage_PollDetail : System.Web.UI.Page
         else
         {
             flag2.Text = "更新成功！";
+            PollDetail.EditIndex = -1;
+            BindData();
         }
         connStr.close();
     }
