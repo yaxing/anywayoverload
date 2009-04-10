@@ -60,7 +60,12 @@ public partial class _Default : System.Web.UI.Page
             this.lblDis.Text = "нчуш©ш";
         if(priceIndex > 0)
         {
-            this.lblPriceN.Text = priceNow.Substring(0, priceIndex + 3);
+            if (priceNow.Length >= priceIndex + 3)
+            {
+                this.lblPriceN.Text = priceNow.Substring(0, priceIndex + 3);
+            }
+            else
+                this.lblPriceN.Text = priceNow + "0";
         }
         else
         {
