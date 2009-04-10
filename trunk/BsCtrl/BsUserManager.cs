@@ -284,6 +284,49 @@ namespace BsCtrl
             return ret;
         }
 
+        /*功能：返回用户信息
+          参数：用户ID
+          返回：该用户的所有信息
+        */
+        public DataTable ShowUserInfo(int iUserID)
+        {
+            DataSet ds = null;
+            DbConnector db = new DbConnector();
+
+            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            db.connDB(connStr);
+
+            string SqlState = "Select * from users where ID = " + iUserID;
+            ds = db.executeQuery(SqlState);
+            db.close();
+
+            return ds.Tables[0];
+        }
+
+        /*功能：更新用户信息
+          参数：用户ID
+          返回：更新是否成功
+        */
+        public Boolean UpdateUserInfo(int iUserID,String sTureName, String sEmail, String sAddress, String sTel, String sPost)
+        {
+            DbConnector db = new DbConnector();
+
+            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            db.connDB(connStr);
+
+            string SqlState = "Update users Set trueName = '" + sTureName + "', email = '" + sEmail + "', address = '" + sAddress + "', tel = '" + sTel + "', postcode = '" + sPost + "' where ID = " + iUserID;
+            if(db.executeUpdate(SqlState) > 0)
+            {
+                db.close();
+                return true;
+            }
+            else 
+            { 
+                db.close(); 
+                return false; 
+            }
+        }
+
         /*功能：密码md5加密
           参数：原密码strPwd
           返回：加密后的密码（String）
