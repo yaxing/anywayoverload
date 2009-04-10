@@ -24,6 +24,8 @@ public partial class CartView : System.Web.UI.Page
 
             GridView1.DataSource = cart.Orders;
 
+            
+
             totals = cart.TotalRecords;
 
             GridView1.DataBind();
@@ -91,14 +93,19 @@ public partial class CartView : System.Web.UI.Page
             if (cart != null)
             {
 
-                cart.ItemAddOne(Convert.ToString(index));
+                if(cart.ItemAddOne(Convert.ToString(index))==true)
+                {
+                    totals = cart.TotalRecords;
 
-                totals = cart.TotalRecords;
+                    GridView1.DataBind();
 
-                GridView1.DataBind();
-
-                Total.Text = String.Format("合计:{0:c}", cart.TotalCost);
-
+                    Total.Text = String.Format("合计:{0:c}", cart.TotalCost);
+                }
+                else 
+                { 
+                    ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"超过库存量限制！\");this.location.href='CartView.aspx'</script>");
+                    return;
+                }
             }
         }
         else if (e.CommandName == "DelItemOne")
