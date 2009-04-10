@@ -17,6 +17,7 @@ namespace BsCtrl
         Double Book_Price; //图书价格
         Double Book_Discount;//图书折扣
         int Quan; //图书数量
+        int Ava;//图书库存量
 
         /*图书ID字段*/
         public String ID
@@ -60,6 +61,13 @@ namespace BsCtrl
             set { Quan = value; }
         }
 
+        /*图书库存量字段*/
+        public int Available
+        {
+            get { return Ava; }
+            set { Ava = value; }
+        }
+
         /*构造方法，初始化图书的各个属性
          * 参数： 图书的ID
          * 返回值：无
@@ -75,6 +83,7 @@ namespace BsCtrl
             Book_Cover = ds.Tables[0].Rows[0]["coverPath"].ToString();
             Book_Price = Convert.ToDouble(ds.Tables[0].Rows[0]["price"].ToString());
             Book_Discount = Convert.ToDouble(ds.Tables[0].Rows[0]["discount"].ToString());
+            Ava = Convert.ToInt32(ds.Tables[0].Rows[0]["available"]);
             Quan = 1;
         }
 
@@ -195,11 +204,15 @@ namespace BsCtrl
          * 参数：要加1的图书类ID
          * 返回值：无
          */
-        public void ItemAddOne(String ItemID)
+        public Boolean ItemAddOne(String ItemID)
         {
             Stat_Class order = (Stat_Class)Cart_Orders[ItemID];
-            
-            order.Quantity++;
+            if (order.Quantity < order.Available)
+            {
+                order.Quantity++;
+                return true;
+            }
+            else return false;
         }
 
         /*给购物车某个图书类数量减1
