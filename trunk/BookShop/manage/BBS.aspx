@@ -30,7 +30,7 @@
                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("content") %>'></asp:Label>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("content") %>' Width="80%"></asp:TextBox>
+                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("content") %>' Width="80%" TextMode="MultiLine"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox2"
                         ErrorMessage="RequiredFieldValidator">内容不能为空!</asp:RequiredFieldValidator>
                 </EditItemTemplate>
