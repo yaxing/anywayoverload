@@ -22,7 +22,7 @@ public partial class manage_BBS : System.Web.UI.Page
     protected void BindData()
     {
         connStr.connDB(strConn);
-        String BindDataStr = "select * from bbs";
+        String BindDataStr = "select * from bbs order by postTime DESC";
         DataSet BindDataSet = connStr.executeQuery(BindDataStr);
         BBS.DataSource = BindDataSet.Tables[0].DefaultView;
         BBS.DataBind();
@@ -37,9 +37,10 @@ public partial class manage_BBS : System.Web.UI.Page
         {
             DataBind();
         }
+        DeleteAll.Attributes.Add("onclick", "return confirm('真的要删除所有的公告吗?');");
         Tittle.Text = "";
         Updates.Text = "";
-        String QueryString = "select * from bbs";
+        String QueryString = "select * from bbs order by postTime DESC";
         connStr.connDB(strConn);
         DataSet Result = connStr.executeQuery(QueryString);
         if (Result.Tables[0].Rows.Count == 0)
