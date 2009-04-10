@@ -153,13 +153,25 @@ namespace BsCtrl
          * 参数：要添加的图书类
          * 返回值：无
          */
-        public void AddItem(Stat_Class Order)
+        public Boolean AddItem(Stat_Class Order)
         {
             Stat_Class order = (Stat_Class)Cart_Orders[Order.ID];
+            int sum;
             if (order != null)
-                order.Quantity += Order.Quantity;
+            {
+                sum = order.Quantity + Order.Quantity;
+                if (sum <= order.Available)
+                {
+                    order.Quantity = sum;
+                    return true;
+                }
+                else return false;
+            }
             else
+            {
                 Cart_Orders.Add(Order.ID, Order);
+                return true;
+            }
         }
 
         /*给购物车删除一个图书类
