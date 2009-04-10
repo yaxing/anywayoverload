@@ -40,13 +40,17 @@ public partial class bookSort : System.Web.UI.Page
             {
                 gvBookList.DataSource = ds;
                 gvBookList.DataBind();
-                lblClassName.Text = bookInfo.GetClassName(id);
+                //lblClassName.Text = bookInfo.GetClassName(id);
+                Label lbl = (Label)gvBookList.HeaderRow.FindControl("lblClassName");
+                lbl.Text = bookInfo.GetClassName(id);
             }
             else
             {
                 gvBookList.DataSource = bookInfo.GetNewBooks(100);
                 gvBookList.DataBind();
-                lblClassName.Text = "所有分类";
+                //lblClassName.Text = "所有分类";
+                Label lbl = (Label)gvBookList.HeaderRow.FindControl("lblClassName");
+                lbl.Text = "所有分类";
             }
         }
     }

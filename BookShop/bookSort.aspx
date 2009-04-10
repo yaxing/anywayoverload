@@ -3,7 +3,7 @@
 <div style="width:100%;text-align:center">
   <table style="width:100%">
   <tr><td style="height: 18px">
-      <asp:Label ID="lblClassName" runat="server" Text="Label"></asp:Label></td></tr>
+      </td></tr>
   <tr><td>
       <asp:GridView ID="gvBookList" runat="server" AllowPaging="True" CellPadding="4" ForeColor="Black"
         GridLines="Vertical" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" Width="90%" OnPageIndexChanging="gvBookList_PageIndexChanging">
@@ -14,16 +14,49 @@
         <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
         <AlternatingRowStyle BackColor="White" />
         <Columns>
-            <asp:ImageField DataImageUrlField="coverPath" DataImageUrlFormatString="{0}" HeaderText="书籍封面">
-                <ControlStyle Height="110px" Width="76px" />
-            </asp:ImageField>
-            <asp:BoundField DataField="bookName" HeaderText="书籍名称" />
-            <asp:BoundField DataField="author" HeaderText="作者" />
-            <asp:BoundField DataField="publisher" HeaderText="出版社" />
-            <asp:BoundField DataField="price" HeaderText="价格" DataFormatString="{0:f2}" HtmlEncode="False" />
-            <asp:BoundField DataField="available" HeaderText="剩余数量" />
-            <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="bookInfo.aspx?bookID={0}"
-                HeaderText="点击进入" Text="点击进入" />
+            <asp:TemplateField>
+                <HeaderTemplate>
+                    <asp:Label ID="lblClassName" runat="server" Text="Label"></asp:Label>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <table style="width: 100%; text-align: left">
+                        <tr>
+                            <td style="width: 120px; text-align: center">
+                                <asp:Image ID="Image1" runat="server" Height="110px" ImageUrl='<%#Eval("coverPath") %>'
+                                    Width="76px" /></td>
+                            <td style="width: 500px">
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td>
+                                            <asp:HyperLink ID="HyperLink1" runat="server" Font-Bold="True" Font-Size="14px" ForeColor="#1A66B3"
+                                                NavigateUrl='<%# "bookInfo.aspx?bookID="+Eval("ID") %>'><%#Eval("bookName") %></asp:HyperLink></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="Label2" runat="server" Font-Size="12px" ForeColor="#878787" Text='<%# "作者: "+Eval("author") %>'></asp:Label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="Label3" runat="server" Font-Size="12px" ForeColor="#878787" Text='<%# "出版社: "+Eval("publisher") %>'></asp:Label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="Label4" runat="server" Font-Size="12px" ForeColor="#878787" Text='<%# "剩余数量: "+ Eval("available") %>'></asp:Label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="Label5" runat="server" Font-Size="12px" ForeColor="#404040" Text='<%# "简介: "+Eval("intro") + "..."%>'></asp:Label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="Label6" runat="server" Font-Size="12px" ForeColor="#404040" Text='<%# "定价: "+Eval("price", "{0:f}") %>'></asp:Label></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
     </asp:GridView>
     </td></tr>

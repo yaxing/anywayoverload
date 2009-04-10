@@ -9,7 +9,7 @@
                             <table style="text-align:left; width:100%;">
                                 <tr>
                                     <td style="width:120px; text-align:center">
-                                        <asp:Image ID="Image1" runat="server" ImageUrl=<%#"cover/" + Eval("coverPath") %> Width="76px" Height="110px"/></td>
+                                        <asp:Image ID="Image1" runat="server" ImageUrl=<%#Eval("coverPath") %> Width="76px" Height="110px"/></td>
                                     <td style="width:500px;">
                                         <table style="width:100%">
                                             <tr><td><asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "bookInfo.aspx?bookID="+Eval("ID") %>' Font-Bold="True" Font-Size="14px" ForeColor="#1A66B3"><%#Eval("bookName") %></asp:HyperLink></td></tr>
