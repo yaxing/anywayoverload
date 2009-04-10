@@ -33,6 +33,10 @@ public partial class manage_BBS : System.Web.UI.Page
         //{
         //    Response.Redirect("../index.aspx");
         //}
+        if (!IsPostBack)
+        {
+            DataBind();
+        }
         Tittle.Text = "";
         Updates.Text = "";
         String QueryString = "select * from bbs";
@@ -54,10 +58,7 @@ public partial class manage_BBS : System.Web.UI.Page
 
         //BBS.Attributes.Add("style", "word-break:keep-all;word-wrap:normal");
         BBS.Attributes.Add("style", "word-break:break-all;word-wrap:break-word");
-        if (!IsPostBack)
-        {
-            DataBind();
-        }
+
     }
     protected void Reset_Click(object sender, EventArgs e)
     {
@@ -106,26 +107,19 @@ public partial class manage_BBS : System.Web.UI.Page
     {
         connStr.connDB(strConn);
         string id = BBS.DataKeys[e.RowIndex].Values[0].ToString();
-        string bbs_content = ((TextBox)BBS.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
-        string bbs_postTime = ((TextBox)BBS.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
-        string QueryStr = "select id from bbs where id = " + id;
-        DataSet ResultDataset = connStr.executeQuery(QueryStr);
-        if (ResultDataset.Tables[0].Rows.Count > 1)
+        TextBox bbs_content = (TextBox)this.BBS.Rows[e.RowIndex].Cells[2].FindControl("TextBox2") as TextBox;
+        if (bbs_content != null)
         {
-            Updates.Text = "序号不能重复！";
-        } 
-        else
-        {
-            //string UpdataString = "update bbs set content = '" + bbs_content + "', postTime = '" + bbs_postTime + "' where ID = " + id;
-            string UpdataString = "update bbs set content = '" + bbs_content + "' where ID = " + id;
+            string UpdataString = "update bbs set content = '" + bbs_content.Text + "' where ID = " + id;
             int ResultFlags = connStr.executeUpdate(UpdataString);
             if (ResultFlags == 0)
             {
                 Updates.Text = "更新失败！";
-            } 
+            }
             else
             {
                 Updates.Text = "更新成功！";
+                BBS.EditIndex = -1;
                 BindData();
             }
         }
