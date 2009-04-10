@@ -237,6 +237,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         this.ImgEx.ImageUrl = "..\\"+ds.Tables[0].Rows[0][13].ToString();
         this.HFBookID.Value = ds.Tables[0].Rows[0][3].ToString();
         this.HFOldType.Value = ds.Tables[0].Rows[0][0].ToString();
+        this.TxtDisc.Text = ds.Tables[0].Rows[0][19].ToString();
 
         NewBookPanel.Visible = false;
         BookListPanel.Visible = false;
@@ -270,18 +271,18 @@ public partial class manage_bookManage : System.Web.UI.Page
         String bookType = this.DDLTypeU.SelectedValue;
         String bookID = this.HFBookID.Value;
         String OldType = this.HFOldType.Value;
-        Response.Write(OldType);
+        String bookDis = this.TxtDisc.Text;
         if (this.CoverUploadU.HasFile)
         {
-            fileName = this.CoverUpload.PostedFile.FileName.Substring(this.CoverUpload.PostedFile.FileName.LastIndexOf("\\") + 1);
-            typeName = this.CoverUpload.PostedFile.FileName.Substring(this.CoverUpload.PostedFile.FileName.LastIndexOf(".") + 1);
+            fileName = this.CoverUploadU.PostedFile.FileName.Substring(this.CoverUploadU.PostedFile.FileName.LastIndexOf("\\") + 1);
+            typeName = this.CoverUploadU.PostedFile.FileName.Substring(this.CoverUploadU.PostedFile.FileName.LastIndexOf(".") + 1);
             if (typeName != "JPG" && typeName != "BMP" && typeName != "GIF" && typeName != "PNG" && typeName != "jpg" && typeName != "bmp" && typeName != "gif" && typeName != "png")
             {
                 Response.Write("<script language='javascript'>alert('请上传图片文件。');</script>");
             }
             else
             {
-                this.CoverUpload.PostedFile.SaveAs(Server.MapPath("..\\cover") + "\\" + fileName);
+                this.CoverUploadU.PostedFile.SaveAs(Server.MapPath("..\\cover") + "\\" + fileName);
                 CoverPath = "cover\\" + fileName;
             }
         }
@@ -290,7 +291,7 @@ public partial class manage_bookManage : System.Web.UI.Page
             CoverPath = this.ImgEx.ImageUrl.Substring(3);
         }
         BsBookInfo bookIn = new BsBookInfo(DbConnectString);
-        if (bookIn.UpdateOneBook(bookID, bookName, bookType, author, pub, pubTime, ISBN, price, quan, CoverPath, script) && bookIn.UpdateBookType(bookType, OldType))
+        if (bookIn.UpdateOneBook(bookID, bookName, bookType, author, pub, pubTime, ISBN, price, quan, CoverPath, script,bookDis) && bookIn.UpdateBookType(bookType, OldType))
         {
             Response.Write("<script language='javascript'>alert('更新成功。');location.href('bookManage.aspx');</script>");
         }
@@ -311,13 +312,22 @@ public partial class manage_bookManage : System.Web.UI.Page
     protected void BtnAdd_Click(object sender, EventArgs e)
     {
         String TypeName = this.LBNew.SelectedValue.ToString();
-        if (TypeName == "(备选分类)")
+        if (TypeName == "(备选分类)"||TypeName == ""||TypeName == null)
         {
+            if (TypeName == "(备选分类)")
+            {
+                this.lblStat.Text = "(备选分类)为提示字段，不能进行操作";
+            }
+            else
+            {
+                this.lblStat.Text = "不能添加空分类";
+            }
             return;
         }
+        String filePath = Server.MapPath("BookType.xml");
 
         BsBookInfo bookType = new BsBookInfo(DbConnectString);
-        if (bookType.InsertNewBookType(TypeName))
+        if (bookType.InsertNewBookType(TypeName)&&bookType.DeleteFromXML(TypeName,filePath))
         {
             this.lblStat.Text = "新分类添加成功";
             DataSet ds = bookType.GetBookClassify();
@@ -330,33 +340,23 @@ public partial class manage_bookManage : System.Web.UI.Page
             return;
         }
 
-        XmlDocument xmlD = new XmlDocument();
-        xmlD.Load(Server.MapPath("BookType.xml"));
-        XmlNodeList xmlNL = xmlD.SelectNodes("//BookType");
-        foreach (XmlNode xmlN in xmlNL)
-        {
-            if (xmlN.FirstChild.FirstChild.Value == TypeName)
-            {
-                xmlN.RemoveAll();
-                xmlN.ParentNode.RemoveChild(xmlN);
-                break;
-            }
-        }
-        xmlD.PreserveWhitespace = true;
-        XmlTextWriter xmlTW = new XmlTextWriter(Server.MapPath("BookType.xml"), Encoding.UTF8);
-        xmlD.WriteTo(xmlTW);
-        xmlTW.Close();
-
         LBNew_Load();
 
     }
 
     protected void BtnDel_Click(object sender, EventArgs e)
     {
-        String TypeName = this.LBEx.SelectedItem.Text.ToString();
+        String TypeName = this.LBEx.SelectedValue.ToString();
+        if (TypeName == "" || TypeName == null)
+        {
+            this.lblStat.Text = "清选择要删除的分类";
+            return;
+        }
+        TypeName = this.LBEx.SelectedItem.Text.ToString();
+        String filePath = Server.MapPath("BookType.xml");
 
         BsBookInfo bookType = new BsBookInfo(DbConnectString);
-        if (bookType.DeleteBookType(TypeName))
+        if (bookType.DeleteBookType(TypeName)&&bookType.WriteToXML(TypeName,filePath))
         {
             this.lblStat.Text = "分类删除成功";
             DataSet ds = bookType.GetBookClassify();
@@ -367,22 +367,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         {
             this.lblStat.Text = "删除失败,请确定该分类没有书籍";
             return;
-        } 
-
-        XmlDocument xmlD = new XmlDocument();
-        xmlD.Load(Server.MapPath("BookType.xml"));
-
-        XmlElement xmlEle = xmlD.CreateElement("BookType");
-        xmlEle.InnerXml = "\r\n<TypeID></TypeID>\r\n<TypeName></TypeName>";
-        xmlEle["TypeID"].InnerText = TypeName;
-        xmlEle.AppendChild(xmlD.CreateWhitespace("\r\n"));
-        xmlEle["TypeName"].InnerText = TypeName;
-
-        xmlD.DocumentElement.AppendChild(xmlEle);
-        xmlD.PreserveWhitespace = true;
-        XmlTextWriter xmlTW = new XmlTextWriter(Server.MapPath("BookType.xml"), Encoding.UTF8);
-        xmlD.WriteTo(xmlTW);
-        xmlTW.Close();
+        }
 
         LBNew_Load();
 
