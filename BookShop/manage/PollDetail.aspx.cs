@@ -31,10 +31,10 @@ public partial class manage_PollDetail : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (Session["AdminN"] == null || Session["AdminLv"] == null)
-        //{
-        //    Response.Redirect("../index.aspx");
-        //}
+        if (Session["AdminN"] == null || Session["AdminLv"] == null)
+        {
+            Response.Redirect("../index.aspx");
+        }
         if (Request["ID"] == null)
         {
             Response.Redirect("poll.aspx");
