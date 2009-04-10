@@ -161,7 +161,10 @@
                           <td colspan="1" style="width: 260px">
                               <asp:TextBox ID="TxtPrice" runat="server" MaxLength="20"></asp:TextBox>(元)<asp:RequiredFieldValidator
                                   ID="RvalPrice" runat="server" ControlToValidate="TxtPrice" Display="Dynamic"
-                                  ErrorMessage="*请给书籍定价" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator></td>
+                                  ErrorMessage="*请给书籍定价" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator>
+                              <asp:RegularExpressionValidator ID="REVPrice" runat="server" ControlToValidate="TxtPrice"
+                                  Display="Dynamic" ErrorMessage="请输入整数或小数" ValidationExpression="^([0-9]{1,}\.[0-9]{1,}|[0-9]{1,})$"
+                                  ValidationGroup="AddNewBook"></asp:RegularExpressionValidator></td>
                       </tr>
                       <tr>
                           <td align="left" style="width: 83px">
@@ -169,7 +172,9 @@
                           <td colspan="1" style="width: 260px">
                               <asp:TextBox ID="TxtQuantity" runat="server" MaxLength="20"></asp:TextBox>
                               <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TxtQuantity"
-                                  Display="Dynamic" ErrorMessage="*请填写书籍存量" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator></td>
+                                  Display="Dynamic" ErrorMessage="*请填写书籍存量" ValidationGroup="AddNewBook"></asp:RequiredFieldValidator>
+                              <asp:RegularExpressionValidator ID="REVQuan" runat="server" ControlToValidate="TxtQuantity"
+                                  Display="Dynamic" ErrorMessage="请输入整数" ValidationExpression="^([0-9]{1,})$" ValidationGroup="AddNewBook"></asp:RegularExpressionValidator></td>
                       </tr>
                       <tr>
                           <td align="left" style="width: 83px">
@@ -311,7 +316,10 @@
                       <td colspan="1" style="width: 260px">
                           <asp:TextBox ID="TxtPriceU" runat="server" MaxLength="20"></asp:TextBox>(元)<asp:RequiredFieldValidator
                               ID="RequiredFieldValidator7" runat="server" ControlToValidate="TxtPriceU" Display="Dynamic"
-                              ErrorMessage="*请给书籍定价" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
+                              ErrorMessage="*请给书籍定价" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator>
+                          <asp:RegularExpressionValidator ID="REVPriceU" runat="server" ControlToValidate="TxtPriceU"
+                              Display="Dynamic" ErrorMessage="请输入整数或小数" ValidationExpression="^([0-9]{1,}\.[0-9]{1,}|[0-9]{1,})$"
+                              ValidationGroup="UpdateBook"></asp:RegularExpressionValidator></td>
                   </tr>
                   <tr>
                       <td align="left" style="width: 83px">
@@ -319,7 +327,10 @@
                       <td colspan="1" style="width: 260px">
                           <asp:TextBox ID="TxtDisc" runat="server" MaxLength="20"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="TxtDisc"
-                              Display="Dynamic" ErrorMessage="*折扣不能为空" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
+                              Display="Dynamic" ErrorMessage="*折扣不能为空" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator>
+                          <asp:RegularExpressionValidator ID="REVDiscount" runat="server" ControlToValidate="TxtDisc"
+                              Display="Dynamic" ErrorMessage="请输入小于等于1的整数或小数" ValidationExpression="^([0]{1}\.[0-9]{1,}|[1]{1})$"
+                              ValidationGroup="UpdateBook"></asp:RegularExpressionValidator></td>
                   </tr>
                   <tr>
                       <td align="left" style="width: 83px">
@@ -327,7 +338,9 @@
                       <td colspan="1" style="width: 260px">
                           <asp:TextBox ID="TxtAvailableU" runat="server" MaxLength="20"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TxtAvailableU"
-                              Display="Dynamic" ErrorMessage="*请填写书籍存量" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator></td>
+                              Display="Dynamic" ErrorMessage="*请填写书籍存量" ValidationGroup="UpdateBook"></asp:RequiredFieldValidator>
+                          <asp:RegularExpressionValidator ID="REVAval" runat="server" ControlToValidate="TxtAvailableU"
+                              Display="Dynamic" ErrorMessage="请输入整数" ValidationExpression="^([0-9]{1,})$" ValidationGroup="UpdateBook"></asp:RegularExpressionValidator></td>
                   </tr>
                   <tr>
                       <td align="left" style="width: 83px">
