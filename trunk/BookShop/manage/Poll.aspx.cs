@@ -28,9 +28,13 @@ public partial class manage_Poll : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["AdminN"] == null || Session["AdminLv"] == null)
+        //if (Session["AdminN"] == null || Session["AdminLv"] == null)
+        //{
+        //    Response.Redirect("../index.aspx");
+        //}
+        if (!IsPostBack)
         {
-            Response.Redirect("../index.aspx");
+            BindData();
         }
         connStr.connDB(connection);
         string QueryStr = "select * from poll";
@@ -125,21 +129,34 @@ public partial class manage_Poll : System.Web.UI.Page
     {
         connStr.connDB(connection);
         string id = this.Poll.DataKeys[e.RowIndex].Values[0].ToString();
-        string poll_theme = ((TextBox)Poll.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
-        string poll_introduce = ((TextBox)Poll.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
-        string poll_available = ((TextBox)Poll.Rows[e.RowIndex].Cells[3].Controls[0]).Text;
-        string PollUpdateStr = "update poll set theme = '" + poll_theme + "', introduce = '" + poll_introduce + "', available = '" + poll_available + "' where ID = " + id;
-        int flag = connStr.executeUpdate(PollUpdateStr);
-        if (flag == 0)
+        //string poll_theme = ((TextBox)Poll.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
+        //string poll_introduce = ((TextBox)Poll.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
+        //string poll_available = ((TextBox)Poll.Rows[e.RowIndex].Cells[3].Controls[0]).Text;
+        TextBox poll_theme = (TextBox)this.Poll.Rows[e.RowIndex].Cells[3].FindControl("TextBox2") as TextBox;
+        TextBox poll_introdue = (TextBox)this.Poll.Rows[e.RowIndex].Cells[4].FindControl("TextBox3") as TextBox;
+        TextBox poll_available = (TextBox)this.Poll.Rows[e.RowIndex].Cells[5].FindControl("TextBox4") as TextBox;
+        if (poll_theme != null && poll_introdue != null && poll_available != null)
         {
-            availableFlags.Text = "更新失败！";
-        } 
-        else
-        {
-            availableFlags.Text = "更新成功！";
-            DataBind();
+            string PollUpdateStr = "update poll set theme = '" + poll_theme.Text + "', introduce = '" + poll_introdue.Text + "', available = '" + poll_available.Text + "' where ID = " + id;
+            int flag = connStr.executeUpdate(PollUpdateStr);
+            if (flag == 0)
+            {
+                availableFlags.Text = "更新失败！";
+            }
+            else
+            {
+                availableFlags.Text = "更新成功！";
+                Poll.EditIndex = -1;
+                DataBind();
+                Response.Redirect(Request.Url.ToString());
+            }
+            this.Poll.EditIndex = -1;
         }
         connStr.close();
+    }
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+        //base.VerifyRenderingInServerForm(control);
     }
     protected void DeleteAll_Click(object sender, EventArgs e)
     {
