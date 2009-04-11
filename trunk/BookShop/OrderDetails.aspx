@@ -11,7 +11,7 @@
     <h4 style="margin: 30px 40px; background-color: #E0F5F4; text-align: center">
         商品列表：
     </h4>
-    <div style="margin: 20px auto; border-bottom:1px dashed #999999">
+    <div style="margin: 20px auto; border-bottom:1px dashed #999999; border-top:px dashed #999999">
         <asp:GridView ID="OrderDetailsView" runat="server" AutoGenerateColumns="False" Width="80%"
             BorderWidth="0px">
             <EmptyDataTemplate>
