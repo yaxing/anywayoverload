@@ -130,6 +130,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         String price = this.TxtPrice.Text;
         String quan = this.TxtQuantity.Text;
         String script = this.TxtScript.Text;
+        script = script.Replace("\r\n", "<br/>");
         String bookType = this.DDDLType.SelectedValue;
         BsBookInfo bookIn = new BsBookInfo(DbConnectString);
         if (bookIn.InsertNewBook(bookName, bookType, author, pub, pubTime, ISBN, price, quan, CoverPath, script) && bookIn.UpdateBookType(bookType,1))
@@ -268,6 +269,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         String price = this.TxtPriceU.Text;
         String quan = this.TxtAvailableU.Text;
         String script = this.TxtScriptU.Text;
+        script = script.Replace("\r\n", "<br/>");
         String bookType = this.DDLTypeU.SelectedValue;
         String bookID = this.HFBookID.Value;
         String OldType = this.HFOldType.Value;
