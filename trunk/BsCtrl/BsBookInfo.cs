@@ -323,6 +323,62 @@ namespace BsCtrl
             return ds;
         }
 
+        /*读取一本书的评论信息*/
+        public DataSet GetOneComment(int bookID)
+        {
+            String sqlcmd = "select comment.*,username from comment,users where users.ID = comment.userID and bookID = '" + bookID + "'";
+            DataSet ds = new DataSet();
+
+            try
+            {
+                ds = conn.executeQuery(sqlcmd);
+            }
+            catch (System.Exception e)
+            {
+                ds = null;
+            }
+            return ds;
+        }
+
+        /*添加评论*/
+        public Boolean AddOneComment(int bookID,String userName,String commentTxt,int Scores)
+        {
+            String sqlcmd = "Select ID from users where username = '"+userName+"'";
+            DataSet ds = new DataSet();
+            try
+            {
+                ds = conn.executeQuery(sqlcmd);
+            }
+            catch (System.Exception e)
+            {
+                return false;
+            }
+
+            int userID = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+            sqlcmd = "Insert into comment(bookID,userID,comment,score) values('"+bookID+"','"+userID+"','"+commentTxt+"','"+Scores+"')";
+            String sqlcmd1 = null;
+
+            switch (Scores)
+            {
+                case 1: sqlcmd1 = "Update bookInfo set bad = bad + 1 where ID = '" + bookID + "'";
+            	        break;
+                case 2: sqlcmd1 = "Update bookInfo set middle = middle + 1 where ID = '" + bookID + "'";
+                        break;
+                case 3: sqlcmd1 = "Update bookInfo set good = good + 1 where ID = '" + bookID + "'";
+                        break;
+            }
+
+            if (conn.executeUpdate(sqlcmd) > 0 && conn.executeUpdate(sqlcmd1) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /*向XML文件中写入数据*/
         public Boolean WriteToXML(String TypeName,String FilePath)
         {
