@@ -327,6 +327,30 @@ namespace BsCtrl
             }
         }
 
+        /*功能：更新用户密码
+          参数：用户ID
+          返回：更新是否成功
+        */
+        public Boolean UpdateUserPass(int iUserID,String sPassWord)
+        {
+            DbConnector db = new DbConnector();
+
+            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            db.connDB(connStr);
+
+            string SqlState = "Update users Set passWord = '" + sPassWord + "' where ID = " + iUserID;
+            if (db.executeUpdate(SqlState) > 0)
+            {
+                db.close();
+                return true;
+            }
+            else
+            {
+                db.close();
+                return false;
+            }
+        }
+
         /*功能：密码md5加密
           参数：原密码strPwd
           返回：加密后的密码（String）
