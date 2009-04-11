@@ -135,7 +135,7 @@ public partial class _Default : System.Web.UI.Page
         int Score = Convert.ToInt32(this.RBLScore.SelectedValue);
         String CommentText = this.TxtComment.Text;
 
-        CommentText = CommentText.Replace("\r\n", "</br>");
+        CommentText = CommentText.Replace("\r\n", "<br/>");
 
         String userName = Session["userName"].ToString();
         int bookID = Convert.ToInt32(Request.QueryString["bookID"]);
