@@ -206,7 +206,7 @@
         <Columns>
             <asp:TemplateField ShowHeader="False">
                 <ItemTemplate>
-                    <table width = "500px">
+                    <table width = "500">
                         <tr>
                             <td style="width:10%">
                                 <img height="13" src="Images/greendot.gif" width="11">用户：</td>
@@ -217,12 +217,16 @@
                                 <img height="13" src="Images/greendot.gif" width="11">评价于：<%#Eval("commdatetime") %></td>
                         </tr>
                         <tr>
-                            <td>
+                            <td valign="top">
                                 <img height="13" src="Images/greendot.gif" width="11">评论：</td>
                                 <td colspan="3"><%#Eval("comment") %></td>
                         </tr>
                     </table>
                 </ItemTemplate>
+                <ControlStyle BorderStyle="None" />
+                <FooterStyle BorderStyle="None" />
+                <HeaderStyle BorderStyle="None" />
+                <ItemStyle BackColor="GhostWhite" BorderColor="LightCyan" BorderStyle="Double" BorderWidth="2px" />
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
