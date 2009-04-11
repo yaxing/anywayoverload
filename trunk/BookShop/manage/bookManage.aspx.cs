@@ -234,7 +234,8 @@ public partial class manage_bookManage : System.Web.UI.Page
         this.TxtPubDateU.Text = pubDate.Substring(0,dateIndex);
         this.TxtPriceU.Text = ds.Tables[0].Rows[0][10].ToString();
         this.TxtAvailableU.Text = ds.Tables[0].Rows[0][14].ToString();
-        this.TxtScriptU.Text = ds.Tables[0].Rows[0][9].ToString();
+        String bookScript = ds.Tables[0].Rows[0][9].ToString();
+        this.TxtScriptU.Text = bookScript.Replace("<br/>", "\r\n");
         this.ImgEx.ImageUrl = "..\\"+ds.Tables[0].Rows[0][13].ToString();
         this.HFBookID.Value = ds.Tables[0].Rows[0][3].ToString();
         this.HFOldType.Value = ds.Tables[0].Rows[0][0].ToString();
