@@ -200,6 +200,64 @@
 <font size="4" face = "幼园" color = "gray">用户评论</font>
 <br />    
     <br />
+    <asp:Label ID="lblNull" runat="server" style="color: #0099ff; font-family: YouYuan" Visible="False"></asp:Label><br />
+    
+    <asp:GridView ID="CommentGridView" runat="server" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="CommentGridView_PageIndexChanging" PageSize="5">
+        <Columns>
+            <asp:TemplateField ShowHeader="False">
+                <ItemTemplate>
+                    <table width = "500px">
+                        <tr>
+                            <td style="width:10%">
+                                <img height="13" src="Images/greendot.gif" width="11">用户：</td>
+                            <td style="width:20%"><%#Eval("username") %></td>
+                            <td style="width:30%">
+                                <img height="13" src="Images/greendot.gif" width="11">评分：<%#Eval("score") %></td>
+                            <td style="width:40%">
+                                <img height="13" src="Images/greendot.gif" width="11">评价于：<%#Eval("commdatetime") %></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img height="13" src="Images/greendot.gif" width="11">评论：</td>
+                                <td colspan="3"><%#Eval("comment") %></td>
+                        </tr>
+                    </table>
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
+    &nbsp;<br />
+    &nbsp;<br />
+    <asp:Label ID="lblStates" runat="server" Visible="False" style="color: #0099ff"></asp:Label><br />
+    <asp:Panel ID="PanelComment" runat="server" Width="100px" Visible="False">
+        <table style="width: 520px; height: 100px">
+            <tr>
+                <td align="left" style="width: 72px; color: #0099ff; font-family: YouYuan" valign="middle">
+                    我的评分：</td>
+                <td colspan="2">
+                    <asp:RadioButtonList ID="RBLScore" runat="server" RepeatDirection="Horizontal">
+                        <asp:ListItem Value="1"><font color = "red">废纸（差）</font></asp:ListItem>
+                        <asp:ListItem Value="2"><font color = "blue">书本（中）</font></asp:ListItem>
+                        <asp:ListItem Selected="True" Value="3"><font color = "green">神卷（好）</font></asp:ListItem>
+                    </asp:RadioButtonList></td>
+            </tr>
+            <tr>
+                <td align="left" style="width: 72px; color: #0099ff; font-family: YouYuan" valign="top">
+                    我的评论：</td>
+                <td colspan="2">
+                    <asp:TextBox ID="TxtComment" runat="server" Height="130px" TextMode="MultiLine" Width="421px"></asp:TextBox></td>
+            </tr>
+            <tr>
+                <td align="left" style="width: 72px" valign="middle">
+                </td>
+                <td style="width: 275px">
+                </td>
+                <td align="center">
+                    <asp:Button ID="BtnComment" runat="server" Text="我要评论" OnClick="BtnComment_Click" /></td>
+            </tr>
+        </table>
+    </asp:Panel>
+    
     <br />
     <br />
 </div>

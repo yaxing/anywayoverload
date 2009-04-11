@@ -17,7 +17,10 @@ public partial class _Default : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            if (Request["bookID"] != null) this.PageInfo_Load();
+            if (Request["bookID"] != null)
+            {
+                this.PageInfo_Load();
+            }
             else
             {
                 Response.Write("<script language='javascript'>alert('错误的书籍索引值');location.href('index.aspx')</script>");
@@ -82,6 +85,30 @@ public partial class _Default : System.Web.UI.Page
         this.ltlScript.Text = ds.Tables[0].Rows[0][9].ToString();
         this.rpRank.DataSource = bookInfo.GetHotBooks(5);
         this.rpRank.DataBind();
+        this.CommentGridView_Load(bookID);
+        if (Session["userName"] != null)
+        {
+            this.PanelComment.Visible = true;
+        }
+        else this.PanelComment.Visible = false;
+    }
+
+    protected void CommentGridView_Load(int bookID)
+    {
+        BsBookInfo comment = new BsBookInfo(strDbConn);
+        DataSet ds = new DataSet();
+        ds = comment.GetOneComment(bookID);
+        if (ds == null)
+        {
+            return;
+        }
+        if (ds.Tables[0].Rows.Count == 0)
+        {
+            this.lblNull.Text = "目前尚无用户对本书进行评论";
+            this.lblNull.Visible = true;
+        }
+        this.CommentGridView.DataSource = ds;
+        this.CommentGridView.DataBind();
     }
     
     protected void AddtoCartBt_Click1(object sender, ImageClickEventArgs e)
@@ -102,5 +129,34 @@ public partial class _Default : System.Web.UI.Page
             }
             Response.Redirect("CartView.aspx");
         }
+    }
+    protected void BtnComment_Click(object sender, EventArgs e)
+    {
+        int Score = Convert.ToInt32(this.RBLScore.SelectedValue);
+        String CommentText = this.TxtComment.Text;
+
+        CommentText = CommentText.Replace("\r\n", "</br>");
+
+        String userName = Session["userName"].ToString();
+        int bookID = Convert.ToInt32(Request.QueryString["bookID"]);
+
+        BsBookInfo commentContrl = new BsBookInfo(strDbConn);
+        if (commentContrl.AddOneComment(bookID, userName, CommentText, Score))
+        {
+            this.PageInfo_Load();
+            this.lblStates.Text = "评论成功！";
+            this.lblStates.Visible = true;
+        }
+        else
+        {
+            this.lblStates.Text = "评论添加失败！请稍候再试。";
+            this.lblStates.Visible = true;
+        }
+    }
+    protected void CommentGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        this.CommentGridView.PageIndex = e.NewPageIndex;
+        int bookID = Convert.ToInt32(Request.QueryString["bookID"]);
+        this.CommentGridView_Load(bookID);
     }
 }
