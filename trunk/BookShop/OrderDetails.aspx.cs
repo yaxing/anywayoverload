@@ -39,6 +39,7 @@ public partial class OrderDetails : System.Web.UI.Page
         this.lblAddress.Text = dt2.Rows[0]["address"].ToString();
         this.lblMobile.Text = dt2.Rows[0]["tel"].ToString();
         this.lblOrderDate.Text = dt2.Rows[0]["orderdatetime"].ToString();
-        this.lblStatus.Text = dt2.Rows[0]["pay"].ToString();
+        String Status = BsOrder.ShowOrderStatus(Convert.ToInt32(dt2.Rows[0]["pay"].ToString()));
+        this.lblStatus.Text = Status;
     }
 }
