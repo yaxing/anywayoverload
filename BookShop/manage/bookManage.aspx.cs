@@ -76,6 +76,11 @@ public partial class manage_bookManage : System.Web.UI.Page
     }
     protected void NewType_Click(object sender, ImageClickEventArgs e)
     {
+        if(Session["AdminLv"].ToString()=="1")
+        {
+            Response.Write("<script language='javascript'>alert('您的等级无法使用本功能。');</script>");
+            return;
+        }
         NewBookPanel.Visible = false;
         BookListPanel.Visible = false;
         TypePanel.Visible = true;
@@ -178,6 +183,12 @@ public partial class manage_bookManage : System.Web.UI.Page
     }
     protected void BookGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
+        if (Session["AdminLv"].ToString() == "1")
+        {
+            Response.Write("<script language='javascript'>alert('您的等级无法使用本功能。');</script>");
+            return;
+        }
+
         DataKey key = this.BookGridView.DataKeys[e.RowIndex];
         String bookID = key[0].ToString();
         int bookIDI = Convert.ToInt32(key[0]);
