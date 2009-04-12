@@ -16,7 +16,7 @@ public partial class manage_orderManage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //loginChk();                        //登陆判断
+        loginChk();                        //登陆判断
         if (!IsPostBack)
         {
             hfPageType.Value = "1";          //值为1，显示非历史订单
