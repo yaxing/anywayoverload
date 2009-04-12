@@ -103,7 +103,7 @@ namespace BsCtrl
         {
             string strContent = "";
             strContent += "<table cellspacing=2  cellpadding=2   bordercolordark='#ffffff'  bordercolorlight='#000000' width='100%'> ";
-            strContent += "<tr><th width='25%'>用户名</th><th width='20%'>下单时间</th><th width='15%'>交易金额</th><th>交易状态</th><th></th><th></th></tr>";
+            strContent += "<tr><th width='25%'>用户名</th><th width='20%'>下单时间</th><th width='15%'>交易金额</th><th>交易状态</th><th>更改</th><th></th></tr>";
             if (pageAmount == 0)
             {
                 strContent += "<tr><td colspan='6'>没有任何记录!!</td></tr>";
