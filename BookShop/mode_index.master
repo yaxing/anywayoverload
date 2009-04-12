@@ -375,7 +375,7 @@ function tick() {
                                                                 <asp:RadioButtonList ID="rblPoll" runat="server">
                                                                 </asp:RadioButtonList>
                                                                 <asp:ImageButton ID="bPoll" runat="server" Height="29px" ImageUrl="~/Images/poll.gif"
-                                                                    Style="left: 62px; position: relative; top: 21px" Width="85px" OnClick="bPoll_Click"
+                                                                    Style="left: 62px; position: relative; top: 21px" Width="85px" OnClick="bPoll_Click" CausesValidation="False"
                                                                      />
                                                             </asp:Panel>
                                                             <asp:Panel ID="panelPollResult" runat="server" Height="50px" Width="125px">
