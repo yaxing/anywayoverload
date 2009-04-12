@@ -303,8 +303,9 @@ namespace BsCtrl
         /*É¾³ıµ¥¸öÊé¼®*/
         public Boolean DeleteOneBook(String BookID)
         {
-            String sqlcmd = "delete from bookInfo where ID = '"+BookID+"'";
-            if (conn.executeUpdate(sqlcmd) > 0)
+            String sqlcmd = "Delete from bookInfo where ID = '"+BookID+"'";
+            String sqlcmd1 = "Delete from comment where bookID = '"+BookID+"'";
+            if (conn.executeUpdate(sqlcmd1) > 0 && conn.executeUpdate(sqlcmd) > 0)
             {
                 return true;
             }
