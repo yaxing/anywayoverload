@@ -61,13 +61,11 @@
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         &nbsp;<br />
         </asp:Panel>
-    &nbsp; &nbsp;&nbsp; &nbsp;<asp:Panel ID="Panel_ret" runat="server" Height="37px" HorizontalAlign="Center"
-        Width="554px">
+    &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<asp:Panel ID="Panel_quanxian" runat="server"
+        ForeColor="Red" Height="50px" HorizontalAlign="Center" Visible="False" Width="550px">
         <br />
         <br />
-        <br />
-        <br />
-        <asp:Label ID="Lb_ret" runat="server" ForeColor="Red" Font-Size="Medium"></asp:Label></asp:Panel>
+        <asp:Label ID="Lb_quanxian" runat="server" Text="你的权限不够，无法访问该页面"></asp:Label></asp:Panel>
 
 
 </asp:Content>

@@ -164,4 +164,9 @@
         &nbsp;<asp:LinkButton ID="LB_search" runat="server" Font-Bold="True" Font-Underline="True"
                 ForeColor="#FF8080" OnClick="LB_search_Click">返回查询</asp:LinkButton><br />
     </asp:Panel>
+    <asp:Panel ID="Panel_quanxian" runat="server" ForeColor="Red" Height="50px" HorizontalAlign="Center"
+        Visible="False" Width="550px">
+        <br />
+        <br />
+        <asp:Label ID="Lb_quanxian" runat="server" Text="你的权限不够，无法访问该页面"></asp:Label></asp:Panel>
 </asp:Content>

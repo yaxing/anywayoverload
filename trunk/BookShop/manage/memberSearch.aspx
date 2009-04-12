@@ -83,5 +83,10 @@
         
         <asp:ValidationSummary ID="vs1" runat="server" DisplayMode="BulletList" HeaderText="错误" Visible="False" ShowSummary="False" />
         </asp:Panel>
+    <asp:Panel ID="Panel_quanxian" runat="server" ForeColor="Red" Height="50px" HorizontalAlign="Center"
+        Visible="False" Width="550px">
+        <br />
+        <br />
+        <asp:Label ID="Lb_quanxian" runat="server" Text="你的权限不够，无法访问该页面"></asp:Label></asp:Panel>
 
 </asp:Content>

@@ -29,47 +29,56 @@ public partial class manage_adminEdit : System.Web.UI.Page
         //不是4级管理员
         if (Session["AdminLv"].ToString() != "4")
         {
-            Response.Redirect("adminLogin.html");
-        }
-
-
-        //不是返回结果，初始化页面
-        if (this.IsPostBack == false)
-            LoadData();
-
-        Panel_ret.Visible = false;
-
-        //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
-        //查询结果为空
-        if (GV1.Rows.Count == 0)
-        {   
-           
-            /*
-            //“全选”按钮不可见
-            Button Bt_all = (Button)Panel2.FindControl("Bt_all");
-            Bt_all.Visible = false;
-
-            //“全不选”按钮不可见
-            Button Bt_allnot = (Button)Panel2.FindControl("Bt_allnot");
-            Bt_allnot.Visible = false;
-
-            //“修改”按钮不可见
-            Button Bt_del = (Button)Panel2.FindControl("Bt_del");
-            Bt_del.Visible = false;
-            //位置在上的“返回查询”按钮不可见
-            Button Bt_search = (Button)Panel2.FindControl("Bt_search");
-            Bt_search.Visible = false;
-
-            //位置在下的“返回查询”按钮可见
-            LB_search.Visible = true;
-
-             */
+            // Response.Redirect("adminLogin.html");
+            //提示权限不够信息
+            Panel_ret.Visible = false;
             Panel1.Visible = false;
-            Panel_ret.Visible = true;
-            Lb_ret.ForeColor = Color.Red;
-            Lb_ret.Text = "没有符合条件的用户信息";
+            Panel_quanxian.Visible = true;
+        }
+
+        else 
+        {
+            //不是返回结果，初始化页面
+            if (this.IsPostBack == false)
+                LoadData();
+
+            Panel_ret.Visible = false;
+
+            //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
+            //查询结果为空
+            if (GV1.Rows.Count == 0)
+            {
+
+                /*
+                //“全选”按钮不可见
+                Button Bt_all = (Button)Panel2.FindControl("Bt_all");
+                Bt_all.Visible = false;
+
+                //“全不选”按钮不可见
+                Button Bt_allnot = (Button)Panel2.FindControl("Bt_allnot");
+                Bt_allnot.Visible = false;
+
+                //“修改”按钮不可见
+                Button Bt_del = (Button)Panel2.FindControl("Bt_del");
+                Bt_del.Visible = false;
+                //位置在上的“返回查询”按钮不可见
+                Button Bt_search = (Button)Panel2.FindControl("Bt_search");
+                Bt_search.Visible = false;
+
+                //位置在下的“返回查询”按钮可见
+                LB_search.Visible = true;
+
+                 */
+                Panel1.Visible = false;
+                Panel_ret.Visible = true;
+                Lb_ret.ForeColor = Color.Red;
+                Lb_ret.Text = "没有符合条件的用户信息";
+
+            }
 
         }
+
+       
 
     }
     protected void LoadData()

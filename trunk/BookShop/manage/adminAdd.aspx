@@ -100,8 +100,7 @@ function Bt_reset_onclick() {
             <asp:ListItem>2</asp:ListItem>
             <asp:ListItem>3</asp:ListItem>
         </asp:DropDownList>
-                    &nbsp; &nbsp; 
-                    <asp:Label ID="Label1" runat="server" Text="*"></asp:Label>
+                    &nbsp; &nbsp;<asp:Label ID="Label1" runat="server" Text="*"></asp:Label>
                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     &nbsp; &nbsp; &nbsp;
@@ -152,6 +151,11 @@ function Bt_reset_onclick() {
         <br />
         <asp:LinkButton ID="LB_ins" runat="server" OnClick="LB_ins_Click" Font-Size="Medium" ForeColor="Goldenrod" Font-Underline="True">继续添加</asp:LinkButton>
         &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<asp:LinkButton ID="LB_default" runat="server" OnClick="LB_default_Click" Font-Size="Medium" ForeColor="Goldenrod" Font-Underline="True">返回“用户管理”</asp:LinkButton></asp:Panel>
+    <asp:Panel ID="Panel_quanxian" runat="server" ForeColor="Red" Height="50px" HorizontalAlign="Center"
+        Visible="False" Width="550px">
+        <br />
+        <br />
+        <asp:Label ID="Lb_quanxian" runat="server" Text="你的权限不够，无法访问该页面"></asp:Label></asp:Panel>
 
 
 </asp:Content>

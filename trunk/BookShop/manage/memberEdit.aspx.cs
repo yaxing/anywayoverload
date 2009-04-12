@@ -26,27 +26,37 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
             Response.Redirect("adminLogin.html");
         }
         
-        //判断是否为4级管理员，只有4级管理员能访问该页面
-        //不是4级管理员
-        if(Session["AdminLv"].ToString() !=  "4")
+        //判断管理员等级是否>=3级
+        //等级<=3级
+        if (Session["AdminLv"].ToString() == "1" || Session["AdminLv"].ToString() == "2")
         {
-            Response.Redirect("adminLogin.html");          
+            // Response.Redirect("adminLogin.html");          
+            //提示权限不够
+            Panel_ret.Visible = false;
+            Panel1.Visible = false;
+            Panel_quanxian.Visible = true;
+        }
+
+        else 
+        {
+            if (this.IsPostBack == false)
+                LoadData();
+            Panel_ret.Visible = false;
+
+            //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
+            if (GV1.Rows.Count == 0)
+            {   //查询结果为空
+
+                Panel1.Visible = false;
+                Panel_ret.Visible = true;
+                Lb_ret.ForeColor = Color.Red;
+                Lb_ret.Text = "没有符合条件的用户信息";
+                LB_search.Visible = true;
+            }
+        
         }
         
-        if (this.IsPostBack == false)
-            LoadData();
-        Panel_ret.Visible = false;
-
-        //如果当前没有数据，则“全选”“全不选”“删除”按钮消失
-        if (GV1.Rows.Count == 0)
-        {   //查询结果为空
-
-            Panel1.Visible = false;
-            Panel_ret.Visible = true;
-            Lb_ret.ForeColor = Color.Red;
-            Lb_ret.Text = "没有符合条件的用户信息";
-            LB_search.Visible = true;
-        }
+       
 
     }
     protected void LoadData()
