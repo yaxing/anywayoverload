@@ -19,7 +19,7 @@
         </tr>
     </table>
     <p style="text-align:right">
-        <asp:LinkButton ID="lBtnTran" runat="server" OnClick="lBtnTran_Click" OnClientClick="confirm('您确定要执行此操作吗？')">
+        <asp:LinkButton ID="lBtnTran" runat="server" OnClick="lBtnTran_Click" OnClientClick="return confirm('您确定吗?');">
             终止订单--〉历史订单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</asp:LinkButton>
    </p>
 </asp:Content>
