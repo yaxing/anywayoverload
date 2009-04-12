@@ -35,7 +35,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="投票选项">
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("optionName") %>' TextMode="MultiLine" Width="80%"></asp:TextBox>
+                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("optionName") %>' TextMode="MultiLine" Width="80%" CausesValidation="True"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox3"
                         ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
                 </EditItemTemplate>
@@ -69,11 +69,11 @@
     <asp:TextBox ID="PollThemeText" runat="server" Enabled="False"></asp:TextBox>
     <br />
     <asp:Label ID="PollOption" runat="server" Text="投票选项"></asp:Label>
-    <asp:TextBox ID="PollOptionText" runat="server" ValidationGroup="s1"></asp:TextBox>
+    <asp:TextBox ID="PollOptionText" runat="server" ValidationGroup="s1" CausesValidation="True"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
         ControlToValidate="PollOptionText" ErrorMessage="投票选项的内容不能为空！" ValidationGroup="s1"></asp:RequiredFieldValidator>
     <br />
-    <asp:Button ID="Save" runat="server" onclick="Save_Click" Text="保存" />
+    <asp:Button ID="Save" runat="server" onclick="Save_Click" Text="保存" ValidationGroup="s1" />
 &nbsp;<asp:Button ID="Reset" runat="server" CausesValidation="False" 
         onclick="Reset_Click" Text="重置" />
 &nbsp;

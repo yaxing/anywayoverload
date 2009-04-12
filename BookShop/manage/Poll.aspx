@@ -25,7 +25,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="主题">
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("theme") %>' TextMode="MultiLine" Width="80%"></asp:TextBox>
+                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("theme") %>' TextMode="MultiLine" Width="80%" Enabled="False"></asp:TextBox>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("theme") %>' Width="80%"></asp:Label>
@@ -34,7 +34,9 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="简介">
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("introduce") %>' TextMode="MultiLine" Width="80%"></asp:TextBox>
+                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("introduce") %>' TextMode="MultiLine" Width="80%" CausesValidation="True"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox3"
+                        ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label3" runat="server" Text='<%# Bind("introduce") %>' Width="80%"></asp:Label>
@@ -45,7 +47,7 @@
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("available") %>' Width="80%"></asp:TextBox>
                     <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="TextBox4"
-                        ErrorMessage="RangeValidator" MaximumValue="1" MinimumValue="0">请输入１或者０（0-不可用；1-可用）</asp:RangeValidator>
+                        ErrorMessage="RangeValidator" MaximumValue="1" MinimumValue="0">（0-不可用；1-可用）</asp:RangeValidator>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label4" runat="server" Text='<%# Bind("available") %>'></asp:Label>
@@ -73,20 +75,20 @@
     添加投票主题：<br />
     <br />
     <asp:Label ID="Theme" runat="server" Text="投票主题"></asp:Label>
-    <asp:TextBox ID="ThemeText" runat="server" ValidationGroup="s1"></asp:TextBox>
+    <asp:TextBox ID="ThemeText" runat="server" ValidationGroup="a" CausesValidation="True"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-        ControlToValidate="ThemeText" ErrorMessage="主题不能为空" ValidationGroup="s1"></asp:RequiredFieldValidator>
+        ControlToValidate="ThemeText" ErrorMessage="主题不能为空" ValidationGroup="a"></asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="PollContent" runat="server" Text="投票简介"></asp:Label>
-    <asp:TextBox ID="introText" runat="server" ValidationGroup="s2"></asp:TextBox>
+    <asp:TextBox ID="introText" runat="server" ValidationGroup="a" CausesValidation="True"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-        ControlToValidate="introText" ErrorMessage="简介不能为空" ValidationGroup="s2"></asp:RequiredFieldValidator>
+        ControlToValidate="introText" ErrorMessage="简介不能为空" ValidationGroup="a"></asp:RequiredFieldValidator>
     <br />
     <asp:RadioButton ID="Able" runat="server" GroupName="State" Text="可用" />
     <asp:RadioButton ID="unAble" runat="server" Checked="True" GroupName="State" 
         Text="不可用" />
     <br />
-    <asp:Button ID="Save" runat="server" Text="保存" onclick="Save_Click" />
+    <asp:Button ID="Save" runat="server" Text="保存" onclick="Save_Click" ValidationGroup="a" />
     &nbsp;
     <asp:Button ID="Reset" runat="server" Text="重置" CausesValidation="False" 
         onclick="Reset_Click" />

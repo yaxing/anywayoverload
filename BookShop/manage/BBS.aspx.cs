@@ -29,10 +29,10 @@ public partial class manage_BBS : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["AdminN"] == null || Session["AdminLv"] == null)
-        {
-            Response.Redirect("../index.aspx");
-        }
+        //if (Session["AdminN"] == null || Session["AdminLv"] == null)
+        //{
+        //    Response.Redirect("../index.aspx");
+        //}
         if (!IsPostBack)
         {
             DataBind();
