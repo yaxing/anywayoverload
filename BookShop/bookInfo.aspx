@@ -125,20 +125,23 @@
         </tr>
         <tr>
             <td style="width: 169px">
-                神卷（好）：</td>
+                神卷（好）：<asp:Image ID="ImageGood" runat="server" ImageUrl="~/Images/az_voteline.gif"
+                    Width="0px" Height = "13px"/></td>
             <td>
                 <asp:Label ID="lblGood" runat="server" style="color: #33ff66"></asp:Label></td>
         </tr>
         <tr>
             <td style="width: 169px">
-                书本（中）：</td>
+                书本（中）：<asp:Image ID="ImageMid" runat="server" ImageUrl="~/Images/az_voteline.gif"
+                    Width="0px" Height = "13px"/></td>
             <td>
                 <asp:Label ID="lblNormal"
                     runat="server" style="color: blue"></asp:Label></td>
         </tr>
         <tr>
             <td style="width: 169px">
-                废纸（差）：</td>
+                废纸（差）：<asp:Image ID="ImageBad" runat="server" ImageUrl="~/Images/az_voteline.gif"
+                    Width="0px" Height = "13px"/></td>
             <td>
                 <asp:Label ID="lblbad" runat="server" style="color: red"></asp:Label></td>
         </tr>
