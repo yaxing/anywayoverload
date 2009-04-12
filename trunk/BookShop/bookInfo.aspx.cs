@@ -76,10 +76,24 @@ public partial class _Default : System.Web.UI.Page
         }
         this.lblQuantity.Text = ds.Tables[0].Rows[0][14].ToString();
         this.lblSold.Text = ds.Tables[0].Rows[0][15].ToString();
-        this.lblGood.Text = ds.Tables[0].Rows[0][16].ToString();
-        this.lblNormal.Text = ds.Tables[0].Rows[0][17].ToString();
-        this.lblbad.Text = ds.Tables[0].Rows[0][18].ToString();
-        this.lblCommentAcount.Text = Convert.ToString(Convert.ToInt32(ds.Tables[0].Rows[0][16]) + Convert.ToInt32(ds.Tables[0].Rows[0][17]) + Convert.ToInt32(ds.Tables[0].Rows[0][18]));
+
+        Double Goods = Convert.ToDouble(ds.Tables[0].Rows[0][16]);
+        Double Normals = Convert.ToDouble(ds.Tables[0].Rows[0][17]);
+        Double Bads = Convert.ToDouble(ds.Tables[0].Rows[0][18]);
+        int GoodsP = Convert.ToInt32(Goods / (Goods + Normals + Bads) * 100);
+        int NormalsP = Convert.ToInt32(Normals / (Goods + Normals + Bads) * 100);
+        int BadsP = Convert.ToInt32(Bads / (Goods + Normals + Bads) * 100);
+
+        this.lblCommentAcount.Text = Convert.ToString(Convert.ToInt32(Goods+Normals+Bads));
+
+        this.lblGood.Text = ds.Tables[0].Rows[0][16].ToString() + "(" + GoodsP.ToString() + "%)";
+        this.lblNormal.Text = ds.Tables[0].Rows[0][17].ToString() + "(" + NormalsP.ToString() + "%)";
+        this.lblbad.Text = ds.Tables[0].Rows[0][18].ToString() + "(" + BadsP.ToString() + "%)";
+
+        this.ImageGood.Width = GoodsP;
+        this.ImageMid.Width = NormalsP;
+        this.ImageBad.Width = BadsP;
+
         this.coverImg.Src = ds.Tables[0].Rows[0][13].ToString();
         this.coverImgP.Src = ds.Tables[0].Rows[0][13].ToString();
         this.ltlScript.Text = ds.Tables[0].Rows[0][9].ToString();
