@@ -30,9 +30,9 @@
                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("content") %>'></asp:Label>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("content") %>' Width="80%" TextMode="MultiLine"></asp:TextBox>
+                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("content") %>' Width="80%" TextMode="MultiLine" CausesValidation="True"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox2"
-                        ErrorMessage="RequiredFieldValidator">×</asp:RequiredFieldValidator>
+                        ErrorMessage="无效输入">×</asp:RequiredFieldValidator>
                 </EditItemTemplate>
                 <ItemStyle Width="50%" />
             </asp:TemplateField>
@@ -63,14 +63,12 @@
     <br />
     <br />
     <asp:Label ID="BBSContentTitle" runat="server" Text="公告内容"></asp:Label>
-    <asp:TextBox ID="BBSContent" runat="server" ValidationGroup="submit"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-        ErrorMessage="RequiredFieldValidator" ControlToValidate="BBSContent" 
-        ValidationGroup="submit">公告的内容不能为空！</asp:RequiredFieldValidator>
+    <asp:TextBox ID="BBSContent" runat="server" ValidationGroup="x" CausesValidation="True"></asp:TextBox>&nbsp;
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="BBSContent"
+        ErrorMessage="无效输入" ValidationGroup="x">内容不能为空</asp:RequiredFieldValidator><br />
     <br />
     <br />
-    <br />
-    <asp:Button ID="Save" runat="server" Text="保存" onclick="Save_Click" />
+    <asp:Button ID="Save" runat="server" Text="保存" onclick="Save_Click" ValidationGroup="x" />
     &nbsp;&nbsp;&nbsp;
     <asp:Button ID="Reset" runat="server" Text="重置" CausesValidation="False" 
         onclick="Reset_Click" />

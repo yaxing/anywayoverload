@@ -29,10 +29,10 @@ public partial class manage_Poll : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["AdminN"] == null || Session["AdminLv"] == null)
-        {
-            Response.Redirect("../index.aspx");
-        }
+        //if (Session["AdminN"] == null || Session["AdminLv"] == null)
+        //{
+        //    Response.Redirect("../index.aspx");
+        //}
         if (!IsPostBack)
         {
             BindData();
@@ -108,7 +108,8 @@ public partial class manage_Poll : System.Web.UI.Page
         string DelCmd = "delete from poll where id = " + id;
         string DelOption = "delete from pollDetail where pollID = " + id;
         int flag1 = connStr.executeUpdate(DelOption);
-        if (flag1!=0)
+        int flag2 = connStr.executeUpdate(DelCmd);
+        if(true)
         {
             int flag = connStr.executeUpdate(DelCmd);
             if (flag == 0)
