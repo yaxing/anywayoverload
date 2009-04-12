@@ -21,13 +21,13 @@ public partial class manage_userManage : System.Web.UI.Page
             Response.Redirect("adminLogin.html");
         }
 
-        //判断是否为4级管理员，只有4级管理员能访问该页面
-        //不是4级管理员
-        if (Session["AdminLv"].ToString() != "4")
+        //判断管理员等级是否>=3，只有>=3级的管理员能访问该页面
+        //等级低于3级
+        if (Session["AdminLv"].ToString() == "1" || Session["AdminLv"].ToString() == "2")
         {
+        //提示权限不够
             Panel_content.Visible = false;
-            Lb_ret.Text = "你没有权限，不能访问该页面";
-            Lb_ret.Visible = true;
+            Panel_quanxian.Visible = true;
 
         }
     }

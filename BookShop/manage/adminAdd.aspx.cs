@@ -28,12 +28,19 @@ public partial class manage_adminAdd : System.Web.UI.Page
         //不是4级管理员
         if (Session["AdminLv"].ToString() != "4")
         {
-            Response.Redirect("adminLogin.html");
+            // Response.Redirect("adminLogin.html");
+            //提示权限不够信息
+            Panel_ins.Visible = false;
+            Panel_ret.Visible = false;
+            Panel_quanxian.Visible = true;
+        }
+        else 
+        {
+            Lb_error.Visible = false;
+            Panel_ins.Visible = true;
+            Panel_ret.Visible = false;
         }
 
-        Lb_error.Visible = false; 
-        Panel_ins.Visible = true;
-        Panel_ret.Visible = false;
     }
 
     /*功能：密码md5加密

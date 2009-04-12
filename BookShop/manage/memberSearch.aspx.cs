@@ -22,11 +22,14 @@ public partial class manage_Default : System.Web.UI.Page
             Response.Redirect("adminLogin.html");
         }
 
-        //判断是否为4级管理员，只有4级管理员能访问该页面
-        //不是4级管理员
-        if (Session["AdminLv"].ToString() != "4")
+        //判断管理员等级是否>=3级
+        //等级<=3级
+        if (Session["AdminLv"].ToString() == "1" || Session["AdminLv"].ToString() == "2")
         {
-            Response.Redirect("adminLogin.html");
+           // Response.Redirect("adminLogin.html");
+           //提示权限不够
+            Panel1.Visible = false;
+            Panel_quanxian.Visible = true;
         }
     }
 

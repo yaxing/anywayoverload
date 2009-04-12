@@ -26,7 +26,10 @@ public partial class manage_adminSearch : System.Web.UI.Page
         //不是4级管理员
         if (Session["AdminLv"].ToString() != "4")
         {
-            Response.Redirect("adminLogin.html");
+           // Response.Redirect("adminLogin.html");
+           // 提示权限不够信息
+            Panel1.Visible = false;
+            Panel_quanxian.Visible = true;
         }
     }
 
