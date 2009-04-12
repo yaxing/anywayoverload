@@ -105,9 +105,13 @@ public partial class mode_index : System.Web.UI.MasterPage
 
     protected void logout_Click(object sender, EventArgs e)//退出登录时撤销session
     {
-        Session.Remove("userName");
-        Session.Remove("Grade");
-        Response.Redirect("index.aspx");
+        try
+        {
+            Session.Remove("userName");
+            Session.Remove("Grade");
+            Response.Redirect("index.aspx");
+        }
+        catch(Exception wrong) { }
     }
 
     protected void Regisiter_Click(object sender, EventArgs e)
