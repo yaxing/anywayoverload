@@ -80,7 +80,7 @@ CREATE TABLE orders (
 	tel varchar (30) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	email varchar (128) NOT NULL ,
 	dealMethod varchar (128) NOT NULL , --运送方式
-	pay int DEFAULT 0, --是否付款
+	pay int DEFAULT 1, --是否付款
 ) 
 GO
 
@@ -133,7 +133,7 @@ CREATE TABLE orders_done (
 	tel varchar (30) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	email varchar (128) NOT NULL ,
 	dealMethod varchar (128) NOT NULL , --运送方式
-	pay int DEFAULT 0, --是否付款
+	pay int DEFAULT 1, --是否付款
 ) 
 GO
 
