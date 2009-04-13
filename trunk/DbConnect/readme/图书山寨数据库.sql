@@ -37,7 +37,7 @@ CREATE TABLE bookInfo (
 	pubDatetime datetime NULL,
 	inDatetime datetime DEFAULT getdate(),
 	coverPath varchar (128) COLLATE Chinese_PRC_CI_AS NULL ,--图片路径
-	available int DEFAULT 0 ,
+	available int DEFAULT 10 ,
 	sale int DEFAULT 0 ,--销量
 	good int DEFAULT 0 ,--好评
 	middle int DEFAULT 0 ,
