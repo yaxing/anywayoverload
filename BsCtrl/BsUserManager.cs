@@ -10,24 +10,16 @@ namespace BsCtrl
 {
     public class BsUserManager
     {
-        private String strDbServer;
-        private String strDbUserName;
-        private String strDbPassWord;
+        private String strConn;
+        private DbConnector connCmd;
 
-
-        public BsUserManager()    
+        public BsUserManager(String Conn)    
         {
+            strConn = Conn;
+            connCmd = new DbConnector();
+            connCmd.connDB(strConn);
         }
 
-        public BsUserManager(String strDbServer, String strDbUserName, String strDbPassWord)
-        {
-            this.strDbServer = strDbServer;
-            this.strDbUserName = strDbUserName;
-            this.strDbPassWord = strDbPassWord;
-        }
-
-
-        /////////对管理员操作///////////
 
         /*功能：添加新管理员
           参数：strName    管理员用户名
@@ -39,16 +31,16 @@ namespace BsCtrl
         {
             int ret;
             int intLevel = Convert.ToInt32(strLevel);
-            String strConn = ConfigurationSettings.AppSettings["dbConnString"];
+            //String strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "insert admin values (" + "'" + strName + "'" + "," + "'" + strPwd + "'" + "," + "'" + strEmail + "'" + "," + intLevel + ")";
 
             //链接数据库，执行插入操作
-            DbConnector connIns = new DbConnector();
-            connIns.connDB(strConn);
-            ret = connIns.executeUpdate(sql);
+            //DbConnector connIns = new DbConnector();
+            //connIns.connDB(strConn);
+            ret = connCmd.executeUpdate(sql);
 
             //关闭数据库链接
-            connIns.close();
+            connCmd.close();
 
             //返回结果
             return ret;
@@ -64,7 +56,7 @@ namespace BsCtrl
         public DataSet searchAdmin(String strID, String strName, String strEmail, String strLevel)
         {
             DataSet ret = null;
-            String strConn = ConfigurationSettings.AppSettings["dbConnString"];
+            //tring strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "select id,username,password,email,level from admin where 1=1 and ";
 
             if (strID != "")
@@ -80,10 +72,10 @@ namespace BsCtrl
             }
 
             //链接数据库，执行查询操作
-            DbConnector connSch = new DbConnector();
-            connSch.connDB(strConn);
-            ret = connSch.executeQuery(sql);
-            connSch.close();
+            //DbConnector connSch = new DbConnector();
+            //connSch.connDB(strConn);
+            ret = connCmd.executeQuery(sql);
+            connCmd.close();
 
             return ret;
         }
@@ -99,10 +91,10 @@ namespace BsCtrl
             String sql = "Update admin set password=" + "'" + strPwd + "'" + ",email=" + "'" + strEmail + "'" + ",level=" + strLevel + "Where id=" + intID;
 
             //链接数据库，执行更新操作
-            DbConnector connUp = new DbConnector();
-            connUp.connDB(strConn);
-            connUp.executeUpdate(sql);
-            connUp.close(); //关闭数据库链接
+           // DbConnector connUp = new DbConnector();
+            //connUp.connDB(strConn);
+            connCmd.executeUpdate(sql);
+            connCmd.close(); //关闭数据库链接
 
             return ret;
 
@@ -116,12 +108,12 @@ namespace BsCtrl
         public bool deleteAdmin(int intID)
         {
             bool ret = true;
-            String strConn = ConfigurationSettings.AppSettings["dbConnString"];
+            //String strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "Delete from admin where 1=1 and id =" + intID;
-            DbConnector connDel = new DbConnector();
-            connDel.connDB(strConn);
-            connDel.executeUpdate(sql); //执行删除操作
-            connDel.close();    //关闭数据库链接
+            //DbConnector connDel = new DbConnector();
+            //connDel.connDB(strConn);
+            connCmd.executeUpdate(sql); //执行删除操作
+            connCmd.close();    //关闭数据库链接
 
             return ret;
 
@@ -139,7 +131,7 @@ namespace BsCtrl
         public DataSet searchMember(String strID, String strName, String strTEL, String strEmail)
         {
             DataSet ret = null;
-            String strConn = ConfigurationSettings.AppSettings["dbConnString"];
+            //String strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "select id,username,password,tel,email,grade from users where 1=1 and ";
 
             if (strID != "")
@@ -157,10 +149,10 @@ namespace BsCtrl
             
 
             //链接数据库，执行查询操作
-            DbConnector connSch = new DbConnector();
-            connSch.connDB(strConn);
-            ret = connSch.executeQuery(sql);
-            connSch.close();
+            //DbConnector connSch = new DbConnector();
+            //connSch.connDB(strConn);
+            ret = connCmd.executeQuery(sql);
+            connCmd.close();
 
             return ret;
         }
@@ -171,13 +163,13 @@ namespace BsCtrl
         public bool deleteMember(int intID)
         {
             bool ret = true;
-            String strConn = ConfigurationSettings.AppSettings["dbConnString"];
+            //String strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "Delete from users where 1=1 and id =" + intID;
 
-            DbConnector connDel = new DbConnector();
-            connDel.connDB(strConn);
-            connDel.executeUpdate(sql); //执行更新操作
-            connDel.close();    //关闭数据库链接
+           // DbConnector connDel = new DbConnector();
+            //connDel.connDB(strConn);
+            connCmd.executeUpdate(sql); //执行更新操作
+            connCmd.close();    //关闭数据库链接
 
             return ret;
         }
@@ -188,21 +180,18 @@ namespace BsCtrl
         {
             bool ret = true;
             int intID = Convert.ToInt32(strID);
-            String strConn = ConfigurationSettings.AppSettings["dbConnString"];
+            //String strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "Update users set password=" + "'" + strPwd + "'" + ",tel="
                 + "'" + strTEL + "'" + ",email=" + "'" + strEmail + "'" + "Where id=" + intID;
 
             //链接数据库，执行更新操作
-            DbConnector connUp = new DbConnector();
-            connUp.connDB(strConn);
-            connUp.executeUpdate(sql);
-            connUp.close(); //关闭数据库链接
+            //DbConnector connUp = new DbConnector();
+            //connUp.connDB(strConn);
+            connCmd.executeUpdate(sql);
+            connCmd.close(); //关闭数据库链接
 
             return ret;
         }
-
-        ///////  王超   ////////////////////
-
 
 
         /*功能：返回用户ID
