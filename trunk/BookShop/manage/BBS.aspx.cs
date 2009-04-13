@@ -17,7 +17,7 @@ using System.IO;
 public partial class manage_BBS : System.Web.UI.Page
 {
     DbConnector connStr = new DbConnector();
-    String strConn = ConfigurationManager.AppSettings["dbConnString"];
+    String strConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
 
     protected void BindData()
     {

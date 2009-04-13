@@ -35,7 +35,7 @@ public partial class manage_orderManage : System.Web.UI.Page
      */
     private void showContent(int flag)
     {
-        string dbConnStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString(); // ConfigurationManager.AppSettings["dbConnString"];
+        string dbConnStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString(); // ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
         orderManObj = new orderManage(dbConnStr);
         if(hfPageType.Value.Equals("1"))
         {

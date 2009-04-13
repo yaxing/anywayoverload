@@ -72,7 +72,7 @@ public partial class UserModify : System.Web.UI.Page
         String user_Pass = args.Value;
         String user_Name = this.UserNameLb.Text.ToString();
         DataSet loginInfo;
-        string dbConnStr = ConfigurationManager.AppSettings["dbConnString"];//初始化数据库连接信息
+        string dbConnStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();//初始化数据库连接信息
         modeIndex indexCtrl = new modeIndex();  //建立控制类对象
         indexCtrl.initial(dbConnStr);  //数据库连接初始化
 

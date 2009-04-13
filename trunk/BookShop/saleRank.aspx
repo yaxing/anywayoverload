@@ -3,7 +3,7 @@
     <table width="100%" style="text-align:center">
         <tr><td>
             <asp:GridView ID="gvSaleRank" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                CellPadding="4" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" Width="90%" PageSize="5">
+                CellPadding="4" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" Width="90%" PageSize="5" OnPageIndexChanging="gvSaleRank_PageIndexChanging">
                 <FooterStyle BackColor="#CCCC99" />
                 <Columns>
                     <asp:TemplateField>

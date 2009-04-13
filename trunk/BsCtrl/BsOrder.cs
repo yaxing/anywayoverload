@@ -18,7 +18,7 @@ namespace BsCtrl
             DataSet ds = new DataSet();
             DbConnector db = new DbConnector();
 
-            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
             db.connDB(connStr);
             string SqlState = "select * from orders where userID = " + Convert.ToString(iUserID) + "Order by orderDatetime DESC";
 
@@ -35,7 +35,7 @@ namespace BsCtrl
             DbConnector db = new DbConnector();
             int orderid = 0;
 
-            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
             db.connDB(connStr);
 
             string SqlState = "insert into orders(userID,orderdatetime,trueName,amount,address,email,tel,postcode,dealMethod) values(" + user_ID + ",getdate(),'" + user_Name + "'," + Convert.ToDouble(user_Amount) + ",'" + user_Address + "','" + user_Email + "','" + user_Tel + "','" + user_Post + "','" + user_Deal + "')"; 
@@ -51,7 +51,7 @@ namespace BsCtrl
         public Boolean AddOrderDetails(int iOrderID, Stat_Class sOrder)
         {
             DbConnector db = new DbConnector();
-            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
             db.connDB(connStr);
 
             string SqlState = "insert into orderDetail(orderID,bookID,price,number,discount) values (" + iOrderID + "," + sOrder.ID + "," + sOrder.Price + "," + sOrder.Quantity + "," + sOrder.Discount + ")";
@@ -67,7 +67,7 @@ namespace BsCtrl
         {
             DbConnector db = new DbConnector();
 
-            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
             db.connDB(connStr);
 
             string SqlState = "Update orders Set pay = -1 where ID = " + Convert.ToString(iOrderID);
@@ -103,7 +103,7 @@ namespace BsCtrl
             DataSet ds = new DataSet();
             DbConnector db = new DbConnector();
 
-            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
             db.connDB(connStr);
             string SqlState = "select * from orders,orderDetail,bookInfo where orders.ID =orderDetail.orderID and orderDetail.bookID = bookInfo.ID and orderDetail.orderID = " + Convert.ToString(iOrderID);
 
@@ -120,7 +120,7 @@ namespace BsCtrl
             DataSet ds = new DataSet();
             DbConnector db = new DbConnector();
 
-            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
             db.connDB(connStr);
             string SqlState = "select * from orders where ID = " + Convert.ToString(iOrderID);
 
@@ -136,7 +136,7 @@ namespace BsCtrl
             DataSet ds = new DataSet();
             DbConnector db = new DbConnector();
 
-            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
 
             db.connDB(connStr);
             String SqlState = "select * from users where ID = " + Convert.ToString(iUserID);

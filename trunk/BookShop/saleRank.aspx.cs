@@ -17,12 +17,22 @@ public partial class saleRank : System.Web.UI.Page
     {
         if(!Page.IsPostBack)
         {
-            string strDbConn = ConfigurationManager.AppSettings["dbConnString"];
+            string strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
             bookInfo = new BsBookInfo(strDbConn);
 
             //销售排行
             gvSaleRank.DataSource = bookInfo.GetHotBooks(100);
             gvSaleRank.DataBind();
         }
+    }
+    protected void gvSaleRank_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        this.gvSaleRank.PageIndex = e.NewPageIndex;
+        string strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+        bookInfo = new BsBookInfo(strDbConn);
+
+        //销售排行
+        gvSaleRank.DataSource = bookInfo.GetHotBooks(100);
+        gvSaleRank.DataBind();
     }
 }

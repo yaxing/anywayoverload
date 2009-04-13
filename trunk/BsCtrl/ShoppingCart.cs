@@ -77,7 +77,7 @@ namespace BsCtrl
         public Stat_Class(String ItemID)
         {
             Book_ID = ItemID;
-            String connectString = ConfigurationSettings.AppSettings["dbConnString"];
+            String connectString = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
             BsBookInfo bs = new BsBookInfo(connectString);
             int bookID = Convert.ToInt32(ItemID);
             DataSet ds = bs.GetBookInfo(bookID);
@@ -171,7 +171,7 @@ namespace BsCtrl
             }
             else
             {
-                String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+                String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
                 BsBookInfo bi = new BsBookInfo(connStr);
                 DataSet ds = new DataSet();
                 ds = bi.GetBookInfo(Convert.ToInt32(Order.ID));
@@ -206,7 +206,7 @@ namespace BsCtrl
             foreach (DictionaryEntry entry in Cart_Orders)
             {
                 Stat_Class order = (Stat_Class)entry.Value;
-                String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+                String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
                 BsBookInfo bi = new BsBookInfo(connStr);
                 DataSet ds = new DataSet();
                 ds = bi.GetBookInfo(Convert.ToInt32(order.ID));
@@ -276,7 +276,7 @@ namespace BsCtrl
                     int iAva = order.Available - order.Quantity;
                     DbConnector db = new DbConnector();
 
-                    String connStr = ConfigurationSettings.AppSettings["dbConnString"];
+                    String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
                     db.connDB(connStr);
 
                     string SqlState = "Update bookInfo Set available = " + iAva + " where ID = " + order.ID;

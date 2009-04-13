@@ -168,6 +168,24 @@
                                                                 <li>使用愉快！</li>
                                                             </ul>
                                                         </asp:Panel>
+                                                        <asp:Panel ID="adminEdit" runat="server" Height="300px" Width="100%">
+                                                            <ul>
+                                                                <li>投票管理注意事项：</li>
+                                                                <li>删除全部会将所有的投票主题删除，请谨慎使用！</li>
+                                                                <li>只能编辑投票的主题、简介、状态；序号不可更改</li>
+                                                                <li>所有的投票主题中只能有一个活动的主题</li>
+                                                                <li>使用愉快！</li>
+                                                            </ul>
+                                                        </asp:Panel>
+                                                        <asp:Panel ID="memberEdit" runat="server" Height="300px" Width="100%">
+                                                            <ul>
+                                                                <li>投票管理注意事项：</li>
+                                                                <li>删除全部会将所有的投票主题删除，请谨慎使用！</li>
+                                                                <li>只能编辑投票的主题、简介、状态；序号不可更改</li>
+                                                                <li>所有的投票主题中只能有一个活动的主题</li>
+                                                                <li>使用愉快！</li>
+                                                            </ul>
+                                                        </asp:Panel>
                                                         <%--<ul>
                 <li> 第一条信息</li>
                 <li>第二条信息</li>

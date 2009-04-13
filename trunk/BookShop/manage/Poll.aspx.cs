@@ -16,7 +16,7 @@ using System.IO;
 public partial class manage_Poll : System.Web.UI.Page
 {
     DbConnector connStr = new DbConnector();
-    String connection = ConfigurationManager.AppSettings["dbConnString"];
+    String connection = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
 
     protected void BindData()
     {

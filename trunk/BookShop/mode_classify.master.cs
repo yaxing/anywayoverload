@@ -18,7 +18,7 @@ public partial class mode_classify : System.Web.UI.MasterPage
     {
         if(!Page.IsPostBack)
         {
-            string strDbConn = ConfigurationManager.AppSettings["dbConnString"];
+            string strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
             bookInfo = new BsBookInfo(strDbConn);
 
             rpClass.DataSource = bookInfo.GetBookClassify();

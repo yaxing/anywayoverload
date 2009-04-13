@@ -17,18 +17,18 @@ namespace BsCtrl
         private DbConnector conn;
         private String strDbConn;
 
-        public void initial(String s, String u, String p)
-        {
-            //初始化数据库连接信息
+        //public void initial(String s, String u, String p)
+        //{
+        //    //初始化数据库连接信息
 
-            this.Server = s;
-            this.uName = u;
-            this.pWord = p;
-            conn = new DbConnector();
-            ds = null;
-            conn.connDB(Server, uName, pWord);
+        //    this.Server = s;
+        //    this.uName = u;
+        //    this.pWord = p;
+        //    conn = new DbConnector();
+        //    ds = null;
+        //    conn.connDB(Server, uName, pWord);
             
-        }
+        //}
 
         public void initial(String s)
         {
