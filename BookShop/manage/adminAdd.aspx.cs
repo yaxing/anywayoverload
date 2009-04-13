@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Security.Cryptography;
+using System.Drawing;
 using BsCtrl;
 
 public partial class manage_adminAdd : System.Web.UI.Page
@@ -90,12 +91,14 @@ public partial class manage_adminAdd : System.Web.UI.Page
                 if(ret != 0){       //插入操作成功
                     Panel_ins.Visible = false;
                     Panel_ret.Visible = true;
+                    Lb_ret.ForeColor = Color.Blue;
                     Lb_ret.Text = "添加操作成功";
                 }
 
                 else{
                     Panel_ins.Visible = false;
                     Panel_ret.Visible = true;
+                    Lb_ret.ForeColor = Color.Red;
                     Lb_ret.Text = "添加操作失败";
                     }
             }
