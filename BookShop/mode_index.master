@@ -34,56 +34,56 @@ function logincheck(){
 }  
   
 
-function tick() {
-    var hours, minutes, seconds, xfile;
-    var intHours, intMinutes, intSeconds;
-    var today, theday;
-    today = new Date();
-    function initArray(){
-        this.length=initArray.arguments.length
-        for(var i=0;i<this.length;i++)
-        this[i+1]=initArray.arguments[i] }
-        var d=new initArray(
-        " 星期日 ",
-        " 星期一 ",
-        " 星期二 ",
-        " 星期三 ",
-        " 星期四 ",
-        " 星期五 ",
-        " 星期六 ");
-        theday = today.getYear()+"年"+ [today.getMonth()+1]+"月" +today.getDate() +"日"+ d[today.getDay()+1];
-        intHours = today.getHours();
-        intMinutes = today.getMinutes();
-        intSeconds = today.getSeconds();
-        if (intHours == 0) {
-        hours = "12:";
-        xfile = " 午夜 ";
-        } else if (intHours < 12) {
-        hours = intHours+":";
-        xfile = " 上午 ";
-        } else if (intHours == 12) {
-        hours = "12:";
-        xfile = " 正午 ";
-        } else {
-        intHours = intHours - 12
-        hours = intHours + ":";
-        xfile = "  下午 ";
-        }
-        if (intMinutes < 10) {
-        minutes = "0"+intMinutes+":";
-        } else {
-        minutes = intMinutes+":";
-        }
-        if (intSeconds < 10) {
-        seconds = "0"+intSeconds+" ";
-        } else {
-        seconds = intSeconds+" ";
-    }
-    timeString = theday+xfile+hours+minutes+seconds;
-    Clock.innerHTML = timeString;
-    window.setTimeout("tick();", 100);
-}
- window.onload = tick;
+//function tick() {
+//    var hours, minutes, seconds, xfile;
+//    var intHours, intMinutes, intSeconds;
+//    var today, theday;
+//    today = new Date();
+//    function initArray(){
+//        this.length=initArray.arguments.length
+//        for(var i=0;i<this.length;i++)
+//        this[i+1]=initArray.arguments[i] }
+//        var d=new initArray(
+//        " 星期日 ",
+//        " 星期一 ",
+//        " 星期二 ",
+//        " 星期三 ",
+//        " 星期四 ",
+//        " 星期五 ",
+//        " 星期六 ");
+//        theday = today.getYear()+"年"+ [today.getMonth()+1]+"月" +today.getDate() +"日"+ d[today.getDay()+1];
+//        intHours = today.getHours();
+//        intMinutes = today.getMinutes();
+//        intSeconds = today.getSeconds();
+//        if (intHours == 0) {
+//        hours = "12:";
+//        xfile = " 午夜 ";
+//        } else if (intHours < 12) {
+//        hours = intHours+":";
+//        xfile = " 上午 ";
+//        } else if (intHours == 12) {
+//        hours = "12:";
+//        xfile = " 正午 ";
+//        } else {
+//        intHours = intHours - 12
+//        hours = intHours + ":";
+//        xfile = "  下午 ";
+//        }
+//        if (intMinutes < 10) {
+//        minutes = "0"+intMinutes+":";
+//        } else {
+//        minutes = intMinutes+":";
+//        }
+//        if (intSeconds < 10) {
+//        seconds = "0"+intSeconds+" ";
+//        } else {
+//        seconds = intSeconds+" ";
+//    }
+//    timeString = theday+xfile+hours+minutes+seconds;
+//    Clock.innerHTML = timeString;
+//    window.setTimeout("tick();", 100);
+//}
+// window.onload = tick;
 
 </script>
 
@@ -178,9 +178,15 @@ function tick() {
                                         </tr>
                                         <tr align="right">
                                             <td colspan="2" style="height: 17px">
-                                                <div id="Clock" align="right" style="font-family: 幼圆; font-size: 15px; color: #000000;
+                                                <div id="time" align="right" style="font-family: 幼圆; font-size: 15px; color: #000000;
                                                     position: relative; margin-top: -35px;">
                                                 </div>
+
+                                                <script type="text/javascript"> 
+//                            document.write("<span id=time></span>") 
+                            setInterval(function(){with(new Date) document.getElementById("time").innerHTML=getFullYear()+"年"+(getMonth()+1)+"月"+getDate()+"日 星期"+"日一二三四五六".charAt(getDay())+" "+getHours()+":"+getMinutes()+":"+getSeconds()},1000)
+                                                </script>
+
                                             </td>
                                         </tr>
                                     </table>
@@ -287,7 +293,8 @@ function tick() {
                                                                         <td>
                                                                             &nbsp;</td>
                                                                         <td height="31" align="center" style="width: 34px">
-                                                                        <asp:Button ID="logout" runat="server"  Text="退出登录" OnClick="logout_Click" CausesValidation="False" style="left: 17px; position: relative; top: 0px" />
+                                                                            <asp:Button ID="logout" runat="server" Text="退出登录" OnClick="logout_Click" CausesValidation="False"
+                                                                                Style="left: 17px; position: relative; top: 0px" />
                                                                         </td>
                                                                         <td align="center" style="width: 422px">
                                                                             <asp:Button ID="Modify_info" runat="server" OnClick="Button1_Click" Style="left: 7px;
@@ -366,7 +373,7 @@ function tick() {
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="height:330px">
+                                                        <td style="height: 330px">
                                                             &nbsp;
                                                         </td>
                                                         <td style="height: 330px; width: 237px;" valign="top" align="left">
@@ -375,8 +382,8 @@ function tick() {
                                                                 <asp:RadioButtonList ID="rblPoll" runat="server">
                                                                 </asp:RadioButtonList>
                                                                 <asp:ImageButton ID="bPoll" runat="server" Height="29px" ImageUrl="~/Images/poll.gif"
-                                                                    Style="left: 62px; position: relative; top: 21px" Width="85px" OnClick="bPoll_Click" CausesValidation="False"
-                                                                     />
+                                                                    Style="left: 62px; position: relative; top: 21px" Width="85px" OnClick="bPoll_Click"
+                                                                    CausesValidation="False" />
                                                             </asp:Panel>
                                                             <asp:Panel ID="panelPollResult" runat="server" Height="50px" Width="125px">
                                                                 &nbsp;<asp:Label ID="lableshowPollR" runat="server" Text="感谢您的参与！" Width="223px"></asp:Label>
