@@ -125,7 +125,8 @@ namespace BsCtrl
                     if (dsRecord.Tables[0].Rows[i]["pay"].ToString().Equals("1"))
                     {
                         strContent += "<td align='center'>" + "发货中" + "</td>";
-                        strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=-1'>" + "取消" + "</a>" + "</td>";
+                        strContent += "<td align='center'>" + "<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=-1'>" + "取消" + "</a>";
+                        strContent += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='orderDeal.aspx?id=" + dsRecord.Tables[0].Rows[i]["ID"] + "&value=2'>" + "完成" + "</a>" + "</td>";
                     }
                     else if (dsRecord.Tables[0].Rows[i]["pay"].ToString().Equals("2"))
                     {
