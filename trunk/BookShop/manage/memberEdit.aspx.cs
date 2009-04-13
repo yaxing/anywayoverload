@@ -69,7 +69,8 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
         String strEmail = Request.QueryString["email"];
 
         //实例化BsUserManager
-        BsUserManager admin = new BsUserManager();
+        string strConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+        BsUserManager admin = new BsUserManager(strConn);
         DataSet ds = admin.searchMember(strID,strName,strTEL,strEmail);
 
         //绑定数据源
@@ -165,7 +166,8 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
     protected void GV1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         //实例化BsUserManager
-        BsUserManager admin = new BsUserManager();
+        string strConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+        BsUserManager admin = new BsUserManager(strConn);
         String strMd5Pwd;   //写回数据库的密码
 
         int RowEditIndex = GV1.EditIndex;
@@ -219,7 +221,8 @@ public partial class manage_userSearchResultaspx : System.Web.UI.Page
     {
 
         //实例化BsUserManager
-        BsUserManager admin = new BsUserManager();
+        string strConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+        BsUserManager admin = new BsUserManager(strConn);
         bool del_no = true; // 标记执行删除前是否选择了1个以上用户。为true说明没有选择用户，提示错误 
 
         for (int i = 0; i < GV1.Rows.Count; i++) {      //删除选中的用户
