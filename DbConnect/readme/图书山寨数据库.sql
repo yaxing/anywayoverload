@@ -64,7 +64,7 @@ CREATE TABLE admin (
 	userName varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	passWord varchar (128) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	email varchar (128) NULL,
-	level int DEFAULT 0
+	level int DEFAULT 1
 )
 GO
 
