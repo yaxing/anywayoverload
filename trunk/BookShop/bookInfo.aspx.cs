@@ -141,11 +141,23 @@ public partial class _Default : System.Web.UI.Page
         if (cart != null)
         {
             if (this.TxtQuan.Text != null && this.TxtQuan.Text != "")
-                order.Quantity = Convert.ToInt32(this.TxtQuan.Text);
+            {
+                int iQuan = 0;
+                try
+                {
+                    iQuan = Convert.ToInt32(this.TxtQuan.Text);
+                }catch(FormatException ex)
+                {
+                    ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"数量不正确！\");</script>");
+                }
+                if(iQuan > 0)
+                  order.Quantity = iQuan;
+              else { ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"数量不正确！\");</script>"); }
+            }
             else order.Quantity = 1;
             if(cart.AddItem(order) == false)
             {
-                ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"库存量不够！\");this.location.href='index.aspx'</script>");
+                ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"库存量不够！\");</script>");
                 return;
             }
             Response.Redirect("CartView.aspx");
