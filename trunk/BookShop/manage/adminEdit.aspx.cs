@@ -91,7 +91,8 @@ public partial class manage_adminEdit : System.Web.UI.Page
         String strLevel = Request.QueryString["level"];
  
         //实例化BsUserManager
-        BsUserManager Admin = new BsUserManager();
+        string strConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+        BsUserManager Admin = new BsUserManager(strConn);
         DataSet ds = Admin.searchAdmin(strID,strName,strEmail,strLevel);
 
         //绑定数据源s
@@ -188,7 +189,8 @@ public partial class manage_adminEdit : System.Web.UI.Page
     {
     
         //实例化BsUserManager
-        BsUserManager admin = new BsUserManager();
+        string strConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+        BsUserManager admin = new BsUserManager(strConn);
         String strMd5Pwd;
 
         int RowEditIndex = GV1.EditIndex;
@@ -278,7 +280,8 @@ public partial class manage_adminEdit : System.Web.UI.Page
     {
 
         //实例化BsUserManager
-        BsUserManager admin = new BsUserManager();
+        string strConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+        BsUserManager admin = new BsUserManager(strConn);
         bool del_no = true; // 标记执行删除前是否选择了1个以上用户。为true说明没有选择用户，提示错误 
 
         for (int i = 0; i < GV1.Rows.Count; i++) {      //删除选中的用户

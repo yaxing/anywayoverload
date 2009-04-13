@@ -71,7 +71,8 @@ public partial class manage_adminAdd : System.Web.UI.Page
             //密码md5加密
             String strMd5Pwd = MD5(strPwd);
 
-            BsUserManager admin = new BsUserManager();
+            string strConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+            BsUserManager admin = new BsUserManager(strConn);
 
             //验证用户名是否已经存在
             DataSet ds = admin.searchAdmin("",strName,"","不选");    
