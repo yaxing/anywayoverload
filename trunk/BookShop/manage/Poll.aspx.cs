@@ -149,9 +149,11 @@ public partial class manage_Poll : System.Web.UI.Page
         if (poll_theme != null && poll_introdue != null && poll_available != null)
         {
             string PollUpdateStr = "update poll set theme = '" + poll_theme.Text + "', introduce = '" + poll_introdue.Text + "', available = '" + poll_available.Text + "' where ID = " + id;
-            string FindActive = "select * from poll where available = 1";
+            string FindActive = "select * from poll where available = 1 and id = " + id;
+            string FindActive1 = "select * from poll where available = 1";
+            DataSet flag2 = connStr.executeQuery(FindActive1);
             DataSet flag1 = connStr.executeQuery(FindActive);
-            if (flag1.Tables[0].Rows.Count == 0 && poll_available.Text == "1"||poll_available.Text == "0")
+            if (flag1.Tables[0].Rows.Count == 1||poll_available.Text == "0" || flag2.Tables[0].Rows.Count == 0)
             {
                 int flag = connStr.executeUpdate(PollUpdateStr);
 

@@ -58,6 +58,7 @@ public partial class manage_PollDetail : System.Web.UI.Page
         {
             PollDetailTitle.Text = "当前投票主题暂时没有投票选项！";
             DelAll.Visible = false;
+            OutWord.Visible = false;
         }
         connStr.close();
     }
