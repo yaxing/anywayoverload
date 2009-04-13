@@ -31,12 +31,10 @@ namespace BsCtrl
         {
             int ret;
             int intLevel = Convert.ToInt32(strLevel);
-            //String strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "insert admin values (" + "'" + strName + "'" + "," + "'" + strPwd + "'" + "," + "'" + strEmail + "'" + "," + intLevel + ")";
 
             //链接数据库，执行插入操作
-            //DbConnector connIns = new DbConnector();
-            //connIns.connDB(strConn);
+            connCmd.connDB(strConn);
             ret = connCmd.executeUpdate(sql);
 
             //关闭数据库链接
@@ -56,7 +54,6 @@ namespace BsCtrl
         public DataSet searchAdmin(String strID, String strName, String strEmail, String strLevel)
         {
             DataSet ret = null;
-            //tring strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "select id,username,password,email,level from admin where 1=1 and ";
 
             if (strID != "")
@@ -72,8 +69,7 @@ namespace BsCtrl
             }
 
             //链接数据库，执行查询操作
-            //DbConnector connSch = new DbConnector();
-            //connSch.connDB(strConn);
+            connCmd.connDB(strConn);
             ret = connCmd.executeQuery(sql);
             connCmd.close();
 
@@ -86,13 +82,11 @@ namespace BsCtrl
         public bool updateAdmin(String strID, String strName, String strPwd, String strEmail, String strLevel)
         {
             bool ret = true;
-            String strConn = ConfigurationSettings.AppSettings["dbConnString"];
             int intID = Convert.ToInt32(strID);
             String sql = "Update admin set password=" + "'" + strPwd + "'" + ",email=" + "'" + strEmail + "'" + ",level=" + strLevel + "Where id=" + intID;
 
             //链接数据库，执行更新操作
-           // DbConnector connUp = new DbConnector();
-            //connUp.connDB(strConn);
+            connCmd.connDB(strConn);
             connCmd.executeUpdate(sql);
             connCmd.close(); //关闭数据库链接
 
@@ -108,10 +102,9 @@ namespace BsCtrl
         public bool deleteAdmin(int intID)
         {
             bool ret = true;
-            //String strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "Delete from admin where 1=1 and id =" + intID;
-            //DbConnector connDel = new DbConnector();
-            //connDel.connDB(strConn);
+
+            connCmd.connDB(strConn);
             connCmd.executeUpdate(sql); //执行删除操作
             connCmd.close();    //关闭数据库链接
 
@@ -131,7 +124,6 @@ namespace BsCtrl
         public DataSet searchMember(String strID, String strName, String strTEL, String strEmail)
         {
             DataSet ret = null;
-            //String strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "select id,username,password,tel,email,grade from users where 1=1 and ";
 
             if (strID != "")
@@ -149,8 +141,7 @@ namespace BsCtrl
             
 
             //链接数据库，执行查询操作
-            //DbConnector connSch = new DbConnector();
-            //connSch.connDB(strConn);
+            connCmd.connDB(strConn); ;
             ret = connCmd.executeQuery(sql);
             connCmd.close();
 
@@ -163,11 +154,9 @@ namespace BsCtrl
         public bool deleteMember(int intID)
         {
             bool ret = true;
-            //String strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "Delete from users where 1=1 and id =" + intID;
 
-           // DbConnector connDel = new DbConnector();
-            //connDel.connDB(strConn);
+            connCmd.connDB(strConn);
             connCmd.executeUpdate(sql); //执行更新操作
             connCmd.close();    //关闭数据库链接
 
@@ -180,13 +169,11 @@ namespace BsCtrl
         {
             bool ret = true;
             int intID = Convert.ToInt32(strID);
-            //String strConn = ConfigurationSettings.AppSettings["dbConnString"];
             String sql = "Update users set password=" + "'" + strPwd + "'" + ",tel="
                 + "'" + strTEL + "'" + ",email=" + "'" + strEmail + "'" + "Where id=" + intID;
 
             //链接数据库，执行更新操作
-            //DbConnector connUp = new DbConnector();
-            //connUp.connDB(strConn);
+            connCmd.connDB(strConn);
             connCmd.executeUpdate(sql);
             connCmd.close(); //关闭数据库链接
 
