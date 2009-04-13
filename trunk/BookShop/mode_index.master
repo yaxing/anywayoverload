@@ -287,11 +287,11 @@ function tick() {
                                                                         <td>
                                                                             &nbsp;</td>
                                                                         <td height="31" align="center" style="width: 34px">
-                                                                        <asp:Button ID="logout" runat="server"  Text="退出登录" OnClick="logout_Click" CausesValidation="False" style="left: 65px; position: relative; top: 0px" />
+                                                                        <asp:Button ID="logout" runat="server"  Text="退出登录" OnClick="logout_Click" CausesValidation="False" style="left: 17px; position: relative; top: 0px" />
                                                                         </td>
                                                                         <td align="center" style="width: 422px">
-                                                                            
-                                                                        </td>
+                                                                            <asp:Button ID="Modify_info" runat="server" OnClick="Button1_Click" Style="left: 7px;
+                                                                                position: relative; top: 0px" Text="修改个人信息" /></td>
                                                                         <td>
                                                                             &nbsp;</td>
                                                                     </tr>
