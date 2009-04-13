@@ -59,8 +59,5 @@ public partial class manage_adminSearch : System.Web.UI.Page
             }
         }
     }
-    protected void Bt_return_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("userManage.aspx");
-    }
+
 }
