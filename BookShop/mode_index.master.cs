@@ -165,5 +165,10 @@ public partial class mode_index : System.Web.UI.MasterPage
         return;
     }
 
-  
+
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("UserModify.aspx");
+    }
 }
