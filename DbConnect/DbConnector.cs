@@ -25,8 +25,14 @@ namespace DbConnect
         //数据库链接函数，直接传入链接字符串
         public void connDB(String strConn)
         {
-            sqlConnection = new SqlConnection(strConn);
-            sqlConnection.Open();
+            try
+            {
+                sqlConnection = new SqlConnection(strConn);
+                sqlConnection.Open();
+            }
+            catch (Exception ee)
+            {
+            }
         }
         //查询函数，传入查询语句，返回结果集
         public DataSet executeQuery(String sql)
@@ -89,7 +95,13 @@ namespace DbConnect
         //关闭连接
         public void close()
         {
-            sqlConnection.Close();
+            try
+            {
+                sqlConnection.Close();
+            }
+            catch (Exception ee)
+            {
+            }
         }
     }
 
