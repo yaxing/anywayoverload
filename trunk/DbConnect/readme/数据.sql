@@ -1,5 +1,5 @@
-insert into admin ( userName, passWord) values('mr','mingrisoft');
-insert into admin ( userName, passWord) values('admin','111');
+insert into admin ( userName, passWord) values('mr','lueSGJZetyySpUndWjMBEg==');
+insert into admin ( userName, passWord) values('admin','lueSGJZetyySpUndWjMBEg==');
 
 insert into bbs (Content, postTime) values('在圣诞节来临之际，本书店为答解新老朋友的，特举办购物有奖活动！','2008-12-20 11:00:00');
 insert into bbs (Content, postTime) values('购物有奖，快快行动吧！','2009-4-8 15:00:00');
