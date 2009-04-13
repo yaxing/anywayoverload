@@ -25,6 +25,8 @@ public partial class manage_mode_admin : System.Web.UI.MasterPage
         adminAdd.Visible = false;
         adminSearch.Visible = false;
         pollDetail.Visible = false;
+        adminEdit.Visible = false;
+        memberEdit.Visible = false;
         if (currentURL.Equals("userManage.aspx")) 
         {
             adminType.Text = "用户管理";
