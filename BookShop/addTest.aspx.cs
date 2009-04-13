@@ -19,7 +19,7 @@ public partial class addTest : System.Web.UI.Page
         if (!IsPostBack)
         {
 
-            String ConnectString = ConfigurationSettings.AppSettings["dbConnString"];
+            String ConnectString = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
 
             SqlDataAdapter adapter = new SqlDataAdapter("select * from bookInfo", ConnectString);
 

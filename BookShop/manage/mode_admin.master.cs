@@ -65,6 +65,16 @@ public partial class manage_mode_admin : System.Web.UI.MasterPage
             adminType.Text = "投票详请";
             pollDetail.Visible = true;
         }
+        else if (currentURL.Equals("adminEdit.aspx"))
+        {
+            adminType.Text = "编辑管理员信息";
+            adminEdit.Visible = true;
+        }
+        else if (currentURL.Equals("memberEdit.aspx"))
+        {
+            adminType.Text = "编辑普通用户信息";
+            memberEdit.Visible = true;
+        }
         
     }
 }
