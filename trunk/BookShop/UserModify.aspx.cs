@@ -13,10 +13,12 @@ using DbConnect;
 
 public partial class UserModify : System.Web.UI.Page
 {
+    String strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         DataTable dt = new DataTable();
-        BsUserManager bm = new BsUserManager();
+        BsUserManager bm = new BsUserManager(strDbConn);
         this.SaveLb1.Visible = false;
         this.SaveLb2.Visible = false;
 
@@ -41,7 +43,7 @@ public partial class UserModify : System.Web.UI.Page
     
     protected void SaveBt1_Click(object sender, EventArgs e)
     {
-        BsUserManager bm = new BsUserManager();
+        BsUserManager bm = new BsUserManager(strDbConn);
 
         if (this.IsValid)
         {
@@ -91,7 +93,7 @@ public partial class UserModify : System.Web.UI.Page
         {
             String user_Pass = this.txtPassword.Text.Trim();
 
-            BsUserManager bs = new BsUserManager();
+            BsUserManager bs = new BsUserManager(strDbConn);
             String user_Name = Session["userName"].ToString();
             int userID = bs.findUser(user_Name);
             user_Pass = BsUserManager.MD5(user_Pass);

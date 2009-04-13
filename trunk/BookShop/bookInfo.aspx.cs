@@ -134,7 +134,7 @@ public partial class _Default : System.Web.UI.Page
     
     protected void AddtoCartBt_Click1(object sender, ImageClickEventArgs e)
     {
-        Stat_Class order = new Stat_Class(Request.QueryString["bookID"]);
+        Stat_Class order = new Stat_Class(Request.QueryString["bookID"],strDbConn);
 
         ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"]; //´´½¨ÊµÀý
 
