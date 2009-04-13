@@ -12,6 +12,7 @@ using BsCtrl;
 
 public partial class ShowOrder : System.Web.UI.Page
 {
+    String strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -29,9 +30,9 @@ public partial class ShowOrder : System.Web.UI.Page
 
     protected void BindToGridView()
     {
-        BsOrder bs = new BsOrder();
+        BsOrder bs = new BsOrder(strDbConn);
         DataTable dt = new DataTable();
-        BsUserManager bm = new BsUserManager();
+        BsUserManager bm = new BsUserManager(strDbConn);
 
         if (Session["userName"] != null)
         {
@@ -62,8 +63,8 @@ public partial class ShowOrder : System.Web.UI.Page
         if(e.CommandName=="CancelOrder")
         {
             int index = Convert.ToInt32(e.CommandArgument);
-            BsOrder bs = new BsOrder();
-            BsUserManager bm = new BsUserManager();
+            BsOrder bs = new BsOrder(strDbConn);
+            BsUserManager bm = new BsUserManager(strDbConn);
             bs.CancelOrder(index);
             if (Session["userName"] != null)
             {

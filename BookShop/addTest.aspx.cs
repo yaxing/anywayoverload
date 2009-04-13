@@ -13,6 +13,8 @@ using BsCtrl;
 
 public partial class addTest : System.Web.UI.Page
 {
+    String strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+
     void Page_Load(Object sender, EventArgs e)
     {
 
@@ -42,8 +44,8 @@ public partial class addTest : System.Web.UI.Page
 
         if (e.CommandName == "AddToCart")
         {
-
-            Stat_Class order = new Stat_Class(e.Item.Cells[0].Text);
+            
+            Stat_Class order = new Stat_Class(e.Item.Cells[0].Text, strDbConn);
 
             ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"]; //´´½¨ÊµÀý
 

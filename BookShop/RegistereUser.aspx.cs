@@ -14,6 +14,8 @@ using DbConnect;
 
 public partial class RegistereUser : System.Web.UI.Page
 {
+    String strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -21,7 +23,7 @@ public partial class RegistereUser : System.Web.UI.Page
     protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
     {
         string userName = args.Value;
-        BsUserManager bs = new BsUserManager();
+        BsUserManager bs = new BsUserManager(strDbConn);
         if (bs.IsUserExist(userName))
         {
             args.IsValid = false;
@@ -40,7 +42,7 @@ public partial class RegistereUser : System.Web.UI.Page
             string post = txtPost.Text.Trim();
             string tel = txtMobile.Text.Trim();
 
-            BsUserManager bs = new BsUserManager();
+            BsUserManager bs = new BsUserManager(strDbConn);
             user_Password = BsUserManager.MD5(user_Password);
             int userId = 0;
             if (bs.InsertUser(user_Name, user_Password, true_Name, email, address, post, tel) == true)

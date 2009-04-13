@@ -14,10 +14,11 @@ using BsCtrl;
 public partial class OrderDetails : System.Web.UI.Page
 {
     string Order_ID = "";
-    
+    String strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        BsOrder bs = new BsOrder();
+        BsOrder bs = new BsOrder(strDbConn);
         DataTable dt = new DataTable();
         DataTable dt2 = new DataTable();
         Double total = 0;

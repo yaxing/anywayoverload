@@ -1,5 +1,6 @@
 <%@ Import Namespace = "BsCtrl"%>
 <%@ Import Namespace = "System.Web"%>
+<%@ Import Namespace = "System.Configuration"%>
 <%@ Application Language="C#" %>
 
 <script runat="server">
@@ -25,7 +26,8 @@
     void Session_Start(object sender, EventArgs e) 
     {
         // Code that runs when a new session is started
-        Session["MyShoppingCart"] = new ShoppingCart();
+        String strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+        Session["MyShoppingCart"] = new ShoppingCart(strDbConn);
         Session.Timeout = 600;
 
     }

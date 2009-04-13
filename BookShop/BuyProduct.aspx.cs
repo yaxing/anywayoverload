@@ -13,13 +13,15 @@ using BsCtrl;
 
 public partial class BuyProduct : System.Web.UI.Page
 {
+    String strDbConn = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"]; //获取购物车
-            BsUserManager bm = new BsUserManager();
-            BsOrder bo = new BsOrder();
+            BsUserManager bm = new BsUserManager(strDbConn);
+            BsOrder bo = new BsOrder(strDbConn);
             DataTable dt = new DataTable();
 
             if (cart != null)
@@ -64,7 +66,7 @@ public partial class BuyProduct : System.Web.UI.Page
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        BsOrder bo = new BsOrder();
+        BsOrder bo = new BsOrder(strDbConn);
         ShoppingCart cart = (ShoppingCart)Session["MyShoppingCart"]; //获取购物车
 
         String user_ID = this.HiddenField1.Value;
