@@ -160,9 +160,14 @@ function tick() {
                                         </tr>
                                         <tr align="right">
                                             <td height="17" colspan="2">
-                                                <div id="Clock" align="right" style="font-family: 幼圆; font-size: 15px; color: #000000;
+                                                <div id="time" align="right" style="font-family: 幼圆; font-size: 15px; color: #000000;
                                                     position: relative; margin-top: -35px;">
                                                 </div>
+
+                                                <script type="text/javascript"> 
+//                            document.write("<span id=time></span>") 
+                            setInterval(function(){with(new Date) document.getElementById("time").innerHTML=getFullYear()+"年"+(getMonth()+1)+"月"+getDate()+"日 星期"+"日一二三四五六".charAt(getDay())+" "+getHours()+":"+getMinutes()+":"+getSeconds()},1000)
+                                                </script>
                                             </td>
                                         </tr>
                                     </table>
