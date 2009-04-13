@@ -20,6 +20,8 @@ namespace BsCtrl
         Double Book_Discount;//图书折扣
         int Quan; //图书数量
         int Ava;//图书库存量
+        private String strDbConn;
+        private DbConnector conn;
 
         /*图书ID字段*/
         public String ID
@@ -74,13 +76,18 @@ namespace BsCtrl
          * 参数： 图书的ID
          * 返回值：无
          */
-        public Stat_Class(String ItemID)
+        public Stat_Class(String ItemID, String strDbConn)
         {
+            BsBookInfo bs = new BsBookInfo(strDbConn);
             Book_ID = ItemID;
-            String connectString = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
-            BsBookInfo bs = new BsBookInfo(connectString);
+
+            this.strDbConn = strDbConn;
+            conn = new DbConnector();
+            conn.connDB(strDbConn);
+
             int bookID = Convert.ToInt32(ItemID);
             DataSet ds = bs.GetBookInfo(bookID);
+
             Book_Name = ds.Tables[0].Rows[0]["bookName"].ToString();
             Book_Cover = ds.Tables[0].Rows[0]["coverPath"].ToString();
             Book_Price = Convert.ToDouble(ds.Tables[0].Rows[0]["price"].ToString());
@@ -112,7 +119,20 @@ namespace BsCtrl
         //定义一个Hashtable
         Hashtable Cart_Orders = new Hashtable();
         int totalRecords = 0;
+        private String strDbConn;
+        private DbConnector conn;
 
+        public ShoppingCart()
+        {
+
+        }
+
+        public ShoppingCart(String strDbConn)
+        {
+            this.strDbConn = strDbConn;
+            conn = new DbConnector();
+            conn.connDB(strDbConn);
+        }
 
         /*返回整个Hashtable的值，包含所有的图书类
          * 参数： 无
@@ -171,8 +191,7 @@ namespace BsCtrl
             }
             else
             {
-                String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
-                BsBookInfo bi = new BsBookInfo(connStr);
+                BsBookInfo bi = new BsBookInfo(strDbConn);
                 DataSet ds = new DataSet();
                 ds = bi.GetBookInfo(Convert.ToInt32(Order.ID));
                 int iAva = Convert.ToInt32(ds.Tables[0].Rows[0]["available"]);
@@ -202,12 +221,12 @@ namespace BsCtrl
          */
         public Boolean AddToOrder(int iOrderID)
         {
-            BsOrder bo = new BsOrder();
+            BsOrder bo = new BsOrder(strDbConn);
             foreach (DictionaryEntry entry in Cart_Orders)
             {
                 Stat_Class order = (Stat_Class)entry.Value;
-                String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
-                BsBookInfo bi = new BsBookInfo(connStr);
+                
+                BsBookInfo bi = new BsBookInfo(strDbConn);
                 DataSet ds = new DataSet();
                 ds = bi.GetBookInfo(Convert.ToInt32(order.ID));
                 int iAva = Convert.ToInt32(ds.Tables[0].Rows[0]["available"]);
@@ -276,8 +295,7 @@ namespace BsCtrl
                     int iAva = order.Available - order.Quantity;
                     DbConnector db = new DbConnector();
 
-                    String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
-                    db.connDB(connStr);
+                    db.connDB(strDbConn);
 
                     string SqlState = "Update bookInfo Set available = " + iAva + " where ID = " + order.ID;
 

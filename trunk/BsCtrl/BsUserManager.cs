@@ -200,13 +200,9 @@ namespace BsCtrl
         public int findUser(String userName)
         {
             DataSet ds = null;
-            DbConnector db = new DbConnector();
-
-            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
-            db.connDB(connStr);
-
+            
             string SqlState = "Select ID from users where username = '" + userName + "'";
-            ds = db.executeQuery(SqlState);
+            ds = connCmd.executeQuery(SqlState);
 
             int userid = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
 
@@ -231,20 +227,17 @@ namespace BsCtrl
         public bool InsertUser(string UserName, string UserPwd, string TrueName, string UserEmail, string Address, string UserPost, string UserTel)
         {
             bool ret = true;
-            DbConnector db = new DbConnector();
+            
+            string SqlState = "insert into users(username,password,TrueName,email,address,postcode,tel) values('" + UserName + "','" + UserPwd + "','" + TrueName + "','" + UserEmail + "','" + Address + "','" + UserPost + "','" + UserTel + "')";
 
-            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
-            db.connDB(connStr);
-            string SqlState = "insert into users(username,password,TrueName,email,address,postcode,tel) values('" + UserName + "','" + UserPwd + "','" + TrueName + "','" + UserEmail + "','" + Address + "','" + UserPost + "','" + UserTel + "')"; 
-
-            if (db.executeUpdate(SqlState) > 0)
+            if (connCmd.executeUpdate(SqlState) > 0)
             {
-                db.close();
+                connCmd.close();
                 return ret;
             }
             else
             {
-                db.close();
+                connCmd.close();
                 return false;
             }
         }
@@ -255,12 +248,9 @@ namespace BsCtrl
         {
             bool ret = true;
             DataSet ds = null;
-            DbConnector db = new DbConnector();
-
-            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
-            db.connDB(connStr);
+            
             string SqlState = "Select Count(*) from users where userName = '" + strUserName + "'";
-            ds = db.executeQuery(SqlState);
+            ds = connCmd.executeQuery(SqlState);
 
             int count = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
             if (count > 0)
@@ -269,7 +259,7 @@ namespace BsCtrl
             }
             else ret = false;
 
-            db.close();
+            connCmd.close();
             return ret;
         }
 
@@ -280,14 +270,10 @@ namespace BsCtrl
         public DataTable ShowUserInfo(int iUserID)
         {
             DataSet ds = null;
-            DbConnector db = new DbConnector();
-
-            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
-            db.connDB(connStr);
-
+            
             string SqlState = "Select * from users where ID = " + iUserID;
-            ds = db.executeQuery(SqlState);
-            db.close();
+            ds = connCmd.executeQuery(SqlState);
+            connCmd.close();
 
             return ds.Tables[0];
         }
@@ -298,20 +284,15 @@ namespace BsCtrl
         */
         public Boolean UpdateUserInfo(int iUserID,String sTureName, String sEmail, String sAddress, String sTel, String sPost)
         {
-            DbConnector db = new DbConnector();
-
-            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
-            db.connDB(connStr);
-
             string SqlState = "Update users Set trueName = '" + sTureName + "', email = '" + sEmail + "', address = '" + sAddress + "', tel = '" + sTel + "', postcode = '" + sPost + "' where ID = " + iUserID;
-            if(db.executeUpdate(SqlState) > 0)
+            if(connCmd.executeUpdate(SqlState) > 0)
             {
-                db.close();
+                connCmd.close();
                 return true;
             }
             else 
-            { 
-                db.close(); 
+            {
+                connCmd.close(); 
                 return false; 
             }
         }
@@ -322,20 +303,16 @@ namespace BsCtrl
         */
         public Boolean UpdateUserPass(int iUserID,String sPassWord)
         {
-            DbConnector db = new DbConnector();
-
-            String connStr = ConfigurationSettings.AppSettings["dbConnString"];
-            db.connDB(connStr);
 
             string SqlState = "Update users Set passWord = '" + sPassWord + "' where ID = " + iUserID;
-            if (db.executeUpdate(SqlState) > 0)
+            if (connCmd.executeUpdate(SqlState) > 0)
             {
-                db.close();
+                connCmd.close();
                 return true;
             }
             else
             {
-                db.close();
+                connCmd.close();
                 return false;
             }
         }

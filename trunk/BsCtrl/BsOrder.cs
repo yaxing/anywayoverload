@@ -11,18 +11,25 @@ namespace BsCtrl
     /*订单类*/
     public class BsOrder
     {
+        private String strDbConn;
+        private DbConnector conn;
+
+        public BsOrder(String strDbConn)
+        {
+            this.strDbConn = strDbConn;
+            conn = new DbConnector();
+            conn.connDB(strDbConn);
+        }
+
         /*功能：查看此用户的订单
           参数：iUserID 存放待用户的ID*/
         public DataTable SelectOrders(int iUserID)
         {
             DataSet ds = new DataSet();
-            DbConnector db = new DbConnector();
-
-            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
-            db.connDB(connStr);
+            
             string SqlState = "select * from orders where userID = " + Convert.ToString(iUserID) + "Order by orderDatetime DESC";
 
-            ds = db.executeQuery(SqlState);
+            ds = conn.executeQuery(SqlState);
 
             return ds.Tables[0];
         }
@@ -32,15 +39,11 @@ namespace BsCtrl
          返回：生成的订单ID*/
         public int AddOrder(String user_ID, String user_Name, String user_Amount, String user_Address, String user_Email, String user_Tel, String user_Post, String user_Deal)
         {
-            DbConnector db = new DbConnector();
             int orderid = 0;
 
-            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
-            db.connDB(connStr);
+            string SqlState = "insert into orders(userID,orderdatetime,trueName,amount,address,email,tel,postcode,dealMethod) values(" + user_ID + ",getdate(),'" + user_Name + "'," + Convert.ToDouble(user_Amount) + ",'" + user_Address + "','" + user_Email + "','" + user_Tel + "','" + user_Post + "','" + user_Deal + "')";
 
-            string SqlState = "insert into orders(userID,orderdatetime,trueName,amount,address,email,tel,postcode,dealMethod) values(" + user_ID + ",getdate(),'" + user_Name + "'," + Convert.ToDouble(user_Amount) + ",'" + user_Address + "','" + user_Email + "','" + user_Tel + "','" + user_Post + "','" + user_Deal + "')"; 
-            
-            orderid = db.executeUpdate_id(SqlState);
+            orderid = conn.executeUpdate_id(SqlState);
             
             return orderid;
         }
@@ -50,13 +53,9 @@ namespace BsCtrl
          返回值：无*/
         public Boolean AddOrderDetails(int iOrderID, Stat_Class sOrder)
         {
-            DbConnector db = new DbConnector();
-            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
-            db.connDB(connStr);
-
             string SqlState = "insert into orderDetail(orderID,bookID,price,number,discount) values (" + iOrderID + "," + sOrder.ID + "," + sOrder.Price + "," + sOrder.Quantity + "," + sOrder.Discount + ")";
 
-            if (db.executeUpdate(SqlState) == 1) return true;
+            if (conn.executeUpdate(SqlState) == 1) return true;
             else return false;
         }
 
@@ -65,13 +64,8 @@ namespace BsCtrl
           返回：无*/
         public void CancelOrder(int iOrderID)
         {
-            DbConnector db = new DbConnector();
-
-            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
-            db.connDB(connStr);
-
             string SqlState = "Update orders Set pay = -1 where ID = " + Convert.ToString(iOrderID);
-            db.executeUpdate(SqlState);
+            conn.executeUpdate(SqlState);
         }
 
         /*功能：查看此订单的状态
@@ -101,13 +95,10 @@ namespace BsCtrl
         public DataTable ShowOrderDetails(int iOrderID)
         {
             DataSet ds = new DataSet();
-            DbConnector db = new DbConnector();
-
-            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
-            db.connDB(connStr);
+            
             string SqlState = "select * from orders,orderDetail,bookInfo where orders.ID =orderDetail.orderID and orderDetail.bookID = bookInfo.ID and orderDetail.orderID = " + Convert.ToString(iOrderID);
 
-            ds = db.executeQuery(SqlState);
+            ds = conn.executeQuery(SqlState);
 
             return ds.Tables[0];
         }
@@ -118,13 +109,10 @@ namespace BsCtrl
         public DataTable ShowOrderInfo(int iOrderID)
         {
             DataSet ds = new DataSet();
-            DbConnector db = new DbConnector();
-
-            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
-            db.connDB(connStr);
+            
             string SqlState = "select * from orders where ID = " + Convert.ToString(iOrderID);
 
-            ds = db.executeQuery(SqlState);
+            ds = conn.executeQuery(SqlState);
             return ds.Tables[0];
         }
 
@@ -134,14 +122,10 @@ namespace BsCtrl
         public DataTable ShowUserInfo(int iUserID)
         {
             DataSet ds = new DataSet();
-            DbConnector db = new DbConnector();
-
-            String connStr = ConfigurationManager.ConnectionStrings["shanzhaiConnectionString"].ToString();
-
-            db.connDB(connStr);
+            
             String SqlState = "select * from users where ID = " + Convert.ToString(iUserID);
 
-            ds = db.executeQuery(SqlState);
+            ds = conn.executeQuery(SqlState);
             return ds.Tables[0];
         }
     }
