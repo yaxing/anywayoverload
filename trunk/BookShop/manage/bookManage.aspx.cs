@@ -126,7 +126,7 @@ public partial class manage_bookManage : System.Web.UI.Page
                 CoverPath = "cover\\" + fileName;
             }
         }
-        if (CoverPath == null||CoverPath == "cover\\") CoverPath = "";
+        if (CoverPath == null||CoverPath == "cover\\") CoverPath = "cover\\default.gif";
         String ISBN = this.TxtISBN.Text;
         String bookName = this.TxtBookName.Text;
         String author = this.TxtAuthor.Text;
@@ -200,7 +200,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         String fileName = ImgPath.Substring(ImgPath.LastIndexOf("\\") + 1);
         if(bookInfo.DeleteOneBook(bookID) && bookInfo.UpdateBookType(bookType,2))
         {
-            if (ImgPath != "cover\\ASPgcyyysj.gif" && File.Exists(Server.MapPath("..\\cover") + "\\" + fileName))
+            if (ImgPath != "cover\\default.gif" && File.Exists(Server.MapPath("..\\cover") + "\\" + fileName))
             {
                File.Delete(Server.MapPath("..\\cover") + "\\" + fileName);  
             }
