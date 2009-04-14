@@ -37,19 +37,16 @@ public partial class manage_mode_admin : System.Web.UI.MasterPage
         {
             adminType.Text = "订单管理";
             orderManage.Visible = true;
-            Buttons.Visible = true;
         }
         else if (currentURL.Equals("BBS.aspx"))
         {
             adminType.Text = "公告管理";
             BBS.Visible = true;
-            Buttons.Visible = true;
         }
         else if (currentURL.Equals("Poll.aspx"))
         {
             adminType.Text = "投票管理";
             Poll.Visible = true;
-            Buttons.Visible = true;
         }
         else if (currentURL.Equals("memberSearch.aspx"))
         {
@@ -73,7 +70,6 @@ public partial class manage_mode_admin : System.Web.UI.MasterPage
         {
             adminType.Text = "投票详请";
             pollDetail.Visible = true;
-            Buttons.Visible = true;
         }
         else if (currentURL.Equals("adminEdit.aspx"))
         {
