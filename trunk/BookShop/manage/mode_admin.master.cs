@@ -27,57 +27,65 @@ public partial class manage_mode_admin : System.Web.UI.MasterPage
         pollDetail.Visible = false;
         adminEdit.Visible = false;
         memberEdit.Visible = false;
-        Buttons.Visible = true;
+        Buttons.Visible = false;
         if (currentURL.Equals("userManage.aspx")) 
         {
             adminType.Text = "用户管理";
             userManage.Visible = true;
-            Buttons.Visible = false;
         }
         else if (currentURL.Equals("orderManage.aspx"))
         {
             adminType.Text = "订单管理";
             orderManage.Visible = true;
+            Buttons.Visible = true;
         }
         else if (currentURL.Equals("BBS.aspx"))
         {
             adminType.Text = "公告管理";
             BBS.Visible = true;
+            Buttons.Visible = true;
         }
         else if (currentURL.Equals("Poll.aspx"))
         {
             adminType.Text = "投票管理";
             Poll.Visible = true;
+            Buttons.Visible = true;
         }
         else if (currentURL.Equals("memberSearch.aspx"))
         {
             adminType.Text = "用户搜索";
             memberSearch.Visible = true;
+            Buttons.Visible = true;
         }
         else if (currentURL.Equals("adminAdd.aspx"))
         {
             adminType.Text = "添加管理员";
             adminAdd.Visible = true;
+            Buttons.Visible = true;
         }
         else if (currentURL.Equals("adminSearch.aspx"))
         {
             adminType.Text = "查询或修改管理员";
             adminSearch.Visible = true;
+            Buttons.Visible = true;
         }
         else if (currentURL.Equals("pollDetail.aspx"))
         {
             adminType.Text = "投票详请";
             pollDetail.Visible = true;
+            Buttons.Visible = true;
         }
         else if (currentURL.Equals("adminEdit.aspx"))
         {
             adminType.Text = "编辑管理员信息";
             adminEdit.Visible = true;
+            Buttons.Visible = true;
         }
         else if (currentURL.Equals("memberEdit.aspx"))
         {
             adminType.Text = "编辑普通用户信息";
             memberEdit.Visible = true;
+            Buttons.Visible = true;
         }
         
     }
@@ -88,6 +96,7 @@ public partial class manage_mode_admin : System.Web.UI.MasterPage
     protected void usermanageB_Click(object sender, ImageClickEventArgs e)
     {
         Response.Redirect("memberSearch.aspx");
+
     }
     protected void adminmanageB_Click(object sender, ImageClickEventArgs e)
     {
