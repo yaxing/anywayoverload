@@ -209,7 +209,23 @@ namespace BsCtrl
         /*添加书籍分类*/
         public Boolean InsertNewBookType(String TypeName)
         {
-            String sqlcmd = "Insert into bookClass(className) values('"+TypeName+"')";
+            String sqlcmd = "Select * from bookClass where className = '" + TypeName + "'";
+            DataSet ds = new DataSet();
+            try
+            {
+                ds = conn.executeQuery(sqlcmd);
+            }
+            catch (System.Exception e)
+            {
+                return false;
+            }
+
+            if (ds == null || ds.Tables[0].Rows.Count > 0)
+            {
+                return false;
+            }
+
+            sqlcmd = "Insert into bookClass(className) values('"+TypeName+"')";
             if (conn.executeUpdate(sqlcmd) > 0)
             {
                 return true;
@@ -307,6 +323,20 @@ namespace BsCtrl
         /*删除单个书籍*/
         public Boolean DeleteOneBook(String BookID)
         {
+            String sql = "Select * from orderDetail where bookID = '"+BookID+"'";
+            DataSet ds = new DataSet();
+            try
+            {
+                ds = conn.executeQuery(sql);
+            }
+            catch (System.Exception e)
+            {
+                return false;
+            }
+            if (ds == null || ds.Tables[0].Rows.Count > 0)
+            {
+                return false;
+            }
             String sqlcmd = "Delete from bookInfo where ID = '"+BookID+"'";
             String sqlcmd1 = "Delete from comment where bookID = '"+BookID+"'";
             if (conn.executeUpdate(sqlcmd1) >= 0 && conn.executeUpdate(sqlcmd) > 0)
