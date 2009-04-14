@@ -50,7 +50,7 @@
                                     <ItemTemplate>
                                         <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl='<%#"OrderDetails.aspx?OrderID="+Eval("ID").ToString() %>'>查看</asp:LinkButton>
                                         <asp:LinkButton ID="lbtnCancel" runat="server" CommandArgument='<%#Eval("ID") %>'
-                                            CommandName="CancelOrder" Visible='<%# Convert.ToBoolean((Convert.ToInt32(Eval("pay"))) == 0) %>'
+                                            CommandName="CancelOrder" Visible='<%# Convert.ToBoolean((Convert.ToInt32(Eval("pay"))) == 1) %>'
                                             OnClientClick="return confirm('真的要取消该订单吗？')">取消</asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
