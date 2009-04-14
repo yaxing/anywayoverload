@@ -54,18 +54,18 @@ namespace BsCtrl
         public DataSet searchAdmin(String strID, String strName, String strEmail, String strLevel)
         {
             DataSet ret = null;
-            String sql = "select id,username,password,email,level from admin where 1=1 and ";
+            String sql = "select id,username,password,email,level from admin where 1=1 ";
 
             if (strID != "")
-                sql += "id = " + "'" + strID + "'";
+                sql += "and id = " + "'" + strID + "'";
             if (strName != "")
-                sql += "username = " + "'" + strName + "'";
+                sql += "and username = " + "'" + strName + "'";
             if (strEmail != "")
-                sql += "email = " + "'" + strEmail + "'";
+                sql += "and email = " + "'" + strEmail + "'";
             if (strLevel != "不选")
             {
                 int intLevel = Convert.ToInt32(strLevel);
-                sql += "level = " + strLevel;
+                sql += "and level = " + strLevel;
             }
 
             //链接数据库，执行查询操作
@@ -124,20 +124,20 @@ namespace BsCtrl
         public DataSet searchMember(String strID, String strName, String strTEL, String strEmail)
         {
             DataSet ret = null;
-            String sql = "select id,username,password,tel,email,grade from users where 1=1 and ";
+            String sql = "select id,username,password,tel,email,grade from users where 1=1 ";
 
             if (strID != "")
             {
                 int intID = Convert.ToInt32(strID);
-                sql += "id = " + "'" + intID + "'";
+                sql += "and id = " + "'" + intID + "'";
             }
              
             if (strName != "")
-                sql += "username = " + "'" + strName + "'";
+                sql += "and username = " + "'" + strName + "'";
             if (strTEL != "")
-                sql += "tel = " + "'" + strTEL + "'";
+                sql += "and tel = " + "'" + strTEL + "'";
             if (strEmail != "")
-                sql += "email = " + "'" + strEmail + "'";
+                sql += "and email = " + "'" + strEmail + "'";
             
 
             //链接数据库，执行查询操作
