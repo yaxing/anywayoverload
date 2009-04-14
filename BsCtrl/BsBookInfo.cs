@@ -269,7 +269,11 @@ namespace BsCtrl
             {
                 return false;
             }
-            long num = Convert.ToInt64(ds.Tables[0].Rows[0][0]);
+            long num = 1;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                num = Convert.ToInt64(ds.Tables[0].Rows[0][0]);
+            }
             if (num > 0)
             {
                 return false;
