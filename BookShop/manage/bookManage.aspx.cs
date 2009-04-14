@@ -178,7 +178,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         }
         else
         {
-            this.lblStat.Text = "删除失败,请确定该分类没有书籍";
+            this.lblStat.Text = "删除失败,请确定分类名正确并且该分类没有书籍";
         }         
     }
     protected void BookGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
