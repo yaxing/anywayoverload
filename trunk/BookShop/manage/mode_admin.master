@@ -112,7 +112,7 @@
                                                                 <li>删除：管理员可以删除用户</li>
                                                             </ul>
                                                         </asp:Panel>
-                                                        <asp:Panel ID="orderManage" runat="server" Height="100px" Width="100%">
+                                                        <asp:Panel ID="orderManage" runat="server" Height="200px" Width="100%">
                                                             <ul>
                                                                 <li>管理员（等级4）能对注册用户进行查找、更新、删除操作</li>
                                                                 <li>查找：管理员输入1项以上的查询条件，进行查找</li>
@@ -120,7 +120,7 @@
                                                                 <li>删除：管理员可以删除用户</li>
                                                             </ul>
                                                         </asp:Panel>
-                                                        <asp:Panel ID="BBS" runat="server" Height="130px" Width="100%">
+                                                        <asp:Panel ID="BBS" runat="server" Height="200px" Width="100%">
                                                             <ul>
                                                                 <li>公告管理注意事项：</li>
                                                                 <li>删除全部会将所有的投票主题删除，请谨慎使用！</li>
@@ -129,7 +129,7 @@
                                                                 <li>祝您使用愉快！</li>
                                                             </ul>
                                                         </asp:Panel>
-                                                        <asp:Panel ID="memberSearch" runat="server" Height="130px" Width="100%">
+                                                        <asp:Panel ID="memberSearch" runat="server" Height="200px" Width="100%">
                                                             <ul>
                                                                 <li>管理员（等级4）能对注册用户进行查找、更新、删除操作</li>
                                                                 <li>查找：管理员输入1项以上的查询条件，进行查找</li>
@@ -173,7 +173,7 @@
                                                                 <li>使用愉快！</li>
                                                             </ul>
                                                         </asp:Panel>
-                                                        <asp:Panel ID="adminEdit" runat="server" Height="100px" Width="100%">
+                                                        <asp:Panel ID="adminEdit" runat="server" Height="200px" Width="100%">
                                                             <ul>
                                                                 <li>投票管理注意事项：</li>
                                                                 <li>删除全部会将所有的投票主题删除，请谨慎使用！</li>
@@ -182,7 +182,7 @@
                                                                 <li>使用愉快！</li>
                                                             </ul>
                                                         </asp:Panel>
-                                                        <asp:Panel ID="memberEdit" runat="server" Height="100px" Width="100%">
+                                                        <asp:Panel ID="memberEdit" runat="server" Height="200px" Width="100%">
                                                             <ul>
                                                                 <li>投票管理注意事项：</li>
                                                                 <li>删除全部会将所有的投票主题删除，请谨慎使用！</li>
