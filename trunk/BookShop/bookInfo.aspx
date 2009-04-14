@@ -95,8 +95,8 @@
         </tr>
         <tr>
             <td align="center" colspan="2" style="height: 43px">
-                <asp:ImageButton ID="AddtoCartBt" runat="server" OnClick="AddtoCartBt_Click1" />
-                <asp:TextBox ID="TxtQuan" runat="server" Width="42px"></asp:TextBox>
+                <asp:ImageButton ID="AddtoCartBt" runat="server" OnClick="AddtoCartBt_Click1" Height="29px" ImageUrl="~/Images/buy.gif" Width="86px" />
+                <asp:TextBox ID="TxtQuan" runat="server" Width="42px" style="left: 3px; position: relative; top: -9px"></asp:TextBox>
                 (±¾)
             </td>
         </tr>
