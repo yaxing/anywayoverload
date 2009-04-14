@@ -149,10 +149,14 @@ public partial class _Default : System.Web.UI.Page
                 }catch(FormatException ex)
                 {
                     ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"数量不正确！\");</script>");
+                    return;
                 }
                 if(iQuan > 0)
                   order.Quantity = iQuan;
-              else { ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"数量不正确！\");</script>"); }
+                else { 
+                    ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert(\"数量不正确！\");</script>");
+                    return;
+                }
             }
             else order.Quantity = 1;
             if(cart.AddItem(order) == false)
