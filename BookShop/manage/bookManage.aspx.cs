@@ -162,7 +162,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         }
         else
         {
-            this.lblStat.Text = "添加失败,请重新添加";
+            this.lblStat.Text = "添加失败,该分类可能已存在";
         }
     }
     protected void BtnDelP_Click(object sender, EventArgs e)
@@ -208,7 +208,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         }
         else
         {
-            Response.Write("<script language='javascript'>alert('删除失败：数据操作失败，请确认数据库是否正常工作。');</script>");
+            Response.Write("<script language='javascript'>alert('删除失败：数据库问题或该书可能还有未完成的订单');</script>");
         }
         ds = bookInfo.GetAllBooks();
         BookGridView_Load(ds);
@@ -350,7 +350,7 @@ public partial class manage_bookManage : System.Web.UI.Page
         }
         else
         {
-            this.lblStat.Text = "添加失败,请重新添加";
+            this.lblStat.Text = "添加失败,该分类可能已存在";
             return;
         }
 
