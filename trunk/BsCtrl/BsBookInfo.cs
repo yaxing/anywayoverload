@@ -305,7 +305,7 @@ namespace BsCtrl
         {
             String sqlcmd = "Delete from bookInfo where ID = '"+BookID+"'";
             String sqlcmd1 = "Delete from comment where bookID = '"+BookID+"'";
-            if (conn.executeUpdate(sqlcmd1) > 0 && conn.executeUpdate(sqlcmd) > 0)
+            if (conn.executeUpdate(sqlcmd1) >= 0 && conn.executeUpdate(sqlcmd) > 0)
             {
                 return true;
             }
