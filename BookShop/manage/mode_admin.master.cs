@@ -27,10 +27,12 @@ public partial class manage_mode_admin : System.Web.UI.MasterPage
         pollDetail.Visible = false;
         adminEdit.Visible = false;
         memberEdit.Visible = false;
+        Buttons.Visible = true;
         if (currentURL.Equals("userManage.aspx")) 
         {
             adminType.Text = "用户管理";
             userManage.Visible = true;
+            Buttons.Visible = false;
         }
         else if (currentURL.Equals("orderManage.aspx"))
         {
@@ -78,5 +80,21 @@ public partial class manage_mode_admin : System.Web.UI.MasterPage
             memberEdit.Visible = true;
         }
         
+    }
+    protected void manageB_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("userManage.aspx");
+    }
+    protected void usermanageB_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("memberSearch.aspx");
+    }
+    protected void adminmanageB_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("adminSearch.aspx");
+    }
+    protected void adminaddB_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("adminAdd.aspx");
     }
 }
