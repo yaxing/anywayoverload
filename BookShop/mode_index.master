@@ -89,7 +89,7 @@ function logincheck(){
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>网上图书超市</title>
+    <title>图书山寨</title>
     <link href="CSS/style.css" rel="stylesheet" />
     <link href="CSS/Adminlogstyle.css" rel="stylesheet" />
 </head>
