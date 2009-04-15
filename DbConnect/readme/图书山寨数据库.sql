@@ -36,7 +36,7 @@ CREATE TABLE bookInfo (
 	price money NOT NULL ,
 	pubDatetime datetime NULL,
 	inDatetime datetime DEFAULT getdate(),
-	coverPath varchar (128) COLLATE Chinese_PRC_CI_AS NULL ,--图片路径
+	coverPath varchar (128) COLLATE Chinese_PRC_CI_AS DEFAULT 'cover\default.gif' ,--图片路径
 	available int DEFAULT 10 ,
 	sale int DEFAULT 0 ,--销量
 	good int DEFAULT 0 ,--好评
