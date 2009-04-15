@@ -92,6 +92,6 @@
     &nbsp;
     <asp:Button ID="Reset" runat="server" Text="重置" CausesValidation="False" 
         onclick="Reset_Click" />
-    <asp:Label ID="availablenum" runat="server"></asp:Label>
+    <asp:Label ID="availablenum" runat="server" ForeColor="Red"></asp:Label>
 </asp:Content>
 
