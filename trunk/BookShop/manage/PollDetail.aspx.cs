@@ -71,15 +71,24 @@ public partial class manage_PollDetail : System.Web.UI.Page
         connStr.connDB(connection);
         string pollItemContent = PollOptionText.Text;
         string InsertStr = "insert into pollDetail (pollID, optionName, counts) values (" + PollID + ", '" +PollOptionText.Text+ "', 0)";
-        int flag = connStr.executeUpdate(InsertStr);
-        if (flag == 0)
+        string QueryStr = "select * from pollDetail where pollid = " + PollID;
+        DataSet num = connStr.executeQuery(QueryStr);
+        if (num.Tables[0].Rows.Count >= 8)
         {
-            flag2.Text = "添加失败！";
-        } 
-        else
+            flag1.Text = "最多只能添加8个投票选项！";
+        }
+        else 
         {
-            flag2.Text = "添加成功！";
-            Response.Redirect(Request.Url.ToString());
+            int flag = connStr.executeUpdate(InsertStr);
+            if (flag == 0)
+            {
+                flag2.Text = "添加失败！";
+            } 
+            else
+            {
+                flag2.Text = "添加成功！";
+                Response.Redirect(Request.Url.ToString());
+            }
         }
         connStr.close();
     }
